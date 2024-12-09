@@ -24,7 +24,7 @@ public class UserAccount {
     @Column(nullable = false)
     private Integer hasPrice;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String acount;
 
     @Builder
