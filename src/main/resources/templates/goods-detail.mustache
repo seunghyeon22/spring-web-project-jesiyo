@@ -21,18 +21,18 @@
         </div><!--left End-->
 
         <div class="right">
-            <div class="p__title"><h2>강아지 산책줄 나눔합니다.</h2></div>
+            <div class="p__title"><h2>{{goods.title}}</h2></div>
             <hr>
 
             <div class="d-flex justify-content-start" style="margin-top: 20px;">
-                <div class="p__name"><h3>반려동물 용품</h3></div>
+                <div class="p__name"><h3>{{goods.category}}</h3></div>
 
-                <div style="margin-top: 10px; margin-left: 10px;">80분후 경매 종료</div> <!--시간 변경될 수 있도록 바꿔야하나?-->
+                <div style="margin-top: 10px; margin-left: 10px;">{{goods.endAt}}</div> <!--시간 변경될 수 있도록 바꿔야하나?-->
             </div>
     
             <div class="d-flex justify-content-start" style="margin-top: 15px;">
                 <p style="font-weight: bold;font-size: 25px;">판매자ID:</p>
-                <p style="padding: 10px;">MARU****</p><!--등록자 id를 변수로 받게끔 바꿔주세요.-->
+                <p style="padding: 10px;">{{goods.seller}}</p><!--등록자 id를 변수로 받게끔 바꿔주세요.-->
             </div>
 
             <div style="width: 65%">
@@ -45,14 +45,12 @@
 
             <h4 style="margin-top: 25px;">상품 설명</h4>
             <div class="p__info" style="margin-bottom: 35px; border: 2px solid; border-radius: 10px;">
-                우리 마루 산책줄 살 때 같이 샀어요.<br>
-                가끔 산책도 같이하면 좋을 것 같아요.^^ <br>
-                100원으로도 가져가셔도 괜찮아요!
+                {{goods.content}}
             </div>
 
             <div class="d-flex justify-content-center">
-                <div class="now__charge">최고 입찰가: 1,000원</div>
-                <div class="start__charge">시작 입찰가: 0원</div>
+                <div class="now__charge">{{goods.tryPrice}}원</div>
+                <div class="start__charge">시작 입찰가: {{goods.startingPrice}}원</div>
             </div>
 
             <!--부트스트랩 MODAL 형식-->
@@ -77,7 +75,7 @@
                         <!-- Modal body -->
                         <div class="modal-body">
                             <form action="">
-                                <input type="text" class="form-control form-control-lg" placeholder="현재 최고 입찰가: 1,000원" readonly><br>
+                                <input type="text" class="form-control form-control-lg" placeholder="현재 최고 입찰가: {{goods.tryPrice}}" readonly><br>
                                 <input type="text" class="form-control form-control-lg" name="입찰가" placeholder="입찰가 입력하기..."><br>
                                 <!--name에 "입찰가" 변수로 바꾸기-->
                                 <div class="d-flex justify-content-end">

@@ -19,6 +19,9 @@ public class Goods {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(nullable = false)
+    private String title;
+
     @ManyToOne(fetch = FetchType.LAZY)
     private Category category;
 
@@ -47,8 +50,9 @@ public class Goods {
     private Integer status;
 
     @Builder
-    public Goods(Integer id, Category category, User seller, String content, String imgUrl, Integer startingPrice, Timestamp createdAt, Timestamp endAt, Integer status) {
+    public Goods(Integer id, String title, Category category, User seller, String content, String imgUrl, Integer startingPrice, Timestamp createdAt, Timestamp endAt, Integer status) {
         this.id = id;
+        this.title = title;
         this.category = category;
         this.seller = seller;
         this.content = content;
