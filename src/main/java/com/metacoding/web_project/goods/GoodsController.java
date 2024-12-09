@@ -1,5 +1,6 @@
 package com.metacoding.web_project.goods;
 
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,5 +20,11 @@ public class GoodsController {
         model.addAttribute("goods", goodsDetailDTO);
 
         return "goods-detail";
+    }
+
+    // 상품 등록 화면 열기
+    @GetMapping("/myPage-goods-register")
+    public String register(Model model) {
+        return "goods-register";
     }
 }
