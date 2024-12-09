@@ -30,6 +30,9 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String name;
 
+    @Column(nullable = false)
+    private String tel;
+
     @Column(nullable = false, length = 5)
     private String postNum;
 
@@ -43,14 +46,12 @@ public class User implements UserDetails {
     private String birth;
 
     // role은 DB에 저장할 때 'ROLE_ADMIN' 과 같이 앞에 'ROLE_'을 붙여야 정상 작동합니다.
-    @Column(nullable = false,columnDefinition = "varchar(20) default 'ROLE_USER'")
+    @Column(nullable = false)
     private String role;
 
-    @Column(nullable = false)
-    private String tel;
 
     @Builder
-    public User(Integer id, String username, String password, String name, String postNum, String addr, String addrDetail, String birth, String role, String tel) {
+    public User(Integer id, String username, String password,String tel, String name, String postNum, String addr, String addrDetail, String birth, String role) {
         this.id = id;
         this.username = username;
         this.password = password;

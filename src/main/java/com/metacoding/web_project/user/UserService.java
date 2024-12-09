@@ -31,4 +31,12 @@ public class UserService implements UserDetailsService {
     public void 회원가입(UserRequest.JoinDTO joinDTO) {
         userRepository.join(joinDTO.toEntity(passwordEncoder));
     }
+
+    public void 아이디찾기(UserResponse.FindIdDTO findIdDTO) {
+        userRepository.findId(findIdDTO);
+    }
+
+    public void 비밀번호찾기(UserResponse.FindPasswordDTO findPasswordDTO) {
+        userRepository.findPw(findPasswordDTO);
+    }
 }

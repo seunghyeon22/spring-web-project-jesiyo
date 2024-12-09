@@ -11,6 +11,7 @@ public class UserRequest {
         private Integer id;
         private String username;
         private String password;
+        private String tel;
         private String name;
         private String postNum;
         private String addr;
@@ -20,10 +21,12 @@ public class UserRequest {
 
         public User toEntity(PasswordEncoder passwordEncoder){
             String encpw = passwordEncoder.encode(password);
-        User user = new User(null, username, encpw, name, postNum, addr, addrDetail, birth, role);
+        User user = new User(null, username, encpw, name, tel, postNum, addr, addrDetail, birth, role);
         return user;
 
         }
     }
+
+
 
 }

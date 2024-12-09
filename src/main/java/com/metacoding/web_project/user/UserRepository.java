@@ -20,10 +20,19 @@ public class UserRepository {
         } catch (RuntimeException e) {
             throw new RuntimeException("아이디 혹은 패스워드가 일치하지 않습니다.");
         }
-
     }
 
     public void join(User user) {
         em.persist(user);
+    }
+
+    public User findId(UserResponse.FindIdDTO findIdDTO) {
+        return em.createQuery("select username from User u where u.name = :name and u.tel = :tel", User.class)
+                .getSingleResult();
+    }
+
+    public User findPw(UserResponse.FindPasswordDTO findPasswordDTO) {
+        return em.createQuery("select password,id from User u where u.name = :name and u.tel = :tel and u.username = :username", User.class)
+                .getSingleResult();
     }
 }

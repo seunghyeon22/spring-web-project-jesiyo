@@ -32,4 +32,22 @@ public class UserController {
         userService.회원가입(joinDTO);
         return "redirect:/login-form";
     }
+
+    @PostMapping("/logout")
+    public String logout() {
+
+        return "redirect:/";
+    }
+
+    @PostMapping("/user-find-form")
+    public String findUserForm() {
+        return "user-find";
+    }
+
+    @PostMapping("/user-find")
+    public String findUser(UserResponse.FindIdDTO findIdDTO,UserResponse.FindPasswordDTO findPasswordDTOwDTO) {
+        userService.아이디찾기(findIdDTO);
+        userService.비밀번호찾기(findPasswordDTOwDTO);
+        return "redirect:/login";
+    }
 }
