@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
@@ -63,9 +64,9 @@ public class User implements UserDetails {
 
 
     // 사용자의 권한을 반환
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+    @Override public Collection<? extends GrantedAuthority> getAuthorities() {
+        // role을 GrantedAuthority로 변환하여 반환
+        return List.of(new SimpleGrantedAuthority(role));
     }
 
     // 계정이 만료되지 않았는지 확인
