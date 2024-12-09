@@ -1,0 +1,38 @@
+.container-r{
+    width: 550px;
+    border: 1px solid #ddd; /* 모서리 */
+    border-radius: 8px; /* 모서리 둥글게 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+    padding : 30px;
+
+}
+.t1-goods-register-inner {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        height: 100%;
+}
+.t1-goods-register-form {
+    flex: 1 1 auto;
+    padding-top: 50px;
+}
+#register-btn {
+    background-color: #f96506;
+    border : none;
+    width: 100%;
+    height: 50px;
+    color:white;
+}
+#description {
+    height: 250px;
+    margin-bottom: 10px;
+}
+#end-date {
+    color:gray;
+    display: flex;
+    justify-content: space-between
+}
+
+#category{
+    color:rgb(102, 98, 98);
+}

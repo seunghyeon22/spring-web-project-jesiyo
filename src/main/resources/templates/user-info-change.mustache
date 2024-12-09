@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Header</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/header.css">
+    <link rel="stylesheet" type="text/css" href="/css/nav.css">
+    <link rel="stylesheet" href="/css/user-info-change.css">
+
+</head>
+<body>
+
+{{>layout/header}}
+<div class="container" style="margin-top: 50px; display: flex;">
+    {{>layout/mypage-menu}}
+    <div class="t1-main-container">
+        <div class="container3 my-5 ml-5 mr-5">
+            <h2>개인정보 수정</h2>
+            <ul class="nav nav-tabs t1-nav-tabs justify-content-between mt-5" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active t1-nav-link" id="basic-info-tab" data-bs-toggle="tab"
+                        data-bs-target="#basic-info" type="button" role="tab" aria-controls="basic-info"
+                        aria-selected="true">기본 정보 수정</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link t1-nav-link" id="password-change-tab" data-bs-toggle="tab"
+                        data-bs-target="#password-change" type="button" role="tab" aria-controls="password-change"
+                        aria-selected="false">비밀번호 변경</button>
+                </li>
+            </ul>
+            <div class="tab-content t1-tab-content mt-5" id="myTabContent">
+                <div class="tab-pane fade show active" id="basic-info" role="tabpanel" aria-labelledby="basic-info-tab">
+                    <form>
+                        <table class="table table-bordered t1-table">
+                            <tbody>
+                                <tr>
+                                    <th scope="row"><label for="name">이름</label></th>
+                                    <td>Ssar</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><label for="username">아이디</label></th>
+                                    <td>Ssar1111</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><label for="phone">연락처</label></th>
+                                    <td>010-1234-1234</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><label for="address">배송지</label></th>
+                                    <td>
+                                        <input type="text" class="form-control-plaintext t1-basic-input" value="우편 번호 : 50631"
+                                            readonly>
+                                        <input type="text" class="form-control-plaintext t1-basic-input mb-2"
+                                            value="부산광역시 어쩌구 123동 201호" readonly>
+                                        <button type="button" class="btn btn-secondary t1-btn">우편번호 찾기</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><label for="account">계좌번호</label></th>
+                                    <td><button type="button" class="btn btn-secondary t1-btn">계좌번호 등록하기</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="t1-btn-container">
+                            <button type="submit" class="btn btn-primary t1-btn">수정하기</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="tab-pane fade" id="password-change" role="tabpanel" aria-labelledby="password-change-tab">
+                    <form>
+                        <div class="mb-3">
+                            <label for="current-password" class="form-label">현재 비밀번호</label>
+                            <input type="password" class="form-control t1-password-input" id="current-password"
+                                placeholder="현재 비밀번호를 입력하세요">
+                        </div>
+                        <div class="mb-3">
+                            <label for="new-password" class="form-label">새 비밀번호</label>
+                            <input type="password" class="form-control t1-password-input" id="new-password" placeholder="새 비밀번호를 입력하세요">
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirm-password" class="form-label">새 비밀번호 확인</label>
+                            <input type="password" class="form-control t1-password-input" id="confirm-password"
+                                placeholder="새 비밀번호를 다시 입력하세요">
+                        </div>
+                        <div class="t1-btn-container">
+                            <button type="submit" class="btn btn-primary t1-btn">비밀번호 변경</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+
+.my-nav {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* 제목 스타일 */
+.my-nav h2 {
+    margin: 50px;
+    font-size: 35px;
+    font-weight: bold;
+    color: #f96506;
+    border-bottom: 1px solid;
+}
+.nav-item {
+    margin-bottom: 15px;
+}
+
+.nav-link {
+    font-size: 25px;
+    font-weight: 600;
+    color: #f96506;
+    text-decoration: none;
+    display: block;
+    padding: 8px;
+    border-radius: 5px;
+}
+.nav-sub-item {
+    margin-top: 10px;
+}
+
+.nav-sub-item li a {
+    font-size: 18px;
+    font-weight: 500;
+    color: #495057;
+    text-decoration: none;
+    display: block;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.nav-sub-item li a:hover {
+    background-color: #f7f7f7;
+}
+
+
+

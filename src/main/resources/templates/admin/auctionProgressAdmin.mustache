@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="utf-8">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="/css/myPage.css" />
+    <link rel="stylesheet" href="/css/nav.css" />
+    <link rel="stylesheet" type="text/css" href="/css/header.css">
+    <title>관리자</title>
+</head>
+<body>
+{{>layout/header}}
+<div class="container d-flex mt-5">
+    <nav class="my-nav me-4" style="width: 250px">
+        <h2>관리자</h2>
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link" href="카테고리.html">카테고리</a>
+                <ul class="nav-sub-item">
+                    <li>
+                        <a href="카테고리.html">카테고리 추가</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="경매중-관리자.html">내역 확인</a>
+                <ul class="nav-sub-item">
+                    <li>
+                        <a href="경매중-관리자.html">경매중인 내역</a>
+                    </li>
+                    <li>
+                        <a href="경매완료-관리자.html">경매종료 내역</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="신고 확인.html">신고 관련</a>
+                <ul class="nav-sub-item">
+                    <li>
+                        <a href="신고 확인.html">신고 확인</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <div class="box">
+        <div class="title-box">
+            <h2>경매중인 내역 확인</h2>
+        </div>
+
+        <div class="navbar navbar-expand-sm">
+            <div style="width: 400px;">
+                <select class="form-select">
+                    <option>이름</option>
+                    <option>물품</option>
+                </select>
+            </div>
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="mynavbar" style="width: 400px;">
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="text" placeholder="Search" style="width: 460px;">
+                        <button class="btn btn-custom" type="button">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="item-list mt-5">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>물품</th>
+                    <th>입찰자</th>
+                    <th>판매자</th>
+                    <th>카테고리</th>
+                    <th>시작 입찰가</th>
+                    <th>입찰가</th>
+                    <th>입찰 시작일시</th>
+                    <th>입찰일시</th>
+                    <th>비고</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>item1</td>
+                    <td>sss</td>
+                    <td>ddd</td>
+                    <td>전자기기</td>
+                    <td>10000</td>
+                    <td>28000</td>
+                    <td>2024.9.11.17.51</td>
+                    <td>2024.9.18.17.51</td>
+                    <td>상태</td>
+                </tr>
+                <tr>
+                    <td>item1</td>
+                    <td>sss</td>
+                    <td>ddd</td>
+                    <td>전자기기</td>
+                    <td>10000</td>
+                    <td>28000</td>
+                    <td>2024.9.11.17.51</td>
+                    <td>2024.9.18.17.51</td>
+                    <td>상태</td>
+                </tr>
+                <tr>
+                    <td>item1</td>
+                    <td>sss</td>
+                    <td>ddd</td>
+                    <td>전자기기</td>
+                    <td>10000</td>
+                    <td>28000</td>
+                    <td>2024.9.11.17.51</td>
+                    <td>2024.9.18.17.51</td>
+                    <td>상태</td>
+                </tr>
+                <tr>
+                    <td>item1</td>
+                    <td>sss</td>
+                    <td>ddd</td>
+                    <td>전자기기</td>
+                    <td>10000</td>
+                    <td>28000</td>
+                    <td>2024.9.11.17.51</td>
+                    <td>2024.9.18.17.51</td>
+                    <td>상태</td>
+                </tr>
+                <tr>
+                    <td>item1</td>
+                    <td>sss</td>
+                    <td>ddd</td>
+                    <td>전자기기</td>
+                    <td>10000</td>
+                    <td>28000</td>
+                    <td>2024.9.11.17.51</td>
+                    <td>2024.9.18.17.51</td>
+                    <td>상태</td>
+                </tr>
+
+                </tbody>
+            </table>
+
+
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

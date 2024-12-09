@@ -1,0 +1,31 @@
+.list__side__Menu {
+    width: 250px;
+    margin: 24px;
+    border: 1px solid #ddd; /* 모서리 */
+    border-radius: 8px; /* 모서리 둥글게 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+    padding: 2%;
+}
+
+.list__main__content {
+    border: 1px solid #ddd; /* 모서리 */
+    border-radius: 8px; /* 모서리 둥글게 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+    margin: 24px;
+    width: 80%;
+    padding: 2%;
+}
+
+.my__list__item__box2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    padding: 5px;
+}
+
+.card__img__top {
+    width: 100%; /* 카드 너비에 맞게 이미지 채우기 */
+    height: 200px; /* 고정된 높이 설정 */
+    object-fit: cover; /* 이미지 비율을 유지하며 잘라내기 */
+    border-radius: 8px;
+}

@@ -1,0 +1,47 @@
+ <header>
+        <div class="d-flex justify-content-between align-items-center">
+
+            <!-- 왼쪽 공백 영역 -->
+            <div class="t1-empty-space flex-equal"></div>
+
+            <!-- 로고와 제목 -->
+            <div class="t1-logoAndTitle flex-equal d-flex align-items-center ms-5">
+                <div class="t1-logo">
+                    <a href="/main">
+                        <img src="/image/logo2.png" alt="로고 이미지" class="logo-img">
+                    </a>
+                </div>
+                <div class="t1-title">
+                    <h1><a href="/main" style="font-size: 1.5em; color: #f96506">중고경매</a></h1>
+                </div>
+            </div>
+
+            <!-- 로그인, 회원가입, 로그아웃, 마이페이지 -->
+            <div class="t1-auth-links flex-equal d-flex justify-content-end me-5">
+                <!-- 로그인 안 했을 때 -->
+                <a href="#">로그인</a>
+                <a href="#">회원가입</a>
+
+                <!-- 로그인 했을 때 -->
+                <!-- <a href="#">로그아웃</a> -->
+                <!-- <a href="#">마이페이지</a> -->
+            </div>
+        </div>
+
+
+        <!-- 검색 카테고리와 검색 바 -->
+        <div class="t1-search-container d-flex justify-content-center align-items-center">
+            <!-- 카테고리 선택 드롭다운 -->
+            <select class="form-select">
+                <option value="hot">조회순</option>
+                <option value="recent">최근등록순</option>
+                <option value="old">오래된순</option>
+            </select>
+            <!-- 검색어 입력 폼 -->
+            <form class="d-flex">
+                <input class="form-control search-input me-2" type="text" placeholder="검색어를 입력해주세요">
+                <button class="btn btn-primary" type="button">Search</button>
+            </form>
+        </div>
+
+    </header>

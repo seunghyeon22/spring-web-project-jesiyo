@@ -1,0 +1,39 @@
+.t1-hotCategory-text {
+    display: flex;
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    padding-top: 30px;
+    padding-bottom: 30px;
+    font-weight: 700;
+    font-size: 25px;
+}
+
+.t1-category-name {
+    display: flex;
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.carousel-control-prev {
+    margin-top: 120px;
+}
+
+.carousel-control-next {
+    margin-top: 120px;
+}
+
+.category-carousel-control-prev {
+    background-color: rgb(230, 228, 228); /* 배경색 설정 */
+    width: 2.5%; /* 화살표 버튼의 너비 조정 */
+    border: none;
+    margin-left: 50px;
+}
+
+.category-carousel-control-next {
+    background-color: rgb(230, 228, 228); /* 배경색 설정 */
+    width: 2.5%; /* 화살표 버튼의 너비 조정 */
+    border: none;
+    margin-left: 1500px;
+}

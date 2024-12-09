@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="utf-8">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="/css/admin.css" />
+    <link rel="stylesheet" type="text/css" href="/css/header.css">
+    <title>관리자</title>
+</head>
+<body>
+{{>layout/header}}
+<div class="container d-flex mt-5">
+    <nav class="my-nav me-4" style="width: 250px">
+        <h2>관리자</h2>
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link" href="카테고리.html">카테고리</a>
+                <ul class="nav-sub-item">
+                    <li>
+                        <a href="카테고리.html">카테고리 추가</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="경매중-관리자.html">내역 확인</a>
+                <ul class="nav-sub-item">
+                    <li>
+                        <a href="경매중-관리자.html">경매중인 내역</a>
+                    </li>
+                    <li>
+                        <a href="경매완료-관리자.html">경매종료 내역</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="신고 확인.html">신고 관련</a>
+                <ul class="nav-sub-item">
+                    <li>
+                        <a href="신고 확인.html">신고 확인</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <div class="box">
+        <div class="title-box">
+            <h2>카테고리</h2>
+        </div>
+
+        <div class="item-list mt-5">
+            <!-- 여기는 현재 있는 카테고리 -->
+            <div class="category-list">
+                <div class="category-d">
+                    <div class="category-img">
+                        <img class="item-image" src="photo.png"/>
+                    </div>
+                    <div class="category-name">
+                        <h5 class="ca-name">카테고리 이름</h5>
+                    </div>
+                </div>
+
+                <div class="category-d">
+                    <div class="category-img">
+                        <img class="item-image" src="photo.png"/>
+                    </div>
+                    <div class="category-name">
+                        <h5 class="ca-name">카테고리 이름</h5>
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- 여기는 카테고리 추가, 변경 -->
+            <div class="category-item">
+                <form action="" class="category-form">
+                    <div class="category-insert-img">
+                        <input type="file" accept="image/*" >
+                    </div>
+                    <div class="">
+                        <img src="photo.png" class="img-thumbnail" alt="Cinque Terre">
+                    </div>
+                    <div class="input-category">
+                        <label>Category : </label>
+                        <input type="text" class="form-control" placeholder="Enter Category">
+                    </div>
+                    <button type="submit" class="btn btn-custom">추가하기</button>
+
+                </form>
+
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

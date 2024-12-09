@@ -1,0 +1,61 @@
+.t1-tab-content {
+    margin-top: 100px;
+}
+
+.t1-main-container {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    padding: 5%;
+
+}
+
+
+.t1-nav-link {
+    width: 100%;
+}
+
+.t1-table, .t1-form-control {
+    border-color: #f96506;
+}
+
+.t1-table th {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.t1-nav-tabs .nav-item {
+    flex: 1 1 auto;
+    text-align: center;
+}
+
+.t1-nav-tabs .nav-link {
+    color: #000;
+    border-bottom: 2px solid #f96506; 
+}
+
+.t1-nav-tabs .nav-link.active {
+    border-color: #f96506;
+    border-top-color: #FF7F50;
+    border-bottom-color: transparent;
+    color: #f96506;
+}
+
+.t1-btn {
+    background-color: #f96506;
+    border-color: #f96506;
+}
+
+.t1-btn-container {
+    display: flex;
+    justify-content: center;
+}
+
+.t1-password-input {
+    border-color: #f96506; 
+}
+
+.t1-basic-input {
+    border: none;
+}

@@ -1,0 +1,93 @@
+
+header {
+    background-color: #fff;
+    color: #f96506;
+    padding: 10px 20px;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    display: block;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #f96506;
+}
+
+.flex-equal {
+    flex: 1; /* 각 요소가 동일한 비율로 공간을 차지 */
+    text-align: center; /* 내용 가운데 정렬 */
+}
+
+.d-flex {
+    display: flex;
+}
+
+.t1-logoAndTitle {
+    justify-content: center; /* 가운데 정렬 */
+    gap: 10px; /* 로고와 제목 간 간격 */
+    margin-top: 10px;
+    margin-bottom: 20px;
+
+}
+
+.t1-logo img {
+    height: 70px; /* 로고 크기 (필요에 따라 조정) */
+}
+
+.t1-logo a {
+    color: #f96506;
+    text-decoration: none;
+}
+
+.t1-title h1 {
+    margin: 0;
+    font-size: 2.0em;
+    color: #f96506;
+}
+
+h1 a {
+    text-decoration: none;
+}
+
+.t1-search-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.search-category {
+    margin-right: 10px;
+    border: 1px solid #f96506;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #f96506;
+}
+
+.search-input {
+    width: 700px; /* 원하는 너비를 설정 */
+    max-width: 100%; /* 반응형 지원을 위해 최대 너비 제한 */
+    border: 1px solid #f96506;
+}
+
+.t1-auth-links {
+    display: flex;
+    gap: 15px;
+}
+
+.t1-auth-links a {
+    color: #f96506;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.form-select {
+    width: auto;
+    display: inline-block;
+    border: 1px solid #f96506;
+    color: #f96506;
+    margin-right: 10px;
+}
+
+.btn {
+    background-color: #f96506;
+    border: 1px solid #f96506;
+}

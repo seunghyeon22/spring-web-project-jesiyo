@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/header.css">
+    <link rel="stylesheet" type="text/css" href="/css/nav.css">
+    <link rel="stylesheet" href="/css/user-info.css">
+</head>
+<body>
+
+{{>layout/header}}
+    <div class="container" style="margin-top: 50px">
+{{>layout/mypage-menu}}
+    <div class="t1-main-container ml-5">
+
+        <div class="container2 p-5 my-5 t1-no-border">
+            <h1>내 정보</h1>
+        </div>
+
+        <div class="container2 p-5 my-5">
+            <div>
+                <img src="thermometer.png" class="rounded" alt="Cinque Terre">
+            </div>
+            <div style="align-content: center; margin-left: 30px;">
+                <h2 style="margin-top: 10px;">Ssar 회원님의 신용 점수는 50점입니다.</h2>
+            </div>
+        </div>
+
+        <div class="container2 p-5 my-5">
+            <div style="width: inherit">
+
+                <h2>사용 가능한 금액 : 100000원</h2>
+                <div class="t1-btn-container">
+                    <div>
+                        <button class="t1-btn">충전하기</button>
+                    </div>
+                    <div>
+                        <button class="t1-btn">출금하기</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    </div>
+</body>
+
+</html>
