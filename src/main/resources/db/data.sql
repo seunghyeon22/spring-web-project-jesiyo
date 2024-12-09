@@ -2,10 +2,6 @@ insert into user_tb(username, password, name, post_num, addr, addr_detail, birth
 insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role) values('cos', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', 'Cos', '12345', '주소2', '상세주소1', '생일2', 'ROLE_USER');
 insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role) values('love', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', 'Love', '12345', '주소2', '상세주소1', '생일2', 'ROLE_USER');
 
-
-
-
-
 insert into category_tb(name, img_url) values ('카테고리1', '/upload/category1.png');
 insert into category_tb(name, img_url) values ('카테고리2', '/upload/category2.png');
 insert into category_tb(name, img_url) values ('카테고리3', '/upload/category3.png');
