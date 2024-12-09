@@ -5,13 +5,10 @@ insert into user_tb(username, password, name, post_num, addr, addr_detail, birth
 
 
 
-
-
-
-
 insert into category_tb(name, img_url) values ('카테고리1', '/upload/category1.png');
 insert into category_tb(name, img_url) values ('카테고리2', '/upload/category2.png');
 insert into category_tb(name, img_url) values ('카테고리3', '/upload/category3.png');
+
 
 insert into category_tb(name, img_url) values ('반려동물 용품', '없습니다.');
 insert into category_tb(name, img_url) values ('디지털기기', '없습니다.');

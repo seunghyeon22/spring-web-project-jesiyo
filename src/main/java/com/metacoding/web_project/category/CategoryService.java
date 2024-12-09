@@ -13,11 +13,10 @@ import java.util.List;
 public class CategoryService {
     private final CategoryRepository categoryRepository;
 
-
     public List<CategoryResponse.CategoryDTO> findAllCategory() {
         List<Category> categoryList = categoryRepository.findAllCategory();
 
-        List<CategoryResponse.CategoryDTO> categoryDTOList = new ArrayList<>();
+        List <CategoryResponse.CategoryDTO> categoryDTOList = new ArrayList<>();
         for (Category category : categoryList) {
             categoryDTOList.add(new CategoryResponse.CategoryDTO(category));
         }
