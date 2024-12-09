@@ -16,13 +16,13 @@ import java.sql.Timestamp;
 public class Bid{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer bidId;
+    private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private User buyerId;
+    private User buyer;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Goods goodsId;
+    private Goods goods;
 
     @Column(nullable = false)
     private Integer tryPrice;
@@ -31,10 +31,10 @@ public class Bid{
     private Timestamp createdAt;
 
     @Builder
-    public Bid(Integer bidId, User buyerId, Goods goodsId, Integer tryPrice, Timestamp createdAt) {
-        this.bidId = bidId;
-        this.buyerId = buyerId;
-        this.goodsId = goodsId;
+    public Bid(Integer id, User buyer, Goods goods, Integer tryPrice, Timestamp createdAt) {
+        this.id = id;
+        this.buyer = buyer;
+        this.goods = goods;
         this.tryPrice = tryPrice;
         this.createdAt = createdAt;
     }

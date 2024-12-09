@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class UserAccount {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer useraccountId;
+    private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
@@ -28,8 +28,8 @@ public class UserAccount {
     private String acount;
 
     @Builder
-    public UserAccount(Integer useraccountId, User user, Integer score, Integer hasPrice, String acount) {
-        this.useraccountId = useraccountId;
+    public UserAccount(Integer id, User user, Integer score, Integer hasPrice, String acount) {
+        this.id = id;
         this.user = user;
         this.score = score;
         this.hasPrice = hasPrice;

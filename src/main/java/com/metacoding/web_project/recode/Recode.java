@@ -14,13 +14,13 @@ import java.sql.Timestamp;
 @Table(name = "recode_tb")
 @Getter
 @Entity
-public class Recode{
+public class Recode {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer recordId;
+    private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private User sellerId;
+    private User seller;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Goods goods;
@@ -35,9 +35,9 @@ public class Recode{
     private Timestamp createdAt;
 
     @Builder
-    public Recode(Integer recordId, User sellerId, Goods goods, Integer tryPrice, Integer successStatus, Timestamp createdAt) {
-        this.recordId = recordId;
-        this.sellerId = sellerId;
+    public Recode(Integer id, User seller, Goods goods, Integer tryPrice, Integer successStatus, Timestamp createdAt) {
+        this.id = id;
+        this.seller = seller;
         this.goods = goods;
         this.tryPrice = tryPrice;
         this.successStatus = successStatus;

@@ -15,26 +15,29 @@ import lombok.NoArgsConstructor;
 public class Report {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer reportId;
+    private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private User reporterId;
+    private User reporter;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private User reportedId;
+    private User reported;
 
     @Column(nullable = false)
     private String reason;
 
+
+    // 0 : 처리 전 상태
+    // 1 : 처리 완료 상태
     @Column(nullable = false)
-    private Integer reportStatus;
+    private Integer status;
 
     @Builder
-    public Report(Integer reportId, User reporterId, User reportedId, String reason, Integer reportStatus) {
-        this.reportId = reportId;
-        this.reporterId = reporterId;
-        this.reportedId = reportedId;
+    public Report(Integer id, User reporter, User reported, String reason, Integer status) {
+        this.id = id;
+        this.reporter = reporter;
+        this.reported = reported;
         this.reason = reason;
-        this.reportStatus = reportStatus;
+        this.status = status;
     }
 }

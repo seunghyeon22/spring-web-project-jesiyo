@@ -18,7 +18,7 @@ import java.util.List;
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer userId;
+    private Integer id;
 
     @Column(unique = true, nullable = false)
     private String username;
@@ -41,12 +41,14 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String birth;
 
+    // role은 DB에 저장할 때 'ROLE_ADMIN' 과 같이 앞에 'ROLE_'을 붙여야 정상 작동합니다.
     @Column(nullable = false)
     private String role;
 
+
     @Builder
-    public User(Integer userId, String username, String password, String name, String postNum, String addr, String addrDetail, String birth, String role) {
-        this.userId = userId;
+    public User(Integer id, String username, String password, String name, String postNum, String addr, String addrDetail, String birth, String role) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.name = name;
@@ -56,6 +58,9 @@ public class User implements UserDetails {
         this.birth = birth;
         this.role = role;
     }
+
+
+
 
     // 사용자의 권한을 반환
     @Override

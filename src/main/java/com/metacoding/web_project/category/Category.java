@@ -12,18 +12,18 @@ import lombok.NoArgsConstructor;
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer categoryId;
+    private Integer id;
 
     @Column(unique = true, nullable = false)
-    private String categoryName;
+    private String name;
 
     @Column(nullable = false)
-    private String categoryImg;
+    private String imgUrl;
 
     @Builder
-    public Category(Integer categoryId, String categoryName, String categoryImg) {
-        this.categoryId = categoryId;
-        this.categoryName = categoryName;
-        this.categoryImg = categoryImg;
+    public Category(Integer id, String name, String imgUrl) {
+        this.id = id;
+        this.name = name;
+        this.imgUrl = imgUrl;
     }
 }

@@ -19,22 +19,27 @@ import java.time.LocalDateTime;
 public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer transaction_id;
+    private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Goods goods;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private User buyerId;
+    private User buyer;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private User sellerId;
+    private User seller;
 
+    // status :
+    // 0 : 거래 확정 버튼 누르기 전
+    // 1 : 거래 확정 버튼 누른 후
     @Column(nullable = false)
     private Integer buyer_status;
 
     @Column(nullable = false)
     private Integer seller_status;
+
+
 
     @Column(nullable = false)
     private Integer success_price;
@@ -46,11 +51,11 @@ public class Transaction {
     private Timestamp updatedAt;
 
     @Builder
-    public Transaction(Integer transaction_id, Goods goods, User buyerId, User sellerId, Integer buyer_status, Integer seller_status, Integer success_price, Integer deliveryNum) {
-        this.transaction_id = transaction_id;
+    public Transaction(Integer id, Goods goods, User buyer, User seller, Integer buyer_status, Integer seller_status, Integer success_price, Integer deliveryNum) {
+        this.id = id;
         this.goods = goods;
-        this.buyerId = buyerId;
-        this.sellerId = sellerId;
+        this.buyer = buyer;
+        this.seller = seller;
         this.buyer_status = buyer_status;
         this.seller_status = seller_status;
         this.success_price = success_price;

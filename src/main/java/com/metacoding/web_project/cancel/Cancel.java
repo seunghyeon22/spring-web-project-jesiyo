@@ -11,22 +11,22 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.sql.Timestamp;
 
 @NoArgsConstructor
-@Table(name = "cancle_tb")
+@Table(name = "cancel_tb")
 @Getter
 @Entity
 public class Cancel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer cancleId;
+    private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private User sellerId;
+    private User seller;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private User buyerId;
+    private User buyer;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Transaction transactionId;
+    private Transaction transaction;
 
     @Column(nullable = false)
     private String content;
@@ -35,11 +35,11 @@ public class Cancel {
     private Timestamp createdAt;
 
     @Builder
-    public Cancel(Integer cancleId, User sellerId, User buyerId, Transaction transactionId, String content, Timestamp createdAt) {
-        this.cancleId = cancleId;
-        this.sellerId = sellerId;
-        this.buyerId = buyerId;
-        this.transactionId = transactionId;
+    public Cancel(Integer id, User seller, User buyer, Transaction transaction, String content, Timestamp createdAt) {
+        this.id = id;
+        this.seller = seller;
+        this.buyer = buyer;
+        this.transaction = transaction;
         this.content = content;
         this.createdAt = createdAt;
     }
