@@ -22,4 +22,8 @@ public class UserRepository {
         }
 
     }
+
+    public void join(User user) {
+        em.persist(user);
+    }
 }

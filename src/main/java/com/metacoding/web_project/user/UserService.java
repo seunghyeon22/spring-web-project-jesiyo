@@ -27,4 +27,8 @@ public class UserService implements UserDetailsService {
 
         return user;
     }
+    @Transactional
+    public void 회원가입(UserRequest.JoinDTO joinDTO) {
+        userRepository.join(joinDTO.toEntity(passwordEncoder));
+    }
 }

@@ -43,7 +43,7 @@ public class User implements UserDetails {
     private String birth;
 
     // role은 DB에 저장할 때 'ROLE_ADMIN' 과 같이 앞에 'ROLE_'을 붙여야 정상 작동합니다.
-    @Column(nullable = false)
+    @Column(nullable = false,columnDefinition = "varchar(20) default 'ROLE_USER'")
     private String role;
 
     @Column(nullable = false)
