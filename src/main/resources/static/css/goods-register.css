@@ -12,10 +12,17 @@
         position: relative;
         height: 100%;
 }
+
+.t1-goods-register-inner h1 {
+    color: #f96506;
+    font-weight: bold;
+}
+
 .t1-goods-register-form {
     flex: 1 1 auto;
     padding-top: 50px;
 }
+
 #register-btn {
     background-color: #f96506;
     border : none;
@@ -23,10 +30,12 @@
     height: 50px;
     color:white;
 }
+
 #description {
     height: 250px;
     margin-bottom: 10px;
 }
+
 #end-date {
     color:gray;
     display: flex;
