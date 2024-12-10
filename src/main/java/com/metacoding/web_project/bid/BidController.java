@@ -37,7 +37,7 @@ public class BidController {
     @PostMapping("/catchDetailPageData")
     public ResponseEntity<?> uploadBidData(@RequestBody BidRequest.TryBidDTO tryBidDTO) {
         bidService.saveTryPrice(tryBidDTO);
-        //Resp resp = new Resp(true, "성공", null);
+
         CommonResp resp = new CommonResp(true, "성공", null);
         return ResponseEntity.ok(resp);
     }

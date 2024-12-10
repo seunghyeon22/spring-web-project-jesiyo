@@ -6,6 +6,7 @@ import lombok.Data;
 
 public class BidRequest {
 
+    // 경매시도 데이터 DTO
     @Data
     public static class TryBidDTO {
         Integer tryPrice;
