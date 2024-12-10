@@ -18,4 +18,8 @@ public class BidRepository {
         q.setParameter(1, id);
         return Optional.ofNullable((Bid) q.getSingleResult());
     }
+
+    public void saveV1(Bid bid) {
+        em.persist(bid);
+    }
 }
