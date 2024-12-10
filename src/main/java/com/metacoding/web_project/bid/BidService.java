@@ -13,7 +13,6 @@ import java.util.List;
 public class BidService {
     private final BidRepository bidRepository;
 
-<<<<<<< HEAD
     private final HttpSession session;
 
     @Transactional
@@ -25,7 +24,9 @@ public class BidService {
 
         // ***다음버전 toEntity userId 유동적으로 받을 수 있게 바꿔야됨
         bidRepository.saveV1(tryBidDTO.toEntity(1));
-=======
+    }
+
+
     // 조건에 따라 다른 where 절을 생성하여 전달하는 메서드 (관리자)
     public List<BidResponse.BidDTO> findAllBidsAndUser(String divide, String search) {
         String query;
@@ -46,7 +47,6 @@ public class BidService {
             dtoList.add(new BidResponse.BidDTO(bid));
         }
         return dtoList;
->>>>>>> 2bdb5af ([feat] 관리자 거래중 페이지 기능 구현 완료)
     }
 }
 

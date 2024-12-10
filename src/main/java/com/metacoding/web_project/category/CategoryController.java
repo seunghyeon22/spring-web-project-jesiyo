@@ -2,25 +2,13 @@ package com.metacoding.web_project.category;
 
 import com.metacoding.web_project._core.CommonResp;
 import lombok.RequiredArgsConstructor;
-<<<<<<< HEAD
 import org.springframework.http.HttpStatus;
-=======
->>>>>>> 2e50445 ([feat] 카테고리 추가 기능 구현, 더미데이터 추가)
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-<<<<<<< HEAD
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.List;
-=======
->>>>>>> 2e50445 ([feat] 카테고리 추가 기능 구현, 더미데이터 추가)
-
-import java.util.List;
-
 import java.util.List;
 
 import java.util.List;
@@ -46,11 +34,6 @@ public class CategoryController {
 
         return "redirect:/category";
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> 2e50445 ([feat] 카테고리 추가 기능 구현, 더미데이터 추가)
-
 
     // 일단 임시
     @GetMapping("/")

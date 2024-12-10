@@ -29,11 +29,5 @@ public class CategoryService {
 
         String url = FileUtil.fileSave(dto.getData());
         categoryRepository.insertCategory(dto.toEntity(url));
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> 2e50445 ([feat] 카테고리 추가 기능 구현, 더미데이터 추가)
     }
 }
