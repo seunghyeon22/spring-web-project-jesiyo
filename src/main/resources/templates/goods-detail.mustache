@@ -32,7 +32,7 @@
     
             <div class="d-flex justify-content-start" style="margin-top: 15px;">
                 <p style="font-weight: bold;font-size: 25px;">판매자ID:</p>
-                <p style="padding: 10px;">{{goods.seller}}</p><!--등록자 id를 변수로 받게끔 바꿔주세요.-->
+                <p style="padding: 10px;" id="seller">{{goods.seller}}</p><!--등록자 id를 변수로 받게끔 바꿔주세요.-->
             </div>
 
             <div style="width: 65%">
@@ -49,7 +49,7 @@
             </div>
 
             <div class="d-flex justify-content-center">
-                <div class="now__charge">{{goods.tryPrice}}원</div>
+                <div class="now__charge" id="successPrice">{{goods.tryPrice}}원</div>
                 <div class="start__charge">시작 입찰가: {{goods.startingPrice}}원</div>
             </div>
 
@@ -98,10 +98,12 @@
     </div><!--container End -->
 
 <script>
+    const goodsId = document.querySelector("#goodsId").textContent;
+
     //서버에 입찰시도 데이터 보내기
     document.querySelector("#sendBidData").addEventListener('click',async function () {
        const tryPrice = document.querySelector("#tryPrice").value;
-       const goodsId = document.querySelector("#goodsId").textContent;
+
        if (!tryPrice) {
            alert("입찰가를 입력해주세요.");
            return;
@@ -128,12 +130,66 @@
            const bootstrapModal = bootstrap.Modal.getInstance(modal);
            bootstrapModal.hide();
 
+           // 페이지 새로고침
+           window.location.reload();
+
+
            alert("입찰이 성공적으로 등록되었습니다.");
        }catch (error) {
            console.error("에러 발생: " + error);
            alert("입찰 전송 중 오류가 발생했습니다.");
        }
     });
+
+    // 경매시간 over goods Status 변경 요청 함수
+    async function updateGoodsStatus(){
+        try{
+            const response = await fetch('/goods-detail/goodsStatus/update',{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({goodsId: goodsId})
+            });
+        } catch (error) {
+            alert("오류 발생: ", error);
+        }
+    }
+
+    // 경매시간 over transaction_tb에 현재 상품ID, 판매자ID, 구매자ID, 최종낙찰 가격 save 요청
+    async function saveTransaction() {
+        const seller = document.querySelector("#seller").innerHTML;
+
+        // 낙찰가격
+        const successPrice = document.querySelector("#successPrice").textContent;
+
+        try {
+            await fetch('/goods-detail/saveTransaction',{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({goodsId: goodsId, seller: seller, successPrice: successPrice})
+            });
+        }catch (error) {
+            alert("오류 발생: ", error)
+        }
+    }
+
+    function checkAuctionEnd() {
+        const endAt = new Date('{{goods.endAt}}');
+        const currentTime = new Date();
+
+        // 현재 시간이 종료시간 이후라면 상태변경 요청
+        if (currentTime >= endAt) {
+            updateGoodsStatus();
+            saveTransaction();
+            clearInterval(intervalId);
+        }
+    }
+
+    // 일정 주기로 경매 종료 시간 확인
+    const intervalId = setInterval(checkAuctionEnd, 1000); // 1초 간격으로 확인
 </script>
 
 </body>

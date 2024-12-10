@@ -1,6 +1,7 @@
 package com.metacoding.web_project.goods;
 
 import com.metacoding.web_project._core.util.FileUtil;
+import com.metacoding.web_project._core.error.ex.Exception400;
 import com.metacoding.web_project.category.Category;
 import com.metacoding.web_project.user.User;
 import jakarta.persistence.*;
@@ -70,5 +71,13 @@ public class Goods {
         this.createdAt = createdAt;
         this.endAt = endAt;
         this.status = status;
+    }
+
+    // 상태 변경을 위한 메서드입니다.
+    public void endAuction(){
+        if (this.status == 1) {
+            throw new Exception400("이미 경매가 종료되었습니다.");
+        }
+        this.status = 1; // 상태변경
     }
 }

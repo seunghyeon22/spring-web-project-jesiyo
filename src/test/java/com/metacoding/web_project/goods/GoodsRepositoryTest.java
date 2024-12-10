@@ -1,5 +1,6 @@
 package com.metacoding.web_project.goods;
 
+import com.metacoding.web_project._core.error.ex.Exception404;
 import com.metacoding.web_project.category.Category;
 import com.metacoding.web_project.user.User;
 import org.junit.jupiter.api.Test;
@@ -19,14 +20,15 @@ public class GoodsRepositoryTest {
     private GoodsRepository goodsRepository;
 
     @Test
-    public void findById_test(){
-        Integer id = 1;
+    public void changeStatus_test(){
+        Goods goods = goodsRepository.findById(1)
+                .orElseThrow(() -> new Exception404("해당 물품은 존재하지 않습니다."));
 
-        Optional<Goods> result = goodsRepository.findById(id);
-        Goods goods = result.get();
+        System.out.println("*********변경 전: " + goods.getStatus());
 
-        System.out.println(goods.getTitle());
-        System.out.println(goods.getSeller().getName());
+        goods.endAuction();
+
+        System.out.println("*********변경 후: " + goods.getStatus());
 
     }
 

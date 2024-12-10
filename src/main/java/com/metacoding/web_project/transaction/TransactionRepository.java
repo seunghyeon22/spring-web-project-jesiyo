@@ -8,4 +8,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class TransactionRepository {
     private final EntityManager em;
+
+    public void save(Transaction transaction) {
+        em.persist(transaction);
+    }
 }

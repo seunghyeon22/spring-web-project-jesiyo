@@ -44,7 +44,7 @@ public class Transaction {
     @Column(nullable = false)
     private Integer success_price;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Integer deliveryNum;
 
     @CreationTimestamp
