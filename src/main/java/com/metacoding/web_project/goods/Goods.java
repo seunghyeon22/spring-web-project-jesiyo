@@ -1,6 +1,5 @@
 package com.metacoding.web_project.goods;
 
-import com.metacoding.web_project._core.util.FileUtil;
 import com.metacoding.web_project._core.error.ex.Exception400;
 import com.metacoding.web_project.category.Category;
 import com.metacoding.web_project.user.User;
