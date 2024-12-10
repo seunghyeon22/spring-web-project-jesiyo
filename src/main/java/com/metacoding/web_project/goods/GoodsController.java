@@ -1,5 +1,6 @@
 package com.metacoding.web_project.goods;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -12,9 +13,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class GoodsController {
     private final GoodsService goodsService;
 
+    private final HttpSession session;
+
     // 제품 상세페이지 불러오기
     @GetMapping("/goods-detail/{id}")
     public String goodsDetail(@PathVariable("id")Integer id, Model model) {
+
+        // ***임시*** // 세션에 username 저장
+        String username = "ssar";
+        session.setAttribute("username", username);
 
         GoodsResponse.GoodsDetailDTO goodsDetailDTO = goodsService.getGoodsInfo(id);
         model.addAttribute("goods", goodsDetailDTO);

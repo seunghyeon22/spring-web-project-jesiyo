@@ -21,7 +21,7 @@
         </div><!--left End-->
 
         <div class="right">
-            <div class="p__title"><h2>{{goods.title}}</h2></div>
+            <div class="p__title"><h2>{{goods.title}}</h2></div><div id="goodsId" hidden="hidden">{{goods.id}}</div>
             <hr>
 
             <div class="d-flex justify-content-start" style="margin-top: 20px;">
@@ -76,10 +76,10 @@
                         <div class="modal-body">
                             <form action="">
                                 <input type="text" class="form-control form-control-lg" placeholder="현재 최고 입찰가: {{goods.tryPrice}}" readonly><br>
-                                <input type="text" class="form-control form-control-lg" name="입찰가" placeholder="입찰가 입력하기..."><br>
+                                <input type="text" class="form-control form-control-lg" name="입찰가" placeholder="입찰가 입력하기..." id="tryPrice"><br>
                                 <!--name에 "입찰가" 변수로 바꾸기-->
                                 <div class="d-flex justify-content-end">
-                                    <button type="submit" class="bidding-btn" style="background-color: #f96506; border-radius: 10px;">입찰가 제출</button>
+                                    <button type="button" class="bidding-btn" style="background-color: #f96506; border-radius: 10px;" id="sendBidData">입찰가 제출</button>
                                 </div>
                             </form>
                         </div>
@@ -96,6 +96,44 @@
         </div><!--right End-->
 
     </div><!--container End -->
+
+<script>
+    document.querySelector("#sendBidData").addEventListener('click',async function () {
+       const tryPrice = document.querySelector("#tryPrice").value;
+       const goodsId = document.querySelector("#goodsId").textContent;
+       if (!tryPrice) {
+           alert("입찰가를 입력해주세요.");
+           return;
+       }
+
+       try {
+           const response = await fetch("/catchDetailPageData", {
+               method: 'POST',
+               headers: {
+                   'Content-Type' : 'application/json; charset=utf-8'
+               },
+               body: JSON.stringify({ tryPrice: tryPrice, goodsId: goodsId })
+           });
+
+           if (!response.ok) {
+               throw new Error("서버 요청에 실패했습니다.");
+           }
+
+           const data = await response.json(); // 서버 응답처리
+           console.log("서버 응답 데이터: ", data);
+
+           // 성공적으로 저장된 경우 모달 창 닫기
+           const modal = document.querySelector("#myModal");
+           const bootstrapModal = bootstrap.Modal.getInstance(modal);
+           bootstrapModal.hide();
+
+           alert("입찰이 성공적으로 등록되었습니다.");
+       }catch (error) {
+           console.error("에러 발생: " + error);
+           alert("입찰 전송 중 오류가 발생했습니다.");
+       }
+    });
+</script>
 
 </body>
 </html>
