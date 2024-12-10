@@ -18,8 +18,8 @@ insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (3,1,3000,now(
 
 
 insert into category_tb(name, img_url) values ('가구', '/upload/category1.png');
-insert into category_tb(name, img_url) values ('디지털기기', '/upload/category2.png');
-insert into category_tb(name, img_url) values ('생활가전', '/upload/category3.png');
+insert into category_tb(name, img_url) values ('디지털기기2', '/upload/category2.png');
+insert into category_tb(name, img_url) values ('생활가전2', '/upload/category3.png');
 
 
 

@@ -1,6 +1,7 @@
 package com.metacoding.web_project.transaction;
 
 import com.metacoding.web_project._core.CommonResp;
+import com.metacoding.web_project.bid.BidResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
@@ -16,7 +20,9 @@ public class TransactionController {
 
     // 로그인 구현 시 경로를 /admin/auction-complete 로 변경 예정
     @GetMapping("/auction-complete")
-    public String auctionComplete() {
+    public String auctionComplete(Model model, @RequestParam(defaultValue = "") String divide, @RequestParam(defaultValue = "") String search) {
+//        List<TransactionResponse.TransactionDTO> dtoList = transactionService.findAllTransactionTBAndUser(divide, search);
+//        model.addAttribute("model", dtoList);
         return "admin/auction-complete-admin";
     }
 
