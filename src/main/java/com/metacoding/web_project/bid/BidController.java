@@ -33,6 +33,7 @@ public class BidController {
         return "participating-auction";
     }
 
+    // 경매 시도 금액 데이터 -> DB의 bid_tb 테이블에 insert
     @PostMapping("/catchDetailPageData")
     public ResponseEntity<?> uploadBidData(@RequestBody BidRequest.TryBidDTO tryBidDTO) {
         bidService.saveTryPrice(tryBidDTO);
