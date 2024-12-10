@@ -27,5 +27,4 @@ public class TransactionController {
     public String participatedAuction(Model model) {
         return "participated-auction";
     }
-
 }

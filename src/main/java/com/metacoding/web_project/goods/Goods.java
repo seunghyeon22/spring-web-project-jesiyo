@@ -1,5 +1,6 @@
 package com.metacoding.web_project.goods;
 
+import com.metacoding.web_project._core.util.FileUtil;
 import com.metacoding.web_project.category.Category;
 import com.metacoding.web_project.user.User;
 import jakarta.persistence.*;
@@ -48,6 +49,14 @@ public class Goods {
     // 2 : 최종 거래 완료 (입찰 불가능 상태 + 판매자, 구매자가 모두 거래 확정 버튼을 눌렀을 때)
     @Column(nullable = false)
     private Integer status;
+
+    // status 기본값 0으로 설정
+    @PrePersist
+    public void prePersist(){
+        if (this.status == null) {
+            this.status = 0;
+        }
+    }
 
     @Builder
     public Goods(Integer id, String title, Category category, User seller, String content, String imgUrl, Integer startingPrice, Timestamp createdAt, Timestamp endAt, Integer status) {
