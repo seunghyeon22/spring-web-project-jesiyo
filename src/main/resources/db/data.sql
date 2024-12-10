@@ -9,6 +9,6 @@ insert into user_tb(username, password, name, post_num, addr, addr_detail, birth
 
 
 
-insert into category_tb(name, img_url) values ('카테고리1', 'url1');
-insert into category_tb(name, img_url) values ('카테고리2', 'url2');
-insert into category_tb(name, img_url) values ('카테고리3', 'url3');
+insert into category_tb(name, img_url) values ('카테고리1', '/upload/category1.png');
+insert into category_tb(name, img_url) values ('카테고리2', '/upload/category2.png');
+insert into category_tb(name, img_url) values ('카테고리3', '/upload/category3.png');

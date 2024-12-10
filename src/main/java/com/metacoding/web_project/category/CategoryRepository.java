@@ -16,4 +16,8 @@ public class CategoryRepository {
         Query q = em.createQuery("SELECT c FROM Category c", Category.class);
         return q.getResultList();
     }
+
+    public void insertCategory(Category entity) {
+        em.persist(entity);
+    }
 }

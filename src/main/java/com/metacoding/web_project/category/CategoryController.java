@@ -1,9 +1,12 @@
 package com.metacoding.web_project.category;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -20,6 +23,13 @@ public class CategoryController {
 
         model.addAttribute("model", DTOList);
         return "admin/category";
+    }
+
+    @PostMapping("/category/insert")
+    public String categoryInsert(CategoryRequest.CategoryDTO dto) {
+        categoryService.insertCategory(dto);
+
+        return "redirect:/category";
     }
 
 

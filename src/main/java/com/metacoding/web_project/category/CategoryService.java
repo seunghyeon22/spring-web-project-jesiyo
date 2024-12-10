@@ -1,5 +1,7 @@
 package com.metacoding.web_project.category;
 
+import com.metacoding.web_project._core.util.FileUtil;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,5 +22,15 @@ public class CategoryService {
         }
 
         return categoryDTOList;
+    }
+
+    @Transactional
+    public void insertCategory(CategoryRequest.CategoryDTO dto) {
+
+        String url = FileUtil.fileSave(dto.getData());
+        categoryRepository.insertCategory(dto.toEntity(url));
+
+
+
     }
 }
