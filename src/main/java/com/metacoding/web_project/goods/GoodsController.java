@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PostMapping;
 
 @RequiredArgsConstructor
 @Controller
@@ -43,8 +42,6 @@ public class GoodsController {
     // 제품 등록
     @PostMapping("/goods/save")
     public String goodsSave(GoodsRequest.GoodsSaveDTO goodsSaveDTO) {
-        System.out.println(goodsSaveDTO.getEndAt());
-        System.out.println(goodsSaveDTO.getTitle());
         goodsService.goodsSave(goodsSaveDTO);
         return "redirect:/myPage-being-auctioned"; // 경매중인물품 리스트 화면으로 리다이렉트
     }

@@ -8,6 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
@@ -16,8 +19,11 @@ public class BidController {
 
 
     // 로그인 구현 시 경로를 /admin/auction-progress 로 변경 예정
+    // 경매 중인 물품 페이지 이동 (관리자)
     @GetMapping("/auction-progress")
-    public String auctionProgress() {
+    public String auctionProgress(Model model, @RequestParam(defaultValue = "") String divide, @RequestParam(defaultValue = "") String search) {
+        List<BidResponse.BidDTO> dtoList = bidService.findAllBidsAndUser(divide, search);
+        model.addAttribute("model", dtoList);
         return "admin/auction-progress-admin";
     }
 
