@@ -1,9 +1,6 @@
 package com.metacoding.web_project.goods;
 
-<<<<<<< HEAD
 import com.metacoding.web_project._core.error.ex.Exception404;
-=======
->>>>>>> 375f2ac ([feat]제품등록기능구현)
 import com.metacoding.web_project.category.Category;
 import com.metacoding.web_project.user.User;
 import org.junit.jupiter.api.Test;
