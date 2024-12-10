@@ -1,6 +1,7 @@
 package com.metacoding.web_project._core.util;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
@@ -29,5 +30,10 @@ public class FormatDate {
         } else {
             return "곧 경매 종료";
         }
+    }
+
+    public static String formatToyyyypMMpdd(Timestamp timestamp) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd");
+        return simpleDateFormat.format(timestamp);
     }
 }

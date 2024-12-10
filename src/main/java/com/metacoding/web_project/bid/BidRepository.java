@@ -5,6 +5,7 @@ import jakarta.persistence.Query;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -20,8 +21,19 @@ public class BidRepository {
         return Optional.ofNullable((Bid) q.getSingleResult());
     }
 
+<<<<<<< HEAD
     public void saveV1(Bid bid) {
         em.persist(bid);
+=======
+    // bid 테이블을 join하여 조회(goods,user)(관리자용)
+    public List<Bid> findAllBidsJoinAnotherInfo(String condition) {
+        String sql = """
+                select b from Bid b join fetch b.buyer join fetch b.goods g join fetch g.seller
+                """;
+        sql += condition;
+        Query q = em.createQuery(sql, Bid.class);
+        return (List<Bid>) q.getResultList();
+>>>>>>> 2bdb5af ([feat] 관리자 거래중 페이지 기능 구현 완료)
     }
 
     // 최종 낙찰 금액을 조회해서 구매자 ID 찾아내는 메서드
