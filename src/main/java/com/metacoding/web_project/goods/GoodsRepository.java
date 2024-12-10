@@ -15,4 +15,9 @@ public class GoodsRepository {
     public Optional<Goods> findById(Integer id) {
         return Optional.ofNullable(em.find(Goods.class, id));
     }
+
+    // 제품 등록
+    public void save(Goods goods) {
+        em.persist(goods);
+    }
 }

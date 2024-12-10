@@ -21,33 +21,28 @@
         <div class="container-r">
         <div class="t1-goods-register-inner">
             <h1>상품등록</h1>
-            <form class="t1-goods-register-form" action="#" method="post" enctype="multipart/form-data">
+            <form class="t1-goods-register-form" action="/goods/save" method="post" enctype="multipart/form-data">
                 <div class="input-group mb-3">
-                    <input type="file" accept="image/*" name="" class="form-control" id="fileInput">
+                    <input type="file" accept="image/*" name="imgUrl" class="form-control" id="fileInput">
                 </div>
                 <div class="input-group mb-3">
-                    <input type="text" name="" id="" class="form-control" placeholder="제목을 입력하세요. (*상품명을 꼭 포함해주세요)">
+                    <input type="text" name="title" class="form-control" placeholder="제목을 입력하세요. (*상품명을 꼭 포함해주세요)">
                 </div>
                 <div class="input-group mb-3" >
                     <div class="input-group mb-3">
                         <label class="input-group-text" for="inputGroupSelect01">카테고리</label>
                         <select class="form-select" id="inputGroupSelect01">
                           <option selected>제품의 카테고리를 선택해주세요.</option>
-                          <option value="1">카테고리1</option>
-                          <option value="2">카테고리2</option>
-                          <option value="3">카테고리3</option>
+                          <option value="1">반려동물용품</option>
+                          <option value="2">디지털기기</option>
+                          <option value="3">생활가전</option>
+                          <option value="4">가구/인테리어</option>
+                          <option value="5">생활/주방</option>
                         </select>
-                      </div>
-                    <!-- <select class ="form-select" name="category" id="category">
-                        <option value="">제품 카테고리를 선택하세요</option>
-                        <option value="">============</option>
-                        <option value="">카테고리1</option>
-                        <option value="">카테고리2</option>
-                        <option value="">카테고리3</option>
-                    </select>
-                </div> -->
+                    </div>
+                </div>
                 <div class="input-group mb-3">
-                    <input type="text" name="" id="start_price" class="form-control" placeholder="경매시작가를 숫자로만 입력해주세요.">
+                    <input type="text" name="startingPrice" id="start_price" class="form-control" placeholder="경매시작가를 숫자로만 입력해주세요.">
                 </div>
                 <div class="form-floating">
                     <textarea class="form-control" name="content" id="description"></textarea>
@@ -56,10 +51,10 @@
                 <div class="input-group mb-3" id="end-date">
                     <div>경매 종료 날짜를 선택해주세요.</div>
                     <div>
-                        <input type="date" name="" class="form-control">
+                        <input type="date" name="endAt" class="form-control">
                     </div>
                 </div>
-                <button type="button" class="btn btn-secondary" id="register-btn">상품 등록하기</button>
+                <button type="submit" class="btn btn-secondary" id="register-btn">상품 등록하기</button>
             </form>
 
         </div>

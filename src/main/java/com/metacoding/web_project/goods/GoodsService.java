@@ -36,4 +36,10 @@ public class GoodsService {
         return new GoodsResponse.GoodsDetailDTO(goods, tryPrice);
 
     }
+
+    // 제품 등록하기
+    @Transactional
+    public void goodsSave(GoodsRequest.GoodsSaveDTO goodsSaveDTO) {
+        goodsRepository.save(goodsSaveDTO.toEntity());
+    }
 }
