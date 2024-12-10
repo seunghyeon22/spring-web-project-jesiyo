@@ -51,20 +51,18 @@ public class User implements UserDetails {
 
 
     @Builder
-    public User(Integer id, String username, String password,String tel, String name, String postNum, String addr, String addrDetail, String birth, String role) {
+    public User(Integer id, String username, String password, String name, String tel, String postNum, String addr, String addrDetail, String birth, String role) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.name = name;
+        this.tel = tel;
         this.postNum = postNum;
         this.addr = addr;
         this.addrDetail = addrDetail;
         this.birth = birth;
         this.role = role;
-        this.tel = tel;
     }
-
-
 
 
     // 사용자의 권한을 반환

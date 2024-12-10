@@ -1,66 +1,14 @@
-
-// 아이디 유효성 검증
-function idCheck() {
-    let id = document.getElementById('id').value;
-    let idck = document.getElementById('idck');
-    let regex = /^[a-zA-Z][a-zA-Z0-9]*$/; // 영문자로 시작하고 영문자와 숫자만 포함
-
-    idck.textContent = '';
-    idck.style.color = '';
-
-    if (id.length < 3 || id.length > 12) {
-        idck.textContent = '아이디는 3자 이상 12자 이하이어야 합니다.';
-        idck.style.color = 'red';
-        return;
-    }
-
-    if (id.includes(" ")) {
-        idck.textContent = '아이디는 공백을 포함할 수 없습니다.';
-        idck.style.color = 'red';
-        return;
-    }
-
-    if (!regex.test(id)) {
-        idck.textContent = '아이디는 영문자로 시작하고, 영문자와 숫자만 포함할 수 있습니다.';
-        idck.style.color = 'red';
-        return;
-    }
-
-    idck.textContent = '유효한 아이디입니다.';
-    idck.style.color = 'green';
+// 비밀번호 유효성 검사
+function pwCheck(){
+    const pw1 = document.querySelector("#pw1").value;
 }
 
-document.getElementById('id').addEventListener('keyup', idCheck);
-
-// 비밀번호 유효성 검사 함수
-function pwCheck(password){
-    const hasLetter = /[a-zA-Z]/.test(password); // 영문자 포함
-    const hasNumber = /[0-9]/.test(password); // 숫자 포함
-    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password); // 특수문자 포함
-
-    if(pw1.length < 8) return '비밀번호는 최소 8자 이상이어야 합니다.';
-    if(!hasLetter) return '비밀번호에는 영문자가 포함되어야 합니다.';
-    if(!hasNumber) return '비밀번호에는 숫자가 포함되어야 합니다.';
-    if(!hasSpecialChar) return '비밀번호에는 특수문자가 포함되어야합니다.';
-    return '사용하실 수 있는 비밀번호 입니다.'
-
-}
-
-// 비밀번호 일치 확인 함수
+// 비밀번호 일치 
 function pwAcc() {
-    const pw1 = document.getElementById('pw1').value;
-    const pw2 = document.getElementById('pw2').value;
-    const pwck = document.getElementById('pwck');
-    const pwvalid = document.querySelector('#pwvalid')
-
-    const pwVaild = pwCheck(pw1);
-    if(pwCheck){
-        pwvaild.textContent = pwVaild;
-        pwvalid.style.color = 'orange';
-        return;
-    }
-
-    if( pw1&&pw2 != null){
+    const pw1 = document.querySelector("#pw1").value.trim();
+    const pw2 = document.querySelector('#pw2').value.trim();
+    const pwck = document.querySelector('#pwck');
+    if( pw1&&pw2 ){
         if (pw1 == pw2) {
             pwck.textContent = '비밀번호 일치';
             pwck.style.color = 'green';
@@ -70,11 +18,24 @@ function pwAcc() {
         }
     }else{
         pwck.textContent = '비밀번호를 입력해주세요';
+        pwck.style.color = 'orange';
     }
 }
 
-document.getElementById('pw1').addEventListener('keyup', pwAcc);
-document.getElementById('pw2').addEventListener('keyup', pwAcc);
+document.querySelector('#pw1').addEventListener('keyup', pwAcc);
+document.querySelector('#pw2').addEventListener('keyup', pwAcc);
+
+const btnPwChange = document.querySelector('#btnPwChange');
+const pwck = document.querySelector('#pwck');
+
+btnPwChange.addEventListener('click',(e)=>{
+    if(pwck.textContent !=="비밀번호 일치"){
+        e.preventDefault();
+        alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.')
+    }
+});
+
+
 
 
 
