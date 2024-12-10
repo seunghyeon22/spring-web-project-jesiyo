@@ -11,7 +11,7 @@
     border: 1px solid #ddd; /* 모서리 */
     border-radius: 8px; /* 모서리 둥글게 */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
-    margin: 24px;
+    margin-top: 24px;
     width: 80%;
     padding: 2%;
 }
