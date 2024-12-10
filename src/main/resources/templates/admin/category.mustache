@@ -54,49 +54,56 @@
 
         <div class="item-list mt-5">
             <!-- 여기는 현재 있는 카테고리 -->
+
             <div class="category-list">
-                <div class="category-d">
-                    <div class="category-img">
-                        <img class="item-image" src="photo.png"/>
-                    </div>
-                    <div class="category-name">
-                        <h5 class="ca-name">카테고리 이름</h5>
-                    </div>
-                </div>
 
-                <div class="category-d">
-                    <div class="category-img">
-                        <img class="item-image" src="photo.png"/>
+                {{#model}}
+                    <div class="category-d">
+                        <div class="category-img">
+                            <img class="item-image" src="{{imgUrl}}" style="width: 50px; height: 50px;"/>
+                        </div>
+                        <div class="category-name">
+                            <h5 class="ca-name">{{name}}</h5>
+                        </div>
                     </div>
-                    <div class="category-name">
-                        <h5 class="ca-name">카테고리 이름</h5>
-                    </div>
-                </div>
-
+                {{/model}}
 
             </div>
             <!-- 여기는 카테고리 추가, 변경 -->
             <div class="category-item">
-                <form action="" class="category-form">
+                <form action="/category/insert" method="post" class="category-form" enctype="multipart/form-data">
                     <div class="category-insert-img">
-                        <input type="file" accept="image/*">
+                        <input type="file" accept="image/*" id="fileInput" name="data">
                     </div>
-                    <div class="">
-                        <img src="photo.png" class="img-thumbnail" alt="Cinque Terre">
+                    <div>
+                        <img id="preview" src="" class="img-thumbnail" alt="이미지를 업로드 해주세요" style="width: 70px; height: 70px">
                     </div>
                     <div class="input-category">
                         <label>Category : </label>
-                        <input type="text" class="form-control" placeholder="Enter Category">
+                        <input type="text" class="form-control" name="name" placeholder="카테고리 이름을 입력하세요">
                     </div>
                     <button type="submit" class="btn btn-custom">추가하기</button>
-
                 </form>
-
             </div>
+
 
 
         </div>
     </div>
 </div>
+
+<script>
+    document.getElementById('fileInput').addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('preview').src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
+
 </body>
 </html>
