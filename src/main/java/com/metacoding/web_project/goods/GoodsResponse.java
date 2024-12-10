@@ -17,6 +17,7 @@ public class GoodsResponse {
         String content;
         String imgUrl;
         Integer startingPrice;
+
         Integer tryPrice;
 
         String endAt;

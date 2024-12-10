@@ -1,9 +1,13 @@
 package com.metacoding.web_project.transaction;
 
+import com.metacoding.web_project._core.CommonResp;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RequiredArgsConstructor
 @Controller
@@ -26,5 +30,15 @@ public class TransactionController {
     @GetMapping("/myPage-participated-auction")
     public String participatedAuction(Model model) {
         return "participated-auction";
+    }
+
+
+    // 경매 종료 시 transaction_tb에 경매 완료된 데이터 저장
+    @PostMapping("/goods-detail/saveTransaction")
+    public ResponseEntity<?> saveTransaction(@RequestBody TransactionRequest.SaveDTO saveDTO){
+        transactionService.save(saveDTO);
+
+        CommonResp resp = new CommonResp(true, "최종낙찰정보 저장 완료", null);
+        return ResponseEntity.ok(resp);
     }
 }

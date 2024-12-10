@@ -37,6 +37,17 @@ public class GoodsService {
 
     }
 
+    @Transactional
+    public void updateGoodsStatus(GoodsRequest.GoodsStatusDTO goodsStatusDTO) {
+        Goods goods = goodsRepository.findById(goodsStatusDTO.getId())
+                .orElseThrow(() -> new Exception404("해당 물품은 존재하지 않습니다."));
+
+        // 영속 상태에서 필드 값 변경
+        goods.endAuction();
+        // 별도의 save() 나 persist() 호출없이 자동으로 변경사항 반영
+
+    }
+
     // 제품 등록하기
     @Transactional
     public void goodsSave(GoodsRequest.GoodsSaveDTO goodsSaveDTO) {

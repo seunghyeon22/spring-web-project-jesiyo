@@ -1,5 +1,7 @@
 package com.metacoding.web_project.goods;
 
+import lombok.Data;
+
 import com.metacoding.web_project._core.util.FileUtil;
 import com.metacoding.web_project.category.Category;
 import com.metacoding.web_project.user.User;
@@ -11,6 +13,12 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class GoodsRequest {
+
+    @Data
+    public static class GoodsStatusDTO {
+        private Integer id;
+
+    }
 
     // 제품 등록 DTO
     @Data
@@ -37,3 +45,5 @@ public class GoodsRequest {
         }
     }
 }
+
+
