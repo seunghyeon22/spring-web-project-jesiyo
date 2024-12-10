@@ -1,7 +1,6 @@
 package com.metacoding.web_project.goods;
 
 import jakarta.servlet.http.HttpSession;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Controller
 public class GoodsController {
     private final GoodsService goodsService;
+
 
     private final HttpSession session;
 
@@ -34,4 +34,5 @@ public class GoodsController {
     public String register(Model model) {
         return "goods-register";
     }
+
 }

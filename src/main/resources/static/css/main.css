@@ -28,12 +28,29 @@
     background-color: rgb(230, 228, 228); /* 배경색 설정 */
     width: 2.5%; /* 화살표 버튼의 너비 조정 */
     border: none;
-    margin-left: 50px;
+    margin-left: 120px;
 }
 
 .category-carousel-control-next {
     background-color: rgb(230, 228, 228); /* 배경색 설정 */
     width: 2.5%; /* 화살표 버튼의 너비 조정 */
     border: none;
-    margin-left: 1500px;
+    margin-left: 980px;
+}
+
+.t1-category-TextAndImage{
+    width: 100%;
+}
+/*.t1-category-box{*/
+
+/*}*/
+/*.t1-category-item{*/
+/*    width: 1000px;*/
+/*}*/
+
+/*.t1-category{*/
+/*    width: 200px;*/
+/*}*/
+img{
+    width: 250px;
 }
