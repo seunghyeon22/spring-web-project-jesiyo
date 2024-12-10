@@ -60,4 +60,11 @@ public class BidRepository {
 
         return q.getResultList();
     }
+
+    // 경매중인 물품 목록 보기
+    public List<Bid> findAll() {
+        Query q = em.createNativeQuery("select * from bid_tb order by id desc", Bid.class);
+        return q.getResultList(); // List 반환받으니까
+    }
+
 }

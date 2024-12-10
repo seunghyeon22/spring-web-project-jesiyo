@@ -1,12 +1,37 @@
 package com.metacoding.web_project.bid;
 
-import com.metacoding.web_project._core.util.FormatDate;
 import lombok.Data;
 
 import java.sql.Timestamp;
-import java.text.DateFormat;
+
+import com.metacoding.web_project._core.util.FormatDate;
+
 
 public class BidResponse {
+
+    // 경매중인 물품 목록 DTO
+    @Data
+    public static class BeingAuctionedDTO {
+        private Integer id;
+        private String title;
+        private String goodsImgUrl;
+        private String categoryName;
+        private Timestamp endAt;
+        private Integer startingPrice;
+        private Integer tryPrice;
+
+        // 생성자
+        public BeingAuctionedDTO(Bid bid) {
+            this.id = bid.getId();
+            this.title = bid.getGoods().getTitle();
+            this.goodsImgUrl = bid.getGoods().getImgUrl();
+            this.categoryName = bid.getGoods().getCategory().getName();
+            this.endAt = bid.getGoods().getEndAt();
+            this.startingPrice = bid.getGoods().getStartingPrice();
+            this.tryPrice = bid.getTryPrice();
+        }
+    }
+
     @Data
     public static class BidDTO{
 
