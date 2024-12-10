@@ -20,7 +20,7 @@ public class Recode {
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private User seller;
+    private User buyer;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Goods goods;
@@ -35,9 +35,9 @@ public class Recode {
     private Timestamp createdAt;
 
     @Builder
-    public Recode(Integer id, User seller, Goods goods, Integer tryPrice, Integer successStatus, Timestamp createdAt) {
+    public Recode(Integer id, User buyer, Goods goods, Integer tryPrice, Integer successStatus, Timestamp createdAt) {
         this.id = id;
-        this.seller = seller;
+        this.buyer = buyer;
         this.goods = goods;
         this.tryPrice = tryPrice;
         this.successStatus = successStatus;

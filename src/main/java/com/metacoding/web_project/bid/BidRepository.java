@@ -48,4 +48,16 @@ public class BidRepository {
         q.setParameter(1, tryPrice);
         return Optional.ofNullable((Bid) q.getSingleResult());
     }
+
+    // recode에 옮겨담을 경매가 끝난 물품의 기록들 꺼내는 메서드
+    public List<Bid> findAllByGoodsId(Integer id) {
+
+        String query = """
+                select * from bid_tb where goods_id = ?
+                """;
+        Query q = em.createNativeQuery(query, Bid.class);
+        q.setParameter(1, id);
+
+        return q.getResultList();
+    }
 }

@@ -172,7 +172,21 @@
                 body: JSON.stringify({goodsId: goodsId, seller: seller, successPrice: successPrice})
             });
         }catch (error) {
-            alert("오류 발생: ", error)
+            alert("오류 발생: ", error);
+        }
+    }
+
+    async function passBidDataToRecode(){
+        try {
+            await fetch('/goods-detail/saveRecode',{
+               method: 'POST',
+               headers: {
+                   'Content-Type': 'application/json',
+               },
+               body: JSON.stringify({goodsId: goodsId})
+            });
+        }catch (error) {
+            alert("오류 발생: ", error);
         }
     }
 
@@ -184,6 +198,7 @@
         if (currentTime >= endAt) {
             updateGoodsStatus();
             saveTransaction();
+            passBidDataToRecode();
             clearInterval(intervalId);
         }
     }
