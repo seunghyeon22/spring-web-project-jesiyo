@@ -29,10 +29,8 @@ insert into category_tb(name, img_url) values ('디지털기기', '/upload/categ
 insert into category_tb(name, img_url) values ('생활가전', '/upload/category3.png');
 
 
-<<<<<<< HEAD
-=======
 insert into category_tb(name, img_url) values ('가구', '/upload/category1.png');
 insert into category_tb(name, img_url) values ('디지털기기', '/upload/category2.png');
 insert into category_tb(name, img_url) values ('생활가전', '/upload/category3.png');
 
->>>>>>> 2bdb5af ([feat] 관리자 거래중 페이지 기능 구현 완료)
+
