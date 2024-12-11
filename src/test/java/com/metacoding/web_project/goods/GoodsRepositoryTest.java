@@ -81,4 +81,18 @@ public class GoodsRepositoryTest {
         }
     }
 
+    @Test
+    public void searchGoods_Test(){
+        String select = "title";
+        String keysword = "고양이d";
+        Optional<List<Goods>> result = goodsRepository.searchGoods(select, keysword);
+        for (Goods goods : result.get()) {
+            System.out.println(goods.getTitle());
+            System.out.println(goods.getSeller().getName());
+            System.out.println(goods.getCategory().getName());
+            System.out.println(goods.getContent());
+            System.out.println("=======================");
+        }
+    }
+
 }

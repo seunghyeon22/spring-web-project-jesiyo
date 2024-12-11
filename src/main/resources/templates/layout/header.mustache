@@ -33,13 +33,13 @@
         <div class="t1-search-container d-flex justify-content-center align-items-center">
             <!-- 카테고리 선택 드롭다운 -->
             <!-- 검색어 입력 폼 -->
-            <form class="d-flex">
-                <select class="form-select">
-                    <option value="title">제목검색</option>
-                    <option value="content">내용검색</option>
+            <form class="d-flex" action="/goods-list" method="get">
+                <select class="form-select" name = "select">
+                    <option name = "title" value="title">제목검색</option>
+                    <option name = "content" value="content">내용검색</option>
                 </select>
-                <input class="form-control search-input me-2" type="text" placeholder="검색어를 입력해주세요">
-                <button class="btn btn-primary" type="button">Search</button>
+                <input class="form-control search-input me-2" type="text" name = "keyword" placeholder="검색어를 입력해주세요">
+                <button class="btn btn-primary" type="submit">Search</button>
             </form>
         </div>
 

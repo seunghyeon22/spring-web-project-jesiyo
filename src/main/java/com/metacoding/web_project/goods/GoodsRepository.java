@@ -32,4 +32,21 @@ public class GoodsRepository {
         return Optional.ofNullable(query.getResultList());
     }
 
+    public Optional<List<Goods>> searchGoods(String select, String keyword) {
+        String sql = "select g from Goods g left join fetch g.seller left join fetch g.category where g.status=:status AND ";
+
+        if(select.equals("title")){ // select가 제목이면 제목으로 물품 리스트를 검색
+            sql += "g.title like :keyword";
+        }else if(select.equals("content")){ // select가 content이면 내용으로 검색
+            sql += "g.content like :keyword";
+        }
+        sql += " order by g.id desc";
+        Query query = em.createQuery(sql);
+        query.setParameter("status", 0);
+        query.setParameter("keyword", "%"+keyword+"%");
+
+        return Optional.ofNullable(query.getResultList());
+    }
+
+
 }

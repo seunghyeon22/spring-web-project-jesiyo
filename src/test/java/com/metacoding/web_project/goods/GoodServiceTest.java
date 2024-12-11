@@ -36,4 +36,18 @@ public class GoodServiceTest {
 
     }
 
+    @Test
+    public void searchGoodsList_Test(){
+        String select = "title";
+        String keysword = "고양이";
+        List<GoodsResponse.GoodsDTO> goods =  goodsService.searchGoodsList(select, keysword);
+
+        for(GoodsResponse.GoodsDTO g : goods){
+        System.out.println(g.getTitle());
+        System.out.println(g.getSeller());
+        System.out.println(g.getTryPrice());
+        System.out.println("=======================");
+        }
+
+    }
 }

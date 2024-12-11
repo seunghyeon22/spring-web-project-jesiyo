@@ -67,5 +67,7 @@ public class GoodsResponse {
             this.tryPrice = bidTryPrice;
             this.endAt = formatRemainingTime(goods.getEndAt());
         }
+
+
     }
 }

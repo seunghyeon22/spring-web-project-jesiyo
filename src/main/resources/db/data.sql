@@ -27,7 +27,6 @@ insert into goods_tb(title, category_id, seller_id, content, img_url, starting_p
 insert into category_tb(name, img_url) values ('카테고리4', '/upload/category1.png');
 insert into category_tb(name, img_url) values ('카테고리5', '/upload/category2.png');
 insert into category_tb(name, img_url) values ('카테고리6', '/upload/category3.png');
-insert into category_tb(name, img_url) values ('반려동물 용품', '/upload/mainlogo.jpg');
 
 insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status) values ('강아지 ', '1', '1', '이거만.', '/upload/mainlogo.jpg', 100, now(),'2024-12-10 23:00:00', 0);
 insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status) values ('고양이', '2', '2', '강아지 산책줄 나눔 중입니다.', '/upload/mainlogo.jpg', 200, now(),'2024-12-10 23:00:00', 0);

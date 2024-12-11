@@ -74,4 +74,20 @@ public class GoodsService {
         return goodsList;
     }
 
+    public List<GoodsResponse.GoodsDTO> searchGoodsList(String select,String keyword) {
+        Optional<List<Goods>> searchGoodsList = goodsRepository.searchGoods(select,keyword);
+        List<GoodsResponse.GoodsDTO> goodsList = new ArrayList<>();
+
+        for (Goods goods : searchGoodsList.get()) {
+            bidRepository.findByGoodsDescIsNull(goods.getId()).ifPresentOrElse(bid -> goodsList.add(GoodsResponse.GoodsDTO.builder()
+                            .goods(goods)
+                            .bidTryPrice(bid.getTryPrice())
+                            .build()),
+                    () -> goodsList.add(GoodsResponse.GoodsDTO.builder()
+                            .goods(goods)
+                            .bidTryPrice(0)
+                            .build()));
+        }
+        return goodsList;
+    }
 }
