@@ -61,6 +61,21 @@ public class BidRepository {
         return q.getResultList();
     }
 
+    public void deleteByGoodsId(int id) {
+        Query q = em.createNativeQuery("delete from bid_tb where goods_id = ?");
+        q.setParameter(1, id);
+        q.executeUpdate();
+    }
+
+
+    //delete 메서드 작동확인용
+    public Long countByGoodsId(int id) {
+        Query q = em.createNativeQuery("select count(*) from bid_tb where goods_id = ?");
+        q.setParameter(1, id);
+
+        return (Long) q.getSingleResult();
+    }
+
     // 경매중인 물품 목록 보기
     public List<Bid> findAll() {
         Query q = em.createNativeQuery("select * from bid_tb order by id desc", Bid.class);

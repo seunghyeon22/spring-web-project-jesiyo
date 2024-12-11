@@ -31,19 +31,16 @@ public class RecodeService {
         for (Bid bid : list) {
             RecodeRequest.saveDTO recodeDto = new RecodeRequest.saveDTO();
 
-            //recodeDto.setId(bid.getId());
-            recodeDto.setGoodsId(bid.getBuyer().getId());
-            recodeDto.setBuyerId(bid.getBuyer().getId());
-            recodeDto.setTryPrice(bid.getTryPrice());
-
             // 성공 유저인지 확인
+            // status(경매성공, 실패) 여부는 recode가 생성될 때
+            // 해당 유저가 경매에 성공,실패를 판단해야하기 때문에 setter을 사용했습니다.
             if (bid.getBuyer().getId().equals(buyerId)) {
                 recodeDto.setSuccessStatus(1); // 경매 성공 유저
             } else {
                 recodeDto.setSuccessStatus(2); // 경매 실패 유저
             }
 
-            recodeRepository.save(recodeDto.toEntity());
+            recodeRepository.save(recodeDto.toEntity(bid));
         }
 
     }

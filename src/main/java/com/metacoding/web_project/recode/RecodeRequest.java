@@ -1,5 +1,6 @@
 package com.metacoding.web_project.recode;
 
+import com.metacoding.web_project.bid.Bid;
 import com.metacoding.web_project.goods.Goods;
 import com.metacoding.web_project.user.User;
 import lombok.Data;
@@ -17,14 +18,13 @@ public class RecodeRequest {
         private Integer successStatus;
         private Timestamp createdAt;
 
-        public Recode toEntity() {
+        public Recode toEntity(Bid bid) {
             return Recode.builder()
-                    .id(id)
-                    .buyer(User.builder().id(buyerId).build())
-                    .goods(Goods.builder().id(goodsId).build())
-                    .tryPrice(tryPrice)
+                    .buyer(User.builder().id(bid.getBuyer().getId()).build())
+                    .goods(Goods.builder().id(bid.getGoods().getId()).build())
+                    .tryPrice(bid.getTryPrice())
                     .successStatus(successStatus)
-                    .createdAt(createdAt)
+                    .createdAt(bid.getCreatedAt())
                     .build();
         }
 

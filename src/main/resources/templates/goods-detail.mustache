@@ -176,6 +176,7 @@
         }
     }
 
+    // 경매 시간이 끝나고 진행기록을 recode_tb에 옮겨담는 요청 메서드
     async function passBidDataToRecode(){
         try {
             await fetch('/goods-detail/saveRecode',{
@@ -190,15 +191,27 @@
         }
     }
 
-    function checkAuctionEnd() {
+    // 경매기록이 bid_tb -> recode_tb로 옮겨진 후 bid테이블에 남은 기록들 삭제 요청
+    async function deleteEndBidData(){
+        try {
+            await fetch('/goods-detail/endBid/{{goods.id}}/delete'), {
+                method: 'POST'
+            }
+        } catch (error) {
+            alert ("오류발생: ", error)
+        }
+    }
+
+    async function checkAuctionEnd() {
         const endAt = new Date('{{goods.endAt}}');
         const currentTime = new Date();
 
         // 현재 시간이 종료시간 이후라면 상태변경 요청
         if (currentTime >= endAt) {
-            updateGoodsStatus();
-            saveTransaction();
-            passBidDataToRecode();
+            await updateGoodsStatus();
+            await saveTransaction();
+            await passBidDataToRecode();
+            await deleteEndBidData();
             clearInterval(intervalId);
         }
     }
