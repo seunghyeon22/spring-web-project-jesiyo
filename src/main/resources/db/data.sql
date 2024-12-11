@@ -9,8 +9,6 @@ insert into useraccount_tb(user_id, score, has_price) values (2, 0, 3000);
 insert into useraccount_tb(user_id, score, has_price) values (3, 0, 3000);
 
 
-insert into user_tb(username, password, name, tel, post_num, addr, addr_detail, birth, role) values('ssar', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', 'Ssar','01011111111', '12345', '주소1', '상세주소1', '생일1', 'ADMIN');
-insert into user_tb(username, password, name, tel, post_num, addr, addr_detail, birth, role) values('cos2', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', 'Cos','01022222222', '12345', '주소2', '상세주소1', '생일2', 'USER');
 
 -- category_tb 더미데이터
 insert into category_tb(name, img_url) values ('카테고리1', '/upload/category1.png');
@@ -52,6 +50,10 @@ insert into goods_tb(title, category_id, seller_id, content, img_url, starting_p
 
 insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (1,1,2000,now());
 insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (3,1,3000,now());
+
+insert into useraccount_tb(user_id,account,has_price,score) values(1,'계좌정보없음',0,0);
+insert into useraccount_tb(user_id,account,has_price,score) values(2,'계좌정보없음',0,0);
+insert into useraccount_tb(user_id,account,has_price,score) values(3,'계좌정보없음',0,0);
 
 
 

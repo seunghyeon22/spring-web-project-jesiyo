@@ -7,7 +7,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
@@ -31,22 +33,12 @@ public class UserController {
         return "login";
     }
 
-    @PostMapping("/login")
-    public String login(UserRequest.LoginDTO loginDTO) {
-        User sessionUser = userService.로그인(loginDTO);
-        session.setAttribute("sessionUser", sessionUser);
-        return "redirect:/";
-    }
 
-    @PostMapping("/logout")
-    public String logout() {
-        session.invalidate();
-        return "redirect:/";
-    }
     // /s/붙이기  신용점수 보이는 개인정보 페이지
     @GetMapping("/user-info/{id}")
     public String userInfo(@PathVariable("id") int id ,Model model) {
-
+        UserResponse.CreditDTO credits = userService.내정보보기(id);
+        model.addAttribute("model", credits);
         return "user-info";
     }
 
@@ -58,7 +50,7 @@ public class UserController {
         return "user-info-change";
     }
 
-    // 개인정보 수정
+    // 개인정보 수정 + 계좌등록하기
     @PostMapping("/user-info/{id}/change")
     public String userInfoChange(@PathVariable("id") int id,UserRequest.UpdateDTO updateDTO) {
         userService.유저정보수정하기(id,updateDTO);
@@ -70,12 +62,10 @@ public class UserController {
     public String pwChange(@PathVariable("id") int id, UserRequest.ChangePwDTO changePwDTO) {
         userService.비밀번호변경(id,changePwDTO);
         System.out.println(changePwDTO);
-        return "redirect:/user-info/{id}";
+        return "redirect:/user-info/{id}/change-form";
     }
 
 //    @PostMapping("/add-account")
-
-
 
 
 }

@@ -1,11 +1,14 @@
 package com.metacoding.web_project.user;
 
 import com.metacoding.web_project._core.error.ex.Exception401;
+import com.metacoding.web_project.useraccount.UserAccount;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 
 @Repository
@@ -40,14 +43,14 @@ public class UserRepository {
         }
     }
 
-    public User findInfo(int id) {
-        Query q = em.createQuery("select u from User u where u.id = :id", User.class);
+    public UserAccount findInfo(int id) {
+        Query q = em.createQuery("select u from UserAccount u right join fetch u.user where u.user.id = :id ", UserAccount.class);
         q.setParameter("id", id);
-        return (User) q.getSingleResult();
+        return (UserAccount) q.getSingleResult();
     }
 
     @Transactional
-    public void update(int id, String tel, String postNum, String addr, String addrDetail) {
+    public void update(int id, String tel, String postNum, String addr, String addrDetail, String account) {
         String sql = """
                 update User u
                 set u.tel = :tel,
@@ -64,14 +67,43 @@ public class UserRepository {
         q.setParameter("addr", addr);
         q.setParameter("addrDetail", addrDetail);
         q.executeUpdate();
+
+
+        String Sql2 = """
+            update UserAccount u
+            set u.account = :account
+            where u.user.id = :id
+            """;
+
+        Query qu = em.createQuery(Sql2);
+        qu.setParameter("id", id);
+        qu.setParameter("account", account);
+        qu.executeUpdate();
     }
 
     @Transactional
     public void changePw(int id, String enPassword, String enNewPassword) {
+        System.out.println("repository"+enPassword);
+        System.out.println("repository"+enNewPassword);
         Query q = em.createQuery("update User u set u.password = :newPassword where u.password = :password and u.id = :id");
         q.setParameter("newPassword", enNewPassword);
         q.setParameter("password", enPassword);
         q.setParameter("id", id);
         q.executeUpdate();
     }
+
+    @Transactional
+    public Optional<UserAccount> findByIdUserInfo(int id) {
+        String sql = """
+                    select u from UserAccount u join fetch u.user where u.user.id = :id 
+                    """;
+        Query q = em.createQuery(sql);
+        q.setParameter("id", id);
+            try{
+                UserAccount userAccount = (UserAccount) q.getSingleResult();
+                return Optional.ofNullable(userAccount);
+            }catch (RuntimeException e){
+                return Optional.empty();
+            }
+      }
 }

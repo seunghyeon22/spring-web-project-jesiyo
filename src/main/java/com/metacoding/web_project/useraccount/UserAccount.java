@@ -25,7 +25,7 @@ public class UserAccount {
     private Integer hasPrice;
 
     @Column(nullable = true)
-    private String acount;
+    private String account;
 
     @Builder
     public UserAccount(Integer id, User user, Integer score, Integer hasPrice, String acount) {
@@ -33,10 +33,11 @@ public class UserAccount {
         this.user = user;
         this.score = score;
         this.hasPrice = hasPrice;
-        this.acount = acount;
+        this.account = acount;
     }
 
     public void updateUserInfo(Integer price) {
         this.hasPrice = hasPrice + price;
     }
+
 }

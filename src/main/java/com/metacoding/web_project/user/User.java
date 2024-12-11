@@ -1,5 +1,6 @@
 package com.metacoding.web_project.user;
 
+import com.metacoding.web_project.useraccount.UserAccount;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -7,6 +8,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -17,6 +20,7 @@ import java.util.List;
 @Getter
 @Entity
 public class User implements UserDetails {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -48,7 +52,6 @@ public class User implements UserDetails {
     // role은 DB에 저장할 때 'ROLE_ADMIN' 과 같이 앞에 'ROLE_'을 붙여야 정상 작동합니다.
     @Column(nullable = false)
     private String role;
-
 
     @Builder
     public User(Integer id, String username, String password, String name, String tel, String postNum, String addr, String addrDetail, String birth, String role) {
