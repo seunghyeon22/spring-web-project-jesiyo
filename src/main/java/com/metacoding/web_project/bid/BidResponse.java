@@ -9,7 +9,32 @@ import com.metacoding.web_project._core.util.FormatDate;
 
 public class BidResponse {
 
-    // 경매중인 물품 목록 DTO
+    // 경매 참여중인 물품(구매) 목록 DTO
+    @Data
+    public static class ParticipatingAuctionDTO {
+        private Integer id;
+        private String title;
+        private Integer buyerId;
+        private String sellerName;
+        private String goodsImgUrl;
+        private String categoryName;
+        private Integer buyerTryPrice;
+        private Integer maxPrice;
+
+        // 생성자
+        public ParticipatingAuctionDTO(Bid bid) {
+            this.id = bid.getId();
+            this.title = bid.getGoods().getTitle();
+            this.buyerId = bid.getBuyer().getId();
+            this.sellerName = bid.getGoods().getSeller().getName();
+            this.goodsImgUrl = bid.getGoods().getImgUrl();
+            this.categoryName = bid.getGoods().getCategory().getName();
+            this.buyerTryPrice = bid.getTryPrice();
+            this.maxPrice = maxPrice;
+        }
+    }
+
+    // 경매중인 물품(판매) 목록 DTO
     @Data
     public static class BeingAuctionedDTO {
         private Integer id;

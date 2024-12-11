@@ -100,4 +100,41 @@ public class BidRepository {
             return Optional.empty();
         }
     }
+
+    // 경매중인 물품(판매) 목록 보기
+    public List<Bid> findByBuyerIdForSell() {
+
+        String query = """
+                select * from bid_tb order by id desc
+                """;
+        Query q = em.createNativeQuery(query, Bid.class);
+        return q.getResultList(); // List 반환
+    }
+
+    // 경매 참여중인 물품(구매) 목록 보기
+    public List<Bid> findByBuyerIdForBuy(Integer id) {
+
+        String query = """ 
+                select * from bid_tb where try_price in (select max(try_price) from bid_tb where buyer_id = ? group by goods_id)
+                """;
+
+        Query q = em.createNativeQuery(query, Bid.class);
+        q.setParameter(1, id);
+        
+        return q.getResultList(); // List 반환
+
+//        select * from bid_tb where try_price in (select max(try_price) from bid_tb where buyer_id = 1 group by goods_id);
+    }
+
+    // 경매 참여중인 물품(구매)의 최고 입찰가 조회
+    public Bid findBestPrice(Integer goodsId) {
+
+        String query = """
+                select b.* from bid_tb b where b.goods_id = ? order by b.try_price desc limit 1
+                """;
+        Query q = em.createNativeQuery(query, Bid.class);
+        q.setParameter(1, goodsId);
+
+        return (Bid) q.getSingleResult();
+    }
 }
