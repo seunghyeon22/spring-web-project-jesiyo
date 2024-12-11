@@ -36,6 +36,8 @@ public class BidController {
     // 경매 참여 중인 물품(구매) 화면 열기
     @GetMapping("/myPage-participating-auction")
     public String participatingAuction(Model model) {
+        List<BidResponse.ParticipatingAuctionDTO> participatingAuctionList = bidService.participatingAuctionList();
+        model.addAttribute("models", participatingAuctionList);
         return "participating-auction";
     }
 

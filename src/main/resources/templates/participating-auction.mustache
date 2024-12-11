@@ -22,109 +22,29 @@
           <h2>경매 참여중인 물품</h2>
         </div>
         <div class="item-list mt-5">
-          
-          <div class="card mb-3">
-            <div class="card-image">
-              <img src="photo.png" class="card-img-top"/>
-            </div>
-            <div class="card-body mt-2">
-              <h4 class="card-title">참여중인 물품1</h4>
-              <div class="card-text mt-2">
-                <input type="hidden" name="" id="1">
-                <div>판매자</div>
-                <div>카테고리</div>
-                <div>최고 입찰가</div>
-                <div>내가 입찰한 가격</div>
-                <div class="btn-group mt-1">
-                  <button type="button" class="btn btn-custom btn-sm">입찰 취소</button>
-                  <button type="button" class="btn btn-custom btn-sm">입찰 금액 수정</button>
-              </div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="card mb-3">
-            <div class="card-image">
-              <img src="photo.png" class="card-img-top"/>
-            </div>
-            <div class="card-body mt-2">
-              <h4 class="card-title">참여중인 물품2</h4>
-              <div class="card-text mt-2">
-                <input type="hidden" name="" id="1">
-                <div>판매자</div>
-                <div>카테고리</div>
-                <div>최고 입찰가</div>
-                <div>내가 입찰한 가격</div>
-                <div class="btn-group mt-1">
-                  <button type="button" class="btn btn-custom btn-sm">입찰 취소</button>
-                  <button type="button" class="btn btn-custom btn-sm">입찰 금액 수정</button>
-              </div>
-              </div>
-            </div>
-          </div>
 
-          <div class="card mb-3">
-            <div class="card-image">
-              <img src="photo.png" class="card-img-top"/>
-            </div>
-            <div class="card-body mt-2">
-              <h4 class="card-title">참여중인 물품3</h4>
-              <div class="card-text mt-2">
-                <input type="hidden" name="" id="1">
-                <div>판매자</div>
-                <div>카테고리</div>
-                <div>최고 입찰가</div>
-                <div>내가 입찰한 가격</div>
-                <div class="btn-group mt-1">
-                  <button type="button" class="btn btn-custom btn-sm">입찰 취소</button>
-                  <button type="button" class="btn btn-custom btn-sm">입찰 금액 수정</button>
-              </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="card mb-3">
-            <div class="card-image">
-              <img src="photo.png" class="card-img-top"/>
-            </div>
-            <div class="card-body mt-2">
-              <h4 class="card-title">참여중인 물품4</h4>
-              <div class="card-text mt-2">
-                <input type="hidden" name="" id="1">
-                <div>판매자</div>
-                <div>카테고리</div>
-                <div>최고 입찰가</div>
-                <div>내가 입찰한 가격</div>
-                <div class="btn-group mt-1">
-                  <button type="button" class="btn btn-custom btn-sm">입찰 취소</button>
-                  <button type="button" class="btn btn-custom btn-sm">입찰 금액 수정</button>
-              </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="card mb-3">
-            <div class="card-image">
-              <img src="photo.png" class="card-img-top"/>
-            </div>
-            <div class="card-body mt-2">
-              <h4 class="card-title">참여중인 물품5</h4>
-              <div class="card-text mt-2">
-                <input type="hidden" name="" id="1">
-                <div>판매자</div>
-                <div>카테고리</div>
-                <div>최고 입찰가</div>
-                <div>내가 입찰한 가격</div>
-                <div class="btn-group mt-1">
-                  <button type="button" class="btn btn-custom btn-sm">입찰 취소</button>
-                  <button type="button" class="btn btn-custom btn-sm">입찰 금액 수정</button>
-              </div>
-              </div>
-            </div>
-          </div>
+            {{#models}}
+                <div class="card mb-3">
+                    <div class="card-image">
+                        <img src="{{goodsImgUrl}}" class="card-img-top"/>
+                    </div>
+                    <div class="card-body mt-2">
+                        <h4 class="card-title">{{title}}</h4>
+                        <div class="card-text mt-2">
+                            <input type="hidden" name="" id="{{id}}">
+                            <div>판매자 : {{sellerName}}</div>
+                            <div>카테고리 : {{categoryName}}</div>
+                            <div>최고 입찰가 : {{maxPrice}}</div>
+                            <div>내가 입찰한 가격 : {{buyerTryPrice}}</div>
+                            <div class="btn-group mt-1">
+                                <button type="button" class="btn btn-custom btn-sm">입찰 취소</button>
+                                <button type="button" class="btn btn-custom btn-sm">입찰 금액 수정</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {{/models}}
           
-         
-         
         </div>
       </div>
     </div>
