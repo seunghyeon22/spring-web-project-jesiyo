@@ -48,5 +48,12 @@ public class BidService {
         }
         return dtoList;
     }
-}
 
+    // 경매중인 물품 목록 보기
+    @Transactional // 트랜잭션 범위 내에서 조회하기 위함(지연 로딩 예외 발생 방지)
+    public List<BidResponse.BeingAuctionedDTO> beingAuctionedList() {
+        return bidRepository.findAll().stream()
+                .map(BidResponse.BeingAuctionedDTO::new)
+                .toList();
+    }
+}

@@ -12,11 +12,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Controller
 public class BidController {
     private final BidService bidService;
-
 
     // 로그인 구현 시 경로를 /admin/auction-progress 로 변경 예정
     // 경매 중인 물품 페이지 이동 (관리자)
@@ -30,6 +31,8 @@ public class BidController {
     // 경매 중인 물품(판매) 화면 열기
     @GetMapping("/myPage-being-auctioned")
     public String beingAuctioned(Model model) {
+        List<BidResponse.BeingAuctionedDTO> beingAuctionedList = bidService.beingAuctionedList();
+        model.addAttribute("models", beingAuctionedList);
         return "being-auctioned";
     }
 
