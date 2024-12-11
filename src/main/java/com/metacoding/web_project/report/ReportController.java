@@ -2,9 +2,12 @@ package com.metacoding.web_project.report;
 
 import lombok.RequiredArgsConstructor;
 import org.hibernate.annotations.ConcreteProxy;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -22,4 +25,11 @@ public class ReportController {
         model.addAttribute("status", divide);
         return "admin/confirm-report";
     }
+
+    @PostMapping("/transaction/update")
+    public String updateReport(Model model, @RequestParam(defaultValue = "") String reportId, @RequestParam(defaultValue = "") String method) {
+        reportService.reportTreatment(reportId, method);
+        return "redirect:/confirm-report";
+    }
+
 }

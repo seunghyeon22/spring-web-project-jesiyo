@@ -84,7 +84,7 @@
                         <td>{{title}}</td>
                         <td>
                             <button class="btn btn-custom btn-sm" type="button" data-bs-toggle="modal"
-                                    onclick="showModal('{{sellerName}}', '{{sellerPhone}}', '{{buyerName}}', '{{buyerPhone}}', '{{reason}}')">
+                                    onclick="showModal('{{reportId}}', '{{sellerName}}', '{{sellerPhone}}', '{{buyerName}}', '{{buyerPhone}}', '{{reason}}', '{{available}}')">
                                 신고내역 상세확인
                             </button>
                         </td>
@@ -117,35 +117,86 @@
                 </div>
             </div> <!-- Modal footer -->
             <div class="modal-footer justify-content-center">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" style="width: 45%;">거래취소</button>
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" style="width: 45%;">판매자에게 입찰금 전달
-                </button>
+                <input type="text" id="reportId" hidden="hidden">
+                <button type="button" id="cancelButton" class="btn btn-danger" onclick="confirmAction('cancel')">거래취소</button>
+                <button type="button" id="sellerButton" class="btn btn-danger" onclick="confirmAction('seller')">판매자에게 입찰금 전달</button>
             </div>
         </div>
     </div>
 </div>
-    <script>
-        function handleSearch1(event) {
-            event.preventDefault();
-            window.location.href = `/confirm-report?divide=all`;
+<script>
+    function handleSearch1(event) {
+        event.preventDefault();
+        window.location.href = `/confirm-report?divide=all`;
+    }
+
+    function handleSearch2(event) {
+        event.preventDefault();
+        window.location.href = `/confirm-report?divide=waiting`;
+    }
+
+    function showModal(reportId, sellerName, sellerPhone, buyerName, buyerPhone, reason, available) {
+        document.querySelector("#myModal #sellerName").value = sellerName;
+        document.querySelector("#myModal #sellerPhone").value = `판매자 전화번호 : ${sellerPhone}`;
+        document.querySelector("#myModal #buyerName").value = buyerName;
+        document.querySelector("#myModal #buyerPhone").value = `구매자 전화번호 : ${buyerPhone}`;
+        document.querySelector("#myModal #reportDetails").value = reason;
+        document.querySelector("#myModal #reportId").value = reportId;
+
+        // available 값을 boolean으로 변환
+        available = (available === 'true');
+
+        // 버튼 가시성 설정
+        const cancelButton = document.querySelector("#cancelButton");
+        const sellerButton = document.querySelector("#sellerButton");
+
+        if (available) {
+            cancelButton.style.display = "block";
+            sellerButton.style.display = "block";
+        } else {
+            cancelButton.style.display = "none";
+            sellerButton.style.display = "none";
         }
 
-        function handleSearch2(event) {
-            event.preventDefault();
-            window.location.href = `/confirm-report?divide=waiting`;
+        // 모달 표시
+        new bootstrap.Modal(document.getElementById('myModal')).show();
+    }
+
+
+    function confirmAction(action) {
+        const reportId = document.querySelector("#myModal #reportId").value;
+        let message = '';
+        let url = '/transaction/update';
+
+        if (action === 'cancel') {
+            message = '거래를 취소하시겠습니까?';
+        } else if (action === 'seller') {
+            message = '판매자에게 입찰금을 전달하시겠습니까?';
         }
 
-        function showModal(sellerName, sellerPhone, buyerName, buyerPhone, reason) {
+        if (confirm(message)) {
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = url;
 
-            document.querySelector("#myModal #sellerName").value = `${sellerName}`;
-            document.querySelector("#myModal #sellerPhone").value = `판매자 전화번호 : ${sellerPhone}`;
-            document.querySelector("#myModal #buyerName").value = `${buyerName}`;
-            document.querySelector("#myModal #buyerPhone").value = `구매자 전화번호 : ${buyerPhone}`;
-            document.querySelector("#myModal #reportDetails").value = reason;
-            // 모달 표시
-            new bootstrap.Modal(document.getElementById('myModal')).show();
+            const reportIdInput = document.createElement('input');
+            reportIdInput.type = 'hidden';
+            reportIdInput.name = 'reportId';
+            reportIdInput.value = reportId;
+            form.appendChild(reportIdInput);
+
+            const methodInput = document.createElement('input');
+            methodInput.type = 'hidden';
+            methodInput.name = 'method';
+            methodInput.value = action;
+            form.appendChild(methodInput);
+
+            document.body.appendChild(form);
+            form.submit();
         }
-    </script>
+    }
+
+</script>
 
 </body>
 </html>
