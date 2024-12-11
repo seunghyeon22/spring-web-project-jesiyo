@@ -38,7 +38,10 @@ public class UserService implements UserDetailsService {
 
     @Transactional
     public void 회원가입(UserRequest.JoinDTO joinDTO) {
-        userRepository.join(joinDTO.toEntity(passwordEncoder));
+        User user = joinDTO.toEntity(passwordEncoder);
+        userRepository.join(user);
+        UserAccount userAccount = joinDTO.toEntity(user);
+        userRepository.join2(userAccount);
     }
 
 /*    @Transactional

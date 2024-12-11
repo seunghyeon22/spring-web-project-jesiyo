@@ -27,8 +27,14 @@ public class UserRepository {
         }
     }
 
+
+
     public void join(User user) {
         em.persist(user);
+    }
+
+    public void join2(UserAccount userAccount) {
+        em.persist(userAccount);
     }
 
 
@@ -106,4 +112,6 @@ public class UserRepository {
                 return Optional.empty();
             }
       }
+
+
 }

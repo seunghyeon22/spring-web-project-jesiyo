@@ -35,18 +35,22 @@ public class UserRequest {
         private Integer score;
         private Integer hasPrice;
         private String account;
+        private User user;
 
         public User toEntity(PasswordEncoder passwordEncoder){
             String encpw = passwordEncoder.encode(password);
-            User user = new User(null, username, encpw, name, tel, postNum, addr, addrDetail, birth, role);
-        return user;
+        return User.builder()
+                    .id(null).username(username).password(encpw).name(name).tel(tel)
+                    .postNum(postNum).addr(addr).addrDetail(addrDetail).birth(birth).role(role)
+                    .build();
         }
 
-        public UserAccount toEntity(){
+        public UserAccount toEntity(User user){
             return UserAccount.builder()
                                 .score(score)
                                 .hasPrice(hasPrice)
                                 .acount(account)
+                                .user(user)
                                 .build();
 
         }

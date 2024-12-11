@@ -25,6 +25,7 @@ public class UserController {
     @PostMapping("/join")
     public String join(UserRequest.JoinDTO joinDTO) {
         userService.회원가입(joinDTO);
+        System.out.println(joinDTO);
         return "redirect:/login-form";
     }
 
