@@ -1,6 +1,10 @@
 package com.metacoding.web_project.goods;
 
+import lombok.Builder;
 import lombok.Data;
+
+import java.util.List;
+import java.util.Optional;
 
 import static com.metacoding.web_project._core.util.FormatDate.formatRemainingTime;
 
@@ -34,8 +38,34 @@ public class GoodsResponse {
             //종료기간
             this.endAt = formatRemainingTime(goods.getEndAt());
         }
+    }
 
+//    public static class GoodListDTO{
+//        List<GoodsDTO> goods;
+//    }
 
+    @Data
+    public static class GoodsDTO {
+      private Integer id;
+      private String title;
+      private String category;
+      private String seller;
+      private String imgUrl;
+      private Integer startingPrice;
+      private Integer tryPrice;
 
+        String endAt;
+
+        @Builder
+        public GoodsDTO(Goods goods, Integer bidTryPrice) {
+            this.id = goods.getId();
+            this.title = goods.getTitle();
+            this.category = goods.getCategory().getName();
+            this.seller = goods.getSeller().getName();
+            this.imgUrl = goods.getImgUrl();
+            this.startingPrice = goods.getStartingPrice();
+            this.tryPrice = bidTryPrice;
+            this.endAt = formatRemainingTime(goods.getEndAt());
+        }
     }
 }

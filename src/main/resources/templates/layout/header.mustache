@@ -32,13 +32,12 @@
         <!-- 검색 카테고리와 검색 바 -->
         <div class="t1-search-container d-flex justify-content-center align-items-center">
             <!-- 카테고리 선택 드롭다운 -->
-            <select class="form-select">
-                <option value="hot">조회순</option>
-                <option value="recent">최근등록순</option>
-                <option value="old">오래된순</option>
-            </select>
             <!-- 검색어 입력 폼 -->
             <form class="d-flex">
+                <select class="form-select">
+                    <option value="title">제목검색</option>
+                    <option value="content">내용검색</option>
+                </select>
                 <input class="form-control search-input me-2" type="text" placeholder="검색어를 입력해주세요">
                 <button class="btn btn-primary" type="button">Search</button>
             </form>

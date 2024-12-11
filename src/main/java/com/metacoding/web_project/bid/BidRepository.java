@@ -1,6 +1,7 @@
 package com.metacoding.web_project.bid;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -82,4 +83,15 @@ public class BidRepository {
         return q.getResultList(); // List 반환받으니까
     }
 
+    // 조회해서 없으면 아무것도 없는 Optinal을 반환할 객체가 필요해서
+    public Optional<Bid> findByGoodsDescIsNull(Integer id) {
+        try {
+            Query q = em.createNativeQuery("select * from bid_tb where goods_id = ? order by id desc limit 1", Bid.class);
+            q.setParameter(1, id);
+            return Optional.ofNullable((Bid) q.getSingleResult());
+        } catch (
+                NoResultException e) {
+            return Optional.empty();
+        }
+    }
 }
