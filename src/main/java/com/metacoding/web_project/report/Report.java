@@ -1,6 +1,7 @@
 package com.metacoding.web_project.report;
 
 
+import com.metacoding.web_project.transaction.Transaction;
 import com.metacoding.web_project.user.User;
 import jakarta.persistence.*;
 import lombok.Builder;
@@ -26,6 +27,8 @@ public class Report {
     @Column(nullable = false)
     private String reason;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Transaction transaction;
 
     // 0 : 처리 전 상태
     // 1 : 처리 완료 상태
@@ -33,11 +36,12 @@ public class Report {
     private Integer status;
 
     @Builder
-    public Report(Integer id, User reporter, User reported, String reason, Integer status) {
+    public Report(Integer id, User reporter, User reported, String reason, Transaction transaction, Integer status) {
         this.id = id;
         this.reporter = reporter;
         this.reported = reported;
         this.reason = reason;
+        this.transaction = transaction;
         this.status = status;
     }
 }

@@ -17,6 +17,7 @@ a {
     border-radius: 8px; /* 모서리 둥글게 */
     font-family: 'Arial', sans-serif; /* 폰트 설정 */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+    width: 80%;
 }
 .title-box h2{
     margin-top: 30px;
