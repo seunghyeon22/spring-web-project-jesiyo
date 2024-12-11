@@ -51,9 +51,9 @@ insert into goods_tb(title, category_id, seller_id, content, img_url, starting_p
 insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (1,1,2000,now());
 insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (3,1,3000,now());
 
-insert into useraccount_tb(user_id,account,has_price,score) values(1,'계좌정보없음',0,0);
-insert into useraccount_tb(user_id,account,has_price,score) values(2,'계좌정보없음',0,0);
-insert into useraccount_tb(user_id,account,has_price,score) values(3,'계좌정보없음',0,0);
+insert into useraccount_tb(user_id,account,has_price,score) values(1,'등록계좌없음',0,0);
+insert into useraccount_tb(user_id,account,has_price,score) values(2,'등록계좌없음',0,0);
+insert into useraccount_tb(user_id,account,has_price,score) values(3,'등록계좌없음',0,0);
 
 
 

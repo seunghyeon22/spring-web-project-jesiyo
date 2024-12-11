@@ -37,7 +37,13 @@ public class SecurityConfig {
                     HttpSession session = request.getSession();
                     session.setAttribute("sessionUser", user);
                     response.sendRedirect("/");
-                }));
+                }))
+          .logout(logout -> logout
+              .logoutUrl("/logout") // 로그아웃 URL
+              .logoutSuccessUrl("/") // 로그아웃 후 리다이렉트할 URL
+              .invalidateHttpSession(true) // 세션 무효화
+              .deleteCookies("JSESSIONID") // 쿠키 삭제
+          );
 
         return http.build();
     }

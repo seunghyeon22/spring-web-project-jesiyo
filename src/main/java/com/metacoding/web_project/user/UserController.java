@@ -34,6 +34,11 @@ public class UserController {
         return "login";
     }
 
+    @GetMapping("/logout")
+    public String logout() {
+        return "redirect:/";
+    }
+
 
     // /s/붙이기  신용점수 보이는 개인정보 페이지
     @GetMapping("/user-info/{id}")
