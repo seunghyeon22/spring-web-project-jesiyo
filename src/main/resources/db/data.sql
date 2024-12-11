@@ -1,8 +1,8 @@
 
 -- user_tb 더미데이터
-insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role) values('ssar', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', 'Ssar', '12345', '주소1', '상세주소1', '생일1', 'ROLE_ADMIN');
-insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role) values('cos', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', 'Cos', '12345', '주소2', '상세주소1', '생일2', 'ROLE_USER');
-insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role) values('love', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', 'Love', '12345', '주소2', '상세주소1', '생일2', 'ROLE_USER');
+insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role, tel) values('ssar', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', 'Ssar', '12345', '주소1', '상세주소1', '생일1', 'ROLE_ADMIN', '010-1111-1111');
+insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role, tel) values('cos', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', 'Cos', '12345', '주소2', '상세주소1', '생일2', 'ROLE_USER', '010-2222-2222');
+insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role, tel) values('love', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', 'Love', '12345', '주소2', '상세주소1', '생일2', 'ROLE_USER', '010-3333-3333');
 
 
 
@@ -63,8 +63,8 @@ insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (2,1,3000,now(
 insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (1,1,4000,now());
 
 -- report_tb 더미데이터
-insert into report_tb(reporter_id, reported_id, reason, transaction_id, status) values (3, 2, '사유', 1, 0);
-insert into report_tb(reporter_id, reported_id, reason, transaction_id, status) values (3, 2, '사유', 1, 1);
+insert into report_tb(reporter_id, reported_id, reason, transaction_id, status) values (3, 2, '아 자바스크립트', 1, 0);
+insert into report_tb(reporter_id, reported_id, reason, transaction_id, status) values (3, 2, '개화난다', 1, 1);
 
 
 

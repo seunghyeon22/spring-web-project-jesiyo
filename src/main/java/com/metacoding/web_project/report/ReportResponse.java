@@ -11,7 +11,8 @@ public class ReportResponse {
         private String title;
         private String reason;
         private String status = "대기중";
-
+        private String sellerPhone;
+        private String buyerPhone;
 
 
         public ReportDTO(Report report) {
@@ -26,7 +27,8 @@ public class ReportResponse {
             this.buyerName += report.getTransaction().getBuyer().getName();
             this.title = report.getTransaction().getGoods().getTitle();
             this.reason = report.getReason();
-
+            this.sellerPhone = report.getTransaction().getSeller().getTel();
+            this.buyerPhone = report.getTransaction().getBuyer().getTel();
             if (report.getStatus() == 1) {
                 this.status = "처리완료";
             }
