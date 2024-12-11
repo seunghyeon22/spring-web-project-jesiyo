@@ -52,9 +52,6 @@ insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (1,1,4000,now(
 insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (1,1,3000,now());
 insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (1,1,4000,now());
 insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (1,1,5000,now());
-insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (1,2,21000,now());
-insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (2,3,5500,now());
-insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (2,4,130000,now());
 
 -- transaction_tb 더미데이터
 insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_status, success_price, updated_at) values (2, 2, 3, 0, 1, 50000, now());

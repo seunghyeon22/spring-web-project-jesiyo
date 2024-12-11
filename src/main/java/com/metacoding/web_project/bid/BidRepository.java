@@ -83,12 +83,6 @@ public class BidRepository {
         return (Long) q.getSingleResult();
     }
 
-    // 경매중인 물품 목록 보기
-    public List<Bid> findAll() {
-        Query q = em.createNativeQuery("select * from bid_tb order by id desc", Bid.class);
-        return q.getResultList(); // List 반환받으니까
-    }
-
     // 조회해서 없으면 아무것도 없는 Optinal을 반환할 객체가 필요해서
     public Optional<Bid> findByGoodsDescIsNull(Integer id) {
         try {
@@ -102,12 +96,18 @@ public class BidRepository {
     }
 
     // 경매중인 물품(판매) 목록 보기
-    public List<Bid> findByBuyerIdForSell() {
+    public List<Bid> findByBuyerIdForSell(Integer id) {
 
         String query = """
-                select * from bid_tb order by id desc
+                select b.* from bid_tb b
+                join goods_tb g on b.goods_id = g.id
+                where b.buyer_id = ?
+                and b.try_price = (select max(b1.try_price) from bid_tb b1 where b1.goods_id = b.goods_id)
                 """;
+
         Query q = em.createNativeQuery(query, Bid.class);
+        q.setParameter(1, id);
+
         return q.getResultList(); // List 반환
     }
 
@@ -115,7 +115,8 @@ public class BidRepository {
     public List<Bid> findByBuyerIdForBuy(Integer id) {
 
         String query = """ 
-                select * from bid_tb where try_price in (select max(try_price) from bid_tb where buyer_id = ? group by goods_id)
+                select * from bid_tb 
+                 where try_price in (select max(try_price) from bid_tb where buyer_id = ? group by goods_id)
                 """;
 
         Query q = em.createNativeQuery(query, Bid.class);
@@ -123,11 +124,10 @@ public class BidRepository {
         
         return q.getResultList(); // List 반환
 
-//        select * from bid_tb where try_price in (select max(try_price) from bid_tb where buyer_id = 1 group by goods_id);
     }
 
     // 경매 참여중인 물품(구매)의 최고 입찰가 조회
-    public Bid findBestPrice(Integer goodsId) {
+    public Bid findMaxPrice(Integer goodsId) {
 
         String query = """
                 select b.* from bid_tb b where b.goods_id = ? order by b.try_price desc limit 1

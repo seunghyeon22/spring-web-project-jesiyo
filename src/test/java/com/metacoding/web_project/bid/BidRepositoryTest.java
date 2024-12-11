@@ -26,9 +26,12 @@ public class BidRepositoryTest {
 
     // 경매중인 물품(판매) 목록 테스트
     @Test
-    public void findAll_test() {
+    public void findByBuyerIdForSell_test() {
+        // given (테스트를 위한 입력값)
+        Integer id = 1;
+
         // when (테스트할 메서드 실행)
-        List<Bid> bidList = bidRepository.findByBuyerIdForSell();
+        List<Bid> bidList = bidRepository.findByBuyerIdForSell(id);
 
         // then(eye) (결과 검증 / 출력으로 직접 확인은 eye)
         for (Bid bid : bidList) {
@@ -38,6 +41,7 @@ public class BidRepositoryTest {
             System.out.println(bid.getGoods().getEndAt());
             System.out.println(bid.getGoods().getStartingPrice());
             System.out.println(bid.getTryPrice());
+            System.out.println("=======================");
         }
     }
 
@@ -75,7 +79,7 @@ public class BidRepositoryTest {
         Integer id = 1;
 
         // when (테스트할 메서드 실행)
-        Bid bid = bidRepository.findBestPrice(id);
+        Bid bid = bidRepository.findMaxPrice(id);
 
         // then(eye) (결과 검증 / 출력으로 직접 확인은 eye)
         System.out.println(bid.getTryPrice());
