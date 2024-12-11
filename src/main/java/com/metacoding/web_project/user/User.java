@@ -46,9 +46,11 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String role;
 
+    @Column(nullable = false)
+    private String tel;
 
     @Builder
-    public User(Integer id, String username, String password, String name, String postNum, String addr, String addrDetail, String birth, String role) {
+    public User(Integer id, String username, String password, String name, String postNum, String addr, String addrDetail, String birth, String role, String tel) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -58,6 +60,7 @@ public class User implements UserDetails {
         this.addrDetail = addrDetail;
         this.birth = birth;
         this.role = role;
+        this.tel = tel;
     }
 
 
