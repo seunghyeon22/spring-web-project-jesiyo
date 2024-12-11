@@ -50,14 +50,15 @@
     </nav>
     <div class="box">
         <div class="title-box">
-            <h2>경매종료 내역 확인</h2>
+            <h2>경매종료 내역</h2>
         </div>
 
         <div class="navbar navbar-expand-sm">
             <div style="width: 400px;">
-                <select class="form-select">
-                    <option>이름</option>
-                    <option>물품</option>
+                <select class="form-select" id="searchType">
+                    <option value="title">제목</option>
+                    <option value="buyer">구매자명</option>
+                    <option value="seller">판매자명</option>
                 </select>
             </div>
             <div class="container-fluid">
@@ -65,9 +66,9 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="mynavbar" style="width: 400px;">
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="text" placeholder="Search" style="width: 460px;">
-                        <button class="btn btn-custom" type="button">Search</button>
+                    <form class="d-flex" onsubmit="handleSearch(event)">
+                        <input class="form-control me-2" type="text" id="searchInput" placeholder="Search" style="width: 460px;">
+                        <button class="btn btn-custom" type="submit">Search</button>
                     </form>
                 </div>
             </div>
@@ -76,81 +77,44 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th>물품</th>
-                    <th>구매자</th>
+                    <th>제목</th>
                     <th>판매자</th>
-                    <th>카테고리</th>
-                    <th>시작 입찰가</th>
+                    <th>구매자</th>
                     <th>최종 낙찰가</th>
-                    <th>입찰 시작일시</th>
-                    <th>최종 낙찰일시</th>
-                    <th>비고</th>
+                    <th>마지막 수정일</th>
+                    <th>판매자 거래확정</th>
+                    <th>구매자 거래확정</th>
+
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <td>item1</td>
-                    <td>sss</td>
-                    <td>ddd</td>
-                    <td>전자기기</td>
-                    <td>10000</td>
-                    <td>28000</td>
-                    <td>2024.9.11.17.51</td>
-                    <td>2024.9.18.17.51</td>
-                    <td>상태</td>
-                </tr>
-                <tr>
-                    <td>item1</td>
-                    <td>sss</td>
-                    <td>ddd</td>
-                    <td>전자기기</td>
-                    <td>10000</td>
-                    <td>28000</td>
-                    <td>2024.9.11.17.51</td>
-                    <td>2024.9.18.17.51</td>
-                    <td>상태</td>
-                </tr>
-                <tr>
-                    <td>item1</td>
-                    <td>sss</td>
-                    <td>ddd</td>
-                    <td>전자기기</td>
-                    <td>10000</td>
-                    <td>28000</td>
-                    <td>2024.9.11.17.51</td>
-                    <td>2024.9.18.17.51</td>
-                    <td>상태</td>
-                </tr>
-                <tr>
-                    <td>item1</td>
-                    <td>sss</td>
-                    <td>ddd</td>
-                    <td>전자기기</td>
-                    <td>10000</td>
-                    <td>28000</td>
-                    <td>2024.9.11.17.51</td>
-                    <td>2024.9.18.17.51</td>
-                    <td>상태</td>
-                </tr>
-                <tr>
-                    <td>item1</td>
-                    <td>sss</td>
-                    <td>ddd</td>
-                    <td>전자기기</td>
-                    <td>10000</td>
-                    <td>28000</td>
-                    <td>2024.9.11.17.51</td>
-                    <td>2024.9.18.17.51</td>
-                    <td>상태</td>
-                </tr>
 
+                <tbody>
+                {{#model}}
+                    <tr>
+                        <td>{{title}}</td>
+                        <td>{{sellerName}}</td>
+                        <td>{{buyerName}}</td>
+                        <td>{{success_price}}</td>
+                        <td>{{update_at}}</td>
+                        <td>{{sellerStatus}}</td>
+                        <td>{{buyerStatus}}</td>
+                    </tr>
+                {{/model}}
                 </tbody>
             </table>
-
-
-
         </div>
     </div>
 </div>
+
+<script>
+    function handleSearch(event) {
+        event.preventDefault();
+
+        const searchType = document.getElementById('searchType').value;
+        const searchInput = document.getElementById('searchInput').value;
+
+        window.location.href = `/auction-complete?divide=${searchType}&search=${searchInput}`;
+    }
+</script>
 </body>
 </html>

@@ -21,8 +21,8 @@ public class TransactionController {
     // 로그인 구현 시 경로를 /admin/auction-complete 로 변경 예정
     @GetMapping("/auction-complete")
     public String auctionComplete(Model model, @RequestParam(defaultValue = "") String divide, @RequestParam(defaultValue = "") String search) {
-//        List<TransactionResponse.TransactionDTO> dtoList = transactionService.findAllTransactionTBAndUser(divide, search);
-//        model.addAttribute("model", dtoList);
+        List<TransactionResponse.TransactionDTO> dtoList = transactionService.findAllTransactionTBAndUser(divide, search);
+        model.addAttribute("model", dtoList);
         return "admin/auction-complete-admin";
     }
 
