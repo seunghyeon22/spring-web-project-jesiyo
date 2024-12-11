@@ -26,11 +26,11 @@ public class BidRepository {
     }
     
     // bid 테이블을 join하여 조회(goods,user)(관리자용)
-    public List<Bid> findAllBidsJoinAnotherInfo(String condition) {
+    public List<Bid> findAllBidsJoinAnotherInfo(String query) {
         String sql = """
                 select b from Bid b join fetch b.buyer join fetch b.goods g join fetch g.seller
                 """;
-        sql += condition;
+        sql += query;
         Query q = em.createQuery(sql, Bid.class);
         return (List<Bid>) q.getResultList();
     }

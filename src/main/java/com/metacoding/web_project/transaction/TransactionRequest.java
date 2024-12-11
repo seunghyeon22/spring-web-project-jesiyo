@@ -27,10 +27,10 @@ public class TransactionRequest {
             return Transaction.builder()
                     .goods(Goods.builder().id(goodsId).build())
                     .seller(User.builder().id(seller).build())
-                    .success_price(successPrice)
+                    .successPrice(successPrice)
                     .buyer(User.builder().id(buyerId).build())
-                    .seller_status(1)
-                    .buyer_status(1)
+                    .sellerStatus(1)
+                    .buyerStatus(1)
                     .build();
 
         }

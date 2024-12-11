@@ -1,11 +1,13 @@
 package com.metacoding.web_project.transaction;
 
+import com.metacoding.web_project.bid.Bid;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Repository
@@ -23,5 +25,15 @@ public class TransactionRepository {
         q.setParameter(1, id);
 
         return Optional.ofNullable((Transaction) q.getSingleResult());
+    }
+
+    // Transaction 테이블을 join하여 조회(goods,user)(관리자용)
+    public List<Transaction> findAllTransactionJoinAnotherInfo(String query) {
+        String sql = """
+                select t from Transaction t join fetch t.goods join fetch t.buyer join fetch t.seller
+            """;
+        sql += query;
+        Query q = em.createQuery(sql, Transaction.class);
+        return (List<Transaction>) q.getResultList();
     }
 }

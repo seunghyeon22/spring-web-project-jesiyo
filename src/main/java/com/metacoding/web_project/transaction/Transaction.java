@@ -34,15 +34,15 @@ public class Transaction {
     // 0 : 거래 확정 버튼 누르기 전
     // 1 : 거래 확정 버튼 누른 후
     @Column(nullable = false)
-    private Integer buyer_status;
+    private Integer buyerStatus;
 
     @Column(nullable = false)
-    private Integer seller_status;
+    private Integer sellerStatus;
 
 
 
     @Column(nullable = false)
-    private Integer success_price;
+    private Integer successPrice;
 
     @Column(nullable = true)
     private Integer deliveryNum;
@@ -51,24 +51,24 @@ public class Transaction {
     private Timestamp updatedAt;
 
     @Builder
-    public Transaction(Integer id, Goods goods, User buyer, User seller, Integer buyer_status, Integer seller_status, Integer success_price, Integer deliveryNum) {
+    public Transaction(Integer id, Goods goods, User buyer, User seller, Integer buyerStatus, Integer sellerStatus, Integer successPrice, Integer deliveryNum) {
         this.id = id;
         this.goods = goods;
         this.buyer = buyer;
         this.seller = seller;
-        this.buyer_status = buyer_status;
-        this.seller_status = seller_status;
-        this.success_price = success_price;
+        this.buyerStatus = buyerStatus;
+        this.sellerStatus = sellerStatus;
+        this.successPrice = successPrice;
         this.deliveryNum = deliveryNum;
         this.updatedAt = Timestamp.valueOf(LocalDateTime.now());
     }
 
-    public void updateStatus(Integer buyer_status, Integer seller_status, Integer deliveryNum) {
-        if (buyer_status != null) {
-            this.buyer_status = buyer_status;
+    public void updateStatus(Integer buyerStatus, Integer sellerStatus, Integer deliveryNum) {
+        if (buyerStatus != null) {
+            this.buyerStatus = buyerStatus;
         }
-        if (seller_status != null) {
-            this.seller_status = seller_status;
+        if (sellerStatus != null) {
+            this.sellerStatus = sellerStatus;
         }
         if (deliveryNum != null) {
             this.deliveryNum = deliveryNum;
