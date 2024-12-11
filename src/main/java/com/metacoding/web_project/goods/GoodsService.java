@@ -26,13 +26,13 @@ public class GoodsService {
         Goods goods = goodsRepository.findById(id)
                 .orElseThrow(() -> new Exception404("해당 물품은 존재하지 않습니다."));
 
-        Integer tryPrice = null;
+        Integer tryPrice = 0;
 
         // 2. 해당 물품의 status가 0 이면 bid_tb에 데이터 가져오기
         if (goods.getStatus() == 0) {
             Optional<Bid> result = bidRepository.findByGoodsDesc(id);
-            Bid bid = result.get();
-            tryPrice = bid.getTryPrice();
+            tryPrice = result.map(Bid::getTryPrice)
+                    .orElse(0); //데이터가 없을 경우 tryPrice 0으로 설정
         }
 
         return new GoodsResponse.GoodsDetailDTO(goods, tryPrice);

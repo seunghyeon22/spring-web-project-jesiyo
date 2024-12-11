@@ -16,10 +16,16 @@ public class BidRepository {
 
     // 상세페이지 현재 최고 경매가 데이터 추출
     // limit 1 추가하여 getSingleResult 오류 발생 저지
+    // 새로 생성된 물건 경매가가 없을 경우
+    // Optional.empty 로 리포지토리에서 처리하고 GoodsService 클래스로 넘김
     public Optional<Bid> findByGoodsDesc(Integer id) {
-        Query q = em.createNativeQuery("select * from bid_tb where goods_id = ? order by id desc limit 1", Bid.class);
-        q.setParameter(1, id);
-        return Optional.ofNullable((Bid) q.getSingleResult());
+        try{
+            Query q = em.createNativeQuery("select * from bid_tb where goods_id = ? order by id desc limit 1", Bid.class);
+            q.setParameter(1, id);
+            return Optional.ofNullable((Bid) q.getSingleResult());
+        } catch (NoResultException e) {
+            return Optional.empty();
+        }
     }
 
     public void saveV1(Bid bid) {
