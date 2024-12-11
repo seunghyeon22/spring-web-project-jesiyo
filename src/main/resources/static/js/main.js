@@ -22,7 +22,7 @@ all();
         str2+=`
              <div class="t1-category">
                  <input type="hidden" value="${data[i].id}">
-                 <a href="#"><img src="${data[i].imgUrl}" class="rounded" alt="디지털기기"></a>
+                 <a href="/goods-list/${data[i].id}"><img src="${data[i].imgUrl}" class="rounded" alt="디지털기기"></a>
                  <div class="t1-category-name">${data[i].name}</div>
              </div>      `
         if((i+1)%4==0){

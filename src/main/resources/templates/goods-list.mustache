@@ -21,80 +21,28 @@
         <div class="list__side__Menu">
             <h2 style="color: #f96506;">카테고리</h2>
                 <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action">카테고리 1</a>
-                    <a href="#" class="list-group-item list-group-item-action">카테고리 2</a>
-                    <a href="#" class="list-group-item list-group-item-action">카테고리 3</a>
+                    {{#category}}
+                    <a href="/goods-list/{{id}}" class="list-group-item list-group-item-action">{{name}}</a>
+                    {{/category}}
                 </div>
         </div>
         <div class="list__main__content">
-            <h2 style="color: #f96506;">통합 검색결과</h2>
+            <h2 style="color: #f96506;">검색결과</h2>
             <hr>
             <div class="my__list__item__box2">
+                {{#goods}}
                 <a href="#" style="text-decoration: none; color: #f96506;">
                     <div class="card" style="border: 2px solid orange">
-                        <img class="card__img__top" src="goodsPng/쇼파.png" alt="ListCard image">
+                        <input type="hidden" class="id" value="{{id}}">
+                        <img class="card__img__top" src="{{imgUrl}}" alt="ListCard image">
                         <div class="card__body">
-                        <h4 class="card__title">쇼파 팝니다.</h4>
-                        <p class="card__text">시작 입찰가: 100,000원</p>
-                        <p class="card__text">최고 입찰가: 150,000원</p>
+                        <h4 class="card__title">{{title}}</h4>
+                        <p class="card__text">시작 입찰가: {{startingPrice}}</p>
+                        <p class="card__text">최고 입찰가: {{tryPrice}}</p>
                         </div>
                     </div>
                 </a>
-    
-                <a href="#" style="text-decoration: none; color: #f96506;">
-                    <div class="card" style="border: 2px solid orange">
-                        <img class="card__img__top" src="goodsPng/냄비.png" alt="ListCard image">
-                        <div class="card__body">
-                        <h4 class="card__title">아끼던 냄비 팔아요~</h4>
-                        <p class="card__text">시작 입찰가: 50,000원</p>
-                        <p class="card__text">최고 입찰가: 70,000원</p>
-                        </div>
-                    </div>
-                </a>
-                
-                <a href="#" style="text-decoration: none; color: #f96506;">
-                    <div class="card" style="border: 2px solid orange;">
-                        <img class="card__img__top" src="goodsPng/운동화.png" alt="ListCard image">
-                        <div class="card__body">
-                        <h4 class="card__title">운동화 싸게 가져가세요.</h4>
-                        <p class="card__text">시작 입찰가: 40,000원</p>
-                        <p class="card__text">최고 입찰가: 50,000원</p>
-                        </div>
-                    </div>
-                </a>
-                
-                <a href="#" style="text-decoration: none; color: #f96506;">
-                    <div class="card" style="border: 2px solid orange;">
-                        <img class="card__img__top" src="goodsPng/산책줄.png" alt="ListCard image">
-                        <div class="card__body">
-                        <h4 class="card__title">강아지 산책줄 나눔합니다.</h4>
-                        <p class="card__text">시작 입찰가: 0원</p>
-                        <p class="card__text">최고 입찰가: 1,000원</p>
-                        </div>
-                    </div>
-                </a>
-                
-                <a href="#" style="text-decoration: none; color: #f96506;">
-                    <div class="card" style="border: 2px solid orange;">
-                        <img class="card__img__top" src="goodsPng/고구마.png" alt="ListCard image">
-                        <div class="card__body">
-                        <h4 class="card__title">하우스 고구마 싸게 팔아요~(1상자)</h4>
-                        <p class="card__text">시작 입찰가: 45,000원</p>
-                        <p class="card__text">최고 입찰가: 50,000원</p>
-                        </div>
-                    </div>
-                </a>
-                
-                <a href="#" style="text-decoration: none; color: #f96506;">
-                    <div class="card" style="border: 2px solid orange;">
-                        <img class="card__img__top" src="goodsPng/텀블러.png" alt="ListCard image">
-                        <div class="card__body">
-                        <h4 class="card__title">대용량 텀블러 가져가실 분?(사용 X)</h4>
-                        <p class="card__text">시작 입찰가: 20,000원</p>
-                        <p class="card__text">최고 입찰가: 22,000원</p>
-                        </div>
-                    </div>
-                </a>
+                {{/goods}}
     
             </div><!--my__list__item__box END-->
 

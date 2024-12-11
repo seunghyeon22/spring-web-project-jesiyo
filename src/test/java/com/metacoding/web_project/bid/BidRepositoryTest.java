@@ -6,6 +6,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 
 import java.util.List;
+import java.util.Optional;
 
 @Import(BidRepository.class)
 @DataJpaTest
@@ -38,4 +39,9 @@ public class BidRepositoryTest {
             System.out.println(bid.getTryPrice());
         }
     }
+    public void findByGoodsDesc_Test(){
+       Optional<Bid> bid =  bidRepository.findByGoodsDesc(1);
+        System.out.println(bid.get().getTryPrice());
+    }
+
 }

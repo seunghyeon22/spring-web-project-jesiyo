@@ -9,6 +9,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -63,6 +64,21 @@ public class GoodsRepositoryTest {
         System.out.println(goods1.get().getStartingPrice());
         System.out.println(goods1.get().getEndAt());
         System.out.println(goods1.get().getStatus());
+    }
+
+    @Test
+    public void findByCategoryId_Test(){
+        Integer categoryId = 1;
+        Optional<List<Goods>> result = goodsRepository.findByCategoryId(categoryId);
+        for (Goods goods : result.get()) {
+            System.out.println(goods.getTitle());
+            System.out.println(goods.getSeller().getName());
+            System.out.println(goods.getCategory().getName());
+            System.out.println(goods.getCategory().getId());
+            System.out.println(goods.getTitle());
+            System.out.println(goods.getContent());
+            System.out.println(goods.getImgUrl());
+        }
     }
 
 }

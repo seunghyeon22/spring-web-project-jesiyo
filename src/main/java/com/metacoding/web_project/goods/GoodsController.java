@@ -1,6 +1,7 @@
 package com.metacoding.web_project.goods;
 
 import com.metacoding.web_project._core.CommonResp;
+import com.metacoding.web_project.category.CategoryService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -11,10 +12,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Controller
 public class GoodsController {
     private final GoodsService goodsService;
+    private final CategoryService categoryService;
 
 
     private final HttpSession session;
@@ -56,4 +60,17 @@ public class GoodsController {
         CommonResp resp = new CommonResp(true, "데이터 변경 성공", null);
         return ResponseEntity.ok(resp);
     }
+    @GetMapping("/goods-list")
+    public String goodsList() {
+        return "goods-list";
+    }
+    @GetMapping("/goods-list/{id}")
+    public String goodsList(@PathVariable("id") Integer id, Model model) {
+        model.addAttribute("category", categoryService.findAllCategory());
+        model.addAttribute("goods",goodsService.getGoodsList(id));
+        return "goods-list";
+    }
+
+
+
 }
