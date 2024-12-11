@@ -5,10 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -49,5 +46,13 @@ public class BidController {
 
         CommonResp resp = new CommonResp(true, "성공", null);
         return ResponseEntity.ok(resp);
+    }
+
+    // 경매가 끝난 물건 경매기록 삭제 (recode_tb에 옮긴 후 실행됩니다.)
+    @PostMapping("/goods-detail/endBid/{id}/delete")
+    public void deleteBid(@PathVariable int id) {
+
+        bidService.deleteByGoodsId(id);
+        return;
     }
 }
