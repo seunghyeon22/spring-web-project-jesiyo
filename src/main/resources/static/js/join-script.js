@@ -32,6 +32,43 @@ function idCheck() {
 
 document.getElementById('id').addEventListener('keyup', idCheck);
 
+
+
+// 아이디 중복 체크
+async function idDupCheck(){
+    let idInput = document.querySelector('#id');
+    let isIdDuplicated = false; // 아이디 중복 여부 상태
+
+    let username = idInput.value;
+
+    try {
+        const response = await fetch('/check-id', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username }),
+        });
+
+        if (!response.ok) {
+            throw new Error('1. 중복확인 중 응답ok 아님...이유를 찾아봐라');
+        }
+
+        let result = await response.json();
+
+        if (result === 0) {
+            alert('사용가능한 아이디입니다.')
+            isIdDuplicated = false; // 아이디가 중복되지 않은 상태로 설정
+        } else {
+            alert('이미 사용중인 아이디입니다. 다른 아이디를 등록해주세요.')
+            isIdDuplicated = true; // 아이디가 중복된 상태로 설정
+        }
+    } catch (error) {
+        alert('error')
+        console.error('아이디 중복확인 오류:', error);
+    }
+}
+
 // 비밀번호 유효성 검사 함수
 function pwCheck(password){
     const hasLetter = /[a-zA-Z]/.test(password); // 영문자 포함

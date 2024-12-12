@@ -51,4 +51,9 @@ public class UserResponse {
         }
     }
 
+    @Data
+    public static class FindUserDTO{
+        private String username;
+    }
+
 }

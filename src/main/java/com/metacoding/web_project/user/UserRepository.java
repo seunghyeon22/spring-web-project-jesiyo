@@ -3,6 +3,7 @@ package com.metacoding.web_project.user;
 import com.metacoding.web_project._core.error.ex.Exception401;
 import com.metacoding.web_project.useraccount.UserAccount;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -37,17 +38,14 @@ public class UserRepository {
         em.persist(userAccount);
     }
 
-
-    public User login(String username, String password) {
-        Query q = em.createQuery("select u from User u where u.username = :username and u.password = :password", User.class);
-        q.setParameter("username",username );
-        q.setParameter("password", password);
-        try{
-            return (User) q.getSingleResult();
-        }catch(RuntimeException e){
-            throw new Exception401("존재하지 않는 아이디 입니다.");
-        }
+    public int checkId(String username) {
+        Query q = em.createQuery("select count(u) from User u where u.username = :username");
+        q.setParameter("username", username);
+        Long count = (Long) q.getSingleResult();
+        System.out.println(count);
+        return count.intValue(); // Long을 int로 변환
     }
+
 
     public UserAccount findInfo(int id) {
         Query q = em.createQuery("select u from UserAccount u right join fetch u.user where u.user.id = :id ", UserAccount.class);
@@ -80,7 +78,7 @@ public class UserRepository {
             set u.account = :account
             where u.user.id = :id
             """;
-
+        System.out.println(account);
         Query qu = em.createQuery(Sql2);
         qu.setParameter("id", id);
         qu.setParameter("account", account);
@@ -111,7 +109,23 @@ public class UserRepository {
             }catch (RuntimeException e){
                 return Optional.empty();
             }
-      }
+    }
+
+    @Transactional
+    public String  findUserId(String tel, String name){
+        try {
+        String sql = """
+            select u.username from User u where u.name = :name and u.tel = :tel
+            """;
+        Query q = em.createQuery(sql, String.class);
+        q.setParameter("name", name);
+        q.setParameter("tel", tel);
+            return (String) q.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
 
 
 }

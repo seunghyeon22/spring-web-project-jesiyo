@@ -81,9 +81,9 @@
                                 <th scope="row"><label for="account">계좌번호</label></th>
                                 <td>
                                     <div class="input-group mb-3">
-                                        <input type="text" name="account" id="account" class="form-control" value="{{info.account}}"
-                                               placeholder="계좌를 등록해주세요.">
-                                        <button type="button" class="btn btn-outline-secondary t1-btn" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">계좌번호 등록하기</button>
+                                        <input type="text" name="account" id="account" class="form-control" value=""
+                                               placeholder="{{info.account}}">
+                                        <button type="button" class="btn btn-outline-secondary t1-btn" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">계좌실명확인</button>
                                     </div>
 
 
@@ -91,11 +91,20 @@
                                     <div class="modal-dialog">
                                       <div class="modal-content">
                                         <div class="modal-header">
-                                          <h1 class="modal-title fs-5" id="exampleModalLabel">계좌등록</h1>
+                                          <h1 class="modal-title fs-5" id="exampleModalLabel">계좌실명확인</h1>
                                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
                                             <div class="mb-3">
+                                              <input type="text" name="account" class="form-control" id="recipient-name" placeholder="성함을 입력해주세요">
+                                            </div>
+                                          <div class="mb-3">
+                                              <input type="text" name="account" class="form-control" id="recipient-name" placeholder="은행을 입력해주세요">
+                                            </div>
+                                          <div class="mb-3">
+                                              <input type="text" name="account" class="form-control" id="recipient-name" placeholder="주민등록번호 7자리를 입력해주세요">
+                                            </div>
+                                          <div class="mb-3">
                                               <input type="text" name="account" class="form-control" id="recipient-name" placeholder="계좌번호를 -없이 입력해주세요">
                                             </div>
                                         </div>

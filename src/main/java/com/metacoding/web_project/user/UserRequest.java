@@ -9,6 +9,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 public class UserRequest {
 
+
+
     @Data
     public static class JoinDTO{
         private Integer id;
@@ -62,22 +64,29 @@ public class UserRequest {
         private String name;
         @NotBlank
         private String tel;
-        private String username;
     }
 
     @Data
-    public class UpdateDTO {
+    public static class UpdateDTO {
         private String tel;
         private String postNum;
         private String addr;
         private String addrDetail;
         private String account;
+
+
     }
 
     @Data
-    public class ChangePwDTO {
+    public static class ChangePwDTO {
         private String password;
         private String newPassword;
-
     }
+
+    @Data
+    public static class CheckIdDTO{
+        private String username;
+    }
+
+
 }

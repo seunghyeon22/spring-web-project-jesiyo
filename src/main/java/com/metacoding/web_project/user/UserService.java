@@ -1,20 +1,17 @@
 package com.metacoding.web_project.user;
 
-import com.metacoding.web_project._core.error.ex.Exception401;
+import com.metacoding.web_project._core.error.ex.Exception400;
 import com.metacoding.web_project._core.error.ex.Exception404;
 import com.metacoding.web_project.useraccount.UserAccount;
-import com.metacoding.web_project.useraccount.UserAccountRequest;
 import jakarta.transaction.Transactional;
+import jakarta.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.collection.spi.PersistentBag;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -44,14 +41,6 @@ public class UserService implements UserDetailsService {
         userRepository.join2(userAccount);
     }
 
-/*    @Transactional
-    public User 로그인(UserRequest.LoginDTO loginDTO) {
-        User userPS = userRepository.login(loginDTO.getUsername(),loginDTO.getPassword());
-        if(!userPS.getPassword().equals(loginDTO.getPassword())){
-            throw new Exception401("아이디나 비밀번호가 맞지 않습니다.");
-        }
-        return userPS;
-    }*/
 
     @Transactional
     public UserResponse.InfoDTO 유저정보보기(int id) {
@@ -59,14 +48,15 @@ public class UserService implements UserDetailsService {
         return new UserResponse.InfoDTO(user);
     }
 
-
+    // toEntity 만드는게 나을 듯... 나중에 수정
     @Transactional
     public void 유저정보수정하기(int id, UserRequest.UpdateDTO updateDTO) {
         userRepository.update(id,updateDTO.getTel(),
                                  updateDTO.getPostNum(),
                                  updateDTO.getAddr(),
                                  updateDTO.getAddrDetail(),
-                                updateDTO.getAccount());
+                                 updateDTO.getAccount().replaceAll("[^a-zA-Z0-9]", "").trim()
+        );
     }
 
     @Transactional
@@ -80,10 +70,6 @@ public class UserService implements UserDetailsService {
         System.out.println(enNewPassword);
     }
 
-//    public UserResponse.CreditDTO 내정보보기(int id){
-//        Optional<User> user = userRepository.findById(id);
-//        return new UserResponse.CreditDTO();
-//    }
     @Transactional
     public UserResponse.CreditDTO 내정보보기(int id) {
          UserAccount userAccount = userRepository.findByIdUserInfo(id)
@@ -92,6 +78,18 @@ public class UserService implements UserDetailsService {
          return new UserResponse.CreditDTO(userAccount);
     }
 
+
+    public int 아이디중복확인(UserRequest.CheckIdDTO checkIdDTO) {
+        return userRepository.checkId(checkIdDTO.getUsername());
+    }
+
+    public String 유저찾기(UserRequest.FindUserDTO findUserDTO) {
+        try {
+            return userRepository.findUserId(findUserDTO.getTel(),findUserDTO.getName());
+        } catch (RuntimeException e) {
+            throw new Exception400("입력하신 회원정보가 존재하지 않습니다.");
+        }
+    }
 
 }
 
