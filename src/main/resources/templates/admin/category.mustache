@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/css/admin.css"/>
     <link rel="stylesheet" type="text/css" href="/css/header.css">
     <title>관리자</title>
+
 </head>
 <body>
 {{>layout/header}}
@@ -93,6 +94,7 @@
     </div>
 </div>
 
+{{>layout/footer}}
 <script>
     document.getElementById('fileInput').addEventListener('change', function(event) {
         const file = event.target.files[0];
