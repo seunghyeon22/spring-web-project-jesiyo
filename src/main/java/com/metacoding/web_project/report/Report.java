@@ -31,7 +31,8 @@ public class Report {
     private Transaction transaction;
 
     // 0 : 처리 전 상태
-    // 1 : 처리 완료 상태
+    // 1 : (처리 완료) 관리자가 경매 취소함
+    // 2 : (처리 완료) 관리자가 판매자에게 입찰금을 전달함
     @Column(nullable = false)
     private Integer status;
 
@@ -47,9 +48,9 @@ public class Report {
 
     public void updateStatus(String method) {
         if (method.equals("cancel")) {
-            status = 2;
+            status = 1;
         } else if (method.equals("seller")) {
-            status = 3;
+            status = 2;
         }
     }
 }

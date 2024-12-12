@@ -1,8 +1,8 @@
 package com.metacoding.web_project.transaction;
 
+import com.metacoding.web_project._core.util.PageUtil;
 import com.metacoding.web_project.bid.Bid;
 import com.metacoding.web_project.bid.BidRepository;
-import com.metacoding.web_project.bid.BidResponse;
 import com.metacoding.web_project.user.User;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -28,11 +28,11 @@ public class TransactionService {
 
         User buyer = bid.getBuyer();
 
-
         transactionRepository.save(saveDTO.toEntity(buyer.getId()));
     }
 
-    public List<TransactionResponse.TransactionDTO> findAllTransactionTBAndUser(String divide, String search) {
+    // 조건에 따라 최대 10개의 transaction 행을 유저 정보와 함께 가져오는 메서드 (관리자)
+    public List<TransactionResponse.TransactionDTO> findTransactionTBAndUser(String divide, String search, String page) {
         String query;
 
         // divide에 따라 조건문 생성
@@ -43,13 +43,28 @@ public class TransactionService {
         } else {
             query = "where t.goods.title like '%" + search + "%'";
         }
+
         // 쿼리 실행 및 결과 반환
-        List<Transaction> transactionList = transactionRepository.findAllTransactionJoinAnotherInfo(query);
+        List<Transaction> transactionList = transactionRepository.findTransactionJoinAnotherInfo(query, PageUtil.offsetCount(page, 10), 10);
         List<TransactionResponse.TransactionDTO> dtoList = new ArrayList<>();
         for (Transaction transaction : transactionList) {
             dtoList.add(new TransactionResponse.TransactionDTO(transaction));
         }
         return dtoList;
+    }
+
+    // 조건에 맞는 transaction 테이블 행의 총 개수를 구하는 메서드
+    public Integer findTransactionsCount(String divide, String search) {
+        String query;
+        // divide에 따라 조건문 생성
+        if (divide.equals("buyer")) {
+            query = " where t.buyer.name like '%" + search + "%'";
+        } else if (divide.equals("seller")) {
+            query = " where t.seller.name like '%" + search + "%'";
+        } else {
+            query = " where t.goods.title like '%" + search + "%'";
+        }
+        return transactionRepository.findTransactionsCount(query);
     }
 
     // 낙찰된 물품(판매) 화면 열기 - 판매 확정 안 누름

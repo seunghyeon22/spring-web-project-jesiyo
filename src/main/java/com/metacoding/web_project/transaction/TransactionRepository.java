@@ -27,16 +27,28 @@ public class TransactionRepository {
     }
 
     // Transaction 테이블을 join하여 조회(goods,user)(관리자용)
-    public List<Transaction> findAllTransactionJoinAnotherInfo(String query) {
+    public List<Transaction> findTransactionJoinAnotherInfo(String query, Integer offset, int limit) {
         String sql = """
                 select t from Transaction t join fetch t.goods join fetch t.buyer join fetch t.seller
             """;
         sql += query;
         Query q = em.createQuery(sql, Transaction.class);
+        q.setFirstResult(offset); // offset
+        q.setMaxResults(limit); // limit
         return (List<Transaction>) q.getResultList();
     }
 
-    // 낙찰된 물품(판매) 목록 조회 (판매 확정 안 누른 상태)
+    // transaction 테이블에서 조건에 맞는 행의 개수를 반환하는 메서드
+    public Integer findTransactionsCount(String queryStr) {
+        String query = "SELECT COUNT(t) FROM Transaction t JOIN t.goods JOIN t.buyer JOIN t.seller";
+        query += queryStr;
+        Query q = em.createQuery(query);
+        Long count = (Long) q.getSingleResult();
+        return count.intValue();
+    }
+
+
+    // 낙찰 완료된 물품 목록 DTO(판매자 입장 / 판매 확정 안 누른 상태)
     public List<Transaction> findBySellerIdNotConfirmOfSell(Integer id) {
         String sql = """
                 select * from transaction_tb where seller_id = ? and seller_status = 0

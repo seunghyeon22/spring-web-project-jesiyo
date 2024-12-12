@@ -17,38 +17,7 @@
 <body>
 {{>layout/header}}
 <div class="container d-flex mt-5">
-    <nav class="my-nav me-4" style="width: 250px">
-        <h2>관리자</h2>
-        <ul class="nav">
-            <li class="nav-item">
-                <p class="nav-link">카테고리</p>
-                <ul class="nav-sub-item">
-                    <li>
-                        <a href="/category">카테고리 추가</a>
-                    </li>
-                </ul>
-            </li>
-            <li class="nav-item">
-                <p class="nav-link">내역 확인</p>
-                <ul class="nav-sub-item">
-                    <li>
-                        <a href="/auction-progress">경매중인 내역</a>
-                    </li>
-                    <li>
-                        <a href="/auction-complete">경매종료 내역</a>
-                    </li>
-                </ul>
-            </li>
-            <li class="nav-item">
-                <p class="nav-link">신고 관련</p>
-                <ul class="nav-sub-item">
-                    <li>
-                        <a href="/confirm-report">신고 확인</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
+    {{>layout/admin-page-menu}}
     <div class="box">
         <div class="title-box">
             <h2>카테고리</h2>

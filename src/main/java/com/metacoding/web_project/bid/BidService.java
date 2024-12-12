@@ -10,6 +10,7 @@ import com.metacoding.web_project.recode.Recode;
 import com.metacoding.web_project.recode.RecodeRepository;
 import com.metacoding.web_project.useraccount.UserAccount;
 import com.metacoding.web_project.useraccount.UserAccountRepository;
+import com.metacoding.web_project._core.util.PageUtil;
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -57,7 +58,7 @@ public class BidService {
 
 
     // 조건에 따라 다른 where 절을 생성하여 전달하는 메서드 (관리자)
-    public List<BidResponse.BidDTO> findAllBidsAndUser(String divide, String search) {
+    public List<BidResponse.BidDTO> findBidsAndUser(String divide, String search, String page) {
         String query;
 
         // divide에 따라 조건문 생성
@@ -68,8 +69,9 @@ public class BidService {
         } else {
             query = "where g.title like '%" + search + "%'";
         }
+
         // 쿼리 실행 및 결과 반환
-        List<Bid> bidList = bidRepository.findAllBidsJoinAnotherInfo(query);
+        List<Bid> bidList = bidRepository.findBidsJoinAnotherInfo(query, PageUtil.offsetCount(page, 10), 10);
         List<BidResponse.BidDTO> dtoList = new ArrayList<>();
 
         for (Bid bid : bidList) {
@@ -77,6 +79,23 @@ public class BidService {
         }
         return dtoList;
     }
+
+    // 조건에 맞는 bid 테이블 행의 총 개수를 구하는 메서드
+    public Integer findBidsCount(String divide, String search) {
+        String query;
+
+        // divide에 따라 조건문 생성
+        if (divide.equals("buyer")) {
+            query = "where b.buyer.name like '%" + search + "%'";
+        } else if (divide.equals("seller")) {
+            query = "where g.seller.name like '%" + search + "%'";
+        } else {
+            query = "where g.title like '%" + search + "%'";
+        }
+
+        return bidRepository.findBidsCount(query);
+    }
+
 
     public void deleteByGoodsId(int id) {
         bidRepository.deleteByGoodsId(id);

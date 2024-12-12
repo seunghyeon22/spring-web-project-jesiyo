@@ -44,12 +44,14 @@ public class BidRepository {
     }
     
     // bid 테이블을 join하여 조회(goods,user)(관리자용)
-    public List<Bid> findAllBidsJoinAnotherInfo(String query) {
+    public List<Bid> findBidsJoinAnotherInfo(String query, Integer offset, Integer limit) {
         String sql = """
                 select b from Bid b join fetch b.buyer join fetch b.goods g join fetch g.seller
                 """;
         sql += query;
         Query q = em.createQuery(sql, Bid.class);
+        q.setFirstResult(offset); // offset
+        q.setMaxResults(limit); // limit
         return (List<Bid>) q.getResultList();
     }
 
@@ -148,4 +150,17 @@ public class BidRepository {
 
         return (Bid) q.getSingleResult();
     }
+
+    // bid 테이블에서 조건에 맞는 행의 개수를 반환하는 메서드
+    public Integer findBidsCount(String queryStr) {
+        String query = """
+            select count(b) from Bid b join b.buyer join b.goods g join g.seller
+            """;
+        query += queryStr;
+        Query q = em.createQuery(query);
+        return ((Long) q.getSingleResult()).intValue();
+    }
+
+
+
 }

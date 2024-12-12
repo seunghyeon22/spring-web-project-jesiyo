@@ -1,53 +1,22 @@
 <!DOCTYPE html>
 <html lang="utf-8">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
             rel="stylesheet"
     />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="/css/myPage.css" />
-    <link rel="stylesheet" href="/css/nav.css" />
+    <link rel="stylesheet" href="/css/myPage.css"/>
+    <link rel="stylesheet" href="/css/nav.css"/>
     <link rel="stylesheet" type="text/css" href="/css/header.css">
     <title>관리자</title>
 </head>
 <body>
 {{>layout/header}}
 <div class="container d-flex mt-5">
-    <nav class="my-nav me-4" style="width: 250px">
-        <h2>관리자</h2>
-        <ul class="nav">
-            <li class="nav-item">
-                <p class="nav-link">카테고리</p>
-                <ul class="nav-sub-item">
-                    <li>
-                        <a href="/category">카테고리 추가</a>
-                    </li>
-                </ul>
-            </li>
-            <li class="nav-item">
-                <p class="nav-link">내역 확인</p>
-                <ul class="nav-sub-item">
-                    <li>
-                        <a href="/auction-progress">경매중인 내역</a>
-                    </li>
-                    <li>
-                        <a href="/auction-complete">경매종료 내역</a>
-                    </li>
-                </ul>
-            </li>
-            <li class="nav-item">
-                <p class="nav-link">신고 관련</p>
-                <ul class="nav-sub-item">
-                    <li>
-                        <a href="/confirm-report">신고 확인</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
+    {{>layout/admin-page-menu}}
     <div class="box">
         <div class="title-box">
             <h2>경매중인 내역 확인</h2>
@@ -67,7 +36,8 @@
                 </button>
                 <div class="collapse navbar-collapse" id="mynavbar" style="width: 400px;">
                     <form class="d-flex" onsubmit="handleSearch(event)">
-                        <input class="form-control me-2" type="text" id="searchInput" placeholder="Search" style="width: 460px;">
+                        <input class="form-control me-2" type="text" id="searchInput" placeholder="Search"
+                               style="width: 460px;">
                         <button class="btn btn-custom" type="submit">Search</button>
                     </form>
                 </div>
@@ -101,17 +71,44 @@
                 </tbody>
             </table>
         </div>
+
+        {{>layout/paging}}
     </div>
 </div>
 {{>layout/footer}}
 <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var divide = "{{divide}}";
+        var search = "{{search}}";
+        var searchType = document.getElementById('searchType');
+        var searchInput = document.getElementById('searchInput');
+        if (divide) {
+            for (var i = 0; i < searchType.options.length; i++) {
+                if (searchType.options[i].value === divide) {
+                    searchType.options[i].selected = true;
+                    break;
+                }
+            }
+        }
+        if (search) {
+            searchInput.value = search;
+        }
+    });
+
     function handleSearch(event) {
         event.preventDefault();
 
         const searchType = document.getElementById('searchType').value;
         const searchInput = document.getElementById('searchInput').value;
 
-        window.location.href = `/auction-progress?divide=${searchType}&search=${searchInput}`;
+        window.location.href = `/auction-progress?divide=${searchType}&search=${searchInput}&page=1`;
+    }
+
+    function changePage(pageNumber) {
+        const searchType = document.getElementById('searchType').value;
+        const searchInput = document.getElementById('searchInput').value;
+
+        window.location.href = `/auction-progress?divide=${searchType}&search=${searchInput}&page=${pageNumber}`;
     }
 </script>
 </body>

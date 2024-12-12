@@ -1,6 +1,7 @@
 package com.metacoding.web_project.report;
 
 import com.metacoding.web_project._core.error.ex.Exception400;
+import com.metacoding.web_project._core.util.PageUtil;
 import com.metacoding.web_project.useraccount.UserAccount;
 import com.metacoding.web_project.useraccount.UserAccountRepository;
 import jakarta.transaction.Transactional;
@@ -17,7 +18,7 @@ public class ReportService {
     private final UserAccountRepository userAccountRepository;
 
     // 신고 관련 테이블과 다른 테이블들을 join 한 결과를 받아 DTO로 변환한 뒤 반환하는 메서드 (관리자)
-    public List<ReportResponse.ReportDTO> findReportJoinAnotherInfo(String divide) {
+    public List<ReportResponse.ReportDTO> findReportJoinAnotherInfo(String divide, String page) {
         String query = "";
 
         // divide에 따라 조건문 생성
@@ -25,13 +26,18 @@ public class ReportService {
             query = "where r.status = 0";
         }
         // 조건문을 전달한 쿼리 실행 및 결과 반환
-        List<Report> reportList = reportRepository.findReportJoinAnotherInfo(query);
+        List<Report> reportList = reportRepository.findReportJoinAnotherInfo(query, PageUtil.offsetCount(page, 10), 10);
         List<ReportResponse.ReportDTO> reportDTOList = new ArrayList<>();
 
         for (Report report : reportList) {
             reportDTOList.add(new ReportResponse.ReportDTO(report));
         }
         return reportDTOList;
+    }
+
+    // report 행의 총 개수를 구하는 메서드
+    public Integer findReportCount(String divide) {
+        return reportRepository.findReportCount(divide);
     }
 
     @Transactional
