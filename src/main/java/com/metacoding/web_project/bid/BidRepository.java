@@ -28,6 +28,17 @@ public class BidRepository {
         }
     }
 
+    // 사용자 입찰 시도 시 현재 최고금액 조회 (SELECT ~ FOR UPDATE)
+    public Optional<Bid> findByGoodsIdDescWithLock(Integer id) {
+        try{
+            Query q = em.createNativeQuery("select * from bid_tb where goods_id = ? order by id desc limit 1 for update", Bid.class);
+            q.setParameter(1, id);
+            return Optional.ofNullable((Bid) q.getSingleResult());
+        }catch (NoResultException e) {
+            return Optional.empty();
+        }
+    }
+
     public void saveV1(Bid bid) {
         em.persist(bid);
     }

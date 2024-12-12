@@ -1,6 +1,7 @@
 package com.metacoding.web_project.bid;
 
 import com.metacoding.web_project._core.CommonResp;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,8 @@ import java.util.List;
 @Controller
 public class BidController {
     private final BidService bidService;
+
+    private final HttpSession session;
 
     // 로그인 구현 시 경로를 /admin/auction-progress 로 변경 예정
     // 경매 중인 물품 페이지 이동 (관리자)
@@ -45,7 +48,8 @@ public class BidController {
     // 경매 시도 금액 데이터 -> DB의 bid_tb 테이블에 insert
     @PostMapping("/catchDetailPageData")
     public ResponseEntity<?> uploadBidData(@RequestBody BidRequest.TryBidDTO tryBidDTO) {
-        bidService.saveTryPrice(tryBidDTO);
+        String username = (String) session.getAttribute("username");
+        bidService.saveTryPrice(tryBidDTO,username);
 
         CommonResp resp = new CommonResp(true, "성공", null);
         return ResponseEntity.ok(resp);
