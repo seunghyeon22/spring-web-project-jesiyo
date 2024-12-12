@@ -36,7 +36,7 @@ public class TransactionResponse {
         }
     }
 
-    // 낙찰 완료된 물품 목록 DTO(판매자 입장 / 판매 확정 안 누른 상태)
+    // 낙찰된 물품(판매) 목록 DTO(판매 확정 안 누른 상태)
     @Data
     public static class CompleteAuctionDTO {
         private Integer id;
@@ -57,6 +57,39 @@ public class TransactionResponse {
             this.successPrice = transaction.getSuccessPrice();
             this.sellerStatus = transaction.getSellerStatus();
             this.buyerAddress = transaction.getBuyer().getAddr();
+        }
+    }
+
+    // 낙찰된 물품(구매) 목록 DTO(구매 확정 누름, 안누름 전부 포함)
+    @Data
+    public static class ParticipatedAuctionDTO {
+        private Integer id;
+        private String title;
+        private String sellerName;
+        private String categoryName;
+        private String goodsImgUrl;
+        private Integer successPrice;
+        private String deliveryNum;
+        private Boolean buyerStatus = false;
+
+        public ParticipatedAuctionDTO(Transaction transaction) {
+            this.id = transaction.getId();
+            this.title = transaction.getGoods().getTitle();
+            this.sellerName = transaction.getGoods().getSeller().getName();
+            this.categoryName = transaction.getGoods().getCategory().getName();
+            this.goodsImgUrl = transaction.getGoods().getImgUrl();
+            this.successPrice = transaction.getSuccessPrice();
+
+            if (transaction.getDeliveryNum() != null) {
+                this.deliveryNum = String.valueOf(transaction.getDeliveryNum());
+
+            } else {
+                this.deliveryNum = "";
+            }
+
+            if (transaction.getBuyerStatus() == 1) {
+                this.buyerStatus = true;
+            }
         }
     }
 }

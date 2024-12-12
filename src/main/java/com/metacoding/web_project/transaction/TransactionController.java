@@ -37,6 +37,8 @@ public class TransactionController {
     // 낙찰된 물품(구매) 화면 열기 - 구매 완료 / 구매 확정 누름
     @GetMapping("/myPage-participated-auction")
     public String participatedAuction(Model model) {
+        List<TransactionResponse.ParticipatedAuctionDTO> participatedAuctionList = transactionService.participatedAuctionList();
+        model.addAttribute("models", participatedAuctionList);
         return "participated-auction";
     }
 
