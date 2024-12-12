@@ -2,6 +2,7 @@ package com.metacoding.web_project.bid;
 
 import com.metacoding.web_project._core.CommonResp;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -57,4 +58,14 @@ public class BidController {
         bidService.deleteByGoodsId(id);
         return;
     }
+
+    // 경매 취소 버튼
+    @DeleteMapping("/api/v1/bid-delete/{goodsId}")
+    @ResponseBody
+    public ResponseEntity<?> deleteBidsByGoods(@PathVariable("goodsId") Integer goodsId) {
+        bidService.cancelAuction(goodsId);
+        CommonResp resp = new CommonResp(true,"성공",null);
+        return new ResponseEntity<>(resp, HttpStatus.OK);
+    }
+
 }

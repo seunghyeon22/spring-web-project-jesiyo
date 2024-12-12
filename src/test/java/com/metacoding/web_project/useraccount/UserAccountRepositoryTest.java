@@ -20,4 +20,12 @@ public class UserAccountRepositoryTest {
             System.out.println("널이 아니에용");
         }
     }
+
+    @Test
+    public void findById_test() {
+        Integer id = 1;
+        UserAccount ua = userAccountRepository.findById(id);
+        System.out.println(ua.getUser().getName());
+
+    }
 }

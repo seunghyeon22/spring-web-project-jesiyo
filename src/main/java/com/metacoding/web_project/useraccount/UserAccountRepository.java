@@ -19,4 +19,14 @@ public class UserAccountRepository {
         query.setParameter("username", name);
         return (UserAccount) query.getSingleResult();
     }
+
+    public UserAccount findById(Integer userId){
+        String sql  = """
+                select u from UserAccount u join fetch u.user where u.user.id=:userId
+                """;
+        Query query = em.createQuery(sql);
+        query.setParameter("userId", userId);
+        return (UserAccount) query.getSingleResult();
+    }
+
 }
