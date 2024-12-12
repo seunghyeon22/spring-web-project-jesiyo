@@ -67,4 +67,20 @@ public class TransactionService {
         }
         return completeAuctionDTOList;
     }
+
+    // 낙찰된 물품(구매) 화면 열기 - 구매 확정 누름, 안 누름 다 포함
+    @Transactional
+    public List<TransactionResponse.ParticipatedAuctionDTO> participatedAuctionList() {
+
+        // 임시로 buyerId = 1인 경우만 가져옴, 로그인과 연결할 때 바꿀 것
+        List<Transaction> transactionList = transactionRepository.findByBuyerIdForAllBuy(1);
+
+        // ParticipatedAuctionDTO로 변환
+        List<TransactionResponse.ParticipatedAuctionDTO> participatedAuctionDTOList = new ArrayList<>();
+
+        for (Transaction transaction : transactionList) {
+            participatedAuctionDTOList.add(new TransactionResponse.ParticipatedAuctionDTO(transaction));
+        }
+        return participatedAuctionDTOList;
+    }
 }

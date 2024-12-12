@@ -23,128 +23,38 @@
           <h2>낙찰된 물품(구매)</h2>
         </div>
         <div class="item-list mt-5">
-          <div class="card mb-3">
-            <div class="card-image">
-              <img src="photo.png" class="card-img-top" />
-            </div>
-            <div class="card-body mt-2">
-              <h4 class="card-title">구매완료 물품1</h4>
-              <div class="card-text mt-2">
-                <input type="hidden" name="" id="1" />
-                <div>판매자</div>
-                <div>카테고리</div>
-                <div>입찰한 가격</div>
-                <div>송장번호 확인</div>
-                <div class="btn-group mt-1">
-                  <button type="button" class="btn btn-custom btn-sm">
-                    구매 확정
-                  </button>
-                  <button type="button" class="btn btn-custom btn-sm">
-                    구매 취소
-                  </button>
-                  <button type="button" class="btn btn-custom btn-sm"  data-bs-toggle="modal" data-bs-target="#myModal">
-                    신고하기
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
 
-          <div class="card mb-3">
-            <div class="card-image">
-              <img src="photo.png" class="card-img-top" />
-            </div>
-            <div class="card-body mt-2">
-              <h4 class="card-title">구매완료 물품2</h4>
-              <div class="card-text mt-2">
-                <input type="hidden" name="" id="1" />
-                <div>판매자</div>
-                <div>카테고리</div>
-                <div>입찰한 가격</div>
-                <div>송장번호 확인</div>
-                <div class="btn-group mt-1">
-                  <button type="button" class="btn btn-custom btn-sm">
-                    구매 확정
-                  </button>
-                  <button type="button" class="btn btn-custom btn-sm">
-                    구매 취소
-                  </button>
+            {{#models}}
+                <div class="card mb-3">
+                    <div class="card-image">
+                        <img src="{{goodsImgUrl}}" class="card-img-top" />
+                    </div>
+                    <div class="card-body mt-2">
+                        <h4 class="card-title">{{title}}</h4>
+                        <div class="card-text mt-2">
+                            <input type="hidden" name="id" id="{{id}}" />
+                            <div>판매자 : {{sellerName}}</div>
+                            <div>카테고리 : {{categoryName}}</div>
+                            <div>낙찰가 : {{successPrice}}</div>
+                            <div>송장번호 확인 : {{deliveryNum}}</div>
+                            <div class="btn-group mt-1">
+                                {{^buyerStatus}} <!-- buyerStatus = 0일때만 구매 확정 버튼이 보이도록 -->
+                                    <button type="button" class="btn btn-custom btn-sm">
+                                        구매 확정
+                                    </button>
+                                {{/buyerStatus}}
+                                <button type="button" class="btn btn-custom btn-sm">
+                                    구매 취소
+                                </button>
+                                <button type="button" class="btn btn-custom btn-sm"  data-bs-toggle="modal" data-bs-target="#myModal">
+                                    신고하기
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-          </div>
+            {{/models}}
 
-          <div class="card mb-3">
-            <div class="card-image">
-              <img src="photo.png" class="card-img-top" />
-            </div>
-            <div class="card-body mt-2">
-              <h4 class="card-title">구매완료 물품3</h4>
-              <div class="card-text mt-2">
-                <input type="hidden" name="" id="1" />
-                <div>판매자</div>
-                <div>카테고리</div>
-                <div>입찰한 가격</div>
-                <div>송장번호 확인</div>
-                <div class="btn-group mt-1">
-                  <button type="button" class="btn btn-custom btn-sm">
-                    구매 확정
-                  </button>
-                  <button type="button" class="btn btn-custom btn-sm">
-                    구매 취소
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="card mb-3">
-            <div class="card-image">
-              <img src="photo.png" class="card-img-top" />
-            </div>
-            <div class="card-body mt-2">
-              <h4 class="card-title">구매완료 물품4</h4>
-              <div class="card-text mt-2">
-                <input type="hidden" name="" id="1" />
-                <div>판매자</div>
-                <div>카테고리</div>
-                <div>입찰한 가격</div>
-                <div>송장번호 확인</div>
-                <div class="btn-group mt-1">
-                  <button type="button" class="btn btn-custom btn-sm">
-                    구매 확정
-                  </button>
-                  <button type="button" class="btn btn-custom btn-sm">
-                    구매 취소
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="card mb-3">
-            <div class="card-image">
-              <img src="photo.png" class="card-img-top" />
-            </div>
-            <div class="card-body mt-2">
-              <h4 class="card-title">구매완료 물품5</h4>
-              <div class="card-text mt-2">
-                <input type="hidden" name="" id="1" />
-                <div>판매자</div>
-                <div>카테고리</div>
-                <div>입찰한 가격</div>
-                <div>송장번호 확인</div>
-                <div class="btn-group mt-1">
-                  <button type="button" class="btn btn-custom btn-sm">
-                    구매 확정
-                  </button>
-                  <button type="button" class="btn btn-custom btn-sm">
-                    구매 취소
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>

@@ -65,10 +65,14 @@ insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (1,1,5000,now(
 
 -- transaction_tb 더미데이터
 insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_status, success_price, updated_at) values (2, 2, 3, 0, 1, 50000, now());
-insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_status, success_price, updated_at) values (3, 1, 2, 0, 1, 50000, now());
 insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_status, success_price, updated_at) values (1, 3, 1, 0, 0, 86000, now());
 insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_status, success_price, updated_at) values (4, 2, 1, 0, 0, 3000, now());
 insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_status, success_price, updated_at) values (2, 2, 1, 0, 1, 100000, now());
+insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_status, success_price, updated_at) values (3, 1, 2, 0, 1, 50000, now());
+insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_status, success_price, updated_at) values (7, 1, 3, 0, 1, 9200, now());
+insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_status, success_price, updated_at) values (4, 1, 2, 0, 1, 45000, now());
+insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_status, success_price, updated_at) values (5, 1, 3, 1, 1, 7000, now());
+insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_status, success_price, updated_at) values (2, 1, 2, 1, 1, 6500, now());
 
 -- report_tb 더미데이터
 insert into report_tb(reporter_id, reported_id, reason, transaction_id, status) values (3, 2, '아 자바스크립트', 1, 0);
