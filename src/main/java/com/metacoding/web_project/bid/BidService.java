@@ -1,6 +1,9 @@
 package com.metacoding.web_project.bid;
 
 import com.metacoding.web_project._core.error.ex.Exception400;
+import com.metacoding.web_project.user.User;
+import com.metacoding.web_project.user.UserRepository;
+import com.metacoding.web_project._core.error.ex.Exception400;
 import com.metacoding.web_project.goods.Goods;
 import com.metacoding.web_project.goods.GoodsRepository;
 import com.metacoding.web_project.recode.Recode;
@@ -20,17 +23,33 @@ import java.util.Optional;
 @Service
 public class BidService {
     private final BidRepository bidRepository;
+
+    private final UserRepository userRepository;
     private final UserAccountRepository userAccountRepository;
     private final RecodeRepository recodeRepository;
     private final GoodsRepository goodsRepository;
     private final HttpSession session;
 
     @Transactional
-    public void saveTryPrice(BidRequest.TryBidDTO tryBidDTO) {
-        String username = (String) session.getAttribute("username");
-        // 유저 리포지토리에서 username 통해서 해당 user객체 찾아와야됨
-        // 찾아온 객체의 id값을 tryBidDTO에 buyer에 담아야한다.
+    public void saveTryPrice(BidRequest.TryBidDTO tryBidDTO, String username) {
 
+        User user = userRepository.findByUsername(username);
+
+        Integer goodsId = tryBidDTO.getGoodsId();
+        Integer tryPrice = tryBidDTO.getTryPrice();
+
+        System.out.println(1);
+
+        Optional<Bid> highestBid = bidRepository.findByGoodsIdDescWithLock(goodsId);
+
+        System.out.println(2);
+
+        if (highestBid.isPresent()) {
+            Integer currentHighestPrice = highestBid.get().getTryPrice();
+            if (tryPrice <= currentHighestPrice) {
+                throw new Exception400("입찰금액이 현재 최고 입찰 금액보다 높아야합니다.");
+            }
+        }
 
         // ***다음버전 toEntity userId 유동적으로 받을 수 있게 바꿔야됨
         bidRepository.saveV1(tryBidDTO.toEntity(1));
