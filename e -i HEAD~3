@@ -1,0 +1,355 @@
+[33mcommit 3fd729656001551bd9fa034cdf7ce8eea8b867d5[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mjse/topic[m[33m)[m
+Author: SeeunJoe <whtpdms1556@naver.com>
+Date:   Thu Dec 12 02:37:52 2024 +0900
+
+    [feat]로그아웃 추가
+
+[33mcommit b790e878dafac955e91a5609af841c5914fbe4e4[m
+Author: SeeunJoe <whtpdms1556@naver.com>
+Date:   Thu Dec 12 01:44:25 2024 +0900
+
+    [fix]회원가입시 계좌정보 추가
+
+[33mcommit 005bcf19e70c2ad47df72293fcbaf0865958b74d[m
+Author: SeeunJoe <whtpdms1556@naver.com>
+Date:   Wed Dec 11 20:54:19 2024 +0900
+
+    회원정[feat]회원정보 수정 페이지 계좌 연결 추가
+
+[33mcommit 0c83fe8c2f11abe9ede09c1ffdd29e8be7e913a0[m
+Author: jse <taxsilver331@gmail.com>
+Date:   Tue Dec 10 20:12:09 2024 +0900
+
+    [feat]기본정보 수정 추가
+
+[33mcommit 3479c9d582b4a5e382e9a76459890c42d3a4ba49[m
+Author: jse <taxsilver331@gmail.com>
+Date:   Mon Dec 9 20:44:52 2024 +0900
+
+    [fix]User테이블에 column tel추가
+
+[33mcommit afb63e08cd1ec0732368d83a1104cb7f70f53954[m
+Author: jse <taxsilver331@gmail.com>
+Date:   Mon Dec 9 18:55:26 2024 +0900
+
+    [feat]회ì원가입 추가
+
+[33mcommit 81e8fab990a5cc105ac9c9bd996e15e1ae680e06[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m
+Merge: f3e6c9d 2812b96
+Author: MooHyunPark <angus1208@naver.com>
+Date:   Tue Dec 10 19:31:35 2024 +0900
+
+    Merge pull request #17 from MooHyunPark/kib/detailPage
+    
+    [feat]bid거래기록데이터 recode로 옮겨담기
+
+[33mcommit 2812b969d82f893a615b2064886f910385d60197[m
+Author: kib <kods9852@gmail.com>
+Date:   Tue Dec 10 19:26:43 2024 +0900
+
+    [feat]bid거래기록데이터 recode로 옮겨담기
+
+[33mcommit f3e6c9d00fec05625661d40598cb31f074438f91[m
+Merge: b480aa8 5f14f56
+Author: MooHyunPark <angus1208@naver.com>
+Date:   Tue Dec 10 19:12:26 2024 +0900
+
+    Merge pull request #16 from MooHyunPark/moohyun/topic
+    
+    [fix] sql 더미데이터 파일 수정
+
+[33mcommit 5f14f56778121c44e09f1c0c90b8254123ff5e02[m
+Author: angus <angus1208@naver.com>
+Date:   Tue Dec 10 19:11:25 2024 +0900
+
+    [fix] sql 더미데이터 파일 수정
+
+[33mcommit b480aa8261a9bf3bd8450fb26751161a4eb0fbc5[m
+Merge: 3cb1b64 50e8517
+Author: MooHyunPark <angus1208@naver.com>
+Date:   Tue Dec 10 18:55:37 2024 +0900
+
+    Merge pull request #15 from MooHyunPark/moohyun/topic
+    
+    Moohyun/topic
+
+[33mcommit 50e8517990e74182f686c7440b16d83d2689c63d[m
+Author: angus <angus1208@naver.com>
+Date:   Tue Dec 10 18:53:51 2024 +0900
+
+    [fix] test 파일 내용 수정
+
+[33mcommit ce7c39f084c9f6d7fcd62649df5f98058dc305b2[m
+Author: angus <angus1208@naver.com>
+Date:   Tue Dec 10 18:47:46 2024 +0900
+
+    [fix] 중복 더미데이터 제거
+
+[33mcommit 9fc7d8f801f36a6dc463dfab232ddc3ef4cb309f[m
+Author: angus <angus1208@naver.com>
+Date:   Tue Dec 10 18:46:03 2024 +0900
+
+    [fix] 불필요한 콘솔출력 및 임포트 파일 제거
+
+[33mcommit 48fcac8dc5046948ac823d02d40697794e88fb50[m
+Author: angus <angus1208@naver.com>
+Date:   Tue Dec 10 17:45:53 2024 +0900
+
+    [fix] 관리자 검색 기능 버그 수정
+
+[33mcommit 2e8b6c9e7419cb677461cb43997eb343b352b520[m
+Author: lnk <nakyeom0620@gmail.com>
+Date:   Tue Dec 10 16:52:58 2024 +0900
+
+    [feat]제품등록기능구현
+
+[33mcommit d16cf00556c8d7c83de1cde5b968fbd7dc373418[m
+Author: angus <angus1208@naver.com>
+Date:   Tue Dec 10 16:36:01 2024 +0900
+
+    [feat] 관리자 거래중 페이지 기능 구현 완료
+
+[33mcommit 690a7783cf307b55d49ed939758e29e8f62aa320[m
+Author: angus <angus1208@naver.com>
+Date:   Mon Dec 9 18:55:44 2024 +0900
+
+    [feat] 카테고리더미데이터 추가, 뷰에서 카테고리 개수만큼 출력하도록 추가
+
+[33mcommit 95fe179b19d592a8e5f40d54b46cba76f415e942[m
+Author: angus <angus1208@naver.com>
+Date:   Tue Dec 10 17:27:09 2024 +0900
+
+    [fix] git rebase 병합 충돌 해결
+
+[33mcommit 1a4810f30f059e349194a4c08c73dfececdf8e28[m
+Author: angus <angus1208@naver.com>
+Date:   Mon Dec 9 18:55:44 2024 +0900
+
+    B
+    [feat] 카테고리더미데이터 추가, 뷰에서 카테고리 개수만큼 출력하도록 추가
+
+[33mcommit 83f06eee71d57ee12cc4d6466ef24c8994d81f9e[m
+Author: lnk <nakyeom0620@gmail.com>
+Date:   Tue Dec 10 16:52:58 2024 +0900
+
+    [feat]제품등록기능구현
+
+[33mcommit eec02365d40579400420d99e0da00bf1bda3353a[m
+Author: angus <angus1208@naver.com>
+Date:   Tue Dec 10 16:36:01 2024 +0900
+
+    [feat] 관리자 거래중 페이지 기능 구현 완료
+
+[33mcommit fa788436010fa4cfa1205a61b7aee48d6279c0d4[m
+Author: angus <angus1208@naver.com>
+Date:   Tue Dec 10 13:41:30 2024 +0900
+
+    [feat] 카테고리 추가 기능 구현, 더미데이터 추가
+
+[33mcommit ebe2c8f72de31774711c9603bfd3873dc3b0857f[m
+Author: angus <angus1208@naver.com>
+Date:   Mon Dec 9 18:55:44 2024 +0900
+
+    [feat] 카테고리더미데이터 추가, 뷰에서 카테고리 개수만큼 출력하도록 추가
+
+[33mcommit 3cb1b64bc894f77dd649750e59101af9cd7f7fb5[m
+Merge: 3603d67 91a1444
+Author: MooHyunPark <angus1208@naver.com>
+Date:   Tue Dec 10 18:09:29 2024 +0900
+
+    Merge pull request #13 from MooHyunPark/kib/detailPage
+    
+    [feat]경매종료 상품상태변환,거래기록저장
+
+[33mcommit 91a1444f7a5ddc4f4c38b09f131c99eefae5527e[m
+Author: kib <kods9852@gmail.com>
+Date:   Tue Dec 10 17:40:45 2024 +0900
+
+    A
+    [feat]경매종료 상품상태변환,거래기ë¡록저장
+    
+    :wq
+
+[33mcommit 3603d67b0a5e234e4aeca89b383bb718b261f2e8[m
+Merge: 3ec63d9 e839d4d
+Author: MooHyunPark <angus1208@naver.com>
+Date:   Tue Dec 10 17:24:33 2024 +0900
+
+    Merge pull request #11 from MooHyunPark/nakyeom/topic
+    
+    [feat]제품등록기능구현
+
+[33mcommit e839d4df25ecf788fb3d43aa1b842b6a5aa75819[m
+Author: lnk <nakyeom0620@gmail.com>
+Date:   Tue Dec 10 16:52:58 2024 +0900
+
+    [feat]제품등록기능구현
+    
+    # Conflicts:
+    #       src/main/java/com/metacoding/web_project/goods/GoodsController.java
+
+[33mcommit 3ec63d953ca7b454dcf06bc8d3b425bba3c310ec[m
+Merge: 0377b27 6bd5971
+Author: MooHyunPark <angus1208@naver.com>
+Date:   Tue Dec 10 16:31:38 2024 +0900
+
+    Merge pull request #10 from MooHyunPark/song/topic
+    
+    [feat]메인화면 javascript 카테고리 전체조회 비동기 요청, [fix] 메인화면 mustache 및 css 수정
+
+[33mcommit 6bd59712ac09bd914f03b706f74d0032a3cdb5c6[m
+Author: tmdgus7983 <tmdgus7983@gmail.com>
+Date:   Tue Dec 10 16:27:22 2024 +0900
+
+    [feat]메인화면 javascript 카테고리 전체조회 비동기 요청, [fix] 메인화면 mustache 및 css 수정
+
+[33mcommit 0377b27419af1c97310aeaf661952d06413cda63[m
+Merge: d856871 ea4ac96
+Author: MooHyunPark <angus1208@naver.com>
+Date:   Tue Dec 10 14:30:16 2024 +0900
+
+    Merge pull request #7 from MooHyunPark/kib/detailPage
+    
+    [feat] 경매시도데이터저장
+
+[33mcommit ea4ac9647d59b6a4c1638bcb2e0415796e99b766[m
+Author: kib <kods9852@gmail.com>
+Date:   Tue Dec 10 14:16:37 2024 +0900
+
+    [feat]경매시도데이터저장
+
+[33mcommit 6216b037af72c2c04e909d1616d43985fa48f104[m
+Author: kib <kods9852@gmail.com>
+Date:   Tue Dec 10 14:02:51 2024 +0900
+
+    [feat]경매시도데이터저장
+
+[33mcommit f857269f0cd4fb11ebdc8fce1ae62054c251d96e[m
+Author: kib <kods9852@gmail.com>
+Date:   Tue Dec 10 13:51:03 2024 +0900
+
+    [feat]경매시도데이터저장
+
+[33mcommit 1290833f8d732bd3d642ab1d39ff4e0415f2c84b[m
+Author: kib <kods9852@gmail.com>
+Date:   Tue Dec 10 12:52:41 2024 +0900
+
+    [feat]경매시도데이터저장
+    
+    # Conflicts:
+    #       src/main/java/com/metacoding/web_project/bid/BidController.java
+    #       src/main/java/com/metacoding/web_project/goods/GoodsController.java
+
+[33mcommit d85687188754137fdf2a4516d9b36bff4a3a2611[m
+Merge: b8d1e62 f24f7c8
+Author: MooHyunPark <angus1208@naver.com>
+Date:   Tue Dec 10 13:58:45 2024 +0900
+
+    Merge pull request #6 from MooHyunPark/moohyun/topic
+    
+    Moohyun/topic
+
+[33mcommit f24f7c86bec41b8c069fd51651291ad825071d2b[m
+Merge: eb09a88 b8d1e62
+Author: MooHyunPark <angus1208@naver.com>
+Date:   Tue Dec 10 13:58:33 2024 +0900
+
+    Merge branch 'master' into moohyun/topic
+
+[33mcommit eb09a884d714772449f95c54fbd2a58ac10c4e2d[m
+Author: angus <angus1208@naver.com>
+Date:   Tue Dec 10 13:41:30 2024 +0900
+
+    [feat] 카테고리 추가 기능 구현, 더미데이터 추가
+
+[33mcommit b8d1e6262418e8354a138c587be4c07dc1bbacdb[m
+Merge: 03cbb73 ec1cee4
+Author: MooHyunPark <angus1208@naver.com>
+Date:   Mon Dec 9 19:02:11 2024 +0900
+
+    Merge pull request #4 from MooHyunPark/nakyeom/topic
+    
+    [feat]마이페이지 각 화면 css 수정 및 get요청으로 각 화면 열기 확인
+
+[33mcommit 5219f5eb170e931fd8136a7be71c355dc1aaa4ca[m
+Author: angus <angus1208@naver.com>
+Date:   Mon Dec 9 18:55:44 2024 +0900
+
+    [feat] 카테고리더미데이터 추가, 뷰에서 카테고리 개수만큼 출력하도록 추가
+
+[33mcommit ec1cee4e398aeecbbdb76e26e6af5970818babe5[m
+Author: lnk <nakyeom0620@gmail.com>
+Date:   Mon Dec 9 18:31:40 2024 +0900
+
+    [feat]css 수정 및 마이페이지 각  화면 get요청으로 화면 ì열어서 확인
+    
+    # Conflicts:
+    #       src/main/java/com/metacoding/web_project/bid/BidController.java
+    #       src/main/java/com/metacoding/web_project/goods/GoodsController.java
+    #       src/main/java/com/metacoding/web_project/transaction/TransactionController.java
+
+[33mcommit 03cbb7376a481b11a16113fd3e42bc7ecbc42c98[m
+Merge: 1b26b99 59c29d2
+Author: MooHyunPark <angus1208@naver.com>
+Date:   Mon Dec 9 18:28:44 2024 +0900
+
+    Merge pull request #3 from MooHyunPark/kib/detailPage
+    
+    [feat]제품상세페이지불러오기
+
+[33mcommit 59c29d2cfb93a9fc4ab0c867da71da4b69fae5c0[m
+Author: kib <kods9852@gmail.com>
+Date:   Mon Dec 9 18:22:58 2024 +0900
+
+    [feat]제품상세페이지불러오기
+
+[33mcommit 1b26b9930b54678ac0547cc8c91b7b1cfd32e81b[m
+Merge: b836eb3 0a2b13f
+Author: MooHyunPark <angus1208@naver.com>
+Date:   Mon Dec 9 17:55:25 2024 +0900
+
+    Merge pull request #2 from MooHyunPark/moohyun/topic
+    
+    Moohyun/topic
+
+[33mcommit 0a2b13f06d60623622f5df641dc7e03bba296b72[m
+Author: angus <angus1208@naver.com>
+Date:   Mon Dec 9 17:44:19 2024 +0900
+
+    [fix] html 파일 내용 중 불필요한 요소 삭제
+
+[33mcommit 6a5703e55def2d7db2cff43b841a4cec86e2cb05[m
+Author: angus <angus1208@naver.com>
+Date:   Mon Dec 9 17:40:10 2024 +0900
+
+    [fix] mustache 파일 경로 수정 , 계좌번화 null 허용
+
+[33mcommit 33e92394e5f347fd2aa5e17efabea658820b4adf[m
+Author: angus <angus1208@naver.com>
+Date:   Mon Dec 9 17:07:43 2024 +0900
+
+    브랜치 이동 전 저장
+
+[33mcommit b836eb343ded35392d64a58072cb6ecfeb890d38[m
+Author: angus <angus1208@naver.com>
+Date:   Mon Dec 9 16:49:38 2024 +0900
+
+    [feat] image 폴더에 .keep 파일 생성
+
+[33mcommit 1570c26b0b0df4069687bf216c604ec4b86136d2[m
+Author: angus <angus1208@naver.com>
+Date:   Mon Dec 9 15:35:41 2024 +0900
+
+    [fix] User클래스 권한반환 메서드 수정
+
+[33mcommit 4ae60533a6776527e2cfedea60038c245997c782[m
+Author: angus <angus1208@naver.com>
+Date:   Mon Dec 9 15:24:35 2024 +0900
+
+    [fix] 프로젝트 세팅 수정(필드명변경, 불필요라이브러리제거, 주석 추가)
+
+[33mcommit 7c3add89803030abfcad5b20fe79a289ade2d90f[m
+Author: angus <angus1208@naver.com>
+Date:   Mon Dec 9 14:18:43 2024 +0900
+
+    [feat] 프로젝트 세팅

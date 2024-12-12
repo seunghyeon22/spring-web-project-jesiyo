@@ -37,7 +37,13 @@ public class SecurityConfig {
                     HttpSession session = request.getSession();
                     session.setAttribute("sessionUser", user);
                     response.sendRedirect("/");
-                }));
+                }))
+          .logout(logout -> logout
+              .logoutUrl("/logout")
+              .logoutSuccessUrl("/")
+              .invalidateHttpSession(true)
+              .deleteCookies("JSESSIONID")
+          );
 
         return http.build();
     }

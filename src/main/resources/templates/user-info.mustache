@@ -23,17 +23,17 @@
 
         <div class="container2 p-5 my-5">
             <div>
-                <img src="thermometer.png" class="rounded" alt="Cinque Terre">
+                <img src="" class="rounded" alt="Cinque Terre">
             </div>
             <div style="align-content: center; margin-left: 30px;">
-                <h2 style="margin-top: 10px;">Ssar 회원님의 신용 점수는 50점입니다.</h2>
+                <h2 style="margin-top: 10px;">{{model.username}} 회원님의 신용 점수는 {{model.score}}점입니다.</h2>
             </div>
         </div>
 
         <div class="container2 p-5 my-5">
             <div style="width: inherit">
 
-                <h2>사용 가능한 금액 : 100000원</h2>
+                <h2>사용 가능한 금액 : {{model.hasPrice}}</h2>
                 <div class="t1-btn-container">
                     <div>
                         <button class="t1-btn">충전하기</button>

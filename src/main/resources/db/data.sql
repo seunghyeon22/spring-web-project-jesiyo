@@ -46,6 +46,17 @@ insert into goods_tb(title, category_id, seller_id, content, img_url, starting_p
 insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status) values ('강아지 산책줄 나눔합니다.', '1', '2', '강아지 산책줄 나눔 중입니다.', '없습니다.', 1000, now(),'2024-12-10 23:00:00', 0);
 insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status) values ('강아지 산책줄 나눔합니다2.', '1', '2', '강아지 산책줄 나눔 중입니다2.', '없습니다.', 1000, now(),'2024-12-10 23:00:00', 1);
 insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status) values ('강아지 판매.', '1', '1', '강아지 산책줄.', '없습니다.', 1000, now(),'2024-12-15 23:00:00', 0);
+insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status) values ('강아지 산책줄 나눔합니다.', '1', '2', '강아지 산책줄 나눔 중입니다.', '없습니다.', 1000, now(),'2024-12-10 23:00:00', 0);
+
+insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (1,1,2000,now());
+insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (3,1,3000,now());
+
+insert into useraccount_tb(user_id,account,has_price,score) values(1,'등록계좌없음',0,0);
+insert into useraccount_tb(user_id,account,has_price,score) values(2,'등록계좌없음',0,0);
+insert into useraccount_tb(user_id,account,has_price,score) values(3,'등록계좌없음',0,0);
+
+
+
 
 
 -- bid_tb 더미데이터

@@ -26,40 +26,47 @@
             <div>
                 <form class="t1-join-form" action="/join" method="post">
                     <h1>회원가입</h1><br>
+
                     <div class="input-group mb-3">
-                        <input type="text" name="username" id="id" class="form-control" placeholder="사용하실 아이디를 입력하세요">
+                        <input type="text" name="username" id="id" class="form-control" value="sincos" placeholder="사용하실 아이디를 입력하세요">
+                        <button class="btn btn-outline-secondary" id="idduck" type="button" onclick="idDupCheck()">아이디 중복확인</button>
                     </div>
                     <lable for="id" id="idck"></lable>
+
                     <div class="input-group mb-3">
-                        <input type="password" name="password" id="pw1" class="form-control" placeholder="사용하실 비밀번호를 입력하세요">
+                        <input type="password" name="password" id="pw1" class="form-control" value="1234" placeholder="사용하실 비밀번호를 입력하세요">
                     </div>
+
                     <div class="input-group mb-3">
-                        <input type="password" name="" id="pw2" class="form-control" placeholder="비밀번호를 한 번 더 입력해주세요.">
+                        <input type="password" name="" id="pw2" class="form-control" value="1234" placeholder="비밀번호를 한 번 더 입력해주세요.">
                     </div>
                     <label for="pw2" id="pwck"></label>
+
                     <div class="input-group mb-3">
-                        <input type="text" name="name" id="name" class="form-control" placeholder="성함을 입력해주세요.">
+                        <input type="text" name="name" id="name" class="form-control" value="cos" placeholder="성함을 입력해주세요.">
                     </div>
+
                     <div class="input-group mb-3">
                         <span class="input-group-text">전화번호</span>
-                        <input type="tel" class="form-control" id="tel" name="tel"
+                        <input type="tel" class="form-control" id="tel" name="tel" value="01012345678"
                             placeholder="-없이 숫자만 입력해주세요.">
                     </div>
+
                     <div class="t1-join-notice"><span id="notice">*</span>입력하신 주소는 기본 배송지 주소로 사용됩니다.</div>
                     <!-- 우편번호 -->
                     <div class="input-group mb-3">
-                        <input type="text" name="post_n" id="sample4_postcode" class="form-control" placeholder="우편번호" aria-label="우편번호">
+                        <input type="text" name="postNum" id="sample4_postcode" class="form-control" placeholder="우편번호" aria-label="우편번호">
                         <button class="btn btn-outline-secondary" type="button" onclick="sample4_execDaumPostcode()">우편번호 찾기</button>
                     </div>
                 
                     <!-- 도로명주소 -->
                     <div class="input-group mb-3">
-                        <input type="text" id="sample4_roadAddress" class="form-control" placeholder="도로명주소" aria-label="도로명주소">
+                        <input type="text" id="sample4_roadAddress" name="addr" class="form-control" placeholder="도로명주소" aria-label="도로명주소">
                     </div>
                 
                     <!-- 상세주소  -->
                     <div class="input-group mb-3">
-                        <input type="text" id="sample4_detailAddress" class="form-control" placeholder="상세주소" aria-label="상세주소">
+                        <input type="text" id="sample4_detailAddress" name="addrDetail" class="form-control" placeholder="상세주소" aria-label="상세주소">
                     </div>
                 
                     <!-- 가이드 메시지 -->
@@ -69,6 +76,10 @@
                         <span class="input-group-text">생년월일</span>
                         <input type="date" name="birth" id="birth" class="form-control">
                     </div>
+                    <input type="hidden" name="role" value="ROLE_USER">
+                    <input type="hidden" name="score" value=0>
+                    <input type="hidden" name="hasPrice" value=0>
+                    <input type="hidden" name="account" value="등록계좌없음">
                     <button type="submit" id="join-btn"class="btn btn-outline-danger">회원가입</button>
                 </form>
             </div>

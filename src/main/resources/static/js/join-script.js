@@ -1,4 +1,134 @@
 
+// 아이디 유효성 검증
+function idCheck() {
+    let id = document.getElementById('id').value;
+    let idck = document.getElementById('idck');
+    let regex = /^[a-zA-Z][a-zA-Z0-9]*$/; // 영문자로 시작하고 영문자와 숫자만 포함
+
+    idck.textContent = '';
+    idck.style.color = '';
+
+    if (id.length < 3 || id.length > 12) {
+        idck.textContent = '아이디는 3자 이상 12자 이하이어야 합니다.';
+        idck.style.color = 'red';
+        return;
+    }
+
+    if (id.includes(" ")) {
+        idck.textContent = '아이디는 공백을 포함할 수 없습니다.';
+        idck.style.color = 'red';
+        return;
+    }
+
+    if (!regex.test(id)) {
+        idck.textContent = '아이디는 영문자로 시작하고, 영문자와 숫자만 포함할 수 있습니다.';
+        idck.style.color = 'red';
+        return;
+    }
+
+    idck.textContent = '유효한 아이디입니다.';
+    idck.style.color = 'green';
+}
+
+document.getElementById('id').addEventListener('keyup', idCheck);
+
+
+
+// 아이디 중복 체크
+async function idDupCheck(){
+    let idInput = document.querySelector('#id');
+    let isIdDuplicated = false; // 아이디 중복 여부 상태
+
+    let username = idInput.value;
+
+    try {
+        const response = await fetch('/check-id', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username }),
+        });
+
+        if (!response.ok) {
+            throw new Error('1. 중복확인 중 응답ok 아님...이유를 찾아봐라');
+        }
+
+        let result = await response.json();
+
+        if (result === 0) {
+            alert('사용가능한 아이디입니다.')
+            isIdDuplicated = false; // 아이디가 중복되지 않은 상태로 설정
+        } else {
+            alert('이미 사용중인 아이디입니다. 다른 아이디를 등록해주세요.')
+            isIdDuplicated = true; // 아이디가 중복된 상태로 설정
+        }
+    } catch (error) {
+        alert('error')
+        console.error('아이디 중복확인 오류:', error);
+    }
+}
+
+// 비밀번호 유효성 검사 함수
+function pwCheck(password){
+    const hasLetter = /[a-zA-Z]/.test(password); // 영문자 포함
+    const hasNumber = /[0-9]/.test(password); // 숫자 포함
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password); // 특수문자 포함
+
+    if(pw1.length < 8) return '비밀번호는 최소 8자 이상이어야 합니다.';
+    if(!hasLetter) return '비밀번호에는 영문자가 포함되어야 합니다.';
+    if(!hasNumber) return '비밀번호에는 숫자가 포함되어야 합니다.';
+    if(!hasSpecialChar) return '비밀번호에는 특수문자가 포함되어야합니다.';
+    return '사용하실 수 있는 비밀번호 입니다.'
+
+}
+
+// 비밀번호 일치 확인 함수
+function pwAcc() {
+    const pw1 = document.getElementById('pw1').value;
+    const pw2 = document.getElementById('pw2').value;
+    const pwck = document.getElementById('pwck');
+    const pwvalid = document.querySelector('#pwvalid')
+
+    const pwVaild = pwCheck(pw1);
+    if(pwCheck){
+        pwvaild.textContent = pwVaild;
+        pwvalid.style.color = 'orange';
+        return;
+    }
+
+    if( pw1&&pw2 != null){
+        if (pw1 == pw2) {
+            pwck.textContent = '비밀번호 일치';
+            pwck.style.color = 'green';
+        } else {
+            pwck.textContent = '비밀번호 불일치';
+            pwck.style.color = 'red';
+        }
+    }else{
+        pwck.textContent = '비밀번호를 입력해주세요';
+    }
+}
+
+document.getElementById('pw1').addEventListener('keyup', pwAcc);
+document.getElementById('pw2').addEventListener('keyup', pwAcc);
+
+
+
+// 전화번호에 숫자만 입력가능 알림창
+function telCheck() {
+    let tel = document.getElementById('tel').value;
+
+    if (isNaN(tel)) {
+        alert("숫자만 입력해주세요.");
+    }
+}
+
+document.getElementById('tel').addEventListener('keyup',telCheck);
+
+
+
+
 // 우편번호 검색
 //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
 function sample4_execDaumPostcode() {
@@ -44,81 +174,6 @@ function sample4_execDaumPostcode() {
         }
     }).open();
 }
-
-
-
-// 아이디 유효성 검증
-function idCheck() {
-    let id = document.getElementById('id').value;
-    let idck = document.getElementById('idck');
-    let regex = /^[a-zA-Z][a-zA-Z0-9]*$/; // 영문자로 시작하고 영문자와 숫자만 포함
-
-    idck.textContent = '';
-    idck.style.color = '';
-
-    if (id.length < 3 || id.length > 12) {
-        idck.textContent = '아이디는 3자 이상 12자 이하이어야 합니다.';
-        idck.style.color = 'red';
-        return;
-    }
-
-    if (id.includes(" ")) {
-        idck.textContent = '아이디는 공백을 포함할 수 없습니다.';
-        idck.style.color = 'red';
-        return;
-    }
-
-    if (!regex.test(id)) {
-        idck.textContent = '아이디는 영문자로 시작하고, 영문자와 숫자만 포함할 수 있습니다.';
-        idck.style.color = 'red';
-        return;
-    }
-
-    idck.textContent = '유효한 아이디입니다.';
-    idck.style.color = 'green';
-}
-
-document.getElementById('id').addEventListener('keyup', idCheck);
-
-
-
-// 비밀번호 일치 
-function pwCheck() {
-    const pw1 = document.getElementById('pw1').value;
-    const pw2 = document.getElementById('pw2').value;
-    const pwck = document.getElementById('pwck');
-    if( pw1&&pw2 != null){
-        if (pw1 == pw2) {
-            pwck.textContent = '비밀번호 일치';
-            pwck.style.color = 'green';
-        } else {
-            pwck.textContent = '비밀번호 불일치';
-            pwck.style.color = 'red';
-        }
-    }else{
-        pwck.textContent = '비밀번호를 입력해주세요';
-    }
-}
-
-document.getElementById('pw1').addEventListener('keyup', pwCheck);
-document.getElementById('pw2').addEventListener('keyup', pwCheck);
-
-
-
-// 전화번호에 숫자만 입력가능 알림창
-function telCheck() {
-    let tel = document.getElementById('tel').value;
-
-    if (isNaN(tel)) {
-        alert("숫자만 입력해주세요.");
-    }
-}
-
-document.getElementById('tel').addEventListener('keyup',telCheck);
-
-
-
-
 
 
 
