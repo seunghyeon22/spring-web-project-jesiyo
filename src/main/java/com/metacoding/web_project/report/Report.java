@@ -44,4 +44,12 @@ public class Report {
         this.transaction = transaction;
         this.status = status;
     }
+
+    public void updateStatus(String method) {
+        if (method.equals("cancel")) {
+            status = 2;
+        } else if (method.equals("seller")) {
+            status = 3;
+        }
+    }
 }
