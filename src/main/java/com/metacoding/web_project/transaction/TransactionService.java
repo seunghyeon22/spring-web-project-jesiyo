@@ -51,4 +51,20 @@ public class TransactionService {
         }
         return dtoList;
     }
+
+    // 낙찰된 물품(판매) 화면 열기 - 판매 확정 안 누름
+    @Transactional
+    public List<TransactionResponse.CompleteAuctionDTO> completeAuctionList() {
+        
+        // 임시로 sellerId = 1인 경우만 가져옴, 로그인과 연결할 때 바꿀 것
+        List<Transaction> transactionList = transactionRepository.findBySellerIdNotConfirmOfSell(1);
+
+        // completeAuctionDTO로 변환
+        List<TransactionResponse.CompleteAuctionDTO> completeAuctionDTOList = new ArrayList<>();
+
+        for (Transaction transaction : transactionList) {
+            completeAuctionDTOList.add(new TransactionResponse.CompleteAuctionDTO(transaction));
+        }
+        return completeAuctionDTOList;
+    }
 }

@@ -41,7 +41,7 @@ public class BidResponse {
         private String title;
         private String goodsImgUrl;
         private String categoryName;
-        private Timestamp endAt;
+        private String endAt;
         private Integer startingPrice;
         private Integer tryPrice;
 
@@ -51,7 +51,7 @@ public class BidResponse {
             this.title = bid.getGoods().getTitle();
             this.goodsImgUrl = bid.getGoods().getImgUrl();
             this.categoryName = bid.getGoods().getCategory().getName();
-            this.endAt = bid.getGoods().getEndAt();
+            this.endAt = FormatDate.formatToyyyypMMpdd(bid.getGoods().getEndAt());
             this.startingPrice = bid.getGoods().getStartingPrice();
             this.tryPrice = bid.getTryPrice();
         }

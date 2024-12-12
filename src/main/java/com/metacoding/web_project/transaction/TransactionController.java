@@ -26,9 +26,11 @@ public class TransactionController {
         return "admin/auction-complete-admin";
     }
 
-    // 낙찰된 물품(판매) 화면 열기 - 경매 완료 / 구매 확정 안 누름
+    // 낙찰된 물품(판매) 화면 열기 - 판매 확정 안 누름
     @GetMapping("/myPage-complete-auction")
     public String completeAuction(Model model) {
+        List<TransactionResponse.CompleteAuctionDTO> completeAuctionList = transactionService.completeAuctionList();
+        model.addAttribute("models", completeAuctionList);
         return "complete-auction";
     }
 

@@ -1,6 +1,5 @@
 package com.metacoding.web_project.transaction;
 
-import com.metacoding.web_project.bid.Bid;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import lombok.RequiredArgsConstructor;
@@ -35,5 +34,17 @@ public class TransactionRepository {
         sql += query;
         Query q = em.createQuery(sql, Transaction.class);
         return (List<Transaction>) q.getResultList();
+    }
+
+    // 낙찰 완료된 물품 목록 DTO(판매자 입장 / 판매 확정 안 누른 상태)
+    public List<Transaction> findBySellerIdNotConfirmOfSell(Integer id) {
+        String sql = """
+                select * from transaction_tb where seller_id = ? and seller_status = 0
+                """;
+
+        Query q = em.createNativeQuery(sql, Transaction.class);
+        q.setParameter(1, id);
+        
+        return q.getResultList();
     }
 }
