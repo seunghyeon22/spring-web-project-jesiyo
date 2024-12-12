@@ -56,8 +56,8 @@ public class GoodsService {
         goodsRepository.save(goodsSaveDTO.toEntity());
     }
 
-    public List<GoodsResponse.GoodsDTO> getGoodsList(Integer categoryId) {
-        List<Goods> goodList = goodsRepository.findByCategoryId(categoryId)
+    public List<GoodsResponse.GoodsDTO> getGoodsList(Integer categoryId, Integer page, Integer line) {
+        List<Goods> goodList = goodsRepository.findByCategoryId(categoryId,page,line)
                 .orElseThrow(() -> new Exception404("해당 카테고리의 물품이 존재하지 않습니다."));
 
         List<GoodsResponse.GoodsDTO> goodsList = new ArrayList<>();
@@ -74,8 +74,11 @@ public class GoodsService {
         return goodsList;
     }
 
-    public List<GoodsResponse.GoodsDTO> searchGoodsList(String select,String keyword) {
-        Optional<List<Goods>> searchGoodsList = goodsRepository.searchGoods(select,keyword);
+    public List<GoodsResponse.GoodsDTO> searchGoodsList(GoodsRequest.SeacherGoodsDTO dto) {
+
+
+        Optional<List<Goods>> searchGoodsList = goodsRepository.searchGoods(dto);
+
         List<GoodsResponse.GoodsDTO> goodsList = new ArrayList<>();
 
         for (Goods goods : searchGoodsList.get()) {
@@ -88,6 +91,9 @@ public class GoodsService {
                             .bidTryPrice(0)
                             .build()));
         }
+
+
+
         return goodsList;
     }
 }

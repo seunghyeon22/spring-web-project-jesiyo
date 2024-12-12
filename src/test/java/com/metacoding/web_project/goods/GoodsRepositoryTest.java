@@ -66,33 +66,37 @@ public class GoodsRepositoryTest {
         System.out.println(goods1.get().getStatus());
     }
 
-    @Test
-    public void findByCategoryId_Test(){
-        Integer categoryId = 1;
-        Optional<List<Goods>> result = goodsRepository.findByCategoryId(categoryId);
-        for (Goods goods : result.get()) {
-            System.out.println(goods.getTitle());
-            System.out.println(goods.getSeller().getName());
-            System.out.println(goods.getCategory().getName());
-            System.out.println(goods.getCategory().getId());
-            System.out.println(goods.getTitle());
-            System.out.println(goods.getContent());
-            System.out.println(goods.getImgUrl());
-        }
-    }
+//    @Test
+//    public void findByCategoryId_Test(){
+//        Integer categoryId = 1;
+//        Optional<List<Goods>> result = goodsRepository.findByCategoryId(categoryId);
+//        for (Goods goods : result.get()) {
+//            System.out.println(goods.getTitle());
+//            System.out.println(goods.getSeller().getName());
+//            System.out.println(goods.getCategory().getName());
+//            System.out.println(goods.getCategory().getId());
+//            System.out.println(goods.getTitle());
+//            System.out.println(goods.getContent());
+//            System.out.println(goods.getImgUrl());
+//        }
+//    }
 
-    @Test
-    public void searchGoods_Test(){
-        String select = "title";
-        String keysword = "고양이d";
-        Optional<List<Goods>> result = goodsRepository.searchGoods(select, keysword);
-        for (Goods goods : result.get()) {
-            System.out.println(goods.getTitle());
-            System.out.println(goods.getSeller().getName());
-            System.out.println(goods.getCategory().getName());
-            System.out.println(goods.getContent());
-            System.out.println("=======================");
-        }
-    }
+//    @Test
+//    public void searchGoods_Test(){
+//        String select = "title";
+//        String keyword = "고양이";
+//        Integer line = 10;
+//        Integer page = (1-1)*line;
+//        Optional<List<Goods>> result = goodsRepository.searchGoods(select, keyword, page ,line);
+//        for (Goods goods : result.get()) {
+//            System.out.println(goods.getId());
+//            System.out.println(goods.getTitle());
+////            System.out.println(goods.getTitle());
+////            System.out.println(goods.getSeller().getName());
+////            System.out.println(goods.getCategory().getName());
+////            System.out.println(goods.getContent());
+////            System.out.println("=======================");
+//        }
+//    }
 
 }

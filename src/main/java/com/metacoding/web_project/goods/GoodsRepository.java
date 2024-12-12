@@ -22,31 +22,36 @@ public class GoodsRepository {
         em.persist(goods);
     }
 
-    public Optional<List<Goods>> findByCategoryId(Integer categoryId) {
+    public Optional<List<Goods>> findByCategoryId(Integer categoryId, Integer page, Integer line) {
         String sql = """
-                select g from Goods g left join fetch g.seller left join fetch g.category where g.category.id=:categoryId and g.status=:status
+                select g from Goods g left join fetch g.seller left join fetch g.category where  g.status=:status and g.category.id=:categoryId order by g.id desc limit :line offset :page
                 """;
         Query query = em.createQuery(sql);
-        query.setParameter("categoryId", categoryId);
         query.setParameter("status", 0);
+        query.setParameter("categoryId", categoryId);
+        query.setParameter("line", line);
+        query.setParameter("page", (page-1)*line);
         return Optional.ofNullable(query.getResultList());
     }
-
-    public Optional<List<Goods>> searchGoods(String select, String keyword) {
+    public Optional<List<Goods>> searchGoods(GoodsRequest.SeacherGoodsDTO dto) {
         String sql = "select g from Goods g left join fetch g.seller left join fetch g.category where g.status=:status AND ";
 
-        if(select.equals("title")){ // select가 제목이면 제목으로 물품 리스트를 검색
+        if(dto.getSelect().equals("title")){ // select가 제목이면 제목으로 물품 리스트를 검색
             sql += "g.title like :keyword";
-        }else if(select.equals("content")){ // select가 content이면 내용으로 검색
+        }else if(dto.getSelect().equals("content")){ // select가 content이면 내용으로 검색
             sql += "g.content like :keyword";
+        }else {
+            sql += "g.title like :keyword OR g.content like :keyword";
         }
-        sql += " order by g.id desc";
+        sql += " order by g.id desc limit :line offset :page ";
+
         Query query = em.createQuery(sql);
         query.setParameter("status", 0);
-        query.setParameter("keyword", "%"+keyword+"%");
+        query.setParameter("keyword", "%"+dto.getKeyword()+"%");
+        query.setParameter("line", dto.getLine());
+        query.setParameter("page", (dto.getPage()-1)*dto.getLine());
 
         return Optional.ofNullable(query.getResultList());
     }
-
 
 }
