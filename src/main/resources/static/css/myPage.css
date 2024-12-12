@@ -73,3 +73,8 @@ a {
 .modal-body hr {
     margin: 10px 0;
 }
+
+.modal-body input {
+    border-radius: 10px;
+    padding: 10px;
+}

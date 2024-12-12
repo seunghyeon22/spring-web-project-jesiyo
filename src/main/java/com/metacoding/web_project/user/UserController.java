@@ -21,10 +21,10 @@ public class UserController {
     private final HttpSession session;
 
     @GetMapping("/join-form")
-    public String joinForm() {
+    public String joinForm(Model model) {
+
         return "join";
     }
-
     @PostMapping("/join")
     public String join(@Valid UserRequest.JoinDTO joinDTO) {
         userService.회원가입(joinDTO);
@@ -38,7 +38,10 @@ public class UserController {
     }
 
     @GetMapping("/login-form")
-    public String loginForm() {
+    public String loginForm(String error, Model model) {
+        if (error != null) {
+            model.addAttribute("error", true);
+        }
         return "login";
     }
 

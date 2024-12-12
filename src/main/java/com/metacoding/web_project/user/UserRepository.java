@@ -1,11 +1,13 @@
 package com.metacoding.web_project.user;
 
 import com.metacoding.web_project._core.error.ex.Exception401;
+import com.metacoding.web_project._core.error.ex.Exception404;
 import com.metacoding.web_project.useraccount.UserAccount;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +19,7 @@ import java.util.Optional;
 public class UserRepository {
     private final EntityManager em;
 
+
     public User findByUsername(String username) {
         Query q = em.createQuery("select u from User u where u.username = :username", User.class);
         q.setParameter("username", username);
@@ -24,9 +27,10 @@ public class UserRepository {
         try {
             return (User) q.getSingleResult();
         } catch (RuntimeException e) {
-            throw new RuntimeException("아이디 혹은 패스워드가 일치하지 않습니다.");
+            throw new UsernameNotFoundException("유저를 찾을 수 없습니다.");
         }
     }
+
 
 
 

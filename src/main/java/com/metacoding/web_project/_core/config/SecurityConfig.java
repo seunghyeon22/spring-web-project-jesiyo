@@ -9,7 +9,6 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-
 @Configuration
 public class SecurityConfig {
 
@@ -27,23 +26,26 @@ public class SecurityConfig {
         );
 
         http.authorizeHttpRequests(r -> {
-            r.requestMatchers("/admin/**").hasRole("ADMIN") // /admin/** 경로는 ADMIN 권한 필요
-                    .requestMatchers("/s/**").hasAnyRole("USER", "ADMIN") // /s/** 경로는 USER 또는 ADMIN 권한 필요
-                    .anyRequest().permitAll();
-        }).formLogin(f -> f.loginPage("/login")
-                .loginProcessingUrl("/login")
-                .successHandler((request, response, authentication) -> {
-                    User user = (User) authentication.getPrincipal();
-                    HttpSession session = request.getSession();
-                    session.setAttribute("sessionUser", user);
-                    response.sendRedirect("/");
-                }))
-          .logout(logout -> logout
-              .logoutUrl("/logout")
-              .logoutSuccessUrl("/")
-              .invalidateHttpSession(true)
-              .deleteCookies("JSESSIONID")
-          );
+                    r.requestMatchers("/admin/**").hasRole("ADMIN")
+                            .requestMatchers("/s/**").hasAnyRole("USER", "ADMIN")
+                            .anyRequest().permitAll();
+                }).formLogin(f -> f.loginPage("/login-form")
+                        .loginProcessingUrl("/login")
+                        .successHandler((request, response, authentication) -> {
+                            User user = (User) authentication.getPrincipal();
+                            HttpSession session = request.getSession();
+                            session.setAttribute("sessionUser", user);
+                            response.sendRedirect("/");
+                        })
+                        .failureHandler((request, response, exception) -> {
+                            response.sendRedirect("/login-form?error=true");
+                        }))
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/")
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID")
+                );
 
         return http.build();
     }
