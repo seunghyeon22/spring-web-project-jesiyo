@@ -7,7 +7,16 @@ import java.util.List;
 
 public class PageUtil {
 
-    // 현재 페이지, 총 페이지를 주면 PaginationDTO를 반환
+    // 현재 페이지와 한번에 출력할 개수를 매개 변수로 전달, sql에 사용할 offset 값을 반환합니다.
+    public static Integer offsetCount(String page, int printCount) {
+        int offset = 0;
+        if (!page.equals("")) {
+            offset = Integer.parseInt(page) * printCount - printCount;
+        }
+        return offset;
+    }
+
+    // 현재 페이지, 행의 총 개수를 매개 변수로 전달, PaginationDTO를 반환, 반환 값을 model에 pagination이름으로 addAttribute 하세요
     public static PaginationDTO returnToPageDTO(String pageNow, Integer rowCount) {
         if (pageNow == null || pageNow.equals("")) {
             pageNow = "1";
@@ -37,13 +46,11 @@ public class PageUtil {
             }
         }
         return new PaginationDTO(currentPage, totalPages, pages);
-
-
     }
 
 
     @Data
-    public static class PaginationDTO {
+    private static class PaginationDTO {
         private int currentPage;
         private int totalPages;
         private List<Page> pages;
@@ -56,7 +63,7 @@ public class PageUtil {
     }
 
     @Data
-    public static class Page {
+    private static class Page {
         private int pageNumber;
         private boolean isActive;
 
@@ -66,15 +73,7 @@ public class PageUtil {
         }
     }
 
-    public static Integer offsetCount(String page, int printCount) {
-        int offset = 0;
-        if (!page.equals("")) {
-            offset = Integer.parseInt(page) * printCount - printCount;
-        }
-        return offset;
-    }
-
-    public static Integer pageCalculation(int rowCount) {
+    private static Integer pageCalculation(int rowCount) {
         int pageCount = 1;
         if (rowCount > 10) {
             while(rowCount > 10) {
