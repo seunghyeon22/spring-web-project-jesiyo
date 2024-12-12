@@ -1,0 +1,17 @@
+.t1-footer {
+    background-color: #f96506;
+    color: black;
+    position: relative;
+    width: 100%;
+    bottom: 0;
+}
+.t1-footer-container {
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    margin-top: 50px;
+
+}
+.t1-footer-container p {
+    margin-top: 15px;
+}
