@@ -81,4 +81,16 @@ public class BidResponse {
 
         }
     }
+
+    @Data
+    public static class adminBidPageStatusDTO{
+
+        private String divide;
+        private String search;
+
+        public adminBidPageStatusDTO(String divide, String search) {
+            this.divide = divide;
+            this.search = search;
+        }
+    }
 }

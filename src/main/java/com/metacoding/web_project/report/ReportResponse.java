@@ -34,13 +34,10 @@ public class ReportResponse {
                 available = true;
             }
             if (report.getStatus() == 1) {
-                this.status = "처리완료";
+                this.status = "처리완료 (경매취소)";
             }
             if (report.getStatus() == 2) {
-                this.status = "관리자에 의한 경매취소";
-            }
-            if (report.getStatus() == 3) {
-                this.status = "관리자에 의해 판매자에게 입찰금 전달";
+                this.status = "처리완료 (판매자에게 입찰금 전달)";
             }
         }
     }

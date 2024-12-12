@@ -2,6 +2,7 @@ package com.metacoding.web_project.bid;
 
 import com.metacoding.web_project._core.CommonResp;
 import jakarta.servlet.http.HttpSession;
+import com.metacoding.web_project._core.util.PageUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,9 +24,15 @@ public class BidController {
     // 로그인 구현 시 경로를 /admin/auction-progress 로 변경 예정
     // 경매 중인 물품 페이지 이동 (관리자)
     @GetMapping("/auction-progress")
-    public String auctionProgress(Model model, @RequestParam(defaultValue = "") String divide, @RequestParam(defaultValue = "") String search) {
-        List<BidResponse.BidDTO> dtoList = bidService.findAllBidsAndUser(divide, search);
+    public String auctionProgress(Model model, @RequestParam(defaultValue = "") String divide, @RequestParam(defaultValue = "") String search, @RequestParam(defaultValue = "") String page) {
+        List<BidResponse.BidDTO> dtoList = bidService.findBidsAndUser(divide, search, page);
+        Integer rowCount = bidService.findBidsCount(divide, search);
+        model.addAttribute("pagination", PageUtil.returnToPageDTO(page, rowCount));
+        model.addAttribute("status", new BidResponse.adminBidPageStatusDTO(divide, search));
         model.addAttribute("model", dtoList);
+        model.addAttribute("divide", divide);
+        model.addAttribute("search", search);
+
         return "admin/auction-progress-admin";
     }
 

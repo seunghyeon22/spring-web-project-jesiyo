@@ -1,6 +1,7 @@
 package com.metacoding.web_project.transaction;
 
 import com.metacoding.web_project._core.CommonResp;
+import com.metacoding.web_project._core.util.PageUtil;
 import com.metacoding.web_project.bid.BidResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,9 +21,13 @@ public class TransactionController {
 
     // 로그인 구현 시 경로를 /admin/auction-complete 로 변경 예정
     @GetMapping("/auction-complete")
-    public String auctionComplete(Model model, @RequestParam(defaultValue = "") String divide, @RequestParam(defaultValue = "") String search) {
-        List<TransactionResponse.TransactionDTO> dtoList = transactionService.findAllTransactionTBAndUser(divide, search);
+    public String auctionComplete(Model model, @RequestParam(defaultValue = "") String divide, @RequestParam(defaultValue = "") String search, @RequestParam(defaultValue = "") String page) {
+        List<TransactionResponse.TransactionDTO> dtoList = transactionService.findTransactionTBAndUser(divide, search, page);
+        Integer rowCount = transactionService.findTransactionsCount(divide, search);
+        model.addAttribute("pagination", PageUtil.returnToPageDTO(page, rowCount));
         model.addAttribute("model", dtoList);
+        model.addAttribute("divide", divide);
+        model.addAttribute("search", search);
         return "admin/auction-complete-admin";
     }
 
