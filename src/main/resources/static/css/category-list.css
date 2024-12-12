@@ -1,0 +1,19 @@
+.category-list {
+    max-height: 400px; /* 스크롤 가능한 최대 높이 설정 */
+    overflow-y: auto; /* 수직 스크롤 가능하게 설정 */
+}
+
+.category-d {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.category-img img {
+    width: 50px;
+    height: 50px;
+}
+
+.category-name {
+    margin-left: 10px;
+}

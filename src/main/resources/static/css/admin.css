@@ -81,8 +81,12 @@ a {
 }
 
 .category-list {
-    margin-right: 15px;
-    padding-right: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 50px;
     border-right: 1px solid #ddd;
     border-right-color: #f96506;
 }
