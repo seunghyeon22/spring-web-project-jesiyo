@@ -28,6 +28,8 @@ public class Recode {
     @Column(nullable = false)
     private Integer tryPrice;
 
+    // 0 : 낙찰 실패
+    // 1 : 낙찰 성공
     @Column(nullable = false)
     private Integer successStatus;
 

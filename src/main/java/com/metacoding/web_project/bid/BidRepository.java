@@ -101,7 +101,7 @@ public class BidRepository {
         String query = """
                 select b.* from bid_tb b
                 join goods_tb g on b.goods_id = g.id
-                where b.buyer_id = ?
+                where g.status=0 and b.buyer_id = ?
                 and b.try_price = (select max(b1.try_price) from bid_tb b1 where b1.goods_id = b.goods_id)
                 """;
 

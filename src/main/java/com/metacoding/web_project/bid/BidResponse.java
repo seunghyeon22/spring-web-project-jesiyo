@@ -38,6 +38,7 @@ public class BidResponse {
     @Data
     public static class BeingAuctionedDTO {
         private Integer id;
+        private Integer goodsId;
         private String title;
         private String goodsImgUrl;
         private String categoryName;
@@ -48,6 +49,7 @@ public class BidResponse {
         // 생성자
         public BeingAuctionedDTO(Bid bid) {
             this.id = bid.getId();
+            this.goodsId = bid.getGoods().getId();
             this.title = bid.getGoods().getTitle();
             this.goodsImgUrl = bid.getGoods().getImgUrl();
             this.categoryName = bid.getGoods().getCategory().getName();

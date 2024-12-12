@@ -1,5 +1,12 @@
 package com.metacoding.web_project.bid;
 
+import com.metacoding.web_project._core.error.ex.Exception400;
+import com.metacoding.web_project.goods.Goods;
+import com.metacoding.web_project.goods.GoodsRepository;
+import com.metacoding.web_project.recode.Recode;
+import com.metacoding.web_project.recode.RecodeRepository;
+import com.metacoding.web_project.useraccount.UserAccount;
+import com.metacoding.web_project.useraccount.UserAccountRepository;
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -7,12 +14,15 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
 public class BidService {
     private final BidRepository bidRepository;
-
+    private final UserAccountRepository userAccountRepository;
+    private final RecodeRepository recodeRepository;
+    private final GoodsRepository goodsRepository;
     private final HttpSession session;
 
     @Transactional
@@ -94,4 +104,36 @@ public class BidService {
         }
         return participatingAuctionDtoList;
     }
+
+    // 경매 취소
+    @Transactional
+    public void cancelAuction(Integer goodsId) {
+        // 경매 취소할 물품의 경매목록 가져오기
+        List<Bid> bids = bidRepository.findAllByGoodsId(goodsId);
+        if(bids.isEmpty()) {
+            throw  new Exception400("경매 데이터가 없습니다.");
+        }
+
+        for(Bid bid : bids) {
+            // 경매에 참여한 입찰자들의 돈을 반환
+            UserAccount ua = userAccountRepository.findById(bid.getBuyer().getId());
+            ua.updateUserInfo(bid.getTryPrice());
+
+            // 경매에 참여한 데이터들을 recode 테이블로 옮김
+            recodeRepository.save(Recode.builder().
+                    buyer(bid.getBuyer()).
+                    goods(bid.getGoods()).
+                    tryPrice(bid.getTryPrice()).
+                    successStatus(0).
+                    createdAt(bid.getCreatedAt()).
+                    build());
+        }
+        //물품에 대한 경매에 참여중인 데이터 삭제
+        bidRepository.deleteByGoodsId(goodsId);
+        //good에 있는 물품의 상태를 변경 - 3 : 경매 취소
+        Optional<Goods> goods = goodsRepository.findById(goodsId);
+        goods.get().cancelAuction();
+    }
+
+
 }

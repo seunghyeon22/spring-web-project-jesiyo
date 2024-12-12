@@ -37,6 +37,6 @@ public class UserAccount {
     }
 
     public void updateUserInfo(Integer price) {
-        hasPrice = hasPrice + price;
+        this.hasPrice = hasPrice + price;
     }
 }

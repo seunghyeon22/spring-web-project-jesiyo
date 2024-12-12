@@ -36,7 +36,7 @@
                               <div>시작 입찰가 : {{startingPrice}}</div>
                               <div>현재 입찰가 : {{tryPrice}}</div>
                               <div class="btn-group mt-1">
-                                  <button type="button" class="btn btn-custom btn-sm">경매 취소</button>
+                                  <button type="button" class="btn btn-custom btn-sm" onclick = "deleteGoods({{goodsId}})">경매 취소</button>
                                   <button type="button" class="btn btn-custom btn-sm">조기 종료</button>
                               </div>
                           </div>
@@ -47,5 +47,7 @@
       </div>
     </div>
 {{>layout/footer}}
+
+<script type="text/javascript" src="/js/being-auctioned.js"></script>
   </body>
 </html>

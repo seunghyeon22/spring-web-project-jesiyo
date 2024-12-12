@@ -47,6 +47,7 @@ public class Goods {
     // 0 : 입찰 중 (입찰 가능 상태)
     // 1 : 낙찰 완료 (입찰 불가능 상태)
     // 2 : 최종 거래 완료 (입찰 불가능 상태 + 판매자, 구매자가 모두 거래 확정 버튼을 눌렀을 때)
+    // 3 : 경매 취소
     @Column(nullable = false)
     private Integer status;
 
@@ -78,5 +79,12 @@ public class Goods {
             throw new Exception400("이미 경매가 종료되었습니다.");
         }
         this.status = 1; // 상태변경
+    }
+    // 경매 취소에 대한 상태 변경
+    public void cancelAuction(){
+//        if (this.status == 1) {
+//            throw new Exception400("이미 경매가 종료되었습니다.");
+//        }
+        this.status = 3; // 상태변경
     }
 }
