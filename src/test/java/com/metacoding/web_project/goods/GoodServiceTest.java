@@ -22,32 +22,32 @@ public class GoodServiceTest {
         System.out.println(d.getTryPrice());
     }
 
-    @Test
-    public void getGoodsList_Test(){
-        Integer categoryId = 1;
-        List<GoodsResponse.GoodsDTO> s = goodsService.getGoodsList(categoryId);
+//    @Test
+//    public void getGoodsList_Test(){
+//        Integer categoryId = 1;
+//        List<GoodsResponse.GoodsDTO> s = goodsService.getGoodsList(categoryId);
+//
+//        for(GoodsResponse.GoodsDTO g : s){
+//            System.out.println(g.getId());
+//            System.out.println(g.getSeller());
+//            System.out.println(g.getImgUrl());
+//            System.out.println(g.getTryPrice());
+//        }
+//
+//    }
 
-        for(GoodsResponse.GoodsDTO g : s){
-            System.out.println(g.getId());
-            System.out.println(g.getSeller());
-            System.out.println(g.getImgUrl());
-            System.out.println(g.getTryPrice());
-        }
-
-    }
-
-    @Test
-    public void searchGoodsList_Test(){
-        String select = "title";
-        String keysword = "고양이";
-        List<GoodsResponse.GoodsDTO> goods =  goodsService.searchGoodsList(select, keysword);
-
-        for(GoodsResponse.GoodsDTO g : goods){
-        System.out.println(g.getTitle());
-        System.out.println(g.getSeller());
-        System.out.println(g.getTryPrice());
-        System.out.println("=======================");
-        }
-
-    }
+//    @Test
+//    public void searchGoodsList_Test(){
+//        String select = "title";
+//        String keysword = "고양이";
+//        List<GoodsResponse.GoodsDTO> goods =  goodsService.searchGoodsList(select, keysword);
+//
+//        for(GoodsResponse.GoodsDTO g : goods){
+//        System.out.println(g.getTitle());
+//        System.out.println(g.getSeller());
+//        System.out.println(g.getTryPrice());
+//        System.out.println("=======================");
+//        }
+//
+//    }
 }

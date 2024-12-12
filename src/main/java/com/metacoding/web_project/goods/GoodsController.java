@@ -4,6 +4,7 @@ import com.metacoding.web_project._core.CommonResp;
 import com.metacoding.web_project.category.CategoryService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -57,18 +58,35 @@ public class GoodsController {
         CommonResp resp = new CommonResp(true, "데이터 변경 성공", null);
         return ResponseEntity.ok(resp);
     }
+
     @GetMapping("/goods-list")
     public String goodsList(@RequestParam("select") String select,@RequestParam("keyword") String keyword, Model model) {
         model.addAttribute("category", categoryService.findAllCategory());
-        model.addAttribute("goods", goodsService.searchGoodsList(select,keyword));
+        model.addAttribute("goods", goodsService.searchGoodsList(GoodsRequest.SeacherGoodsDTO.builder().select(select).keyword(keyword).page(1).line(15).build()));
         return "goods-list";
     }
 
     @GetMapping("/goods-list/{id}")
     public String goodsList(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("category", categoryService.findAllCategory());
-        model.addAttribute("goods",goodsService.getGoodsList(id));
+        model.addAttribute("goods",goodsService.getGoodsList(id,1,15));
         return "goods-list";
+    }
+
+    @ResponseBody
+    @GetMapping("/api/v1/search-goods")
+    public ResponseEntity<?> searchGoods(GoodsRequest.SeacherGoodsDTO goodsDTO) {
+        List<GoodsResponse.GoodsDTO> dto = goodsService.searchGoodsList(goodsDTO);
+        CommonResp<List<GoodsResponse.GoodsDTO>> resp = CommonResp.success(dto);
+        return new ResponseEntity<>(resp, HttpStatus.OK);
+    }
+
+    @ResponseBody
+    @GetMapping("/api/v1/search-goods/{id}")
+    public ResponseEntity<?> categoryGoods(@PathVariable("id") Integer id, Integer page, Integer line) {
+        List<GoodsResponse.GoodsDTO> dto = goodsService.getGoodsList(id,page,line);
+        CommonResp<List<GoodsResponse.GoodsDTO>> resp = CommonResp.success(dto);
+        return new ResponseEntity<>(resp, HttpStatus.OK);
     }
 
 }

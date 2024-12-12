@@ -40,10 +40,6 @@ public class GoodsResponse {
         }
     }
 
-//    public static class GoodListDTO{
-//        List<GoodsDTO> goods;
-//    }
-
     @Data
     public static class GoodsDTO {
       private Integer id;
@@ -52,9 +48,8 @@ public class GoodsResponse {
       private String seller;
       private String imgUrl;
       private Integer startingPrice;
-      private Integer tryPrice;
-
-        String endAt;
+      private String tryPrice;
+      private String endAt;
 
         @Builder
         public GoodsDTO(Goods goods, Integer bidTryPrice) {
@@ -64,7 +59,7 @@ public class GoodsResponse {
             this.seller = goods.getSeller().getName();
             this.imgUrl = goods.getImgUrl();
             this.startingPrice = goods.getStartingPrice();
-            this.tryPrice = bidTryPrice;
+            this.tryPrice = bidTryPrice==0? "입찰자가 없습니다.":"최고 입찰가: "+String.valueOf(bidTryPrice);
             this.endAt = formatRemainingTime(goods.getEndAt());
         }
 

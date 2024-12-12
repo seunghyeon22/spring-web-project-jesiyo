@@ -1,10 +1,13 @@
 package com.metacoding.web_project.goods;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 import com.metacoding.web_project._core.util.FileUtil;
 import com.metacoding.web_project.category.Category;
 import com.metacoding.web_project.user.User;
+import lombok.NoArgsConstructor;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Timestamp;
@@ -42,4 +45,22 @@ public class GoodsRequest {
                     .build();
         }
     }
+
+    @Data
+    public static class SeacherGoodsDTO {
+        private String select;
+        private String keyword;
+        private Integer page;
+        private Integer line;
+
+
+        @Builder
+        public SeacherGoodsDTO(String select, String keyword, Integer page, Integer line) {
+            this.select = select;
+            this.keyword = keyword;
+            this.page = page;
+            this.line = line;
+        }
+    }
+
 }

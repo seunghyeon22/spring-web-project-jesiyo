@@ -45,12 +45,16 @@ insert into goods_tb(title, category_id, seller_id, content, img_url, starting_p
 insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status) values ('강아지 산책줄 나눔합니다.', '1', '2', '강아지 산책줄 나눔 중입니다.', '없습니다.', 1000, now(),'2024-12-10 23:00:00', 0);
 insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status) values ('강아지 산책줄 나눔합니다2.', '1', '2', '강아지 산책줄 나눔 중입니다2.', '없습니다.', 1000, now(),'2024-12-10 23:00:00', 1);
 
+
 -- bid_tb 더미데이터
 insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (1,1,2000,now());
 insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (3,1,3000,now());
 insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (1,2,21000,now());
 insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (2,3,5500,now());
 insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (2,4,130000,now());
+
+insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_status, success_price, updated_at) values (2, 2, 3, 0, 1, 50000, now());
+
 
 insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (2,1,3000,now());
 insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (1,1,4000,now());
