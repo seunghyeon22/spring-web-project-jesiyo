@@ -27,7 +27,7 @@ public class UserRepository {
         try {
             return (User) q.getSingleResult();
         } catch (RuntimeException e) {
-            throw new UsernameNotFoundException("유저를 찾을 수 없습니다.");
+            throw new Exception404("유저를 찾을 수 없습니다.");
         }
     }
 
