@@ -37,15 +37,23 @@
                             <div>카테고리 : {{categoryName}}</div>
                             <div>낙찰가 : {{successPrice}}원</div>
                             <div>송장번호 확인 : {{deliveryNum}}</div>
+                            <div>
+                                <!-- transactionStatus = true일때만 구매 취소 문구가 보이도록 -->
+                                {{#transactionStatus}}
+                                    구매 취소됨
+                                {{/transactionStatus}}
+                            </div>
                             <div class="btn-group mt-1">
-                                {{^buyerStatus}} <!-- buyerStatus = 0일때만 구매 확정 버튼이 보이도록 -->
-                                    <button type="button" class="btn btn-custom btn-sm">
+                                {{^buyerStatus}} <!-- buyerStatus = false일때만 구매 확정 버튼이 보이도록 -->
+                                    <button type="button" class="btn btn-custom btn-sm" onclick="confirmBuy({{id}})">
                                         구매 확정
                                     </button>
                                 {{/buyerStatus}}
-                                <button type="button" class="btn btn-custom btn-sm">
-                                    구매 취소
-                                </button>
+                                {{^transactionStatus}} <!-- transactionStatus = false일때만 구매 취소 버튼이 보이도록 -->
+                                    <button type="button" class="btn btn-custom btn-sm" onclick="cancelBuy({{id}})">
+                                        구매 취소
+                                    </button>
+                                {{/transactionStatus}}
                                 <button type="button" class="btn btn-custom btn-sm"  data-bs-toggle="modal" data-bs-target="#myModal">
                                     신고하기
                                 </button>
@@ -81,6 +89,55 @@
         </div>
       </div>
     </div>
-{{>layout/footer}}
+
+    <script>
+        // 구매 확정하기
+        function confirmBuy(transactionId) {
+            if (confirm('구매를 확정하시겠습니까?')) {
+                fetch('/buyerStatus/update', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        transactionId: transactionId,
+                        buyerStatus: 1
+                    })
+                }).then(response => {
+                    if (response.ok) {
+                        alert('구매가 확정되었습니다.');
+                        location.reload();
+                    } else {
+                        alert('구매 확정에 실패했습니다.');
+                    }
+                });
+            }
+        }
+
+        // 구매 취소하기
+        function cancelBuy(transactionId) {
+            if (confirm('구매를 취소하시겠습니까?')) {
+                fetch('/transactionStatusForBuyer/update', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        transactionId: transactionId,
+                        transactionStatus: 2
+                    })
+                }).then(response => {
+                    if (response.ok) {
+                        alert('구매가 취소되었습니다.');
+                        location.reload();
+                    } else {
+                        alert('구매 취소에 실패했습니다.');
+                    }
+                });
+            }
+        }
+    </script>
+
+    {{>layout/footer}}
   </body>
 </html>

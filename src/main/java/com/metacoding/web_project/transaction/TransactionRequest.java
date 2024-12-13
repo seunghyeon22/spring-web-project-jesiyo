@@ -52,12 +52,30 @@ public class TransactionRequest {
     public static class UpdateSellerStatusDTO {
         private Integer transactionId;
         private Integer sellerStatus;
+        private Integer buyerStatus;
     }
 
     // 낙찰된 물품(판매) 화면 - 판매 취소하기 DTO
     // transaction_tb 테이블의 transaction_status = 1로 update
     @Data
-    public static class UpdateTransactionStatusDTO {
+    public static class UpdateTransactionStatusForSellerDTO {
+        private Integer transactionId;
+        private Integer transactionStatus;
+    }
+
+    // 낙찰된 물품(구매) 화면 - 구매 확정하기 DTO
+    // transaction_tb 테이블의 buyer_status = 1로 update
+    @Data
+    public static class UpdateBuyerStatusDTO {
+        private Integer transactionId;
+        private Integer buyerStatus;
+        private Integer sellerStatus;
+    }
+
+    // 낙찰된 물품(구매) 화면 - 구매 취소하기 DTO
+    // transaction_tb 테이블의 transaction_status = 2로 update
+    @Data
+    public static class UpdateTransactionStatusForBuyerDTO {
         private Integer transactionId;
         private Integer transactionStatus;
     }

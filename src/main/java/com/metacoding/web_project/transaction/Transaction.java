@@ -39,8 +39,9 @@ public class Transaction {
     @Column(nullable = false)
     private Integer sellerStatus;
 
-    // 0 : 거래 취소 버튼 누르기 전
-    // 1 : 거래 취소 버튼 누른 후
+    // 0 : 판매/구매 취소 버튼 누르기 전
+    // 1 : 판매 취소 버튼 누른 후
+    // 2 : 구매 취소 버튼 누른 후
     @Column(nullable = false)
     private Integer transactionStatus;
 

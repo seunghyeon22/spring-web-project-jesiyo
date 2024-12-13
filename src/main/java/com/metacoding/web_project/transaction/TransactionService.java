@@ -6,6 +6,8 @@ import com.metacoding.web_project.bid.Bid;
 import com.metacoding.web_project.bid.BidRepository;
 import com.metacoding.web_project.user.User;
 import com.metacoding.web_project.user.UserRepository;
+import com.metacoding.web_project.useraccount.UserAccount;
+import com.metacoding.web_project.useraccount.UserAccountRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,8 +20,8 @@ import java.util.Optional;
 @Service
 public class TransactionService {
     private final TransactionRepository transactionRepository;
-
     private final BidRepository bidRepository;
+    private final UserAccountRepository userAccountRepository;
 
     private final UserRepository userRepository;
 
@@ -107,15 +109,25 @@ public class TransactionService {
                 .orElseThrow(() -> new Exception404("해당 물품이 없습니다."));
 
         transaction.updateStatus(null, updateSellerStatusDTO.getSellerStatus(), null, null);
+
+        // 판매 확정 + 구매 확정된 물품의 판매자의 돈에 낙찰가 추가
+        if (updateSellerStatusDTO.getSellerStatus() == 1 && updateSellerStatusDTO.getBuyerStatus() == 1) {
+            UserAccount userAccount = userAccountRepository.findById(transaction.getSeller().getId());
+            userAccount.updateUserInfo(transaction.getSuccessPrice());
+        }
     }
 
     // 낙찰된 물품(판매) 화면 - 판매 취소하기(transaction_tb 테이블의 transaction_status = 1로 update)
     @Transactional
-    public void updateTransactionStatus(TransactionRequest.UpdateTransactionStatusDTO updateTransactionStatusDTO) {
-        Transaction transaction = transactionRepository.findById(updateTransactionStatusDTO.getTransactionId())
+    public void updateTransactionStatusForSeller(TransactionRequest.UpdateTransactionStatusForSellerDTO updateTransactionStatusForSellerDTO) {
+        Transaction transaction = transactionRepository.findById(updateTransactionStatusForSellerDTO.getTransactionId())
                 .orElseThrow(() -> new Exception404("해당 물품이 없습니다."));
 
-        transaction.updateStatus(null, null, updateTransactionStatusDTO.getTransactionStatus(), null);
+        transaction.updateStatus(null, null, updateTransactionStatusForSellerDTO.getTransactionStatus(), null);
+
+        // 판매 취소 됐을 때 해당 구매자의 돈 반환
+        UserAccount userAccount = userAccountRepository.findById(transaction.getBuyer().getId());
+        userAccount.updateUserInfo(transaction.getSuccessPrice());
     }
 
     // 낙찰된 물품(구매) 화면 열기 - 구매 확정 누름, 안 누름 다 포함
@@ -132,5 +144,33 @@ public class TransactionService {
             participatedAuctionDTOList.add(new TransactionResponse.ParticipatedAuctionDTO(transaction));
         }
         return participatedAuctionDTOList;
+    }
+
+    // 낙찰된 물품(구매) 화면 - 구매 확정하기(transaction_tb 테이블의 buyer_status = 1로 update)
+    @Transactional
+    public void updateBuyerStatus(TransactionRequest.UpdateBuyerStatusDTO updateBuyerStatusDTO) {
+        Transaction transaction = transactionRepository.findById(updateBuyerStatusDTO.getTransactionId())
+                .orElseThrow(() -> new Exception404("해당 물품이 없습니다."));
+
+        transaction.updateStatus(updateBuyerStatusDTO.getBuyerStatus(), null, null, null);
+
+        // 판매 확정 + 구매 확정된 물품의 판매자의 돈에 낙찰가 추가
+        if (updateBuyerStatusDTO.getBuyerStatus() == 1 && updateBuyerStatusDTO.getSellerStatus() == 1) {
+            UserAccount userAccount = userAccountRepository.findById(transaction.getSeller().getId());
+            userAccount.updateUserInfo(transaction.getSuccessPrice());
+        }
+    }
+
+    // 낙찰된 물품(구매) 화면 - 구매 취소하기(transaction_tb 테이블의 transaction_status = 1로 update)
+    @Transactional
+    public void updateTransactionStatusForBuyer(TransactionRequest.UpdateTransactionStatusForBuyerDTO updateTransactionStatusForBuyerDTO) {
+        Transaction transaction = transactionRepository.findById(updateTransactionStatusForBuyerDTO.getTransactionId())
+                .orElseThrow(() -> new Exception404("해당 물품이 없습니다."));
+
+        transaction.updateStatus(null, null, updateTransactionStatusForBuyerDTO.getTransactionStatus(), null);
+
+        // 구매 취소 됐을 때 해당 구매자의 돈 반환
+        UserAccount userAccount = userAccountRepository.findById(transaction.getBuyer().getId());
+        userAccount.updateUserInfo(transaction.getSuccessPrice());
     }
 }

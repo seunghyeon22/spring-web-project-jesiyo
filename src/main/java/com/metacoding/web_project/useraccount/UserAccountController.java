@@ -8,4 +8,6 @@ import org.hibernate.annotations.ConcreteProxy;
 public class UserAccountController {
 
     private final UserAccountService userAccountService;
+
+
 }

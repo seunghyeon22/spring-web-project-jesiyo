@@ -28,5 +28,4 @@ public class UserAccountRepository {
         query.setParameter("userId", userId);
         return (UserAccount) query.getSingleResult();
     }
-
 }
