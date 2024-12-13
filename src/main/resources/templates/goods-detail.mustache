@@ -27,12 +27,12 @@
             <div class="d-flex justify-content-start" style="margin-top: 20px;">
                 <div class="p__name"><h3>{{goods.category}}</h3></div>
 
-                <div style="margin-top: 10px; margin-left: 10px;">{{goods.endAt}}</div> <!--시간 변경될 수 있도록 바꿔야하나?-->
+                <div style="margin-top: 10px; margin-left: 10px;">{{goods.endAtFront}}</div> <!--시간 변경될 수 있도록 바꿔야하나?-->
             </div>
     
             <div class="d-flex justify-content-start" style="margin-top: 15px;">
                 <p style="font-weight: bold;font-size: 25px;">판매자ID:</p>
-                <p style="padding: 10px;" id="seller">{{goods.seller}}</p><!--등록자 id를 변수로 받게끔 바꿔주세요.-->
+                <p style="padding: 10px;" id="seller">{{goods.seller}}</p><!--지금 가져온거 username 아님 // 그냥 사용자 이름-->
             </div>
 
             <div style="width: 65%">
@@ -163,13 +163,15 @@
         // 낙찰가격
         const successPrice = document.querySelector("#successPrice").textContent;
 
+        console.log("판매자: " + seller);
+        console.log("최고가: " + successPrice);
         try {
             await fetch('/goods-detail/saveTransaction',{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({goodsId: goodsId, seller: seller, successPrice: successPrice})
+                body: JSON.stringify({goodsId: parseInt(goodsId), seller: seller, successPrice: parseInt(successPrice)})
             });
         }catch (error) {
             alert("오류 발생: ", error);
@@ -194,7 +196,7 @@
     // 경매기록이 bid_tb -> recode_tb로 옮겨진 후 bid테이블에 남은 기록들 삭제 요청
     async function deleteEndBidData(){
         try {
-            await fetch('/goods-detail/endBid/{{goods.id}}/delete', {
+            await fetch(`/goods-detail/endBid/${goodsId}/delete`, {
                 method: 'POST'
             });
         } catch (error) {
@@ -203,7 +205,7 @@
     }
 
     async function checkAuctionEnd() {
-        const endAt = new Date('{{goods.endAt}}');
+        const endAt = new Date('{{goods.endAtBack}}');
         const currentTime = new Date();
 
         // 현재 시간이 종료시간 이후라면 상태변경 요청

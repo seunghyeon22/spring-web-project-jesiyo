@@ -25,7 +25,7 @@ public class RecodeController {
 
     @PostMapping("/goods-detail/saveRecode")
     public ResponseEntity<?> saveRecode(@RequestBody GoodsRequest.GoodsStatusDTO statusDTO) {
-        recodeService.save(statusDTO.getId());
+        recodeService.save(statusDTO.getGoodsId());
 
         CommonResp resp = new CommonResp(true, "데이터 옮겨담기 성공", null);
         return ResponseEntity.ok(resp);

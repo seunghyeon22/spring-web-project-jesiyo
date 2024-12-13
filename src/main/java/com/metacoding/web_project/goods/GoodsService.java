@@ -37,6 +37,8 @@ public class GoodsService {
                     .orElse(0); //데이터가 없을 경우 tryPrice 0으로 설정
         }
 
+        System.out.println("tryPrice: " + tryPrice);
+
         String formattedEndAt = formatRemainingTime(goods.getEndAt());
 
         return new GoodsResponse.GoodsDetailDTO(goods, tryPrice, formattedEndAt);
@@ -45,7 +47,7 @@ public class GoodsService {
 
     @Transactional
     public void updateGoodsStatus(GoodsRequest.GoodsStatusDTO goodsStatusDTO) {
-        Goods goods = goodsRepository.findById(goodsStatusDTO.getId())
+        Goods goods = goodsRepository.findById(goodsStatusDTO.getGoodsId())
                 .orElseThrow(() -> new Exception404("해당 물품은 존재하지 않습니다."));
 
         // 영속 상태에서 필드 값 변경

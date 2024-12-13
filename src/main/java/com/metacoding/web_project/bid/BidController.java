@@ -63,10 +63,10 @@ public class BidController {
 
     // 경매가 끝난 물건 경매기록 삭제 (recode_tb에 옮긴 후 실행됩니다.)
     @PostMapping("/goods-detail/endBid/{id}/delete")
-    public void deleteBid(@PathVariable int id) {
-
+    public ResponseEntity<?> deleteBid(@PathVariable("id") Integer id) {
+        System.out.println("요청왔음 받은 아이디: " + id);
         bidService.deleteByGoodsId(id);
-        return;
+        return ResponseEntity.ok(CommonResp.success(null));
     }
 
     // 경매 취소 버튼

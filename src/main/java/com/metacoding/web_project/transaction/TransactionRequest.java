@@ -13,7 +13,7 @@ public class TransactionRequest {
     @Data
     public static class SaveDTO {
         private Integer goodsId;
-        private Integer seller;
+        private String seller;
         private Integer successPrice;
 
         private Integer buyer;
@@ -21,16 +21,18 @@ public class TransactionRequest {
 
         private Integer sellerStatus;
         private Integer buyerStatus;
+        private Integer transactionStatus;
 
-        public Transaction toEntity(User buyer) {
+        public Transaction toEntity(User buyer,User seller) {
 
             return Transaction.builder()
                     .goods(Goods.builder().id(goodsId).build())
-                    .seller(User.builder().id(seller).build())
+                    .seller(seller)
                     .successPrice(successPrice)
                     .buyer(buyer)
                     .sellerStatus(1)
                     .buyerStatus(1)
+                    .transactionStatus(0)
                     .build();
 
         }

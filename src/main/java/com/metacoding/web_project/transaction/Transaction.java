@@ -55,7 +55,7 @@ public class Transaction {
     private Timestamp updatedAt;
 
     @Builder
-    public Transaction(Integer id, Goods goods, User buyer, User seller, Integer buyerStatus, Integer sellerStatus, Integer successPrice, Integer deliveryNum) {
+    public Transaction(Integer id, Goods goods, User buyer, User seller, Integer buyerStatus, Integer sellerStatus, Integer successPrice, Integer deliveryNum, Integer transactionStatus, Timestamp updatedAt) {
         this.id = id;
         this.goods = goods;
         this.buyer = buyer;
@@ -65,6 +65,7 @@ public class Transaction {
         this.successPrice = successPrice;
         this.deliveryNum = deliveryNum;
         this.updatedAt = Timestamp.valueOf(LocalDateTime.now());
+        this.transactionStatus = transactionStatus;
     }
 
     public void updateStatus(Integer buyerStatus, Integer sellerStatus, Integer transactionStatus, Integer deliveryNum) {

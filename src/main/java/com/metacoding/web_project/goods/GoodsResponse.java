@@ -3,6 +3,7 @@ package com.metacoding.web_project.goods;
 import lombok.Builder;
 import lombok.Data;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,7 +25,9 @@ public class GoodsResponse {
 
         Integer tryPrice;
 
-        String endAt;
+        String endAtFront;
+
+        Timestamp endAtBack;
 
         public GoodsDetailDTO(Goods goods, Integer bidTryPrice, String formattedEndAt) {
             this.id = goods.getId();
@@ -36,7 +39,8 @@ public class GoodsResponse {
             this.startingPrice = goods.getStartingPrice();
             this.tryPrice = bidTryPrice;
             //종료기간
-            this.endAt = formattedEndAt;
+            this.endAtFront = formattedEndAt;
+            this.endAtBack = goods.getEndAt();
         }
     }
 
