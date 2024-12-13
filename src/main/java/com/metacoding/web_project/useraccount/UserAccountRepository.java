@@ -26,6 +26,7 @@ public class UserAccountRepository {
                 """;
         Query query = em.createQuery(sql);
         query.setParameter("userId", userId);
+        query.setMaxResults(1);
         return (UserAccount) query.getSingleResult();
     }
 }

@@ -1,9 +1,12 @@
 package com.metacoding.web_project.goods;
 
 import com.metacoding.web_project._core.error.ex.Exception404;
+import com.metacoding.web_project._core.util.PageUtil;
 import com.metacoding.web_project.bid.Bid;
 import com.metacoding.web_project.bid.BidRepository;
 import com.metacoding.web_project.category.CategoryRepository;
+import com.metacoding.web_project.user.User;
+import com.metacoding.web_project.user.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,6 +22,7 @@ import static com.metacoding.web_project._core.util.FormatDate.formatRemainingTi
 public class GoodsService {
     private final GoodsRepository goodsRepository;
     private final BidRepository bidRepository;
+    private final UserRepository userRepository;
 
     // 제품 상세페이지 데이터 끌어오기
     @Transactional
@@ -80,11 +84,9 @@ public class GoodsService {
         return goodsList;
     }
 
+    // 제목 및 내용으로 물품 리스트 조회
     public List<GoodsResponse.GoodsDTO> searchGoodsList(GoodsRequest.SeacherGoodsDTO dto) {
-
-
         Optional<List<Goods>> searchGoodsList = goodsRepository.searchGoods(dto);
-
         List<GoodsResponse.GoodsDTO> goodsList = new ArrayList<>();
 
         for (Goods goods : searchGoodsList.get()) {
@@ -97,9 +99,25 @@ public class GoodsService {
                             .bidTryPrice(0)
                             .build()));
         }
+        return goodsList;
+    }
+    // 내가 경매에 내놓은 물품 리스트 보기
+    public List<GoodsResponse.UserGoodsDTO> mySellGoods(String username){
+        User user = userRepository.findByUsername(username);
+        List<Goods> bySellGoods = goodsRepository.findBySellGoods(user.getId());
+       // PageUtil.offsetCount(page, 5), 5
+        List<GoodsResponse.UserGoodsDTO> goodsList = new ArrayList<>();
 
-
-
+        for (Goods goods : bySellGoods) {
+            bidRepository.findByGoodsDescIsNull(goods.getId()).ifPresentOrElse(bid -> goodsList.add(GoodsResponse.UserGoodsDTO.builder()
+                            .goods(goods)
+                            .bidTryPrice(bid.getTryPrice())
+                            .build()),
+                    () -> goodsList.add(GoodsResponse.UserGoodsDTO.builder()
+                            .goods(goods)
+                            .bidTryPrice(0)
+                            .build()));
+        }
         return goodsList;
     }
 }

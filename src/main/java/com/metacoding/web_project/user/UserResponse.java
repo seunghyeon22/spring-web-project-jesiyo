@@ -2,6 +2,7 @@ package com.metacoding.web_project.user;
 
 import com.metacoding.web_project.useraccount.UserAccount;
 import lombok.Data;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
 
@@ -55,5 +56,4 @@ public class UserResponse {
     public static class FindUserDTO{
         private String username;
     }
-
 }

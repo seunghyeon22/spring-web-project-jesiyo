@@ -69,4 +69,27 @@ public class GoodsResponse {
 
 
     }
+    @Data
+    public static class UserGoodsDTO {
+        private Integer id;
+        private String title;
+        private String category;
+        private String imgUrl;
+        private Integer startingPrice;
+        private String tryPrice;
+        private String endAt;
+
+        @Builder
+        public UserGoodsDTO(Goods goods, Integer bidTryPrice) {
+            this.id = goods.getId();
+            this.title = goods.getTitle();
+            this.category = goods.getCategory().getName();
+            this.imgUrl = goods.getImgUrl();
+            this.startingPrice = goods.getStartingPrice();
+            this.tryPrice = bidTryPrice==0? "입찰자가 없습니다.":"최고 입찰가: "+String.valueOf(bidTryPrice);
+            this.endAt = formatRemainingTime(goods.getEndAt());
+        }
+
+
+    }
 }

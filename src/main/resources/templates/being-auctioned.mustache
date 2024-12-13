@@ -25,19 +25,19 @@
               {{#models}}
                   <div class="card mb-3">
                       <div class="card-image">
-                          <img src="{{goodsImgUrl}}" class="card-img-top" />
+                          <img src="{{imgUrl}}" class="card-img-top" />
                       </div>
                       <div class="card-body mt-2">
                           <h4 class="card-title">{{title}}</h4>
                           <div class="card-text mt-2">
                               <input type="hidden" name="id" id="{{id}}">
-                              <div>카테고리 : {{categoryName}}</div>
+                              <div>카테고리 : {{category}}</div>
                               <div>경매 종료 일시 : {{endAt}}</div>
                               <div>시작 입찰가 : {{startingPrice}}원</div>
                               <div>현재 입찰가 : {{tryPrice}}원</div>
                               <div class="btn-group mt-1">
-                                  <button type="button" class="btn btn-custom btn-sm" onclick = "deleteGoods({{goodsId}})">경매 취소</button>
-                                  <button type="button" class="btn btn-custom btn-sm" onclick = "insertTransaction({{goodsId}})">조기 종료</button>
+                                  <button type="button" class="btn btn-custom btn-sm" onclick = "deleteGoods({{id}})">경매 취소</button>
+                                  <button type="button" class="btn btn-custom btn-sm" onclick = "insertTransaction({{id}})">조기 종료</button>
                               </div>
                           </div>
                       </div>
