@@ -37,7 +37,6 @@ public class BidService {
     private final RecodeRepositoryInterface recodeRepositoryInterfase;
     private final GoodsRepository goodsRepository;
     private final TransactionRepository transactionRepository;
-    private final UserRepository userRepository;
     private final HttpSession session;
 
     @Transactional
@@ -48,11 +47,7 @@ public class BidService {
         Integer goodsId = tryBidDTO.getGoodsId();
         Integer tryPrice = tryBidDTO.getTryPrice();
 
-        System.out.println(1);
-
         Optional<Bid> highestBid = bidRepository.findByGoodsIdDescWithLock(goodsId);
-
-        System.out.println(2);
 
         if (highestBid.isPresent()) {
             Integer currentHighestPrice = highestBid.get().getTryPrice();
