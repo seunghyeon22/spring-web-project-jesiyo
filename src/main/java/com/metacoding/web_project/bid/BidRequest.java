@@ -32,4 +32,12 @@ public class BidRequest {
 
     }
 
+    @Data
+    public static class ReBidDTO {
+        private Integer userId;
+        private Integer bidId;
+        private Integer tryPrice;
+
+    }
+
 }

@@ -1,6 +1,5 @@
 
 
-
 async function deleteGoods(goodsId){
     let url = `/api/v1/bid-delete/${goodsId}`
     let response = await fetch(url,{

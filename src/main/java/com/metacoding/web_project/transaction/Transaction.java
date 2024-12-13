@@ -63,6 +63,7 @@ public class Transaction {
         this.seller = seller;
         this.buyerStatus = buyerStatus;
         this.sellerStatus = sellerStatus;
+        this.transactionStatus = transactionStatus;
         this.successPrice = successPrice;
         this.deliveryNum = deliveryNum;
         this.updatedAt = Timestamp.valueOf(LocalDateTime.now());

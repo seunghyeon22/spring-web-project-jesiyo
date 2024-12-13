@@ -1,12 +1,14 @@
 package com.metacoding.web_project.goods;
 
 import com.metacoding.web_project._core.CommonResp;
+import com.metacoding.web_project.bid.BidResponse;
 import com.metacoding.web_project.category.CategoryService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -89,5 +91,13 @@ public class GoodsController {
         CommonResp<List<GoodsResponse.GoodsDTO>> resp = CommonResp.success(dto);
         return new ResponseEntity<>(resp, HttpStatus.OK);
     }
-    
+
+    // 경매 중인 물품(판매) 화면 열기
+    @GetMapping("/myPage-being-auctioned")
+    public String beingAuctioned(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+        model.addAttribute("models", goodsService.mySellGoods(userDetails.getUsername()));
+        return "being-auctioned";
+    }
+
+
 }

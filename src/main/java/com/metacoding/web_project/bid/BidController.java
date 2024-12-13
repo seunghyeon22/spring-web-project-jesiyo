@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -34,14 +36,13 @@ public class BidController {
 
         return "admin/auction-progress-admin";
     }
-
     // 경매 중인 물품(판매) 화면 열기
-    @GetMapping("/s/myPage-being-auctioned")
-    public String beingAuctioned(Model model) {
-        List<BidResponse.BeingAuctionedDTO> beingAuctionedList = bidService.beingAuctionedList();
-        model.addAttribute("models", beingAuctionedList);
-        return "being-auctioned";
-    }
+//    @GetMapping("/s/myPage-being-auctioned")
+//    public String beingAuctioned(Model model) {
+//        List<BidResponse.BeingAuctionedDTO> beingAuctionedList = bidService.beingAuctionedList();
+//        model.addAttribute("models", beingAuctionedList);
+//        return "being-auctioned";
+//    }
 
     // 경매 참여 중인 물품(구매) 화면 열기
     @GetMapping("/s/myPage-participating-auction")

@@ -1,10 +1,12 @@
 
+
 async function cancel(userId,goodsId, tryPrice){
+    let userDetails =  await getAuthentication()
     let url =`/api/v1/cancelBid`
     let response = await fetch(url, {
         method : "POST",
         body : JSON.stringify({
-                  "userId" : userId,
+                  "userId" : userDetails.id,
                   "goodsId":goodsId,
                   "tryPrice" :  tryPrice}),
         headers : {

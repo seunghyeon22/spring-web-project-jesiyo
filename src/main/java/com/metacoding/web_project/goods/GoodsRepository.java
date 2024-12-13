@@ -55,7 +55,14 @@ public class GoodsRepository {
         return Optional.ofNullable(query.getResultList());
     }
     // 유저 아이디로 경매중인 물품 리스트 조회
-//    public Goods findByUserId(){
-//    }
+    public List<Goods> findBySellGoods(Integer userId) {
+        String sql = "select g from Goods g left join fetch g.category where g.status=:status AND g.seller.id = :userId";
+        Query query = em.createQuery(sql);
+        query.setParameter("status", 0);
+        query.setParameter("userId", userId);
+//        query.setFirstResult(offset);
+//        query.setMaxResults(limit);
+        return query.getResultList();
+    }
 
 }

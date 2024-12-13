@@ -1,10 +1,13 @@
 package com.metacoding.web_project.user;
 
+import com.metacoding.web_project._core.CommonResp;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -133,5 +136,12 @@ public ResponseEntity<?> find(@RequestBody UserRequest.FindUserDTO findUserDTO) 
         }
     }*/
 
+    // 인증
+    @ResponseBody
+    @GetMapping("/api/v1/authentication")
+    public ResponseEntity<?> getUserDetails(@AuthenticationPrincipal UserDetails userDetails) {
+        CommonResp<UserDetails> resp = CommonResp.success(userDetails);
+        return new ResponseEntity<>(resp, HttpStatus.OK);
+    }
 
 }
