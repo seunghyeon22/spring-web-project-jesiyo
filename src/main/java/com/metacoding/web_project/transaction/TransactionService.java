@@ -21,17 +21,22 @@ public class TransactionService {
 
     private final BidRepository bidRepository;
 
+    private final UserRepository userRepository;
+
     @Transactional
     public void save(TransactionRequest.SaveDTO saveDTO) {
 
         Integer tryPrice = saveDTO.getSuccessPrice();
         Integer goodsId = saveDTO.getGoodsId();
-        Optional<Bid> result = bidRepository.findByTryPriceAndGoodsId(tryPrice,goodsId);
-        Bid bid = result.get();
+        Bid bid = bidRepository.findByTryPriceAndGoodsId(tryPrice,goodsId);
 
         User buyer = bid.getBuyer();
 
-        transactionRepository.save(saveDTO.toEntity(buyer));
+        System.out.println("바이어 : " + buyer.getName());
+
+        User seller = userRepository.findByUsername(saveDTO.getSeller());
+
+        transactionRepository.save(saveDTO.toEntity(buyer,seller));
     }
 
     // 조건에 따라 최대 10개의 transaction 행을 유저 정보와 함께 가져오는 메서드 (관리자)

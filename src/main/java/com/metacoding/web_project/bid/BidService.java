@@ -101,7 +101,8 @@ public class BidService {
     }
 
 
-    public void deleteByGoodsId(int id) {
+    @Transactional
+    public void deleteByGoodsId(Integer id) {
         bidRepository.deleteByGoodsId(id);
     }
 

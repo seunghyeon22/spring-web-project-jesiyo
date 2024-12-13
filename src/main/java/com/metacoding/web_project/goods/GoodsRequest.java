@@ -17,7 +17,7 @@ public class GoodsRequest {
 
     @Data
     public static class GoodsStatusDTO {
-        private Integer id;
+        private Integer goodsId;
 
     }
 
