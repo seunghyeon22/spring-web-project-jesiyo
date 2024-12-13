@@ -5,6 +5,7 @@ import com.metacoding.web_project._core.error.ex.Exception404;
 import com.metacoding.web_project.bid.Bid;
 import com.metacoding.web_project.bid.BidRepository;
 import com.metacoding.web_project.user.User;
+import com.metacoding.web_project.user.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,12 +25,13 @@ public class TransactionService {
     public void save(TransactionRequest.SaveDTO saveDTO) {
 
         Integer tryPrice = saveDTO.getSuccessPrice();
-        Optional<Bid> result = bidRepository.findByTryPrice(tryPrice);
+        Integer goodsId = saveDTO.getGoodsId();
+        Optional<Bid> result = bidRepository.findByTryPriceAndGoodsId(tryPrice,goodsId);
         Bid bid = result.get();
 
         User buyer = bid.getBuyer();
 
-        transactionRepository.save(saveDTO.toEntity(buyer.getId()));
+        transactionRepository.save(saveDTO.toEntity(buyer));
     }
 
     // 조건에 따라 최대 10개의 transaction 행을 유저 정보와 함께 가져오는 메서드 (관리자)

@@ -55,7 +55,7 @@
 
             <!--부트스트랩 MODAL 형식-->
             <!-- Button to Open the Modal -->
-             <div class="d-flex justify-content-end">
+             <div class="d-flex justify-content-end" id="bidModalContainer">
                 <button type="button" data-bs-toggle="modal" data-bs-target="#myModal" style="font-weight: bold; background-color: #f96506; width: 170px; height: 50px; border-radius: 10px; margin-top: 20px;">
                     입찰하기
                 </button> 
@@ -194,9 +194,9 @@
     // 경매기록이 bid_tb -> recode_tb로 옮겨진 후 bid테이블에 남은 기록들 삭제 요청
     async function deleteEndBidData(){
         try {
-            await fetch('/goods-detail/endBid/{{goods.id}}/delete'), {
+            await fetch('/goods-detail/endBid/{{goods.id}}/delete', {
                 method: 'POST'
-            }
+            });
         } catch (error) {
             alert ("오류발생: ", error)
         }
@@ -212,6 +212,16 @@
             await saveTransaction();
             await passBidDataToRecode();
             await deleteEndBidData();
+
+            // 버튼 숨기기
+            const bidButtonContainer = document.querySelector("#bidModalContainer");
+            if (bidButtonContainer) {
+                const bidButton = bidButtonContainer.querySelector("button"); // 버튼 선택
+                if (bidButton) {
+                    bidButton.style.display = "none"; // 버튼 숨기기
+                }
+            }
+
             clearInterval(intervalId);
         }
     }
