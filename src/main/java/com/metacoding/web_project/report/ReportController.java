@@ -30,7 +30,7 @@ public class ReportController {
     @PostMapping("/admin/transaction/update")
     public String updateReport(Model model, @RequestParam(defaultValue = "") String reportId, @RequestParam(defaultValue = "") String method) {
         reportService.reportTreatment(reportId, method);
-        return "redirect:/confirm-report";
+        return "redirect:/admin/confirm-report";
     }
 
 }

@@ -26,11 +26,11 @@ public class CategoryController {
         return "admin/category";
     }
 
-    @PostMapping("/category/insert")
+    @PostMapping("/admin/category/insert")
     public String categoryInsert(CategoryRequest.CategoryDTO dto) {
         categoryService.insertCategory(dto);
 
-        return "redirect:/category";
+        return "redirect:/admin/category";
     }
 
     // 일단 임시
