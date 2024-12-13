@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(Exception404.class)
-    public String handleException404(Exception404 e) {
+    @ExceptionHandler(RuntimeException.class)
+    public String runtimeException(RuntimeException e) {
         String body = """
                 <script>
                     alert('${msg}');
                     history.back();
                 </script>
-                """.replace("${msg}",e.getMessage());
+                """.replace("${msg}","실행중 예외 발생");
 
         return body;
     }
