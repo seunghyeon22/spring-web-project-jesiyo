@@ -44,11 +44,17 @@
                     </div>
                 </div>
             {{/models}}
-          
+            {{>layout/paging}}
+
         </div>
       </div>
     </div>
 {{>layout/footer}}
 <script type="text/javascript" src="/js/participating-auction.js"></script>
   </body>
+<script>
+    function changePage(pageNumber) {
+        window.location.href = `/s/myPage-participating-auction?page=${pageNumber}`;
+    }
+</script>
 </html>

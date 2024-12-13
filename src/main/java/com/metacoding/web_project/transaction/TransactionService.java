@@ -81,7 +81,7 @@ public class TransactionService {
     public List<TransactionResponse.CompleteAuctionDTO> completeAuctionList(Integer userId, String page) {
         
         // 임시로 sellerId = 1인 경우만 가져옴, 로그인과 연결할 때 바꿀 것
-        List<Transaction> transactionList = transactionRepository.findBySellerIdNotConfirmOfSell(userId, PageUtil.offsetCount(page, 1), 1);
+        List<Transaction> transactionList = transactionRepository.findBySellerIdNotConfirmOfSell(userId, PageUtil.offsetCount(page, 5), 5);
 
         // completeAuctionDTO로 변환
         List<TransactionResponse.CompleteAuctionDTO> completeAuctionDTOList = new ArrayList<>();

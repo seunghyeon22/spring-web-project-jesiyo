@@ -34,7 +34,7 @@ public class TransactionController {
     public String completeAuction(@AuthenticationPrincipal User user, Model model, @RequestParam(defaultValue = "") String page) {
         List<TransactionResponse.CompleteAuctionDTO> completeAuctionList = transactionService.completeAuctionList(user.getId(), page);
         Integer rowCount = transactionService.totalCompleteAuctionListCount(user.getId());
-        model.addAttribute("pagination", PageUtil.returnToPageDTO(page, rowCount, 1));
+        model.addAttribute("pagination", PageUtil.returnToPageDTO(page, rowCount, 5));
         model.addAttribute("models", completeAuctionList);
         return "complete-auction";
     }
@@ -67,7 +67,7 @@ public class TransactionController {
     }
 
     // 낙찰된 물품(구매) 화면 열기 - 구매 확정 누름, 안 누름 전부 포함
-    @GetMapping("/myPage-participated-auction")
+    @GetMapping("/s/myPage-participated-auction")
     public String participatedAuction(Model model) {
         List<TransactionResponse.ParticipatedAuctionDTO> participatedAuctionList = transactionService.participatedAuctionList();
         model.addAttribute("models", participatedAuctionList);

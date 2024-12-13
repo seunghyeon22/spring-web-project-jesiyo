@@ -57,7 +57,7 @@ public class BidRepositoryTest {
         Integer id = 1;
 
         // when (테스트할 메서드 실행)
-        List<Bid> bidList = bidRepository.findByBuyerIdForBuy(id);
+        List<Bid> bidList = bidRepository.findByBuyerIdForBuy(id, PageUtil.offsetCount(page, 5), 5);
 
         // then(eye) (결과 검증 / 출력으로 직접 확인은 eye)
         for (Bid bid : bidList) {

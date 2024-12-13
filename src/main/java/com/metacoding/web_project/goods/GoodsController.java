@@ -37,7 +37,7 @@ public class GoodsController {
     }
 
     // 제품 등록 화면 열기
-    @GetMapping("/myPage-goods-register")
+    @GetMapping("/s/myPage-goods-register")
     public String register() {
         return "goods-register";
     }
