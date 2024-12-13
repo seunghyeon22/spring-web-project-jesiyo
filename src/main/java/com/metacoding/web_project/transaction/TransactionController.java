@@ -7,10 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -39,6 +36,33 @@ public class TransactionController {
         return "complete-auction";
     }
 
+    // 낙찰된 물품(판매) 송장 번호 등록 -> transaction_tb 테이블의 delivery_number update
+    @PostMapping("/deliveryNumber/update")
+    public String deliveryNumUpdate(TransactionRequest.UpdateDeliveryNumberDTO updateDeliveryNumberDTO) {
+        transactionService.updateDeliveryNumber(updateDeliveryNumberDTO);
+        return "redirect:/myPage-complete-auction";
+    }
+
+    // 낙찰된 물품(판매) 판매 확정하기 -> transaction_tb 테이블의 seller_status = 1로 update
+    @PostMapping("/sellerStatus/update")
+    @ResponseBody
+    public ResponseEntity<?> updateSellerStatus(@RequestBody TransactionRequest.UpdateSellerStatusDTO updateSellerStatusDTO) {
+        transactionService.updateSellerStatus(updateSellerStatusDTO);
+
+        CommonResp resp = new CommonResp(true, "판매 확정 되었습니다.", null);
+        return ResponseEntity.ok(resp);    
+    }
+
+    // 낙찰된 물품(판매) 판매 취소하기 -> transaction_tb 테이블의 transaction_status = 1로 update
+    @PostMapping("/transactionStatus/update")
+    @ResponseBody
+    public ResponseEntity<?> updateTransactionStatus(@RequestBody TransactionRequest.UpdateTransactionStatusDTO updateTransactionStatusDTO) {
+        transactionService.updateTransactionStatus(updateTransactionStatusDTO);
+
+        CommonResp resp = new CommonResp(true, "판매 취소 되었습니다.", null);
+        return ResponseEntity.ok(resp);
+    }
+
     // 낙찰된 물품(구매) 화면 열기 - 구매 완료 / 구매 확정 누름
     @GetMapping("/myPage-participated-auction")
     public String participatedAuction(Model model) {
@@ -46,7 +70,6 @@ public class TransactionController {
         model.addAttribute("models", participatedAuctionList);
         return "participated-auction";
     }
-
 
     // 경매 종료 시 transaction_tb에 경매 완료된 데이터 저장
     @PostMapping("/goods-detail/saveTransaction")

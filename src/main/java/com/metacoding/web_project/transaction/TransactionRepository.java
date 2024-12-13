@@ -47,11 +47,10 @@ public class TransactionRepository {
         return count.intValue();
     }
 
-
-    // 낙찰 완료된 물품 목록 DTO(판매자 입장 / 판매 확정 안 누른 상태)
+    // 낙찰된 물품(판매) 목록 조회 (판매 확정 누름, 안 누름 전부 포함)
     public List<Transaction> findBySellerIdNotConfirmOfSell(Integer id) {
         String sql = """
-                select * from transaction_tb where seller_id = ? and seller_status = 0
+                select * from transaction_tb where seller_id = ?
                 """;
 
         Query q = em.createNativeQuery(sql, Transaction.class);
@@ -60,7 +59,7 @@ public class TransactionRepository {
         return q.getResultList();
     }
 
-    // 낙찰된 물품(구매) 목록 DTO(구매 확정 누름, 안누름 전부 포함)
+    // 낙찰된 물품(구매) 목록 조회(구매 확정 누름, 안 누름 전부 포함)
     public List<Transaction> findByBuyerIdForAllBuy(Integer id) {
         String sql = """
                 select * from transaction_tb where buyer_id = ?
@@ -70,5 +69,9 @@ public class TransactionRepository {
         q.setParameter(1, id);
 
         return q.getResultList();
+    }
+
+    public Optional<Transaction> findById(Integer id) {
+        return Optional.ofNullable(em.find(Transaction.class, id));
     }
 }

@@ -39,8 +39,12 @@ public class Transaction {
     @Column(nullable = false)
     private Integer sellerStatus;
 
+    // 0 : 거래 취소 버튼 누르기 전
+    // 1 : 거래 취소 버튼 누른 후
+    @Column(nullable = false)
+    private Integer transactionStatus;
 
-
+    
     @Column(nullable = false)
     private Integer successPrice;
 
@@ -63,12 +67,15 @@ public class Transaction {
         this.updatedAt = Timestamp.valueOf(LocalDateTime.now());
     }
 
-    public void updateStatus(Integer buyerStatus, Integer sellerStatus, Integer deliveryNum) {
+    public void updateStatus(Integer buyerStatus, Integer sellerStatus, Integer transactionStatus, Integer deliveryNum) {
         if (buyerStatus != null) {
             this.buyerStatus = buyerStatus;
         }
         if (sellerStatus != null) {
             this.sellerStatus = sellerStatus;
+        }
+        if (transactionStatus != null) {
+            this.transactionStatus = transactionStatus;
         }
         if (deliveryNum != null) {
             this.deliveryNum = deliveryNum;

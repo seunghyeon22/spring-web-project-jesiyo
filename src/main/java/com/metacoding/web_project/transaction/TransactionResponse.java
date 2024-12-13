@@ -5,8 +5,6 @@ import lombok.Data;
 
 public class TransactionResponse {
 
-    
-
     @Data
     public static class TransactionDTO {
         private String title;
@@ -36,7 +34,7 @@ public class TransactionResponse {
         }
     }
 
-    // 낙찰된 물품(판매) 목록 DTO(판매 확정 안 누른 상태)
+    // 낙찰된 물품(판매) 목록 DTO(판매 확정 누름, 안 누름 전부 포함)
     @Data
     public static class CompleteAuctionDTO {
         private Integer id;
@@ -45,8 +43,11 @@ public class TransactionResponse {
         private String goodsImgUrl;
         private String updatedAt;
         private Integer successPrice;
-        private Integer sellerStatus = 0; // 판매 확정 안 누른 상태
         private String buyerAddress;
+        private String deliveryNum;
+        private Boolean sellerStatus = false; // 판매 확정 상태 (false = 안 누름, true = 누름)
+        private Boolean buyerStatus = false; // 구매 확정 상태 (false = 안 누름, true = 누름)
+        private Boolean transactionStatus = false; // 판매 취소 상태 (false = 안 누름, true = 누름)
 
         public CompleteAuctionDTO(Transaction transaction) {
             this.id = transaction.getId();
@@ -55,8 +56,26 @@ public class TransactionResponse {
             this.goodsImgUrl = transaction.getGoods().getImgUrl();
             this.updatedAt = FormatDate.formatToyyyypMMpdd(transaction.getUpdatedAt());
             this.successPrice = transaction.getSuccessPrice();
-            this.sellerStatus = transaction.getSellerStatus();
             this.buyerAddress = transaction.getBuyer().getAddr();
+
+            if (transaction.getDeliveryNum() != null) {
+                this.deliveryNum = String.valueOf(transaction.getDeliveryNum());
+
+            } else {
+                this.deliveryNum = "송장번호가 등록되지 않았습니다.";
+            }
+
+            if (transaction.getSellerStatus() == 1) {
+                this.sellerStatus = true;
+            }
+
+            if (transaction.getBuyerStatus() == 1) {
+                this.buyerStatus = true;
+            }
+
+            if (transaction.getTransactionStatus() == 1) {
+                this.transactionStatus = true;
+            }
         }
     }
 
@@ -70,7 +89,9 @@ public class TransactionResponse {
         private String goodsImgUrl;
         private Integer successPrice;
         private String deliveryNum;
-        private Boolean buyerStatus = false;
+        private Boolean sellerStatus = false; // 판매 확정 상태 (false = 안 누름, true = 누름)
+        private Boolean buyerStatus = false; // 구매 확정 상태 (false = 안 누름, true = 누름)
+        private Boolean transactionStatus = false; // 판매 취소 상태 (false = 안 누름, true = 누름)
 
         public ParticipatedAuctionDTO(Transaction transaction) {
             this.id = transaction.getId();
@@ -84,11 +105,19 @@ public class TransactionResponse {
                 this.deliveryNum = String.valueOf(transaction.getDeliveryNum());
 
             } else {
-                this.deliveryNum = "";
+                this.deliveryNum = "등록된 송장 번호가 없습니다.";
+            }
+
+            if (transaction.getSellerStatus() == 1) {
+                this.sellerStatus = true;
             }
 
             if (transaction.getBuyerStatus() == 1) {
                 this.buyerStatus = true;
+            }
+
+            if (transaction.getTransactionStatus() == 1) {
+                this.transactionStatus = true;
             }
         }
     }

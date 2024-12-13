@@ -1,6 +1,7 @@
 package com.metacoding.web_project.transaction;
 
 import com.metacoding.web_project._core.util.PageUtil;
+import com.metacoding.web_project._core.error.ex.Exception404;
 import com.metacoding.web_project.bid.Bid;
 import com.metacoding.web_project.bid.BidRepository;
 import com.metacoding.web_project.user.User;
@@ -67,7 +68,7 @@ public class TransactionService {
         return transactionRepository.findTransactionsCount(query);
     }
 
-    // 낙찰된 물품(판매) 화면 열기 - 판매 확정 안 누름
+    // 낙찰된 물품(판매) 화면 열기 - 판매 확정 누름, 안 누름 포함
     @Transactional
     public List<TransactionResponse.CompleteAuctionDTO> completeAuctionList() {
         
@@ -81,6 +82,33 @@ public class TransactionService {
             completeAuctionDTOList.add(new TransactionResponse.CompleteAuctionDTO(transaction));
         }
         return completeAuctionDTOList;
+    }
+
+    // 낙찰된 물품(판매) 화면 - 송장번호등록(transaction_tb 테이블의 delivery_num update)
+    @Transactional
+    public void updateDeliveryNumber(TransactionRequest.UpdateDeliveryNumberDTO updateDeliveryNumberDTO) {
+        Transaction transaction = transactionRepository.findById(updateDeliveryNumberDTO.getTransactionId())
+                .orElseThrow(() -> new Exception404("해당 물품이 없습니다."));
+
+        transaction.updateStatus(null, null, null, updateDeliveryNumberDTO.getDeliveryNumber());
+    }
+
+    // 낙찰된 물품(판매) 화면 - 판매 확정하기(transaction_tb 테이블의 seller_status = 1로 update)
+    @Transactional
+    public void updateSellerStatus(TransactionRequest.UpdateSellerStatusDTO updateSellerStatusDTO) {
+        Transaction transaction = transactionRepository.findById(updateSellerStatusDTO.getTransactionId())
+                .orElseThrow(() -> new Exception404("해당 물품이 없습니다."));
+
+        transaction.updateStatus(null, updateSellerStatusDTO.getSellerStatus(), null, null);
+    }
+
+    // 낙찰된 물품(판매) 화면 - 판매 취소하기(transaction_tb 테이블의 transaction_status = 1로 update)
+    @Transactional
+    public void updateTransactionStatus(TransactionRequest.UpdateTransactionStatusDTO updateTransactionStatusDTO) {
+        Transaction transaction = transactionRepository.findById(updateTransactionStatusDTO.getTransactionId())
+                .orElseThrow(() -> new Exception404("해당 물품이 없습니다."));
+
+        transaction.updateStatus(null, null, updateTransactionStatusDTO.getTransactionStatus(), null);
     }
 
     // 낙찰된 물품(구매) 화면 열기 - 구매 확정 누름, 안 누름 다 포함

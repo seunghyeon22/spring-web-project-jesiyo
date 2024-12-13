@@ -127,6 +127,7 @@ public class BidService {
         // ParticipatingAuctionDTO로 변환
         List<BidResponse.ParticipatingAuctionDTO> participatingAuctionDtoList = new ArrayList<>();
 
+
         for (Bid bid : bidList) {
             // 최고 입찰가 조회
             Bid bestPrice = bidRepository.findMaxPrice(bid.getGoods().getId());
