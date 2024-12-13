@@ -36,15 +36,15 @@
                             <div>구매자 주소 : {{buyerAddress}}</div>
                             <div>송장번호 : {{deliveryNum}}</div>
                             <div>
-                                {{#buyerStatus}} <!-- buyerStatus = 1일때 -->
+                                {{#buyerStatus}} <!-- buyerStatus = true일때 -->
                                     구매 확정됨
                                 {{/buyerStatus}}
-                                {{^buyerStatus}} <!-- buyerStatus = 0일때 -->
+                                {{^buyerStatus}} <!-- buyerStatus = false일때 -->
                                     구매 확정 대기중
                                 {{/buyerStatus}}
                             </div>
                             <div>
-                                <!-- transactionStatus = 1일때만 판매 취소 문구가 보이도록 -->
+                                <!-- transactionStatus = true일때만 판매 취소 문구가 보이도록 -->
                                 {{#transactionStatus}}
                                     판매 취소
                                 {{/transactionStatus}}
@@ -56,10 +56,10 @@
                                         data-bs-target="#deliveryNumberModal">
                                     송장번호등록
                                 </button>
-                                {{^sellerStatus}} <!-- sellerStatus = 0일때만 판매 확정 버튼이 보이도록 -->
+                                {{^sellerStatus}} <!-- sellerStatus = false일때만 판매 확정 버튼이 보이도록 -->
                                     <button type="button" class="btn btn-custom btn-sm" onclick="confirmSale({{id}})">판매 확정</button>
                                 {{/sellerStatus}}
-                                {{^transactionStatus}} <!-- transactionStatus = 0일때만 판매 취소 버튼이 보이도록 -->
+                                {{^transactionStatus}} <!-- transactionStatus = false일때만 판매 취소 버튼이 보이도록 -->
                                     <button type="button" class="btn btn-custom btn-sm" onclick="cancelSale({{id}})">판매 취소</button>
                                 {{/transactionStatus}}
                             </div>
@@ -132,7 +132,7 @@
     // 판매 취소하기
     function cancelSale(transactionId) {
         if (confirm('판매를 취소하시겠습니까?')) {
-            fetch('/transactionStatus/update', {
+            fetch('/transactionStatusForSeller/update', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

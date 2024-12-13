@@ -28,7 +28,7 @@ public class TransactionController {
         return "admin/auction-complete-admin";
     }
 
-    // 낙찰된 물품(판매) 화면 열기 - 판매 확정 안 누름
+    // 낙찰된 물품(판매) 화면 열기 - 판매 확정 누름, 안 누름 전부 포함
     @GetMapping("/myPage-complete-auction")
     public String completeAuction(Model model) {
         List<TransactionResponse.CompleteAuctionDTO> completeAuctionList = transactionService.completeAuctionList();
@@ -54,21 +54,41 @@ public class TransactionController {
     }
 
     // 낙찰된 물품(판매) 판매 취소하기 -> transaction_tb 테이블의 transaction_status = 1로 update
-    @PostMapping("/transactionStatus/update")
+    @PostMapping("/transactionStatusForSeller/update")
     @ResponseBody
-    public ResponseEntity<?> updateTransactionStatus(@RequestBody TransactionRequest.UpdateTransactionStatusDTO updateTransactionStatusDTO) {
-        transactionService.updateTransactionStatus(updateTransactionStatusDTO);
+    public ResponseEntity<?> updateTransactionStatusForSeller(@RequestBody TransactionRequest.UpdateTransactionStatusForSellerDTO updateTransactionStatusForSellerDTO) {
+        transactionService.updateTransactionStatusForSeller(updateTransactionStatusForSellerDTO);
 
         CommonResp resp = new CommonResp(true, "판매 취소 되었습니다.", null);
         return ResponseEntity.ok(resp);
     }
 
-    // 낙찰된 물품(구매) 화면 열기 - 구매 완료 / 구매 확정 누름
+    // 낙찰된 물품(구매) 화면 열기 - 구매 확정 누름, 안 누름 전부 포함
     @GetMapping("/myPage-participated-auction")
     public String participatedAuction(Model model) {
         List<TransactionResponse.ParticipatedAuctionDTO> participatedAuctionList = transactionService.participatedAuctionList();
         model.addAttribute("models", participatedAuctionList);
         return "participated-auction";
+    }
+
+    // 낙찰된 물품(구매) 구매 확정하기 -> transaction_tb 테이블의 buyer_status = 1로 update
+    @PostMapping("/buyerStatus/update")
+    @ResponseBody
+    public ResponseEntity<?> updateBuyerStatus(@RequestBody TransactionRequest.UpdateBuyerStatusDTO updateBuyerStatusDTO) {
+        transactionService.updateBuyerStatus(updateBuyerStatusDTO);
+
+        CommonResp resp = new CommonResp(true, "구매 확정 되었습니다.", null);
+        return ResponseEntity.ok(resp);
+    }
+
+    // 낙찰된 물품(구매) 구매 취소하기 -> transaction_tb 테이블의 transaction_status = 1로 update
+    @PostMapping("/transactionStatusForBuyer/update")
+    @ResponseBody
+    public ResponseEntity<?> updateTransactionStatusForBuyer(@RequestBody TransactionRequest.UpdateTransactionStatusForBuyerDTO updateTransactionStatusForBuyerDTO) {
+        transactionService.updateTransactionStatusForBuyer(updateTransactionStatusForBuyerDTO);
+
+        CommonResp resp = new CommonResp(true, "구매 취소 되었습니다.", null);
+        return ResponseEntity.ok(resp);
     }
 
     // 경매 종료 시 transaction_tb에 경매 완료된 데이터 저장

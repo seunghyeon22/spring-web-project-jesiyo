@@ -116,7 +116,7 @@ public class TransactionResponse {
                 this.buyerStatus = true;
             }
 
-            if (transaction.getTransactionStatus() == 1) {
+            if (transaction.getTransactionStatus() == 2) {
                 this.transactionStatus = true;
             }
         }
