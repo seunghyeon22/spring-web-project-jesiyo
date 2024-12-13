@@ -48,14 +48,15 @@ public class TransactionRepository {
     }
 
     // 낙찰된 물품(판매) 목록 조회 (판매 확정 누름, 안 누름 전부 포함)
-    public List<Transaction> findBySellerIdNotConfirmOfSell(Integer id) {
+    public List<Transaction> findBySellerIdNotConfirmOfSell(Integer id, Integer offset, Integer limit) {
         String sql = """
                 select * from transaction_tb where seller_id = ?
                 """;
 
         Query q = em.createNativeQuery(sql, Transaction.class);
         q.setParameter(1, id);
-        
+        q.setFirstResult(offset);
+        q.setMaxResults(limit);
         return q.getResultList();
     }
 
@@ -73,6 +74,19 @@ public class TransactionRepository {
 
     public Optional<Transaction> findById(Integer id) {
         return Optional.ofNullable(em.find(Transaction.class, id));
+    }
+
+
+    // 유저 낙찰된 물품(판매) 관련 transaction 테이블의 총 행 개수 반환 메서드
+    public Integer findBySellerIdNotConfirmOfSellCount(Integer userId) {
+        String query = """
+            select count(*) from transaction_tb where seller_id = ?
+            """;
+        Query q = em.createNativeQuery(query);
+        q.setParameter(1, userId);
+
+        // Native Query는 기본적으로 Long 타입을 반환하므로 이를 Integer로 변환합니다.
+        return ((Number) q.getSingleResult()).intValue();
     }
 }
 

@@ -26,7 +26,7 @@ public class BidController {
     public String auctionProgress(Model model, @RequestParam(defaultValue = "") String divide, @RequestParam(defaultValue = "") String search, @RequestParam(defaultValue = "") String page) {
         List<BidResponse.BidDTO> dtoList = bidService.findBidsAndUser(divide, search, page);
         Integer rowCount = bidService.findBidsCount(divide, search);
-        model.addAttribute("pagination", PageUtil.returnToPageDTO(page, rowCount));
+        model.addAttribute("pagination", PageUtil.returnToPageDTO(page, rowCount, 10));
         model.addAttribute("model", dtoList);
         model.addAttribute("divide", divide);
         model.addAttribute("search", search);

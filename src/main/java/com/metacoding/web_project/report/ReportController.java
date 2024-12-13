@@ -21,7 +21,7 @@ public class ReportController {
         List<ReportResponse.ReportDTO> dtoList = reportService.findReportJoinAnotherInfo(divide, page); // 조건에 따라 알맞은 데이터 반환
         Integer rowCount = reportService.findReportCount(divide); // 행의 총 개수 반환
         model.addAttribute("model", dtoList);
-        model.addAttribute("pagination", PageUtil.returnToPageDTO(page, rowCount));
+        model.addAttribute("pagination", PageUtil.returnToPageDTO(page, rowCount, 10));
         model.addAttribute("status", divide);
         return "admin/confirm-report";
     }

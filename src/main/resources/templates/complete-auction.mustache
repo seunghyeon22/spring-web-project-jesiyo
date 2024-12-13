@@ -67,7 +67,7 @@
                     </div>
                 </div>
             {{/models}}
-
+            {{>layout/paging}}
         </div>
     </div>
 </div>
@@ -101,6 +101,9 @@
 </div>
 
 <script>
+    function changePage(pageNumber) {
+        window.location.href = `/s/myPage-complete-auction?page=${pageNumber}`;
+    }
     // 송장번호등록을 위한 모달창에 해당 물품의 transactionId값 넣기
     function addNumber(transactionId){
         document.getElementById('hiddenId').value = transactionId;

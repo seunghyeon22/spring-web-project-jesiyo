@@ -23,7 +23,7 @@ public class TransactionRepositoryTest {
         Integer id = 1;
 
         // when (테스트할 메서드 실행)
-        List<Transaction> transactionList = transactionRepository.findBySellerIdNotConfirmOfSell(id);
+        List<Transaction> transactionList = transactionRepository.findBySellerIdNotConfirmOfSell(id, PageUtil.offsetCount(page, 5), 5);
 
         // then(eye) (결과 검증 / 출력으로 직접 확인은 eye)
         for (Transaction transaction : transactionList) {

@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -79,10 +78,10 @@ public class TransactionService {
 
     // 낙찰된 물품(판매) 화면 열기 - 판매 확정 누름, 안 누름 포함
     @Transactional
-    public List<TransactionResponse.CompleteAuctionDTO> completeAuctionList() {
+    public List<TransactionResponse.CompleteAuctionDTO> completeAuctionList(Integer userId, String page) {
         
         // 임시로 sellerId = 1인 경우만 가져옴, 로그인과 연결할 때 바꿀 것
-        List<Transaction> transactionList = transactionRepository.findBySellerIdNotConfirmOfSell(1);
+        List<Transaction> transactionList = transactionRepository.findBySellerIdNotConfirmOfSell(userId, PageUtil.offsetCount(page, 1), 1);
 
         // completeAuctionDTO로 변환
         List<TransactionResponse.CompleteAuctionDTO> completeAuctionDTOList = new ArrayList<>();
@@ -172,5 +171,10 @@ public class TransactionService {
         // 구매 취소 됐을 때 해당 구매자의 돈 반환
         UserAccount userAccount = userAccountRepository.findById(transaction.getBuyer().getId());
         userAccount.updateUserInfo(transaction.getSuccessPrice());
+    }
+
+    // 낙찰된 물품 (판매) 페이지에 필요한 List의 총 개수 반환
+    public Integer totalCompleteAuctionListCount(Integer userId) {
+        return transactionRepository.findBySellerIdNotConfirmOfSellCount(userId);
     }
 }

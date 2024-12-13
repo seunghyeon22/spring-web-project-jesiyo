@@ -17,13 +17,13 @@ public class PageUtil {
     }
 
     // 현재 페이지, 행의 총 개수를 매개 변수로 전달, PaginationDTO를 반환, 반환 값을 model에 pagination이름으로 addAttribute 하세요
-    public static PaginationDTO returnToPageDTO(String pageNow, Integer rowCount) {
+    public static PaginationDTO returnToPageDTO(String pageNow, Integer rowCount, int limitNum) {
         if (pageNow == null || pageNow.equals("")) {
             pageNow = "1";
         }
 
         int currentPage = Integer.parseInt(pageNow); // 현재 페이지
-        Integer totalPages = pageCalculation(rowCount); // total 페이지
+        Integer totalPages = pageCalculation(rowCount, limitNum); // total 페이지
         List<Page> pages = new ArrayList<>();
 
         if (totalPages < 9) {
@@ -73,12 +73,12 @@ public class PageUtil {
         }
     }
 
-    private static Integer pageCalculation(int rowCount) {
+    private static Integer pageCalculation(int rowCount, int limitNum) {
         int pageCount = 1;
-        if (rowCount > 10) {
-            while(rowCount > 10) {
+        if (rowCount > limitNum) {
+            while(rowCount > limitNum) {
                 pageCount++;
-                rowCount -= 10;
+                rowCount -= limitNum;
             }
         }
         return pageCount;
