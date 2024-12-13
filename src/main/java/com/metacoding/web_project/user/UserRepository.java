@@ -31,9 +31,6 @@ public class UserRepository {
         }
     }
 
-
-
-
     public void join(User user) {
         em.persist(user);
     }
@@ -131,5 +128,9 @@ public class UserRepository {
     }
 
 
-
+    public User findById(Integer id){
+        Query q = em.createQuery("select u from User u where u.id = :id", User.class);
+        q.setParameter("id", id);
+        return (User) q.getSingleResult();
+    }
 }

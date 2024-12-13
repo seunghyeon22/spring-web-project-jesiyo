@@ -37,7 +37,7 @@
                             <div>최고 입찰가 : {{maxPrice}}원</div>
                             <div>내가 입찰한 가격 : {{buyerTryPrice}}원</div>
                             <div class="btn-group mt-1">
-                                <button type="button" class="btn btn-custom btn-sm">입찰 취소</button>
+                                <button type="button" class="btn btn-custom btn-sm" onclick="cancel({{buyerId}},{{goodsId}},{{buyerTryPrice}})">입찰 취소</button>
                                 <button type="button" class="btn btn-custom btn-sm">입찰 금액 수정</button>
                             </div>
                         </div>
@@ -49,5 +49,6 @@
       </div>
     </div>
 {{>layout/footer}}
+<script type="text/javascript" src="/js/participating-auction.js"></script>
   </body>
 </html>

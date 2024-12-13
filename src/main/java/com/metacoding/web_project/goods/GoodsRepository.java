@@ -21,7 +21,7 @@ public class GoodsRepository {
     public void save(Goods goods) {
         em.persist(goods);
     }
-
+    // 카테고리 아이디로 경매중인 물품 리스트 조회
     public Optional<List<Goods>> findByCategoryId(Integer categoryId, Integer page, Integer line) {
         String sql = """
                 select g from Goods g left join fetch g.seller left join fetch g.category where  g.status=:status and g.category.id=:categoryId order by g.id desc limit :line offset :page
@@ -33,6 +33,7 @@ public class GoodsRepository {
         query.setParameter("page", (page-1)*line);
         return Optional.ofNullable(query.getResultList());
     }
+    // 제목 및 내용으로 경매중인 물품 리스트 조회
     public Optional<List<Goods>> searchGoods(GoodsRequest.SeacherGoodsDTO dto) {
         String sql = "select g from Goods g left join fetch g.seller left join fetch g.category where g.status=:status AND ";
 
@@ -53,5 +54,8 @@ public class GoodsRepository {
 
         return Optional.ofNullable(query.getResultList());
     }
+    // 유저 아이디로 경매중인 물품 리스트 조회
+//    public Goods findByUserId(){
+//    }
 
 }

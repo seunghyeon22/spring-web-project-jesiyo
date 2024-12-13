@@ -78,5 +78,25 @@ public class BidController {
         CommonResp resp = new CommonResp(true,"성공",null);
         return new ResponseEntity<>(resp, HttpStatus.OK);
     }
+    //경매 조기 종료
+    @PostMapping("/api/v1/early-transaction")
+    @ResponseBody
+    public ResponseEntity<?> endEarlyAuctionGoods(@RequestBody Integer goodsId) {
+        bidService.endEarlyAuction1(goodsId);
+        bidService.endEarlyAuction2(goodsId);
+        CommonResp resp = new CommonResp(true, "성공", null);
+        return new ResponseEntity<>(resp, HttpStatus.OK);
+    }
+    //입찰 취소
+    @PostMapping("/api/v1/cancelBid")
+    @ResponseBody
+    public ResponseEntity<?> cancelBid(@RequestBody BidRequest.CancelBidDTO cancelBidDTO) {
+        System.out.println(cancelBidDTO.getGoodsId());
+        System.out.println(cancelBidDTO.getUserId());
+        System.out.println(cancelBidDTO.getTryPrice());
+        bidService.cancelBid(cancelBidDTO);
+        CommonResp resp = new CommonResp(true,"성공", null);
+        return new ResponseEntity<>(resp, HttpStatus.OK);
+    }
 
 }

@@ -4,6 +4,8 @@ import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Repository
 public class RecodeRepository {
@@ -13,4 +15,11 @@ public class RecodeRepository {
     public void save(Recode recode) {
         em.persist(recode);
     }
+
+    public void save(List<Recode> recodes) {
+        int batchSize = recodes.size()-1;
+
+        em.persist(recodes);
+    }
+
 }

@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
 
@@ -79,6 +80,7 @@ public class Goods {
             throw new Exception400("이미 경매가 종료되었습니다.");
         }
         this.status = 1; // 상태변경
+        this.endAt = new Timestamp(System.currentTimeMillis());
     }
     // 경매 취소에 대한 상태 변경
     public void cancelAuction(){

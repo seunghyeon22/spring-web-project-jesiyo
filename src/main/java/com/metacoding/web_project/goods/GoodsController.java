@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -88,5 +89,5 @@ public class GoodsController {
         CommonResp<List<GoodsResponse.GoodsDTO>> resp = CommonResp.success(dto);
         return new ResponseEntity<>(resp, HttpStatus.OK);
     }
-
+    
 }

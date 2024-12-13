@@ -22,4 +22,14 @@ public class BidRequest {
 
         }
     }
+
+
+    @Data
+    public static class CancelBidDTO {
+        private Integer userId;
+        private Integer goodsId;
+        private Integer tryPrice;
+
+    }
+
 }
