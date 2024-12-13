@@ -28,7 +28,6 @@ public class BidController {
         List<BidResponse.BidDTO> dtoList = bidService.findBidsAndUser(divide, search, page);
         Integer rowCount = bidService.findBidsCount(divide, search);
         model.addAttribute("pagination", PageUtil.returnToPageDTO(page, rowCount));
-        model.addAttribute("status", new BidResponse.adminBidPageStatusDTO(divide, search));
         model.addAttribute("model", dtoList);
         model.addAttribute("divide", divide);
         model.addAttribute("search", search);

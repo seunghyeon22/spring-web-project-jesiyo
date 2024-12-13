@@ -94,3 +94,58 @@ insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_s
 insert into report_tb(reporter_id, reported_id, reason, transaction_id, status) values (3, 2, '아 자바스크립트', 1, 0);
 insert into report_tb(reporter_id, reported_id, reason, transaction_id, status) values (3, 2, '개화난다', 1, 1);
 
+
+
+--recode_tb 더미데이터
+insert into recode_tb(buyer_id, goods_id, try_price, success_status, created_at) values (1, 1, 2000, 0, now());
+insert into recode_tb(buyer_id, goods_id, try_price, success_status, created_at) values (1, 1, 3000, 0, now());
+insert into recode_tb(buyer_id, goods_id, try_price, success_status, created_at) values (1, 1, 4000, 0, now());
+insert into recode_tb(buyer_id, goods_id, try_price, success_status, created_at) values (1, 1, 5000, 0, now());
+insert into recode_tb(buyer_id, goods_id, try_price, success_status, created_at) values (2, 1, 6000, 1, now());
+
+insert into recode_tb(buyer_id, goods_id, try_price, success_status, created_at) values (1, 2, 4000, 0, now());
+insert into recode_tb(buyer_id, goods_id, try_price, success_status, created_at) values (1, 2, 8000, 0, now());
+insert into recode_tb(buyer_id, goods_id, try_price, success_status, created_at) values (2, 2, 9000, 1, now());
+
+
+insert into recode_tb(buyer_id, goods_id, try_price, success_status, created_at) values (1, 3, 4000, 0, now());
+insert into recode_tb(buyer_id, goods_id, try_price, success_status, created_at) values (1, 3, 8000, 0, now());
+insert into recode_tb(buyer_id, goods_id, try_price, success_status, created_at) values (2, 3, 9000, 1, now());
+
+insert into recode_tb(buyer_id, goods_id, try_price, success_status, created_at) values (1, 4, 4000, 0, now());
+insert into recode_tb(buyer_id, goods_id, try_price, success_status, created_at) values (1, 4, 8000, 0, now());
+insert into recode_tb(buyer_id, goods_id, try_price, success_status, created_at) values (2, 4, 9000, 1, now());
+
+insert into recode_tb(buyer_id, goods_id, try_price, success_status, created_at) values (1, 5, 4000, 0, now());
+insert into recode_tb(buyer_id, goods_id, try_price, success_status, created_at) values (1, 5, 8000, 0, now());
+insert into recode_tb(buyer_id, goods_id, try_price, success_status, created_at) values (2, 5, 9000, 1, now());
+
+insert into recode_tb(buyer_id, goods_id, try_price, success_status, created_at) values (1, 6, 4000, 0, now());
+insert into recode_tb(buyer_id, goods_id, try_price, success_status, created_at) values (1, 6, 8000, 0, now());
+insert into recode_tb(buyer_id, goods_id, try_price, success_status, created_at) values (2, 6, 9000, 1, now());
+
+insert into recode_tb(buyer_id, goods_id, try_price, success_status, created_at) values (1, 7, 4000, 0, now());
+insert into recode_tb(buyer_id, goods_id, try_price, success_status, created_at) values (1, 7, 8000, 0, now());
+insert into recode_tb(buyer_id, goods_id, try_price, success_status, created_at) values (2, 7, 9000, 1, now());
+
+
+insert into recode_tb(buyer_id, goods_id, try_price, success_status, created_at) values (1, 8, 4000, 0, now());
+insert into recode_tb(buyer_id, goods_id, try_price, success_status, created_at) values (1, 8, 8000, 0, now());
+insert into recode_tb(buyer_id, goods_id, try_price, success_status, created_at) values (2, 8, 9000, 1, now());
+
+insert into recode_tb(buyer_id, goods_id, try_price, success_status, created_at) values (1, 9, 4000, 0, now());
+insert into recode_tb(buyer_id, goods_id, try_price, success_status, created_at) values (1, 9, 8000, 0, now());
+insert into recode_tb(buyer_id, goods_id, try_price, success_status, created_at) values (2, 9, 9000, 1, now());
+
+insert into recode_tb(buyer_id, goods_id, try_price, success_status, created_at) values (1, 10, 4000, 0, now());
+insert into recode_tb(buyer_id, goods_id, try_price, success_status, created_at) values (1, 10, 8000, 0, now());
+insert into recode_tb(buyer_id, goods_id, try_price, success_status, created_at) values (2, 10, 9000, 1, now());
+
+insert into recode_tb(buyer_id, goods_id, try_price, success_status, created_at) values (1, 11, 4000, 0, now());
+insert into recode_tb(buyer_id, goods_id, try_price, success_status, created_at) values (1, 11, 8000, 0, now());
+insert into recode_tb(buyer_id, goods_id, try_price, success_status, created_at) values (2, 11, 9000, 1, now());
+
+insert into recode_tb(buyer_id, goods_id, try_price, success_status, created_at) values (1, 7, 4000, 0, now());
+insert into recode_tb(buyer_id, goods_id, try_price, success_status, created_at) values (1, 7, 8000, 0, now());
+insert into recode_tb(buyer_id, goods_id, try_price, success_status, created_at) values (2, 7, 9000, 1, now());
+
