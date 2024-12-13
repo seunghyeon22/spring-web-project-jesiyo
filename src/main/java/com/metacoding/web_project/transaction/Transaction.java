@@ -49,7 +49,7 @@ public class Transaction {
     private Integer successPrice;
 
     @Column(nullable = true)
-    private Integer deliveryNum;
+    private Integer deliveryNum; // 송장번호
 
     @CreationTimestamp
     private Timestamp updatedAt;

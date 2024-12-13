@@ -116,7 +116,7 @@ public class BidRepository {
         String query = """
                 select b.* from bid_tb b
                 join goods_tb g on b.goods_id = g.id
-                where g.status=0 and b.buyer_id = ?
+                where g.status=0 and g.seller_id = ?
                 and b.try_price = (select max(b1.try_price) from bid_tb b1 where b1.goods_id = b.goods_id)
                 """;
 
@@ -164,5 +164,14 @@ public class BidRepository {
     }
 
 
-
+    // bid 테이블에서 물품을 입찰한 사람 한명만 delete
+    public void deleteBid(Integer goodsId, Integer userId){
+        String sql = """
+               delete from bid_tb where goods_id = ? and buyer_id = ?
+                """;
+        Query q = em.createNativeQuery(sql);
+        q.setParameter(1, goodsId);
+        q.setParameter(2, userId);
+        q.executeUpdate();
+    }
 }

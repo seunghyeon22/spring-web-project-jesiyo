@@ -13,6 +13,7 @@ public class BidResponse {
     @Data
     public static class ParticipatingAuctionDTO {
         private Integer id;
+        private Integer goodsId;
         private String title;
         private Integer buyerId;
         private String sellerName;
@@ -24,6 +25,7 @@ public class BidResponse {
         // 생성자
         public ParticipatingAuctionDTO(Bid bid) {
             this.id = bid.getId();
+            this.goodsId = bid.getGoods().getId();
             this.title = bid.getGoods().getTitle();
             this.buyerId = bid.getBuyer().getId();
             this.sellerName = bid.getGoods().getSeller().getName();

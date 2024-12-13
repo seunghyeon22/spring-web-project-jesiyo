@@ -8,6 +8,10 @@ import com.metacoding.web_project.goods.Goods;
 import com.metacoding.web_project.goods.GoodsRepository;
 import com.metacoding.web_project.recode.Recode;
 import com.metacoding.web_project.recode.RecodeRepository;
+import com.metacoding.web_project.recode.RecodeRepositoryInterface;
+import com.metacoding.web_project.transaction.Transaction;
+import com.metacoding.web_project.transaction.TransactionRepository;
+import com.metacoding.web_project.user.UserRepository;
 import com.metacoding.web_project.useraccount.UserAccount;
 import com.metacoding.web_project.useraccount.UserAccountRepository;
 import com.metacoding.web_project._core.util.PageUtil;
@@ -19,6 +23,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @RequiredArgsConstructor
 @Service
@@ -28,7 +34,10 @@ public class BidService {
     private final UserRepository userRepository;
     private final UserAccountRepository userAccountRepository;
     private final RecodeRepository recodeRepository;
+    private final RecodeRepositoryInterface recodeRepositoryInterfase;
     private final GoodsRepository goodsRepository;
+    private final TransactionRepository transactionRepository;
+    private final UserRepository userRepository;
     private final HttpSession session;
 
     @Transactional
@@ -157,22 +166,75 @@ public class BidService {
             // 경매에 참여한 입찰자들의 돈을 반환
             UserAccount ua = userAccountRepository.findById(bid.getBuyer().getId());
             ua.updateUserInfo(bid.getTryPrice());
-
-            // 경매에 참여한 데이터들을 recode 테이블로 옮김
-            recodeRepository.save(Recode.builder().
-                    buyer(bid.getBuyer()).
-                    goods(bid.getGoods()).
-                    tryPrice(bid.getTryPrice()).
-                    successStatus(0).
-                    createdAt(bid.getCreatedAt()).
-                    build());
         }
+        // 경매에 참여한 데이터들을 recode 테이블로 옮김
+        List<Recode> recode = IntStream.range(0,bids.size()).mapToObj(i->
+             Recode.builder().
+                    buyer(bids.get(i).getBuyer()).
+                    goods(bids.get(i).getGoods()).
+                    tryPrice(bids.get(i).getTryPrice()).
+                    successStatus(0).
+                    createdAt(bids.get(i).getCreatedAt()).
+                    build()).collect(Collectors.toList());
+        recodeRepositoryInterfase.saveAll(recode);
+
         //물품에 대한 경매에 참여중인 데이터 삭제
         bidRepository.deleteByGoodsId(goodsId);
         //good에 있는 물품의 상태를 변경 - 3 : 경매 취소
         Optional<Goods> goods = goodsRepository.findById(goodsId);
         goods.get().cancelAuction();
     }
+    // 조기 종료 - 물품의 status를 변경
+    @Transactional
+    public void endEarlyAuction1(Integer goodsId) {
+        Optional<Goods> goods = goodsRepository.findById(goodsId);
+        goods.get().endAuction();
+    }
+    // 조기 종료 - part2
+    @Transactional
+    public void endEarlyAuction2(Integer goodsId) {
+        // 판매자를 확인
+        Goods goods = goodsRepository.findById(goodsId).get();
+        // 종료하는 물품의 입찰 정보를 모두 불러옴
+        List<Bid> bids = bidRepository.findAllByGoodsId(goodsId);
+        // 최고 경매
+        Bid bid = bids.get(bids.size() - 1);
+        // 낙찰 테이블 등록
+        transactionRepository.save(Transaction.builder().goods(goods).
+               buyer(bid.getBuyer()).
+               seller(goods.getSeller()).
+               buyerStatus(0).
+               sellerStatus(0).
+               successPrice(bid.getTryPrice()).
+               build());
 
+       for(int i=0; i<bids.size()-1; i++) {
+           // 최고가를 제외한 나머지 입찰금액 반환
+           UserAccount ua = userAccountRepository.findById(bids.get(i).getBuyer().getId());
+           ua.updateUserInfo(bids.get(i).getTryPrice());
+        }
+        // 경매에 참여한 데이터들을 recode 테이블로 옮김
+        List<Recode> recode = IntStream.range(0,bids.size()).mapToObj(i->{
+            int successStatus = (i == bids.size()-1)?1:0;
+                return Recode.builder().
+                buyer(bids.get(i).getBuyer()).
+                goods(bids.get(i).getGoods()).
+                tryPrice(bids.get(i).getTryPrice()).
+                successStatus(successStatus).
+                createdAt(bids.get(i).getCreatedAt()).
+                build();
+        }).collect(Collectors.toList());
+        // 한번에 insert
+        recodeRepositoryInterfase.saveAll(recode);
+        // bid에 있는 데이터 삭제
+        bidRepository.deleteByGoodsId(goodsId);
+    }
+
+    @Transactional
+    public void cancelBid(BidRequest.CancelBidDTO dto){
+        bidRepository.deleteBid(dto.getGoodsId(),dto.getUserId());
+        UserAccount ua = userAccountRepository.findById(dto.getUserId());
+        ua.updateUserInfo(dto.getTryPrice());
+    }
 
 }
