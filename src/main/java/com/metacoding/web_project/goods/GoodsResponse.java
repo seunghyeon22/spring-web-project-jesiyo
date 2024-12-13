@@ -26,7 +26,7 @@ public class GoodsResponse {
 
         String endAt;
 
-        public GoodsDetailDTO(Goods goods, Integer bidTryPrice) {
+        public GoodsDetailDTO(Goods goods, Integer bidTryPrice, String formattedEndAt) {
             this.id = goods.getId();
             this.title = goods.getTitle();
             this.category = goods.getCategory().getName();
@@ -36,7 +36,7 @@ public class GoodsResponse {
             this.startingPrice = goods.getStartingPrice();
             this.tryPrice = bidTryPrice;
             //종료기간
-            this.endAt = formatRemainingTime(goods.getEndAt());
+            this.endAt = formattedEndAt;
         }
     }
 

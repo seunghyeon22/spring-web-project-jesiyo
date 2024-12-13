@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static com.metacoding.web_project._core.util.FormatDate.formatRemainingTime;
+
 @RequiredArgsConstructor
 @Service
 public class GoodsService {
@@ -35,7 +37,9 @@ public class GoodsService {
                     .orElse(0); //데이터가 없을 경우 tryPrice 0으로 설정
         }
 
-        return new GoodsResponse.GoodsDetailDTO(goods, tryPrice);
+        String formattedEndAt = formatRemainingTime(goods.getEndAt());
+
+        return new GoodsResponse.GoodsDetailDTO(goods, tryPrice, formattedEndAt);
 
     }
 

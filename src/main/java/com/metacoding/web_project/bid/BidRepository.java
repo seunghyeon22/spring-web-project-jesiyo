@@ -56,16 +56,18 @@ public class BidRepository {
     }
 
     // 최종 낙찰 금액을 조회해서 구매자 ID 찾아내는 메서드
-    public Optional<Bid> findByTryPrice(Integer tryPrice) {
+    public Optional<Bid> findByTryPriceAndGoodsId(Integer tryPrice,Integer goodsId) {
 
         String query = """
                 select b.* from bid_tb b
                 join `user_tb` u on b.buyer_id = u.id
-                where b.try_price = ?
+                where b.try_price = ? and b.goods_id = ?
                 """;
 
         Query q = em.createNativeQuery(query, Bid.class);
         q.setParameter(1, tryPrice);
+        q.setParameter(2, goodsId);
+
         return Optional.ofNullable((Bid) q.getSingleResult());
     }
 

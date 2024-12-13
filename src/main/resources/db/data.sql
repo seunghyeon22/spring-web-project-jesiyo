@@ -30,7 +30,7 @@ insert into category_tb(name, img_url) values ('카테고리6', '/upload/categor
 
 -- goods_tb 더미데이터
 
-insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status) values ('강아지 산책줄 나눔합니다.', '4', '2', '강아지 산책줄 나눔 중입니다.', '없습니다.', 1000, now(),'2024-12-10 23:00:00', 0);
+insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status) values ('강아지 산책줄 나눔합니다.', '4', '2', '강아지 산책줄 나눔 중입니다.', '없습니다.', 1000, '2024-12-10 12:20:00','2024-12-13 12:55:00', 0);
 insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status) values ('책상 팝니다', '7', '1', '2년 썼고 생활기스 있어요.', '없습니다', 20000, now(),'2024-12-12 22:00:00', 0);
 insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status) values ('냄비 팔아요', '8', '2', '산지 얼마 안돼서 새것 같아요.', '없습니다', 5000, now(),'2024-12-11 21:00:00', 0);
 insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status) values ('작년에 산 노트북 입니다.', '5', '2', '작년에 사서 몇 번 안썼어요.', '없습니다', 100000, now(),'2024-12-15 19:00:00', 0);
