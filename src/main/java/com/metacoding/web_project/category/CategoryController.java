@@ -17,8 +17,7 @@ import java.util.List;
 public class CategoryController {
     private final CategoryService categoryService;
 
-    // 로그인 구현 시 경로를 /admin/category 로 변경 예정
-    @GetMapping("/category")
+    @GetMapping("/admin/category")
     public String category(Model model) {
 
         List<CategoryResponse.CategoryDTO> DTOList = categoryService.findAllCategory();

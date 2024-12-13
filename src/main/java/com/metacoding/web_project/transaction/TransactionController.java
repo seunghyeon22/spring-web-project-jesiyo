@@ -16,8 +16,7 @@ import java.util.List;
 public class TransactionController {
     private final TransactionService transactionService;
 
-    // 로그인 구현 시 경로를 /admin/auction-complete 로 변경 예정
-    @GetMapping("/auction-complete")
+    @GetMapping("/admin/auction-complete")
     public String auctionComplete(Model model, @RequestParam(defaultValue = "") String divide, @RequestParam(defaultValue = "") String search, @RequestParam(defaultValue = "") String page) {
         List<TransactionResponse.TransactionDTO> dtoList = transactionService.findTransactionTBAndUser(divide, search, page);
         Integer rowCount = transactionService.findTransactionsCount(divide, search);

@@ -117,18 +117,18 @@
 
     function changePage(pageNumber) {
         const reportDivide = document.getElementById('report-divide').value;
-        window.location.href = `/confirm-report?page=${pageNumber}&divide=${reportDivide}`;
+        window.location.href = `/admin/confirm-report?page=${pageNumber}&divide=${reportDivide}`;
     }
 
 
     function handleSearch1(event) {
         event.preventDefault();
-        window.location.href = `/confirm-report?divide=all`;
+        window.location.href = `/admin/confirm-report?divide=all`;
     }
 
     function handleSearch2(event) {
         event.preventDefault();
-        window.location.href = `/confirm-report?divide=waiting`;
+        window.location.href = `/admin/confirm-report?divide=waiting`;
     }
 
     function showModal(reportId, sellerName, sellerPhone, buyerName, buyerPhone, reason, available) {
@@ -162,7 +162,7 @@
     function confirmAction(action) {
         const reportId = document.querySelector("#myModal #reportId").value;
         let message = '';
-        let url = '/transaction/update';
+        let url = '/admin/transaction/update';
 
         if (action === 'cancel') {
             message = '거래를 취소하시겠습니까?';

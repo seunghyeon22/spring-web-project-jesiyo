@@ -21,9 +21,8 @@ public class BidController {
 
     private final HttpSession session;
 
-    // 로그인 구현 시 경로를 /admin/auction-progress 로 변경 예정
     // 경매 중인 물품 페이지 이동 (관리자)
-    @GetMapping("/auction-progress")
+    @GetMapping("/admin/auction-progress")
     public String auctionProgress(Model model, @RequestParam(defaultValue = "") String divide, @RequestParam(defaultValue = "") String search, @RequestParam(defaultValue = "") String page) {
         List<BidResponse.BidDTO> dtoList = bidService.findBidsAndUser(divide, search, page);
         Integer rowCount = bidService.findBidsCount(divide, search);
