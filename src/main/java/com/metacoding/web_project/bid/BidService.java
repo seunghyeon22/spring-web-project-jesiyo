@@ -3,7 +3,6 @@ package com.metacoding.web_project.bid;
 import com.metacoding.web_project._core.error.ex.Exception400;
 import com.metacoding.web_project.user.User;
 import com.metacoding.web_project.user.UserRepository;
-import com.metacoding.web_project._core.error.ex.Exception400;
 import com.metacoding.web_project.goods.Goods;
 import com.metacoding.web_project.goods.GoodsRepository;
 import com.metacoding.web_project.recode.Recode;
@@ -11,13 +10,13 @@ import com.metacoding.web_project.recode.RecodeRepository;
 import com.metacoding.web_project.recode.RecodeRepositoryInterface;
 import com.metacoding.web_project.transaction.Transaction;
 import com.metacoding.web_project.transaction.TransactionRepository;
-import com.metacoding.web_project.user.UserRepository;
 import com.metacoding.web_project.useraccount.UserAccount;
 import com.metacoding.web_project.useraccount.UserAccountRepository;
 import com.metacoding.web_project._core.util.PageUtil;
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.query.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -124,10 +123,10 @@ public class BidService {
 
     // 경매 참여중인 물품(구매) 목록 보기
     @Transactional // 트랜잭션 범위 내에서 조회하기 위함(지연 로딩 예외 발생 방지)
-    public List<BidResponse.ParticipatingAuctionDTO> participatingAuctionList() {
+    public List<BidResponse.ParticipatingAuctionDTO> participatingAuctionList(Integer id, String page) {
 
         // 임시로 buyerId = 1인 경우만 가져옴 로그인과 연결할 때 바꿀것
-        List<Bid> bidList = bidRepository.findByBuyerIdForBuy(1);
+        List<Bid> bidList = bidRepository.findByBuyerIdForBuy(id, PageUtil.offsetCount(page, 5), 5);
 
         // ParticipatingAuctionDTO로 변환
         List<BidResponse.ParticipatingAuctionDTO> participatingAuctionDtoList = new ArrayList<>();
@@ -147,6 +146,10 @@ public class BidService {
             participatingAuctionDtoList.add(participatingAuctionDto);
         }
         return participatingAuctionDtoList;
+    }
+
+    public Integer findAllBidCount(Integer userId) {
+        return bidRepository.findAllBidCount(userId);
     }
 
     // 경매 취소

@@ -15,21 +15,22 @@ import java.util.List;
 public class ReportController {
     private final ReportService reportService;
 
-    // 로그인 구현 시 경로를 /admin/confirm-report 로 변경 예정
-    @GetMapping("/confirm-report")
+    // 신고 관련 관리자 페이지
+    @GetMapping("/admin/confirm-report")
     public String confirmReport(Model model, @RequestParam(defaultValue = "") String divide, @RequestParam(defaultValue = "") String page) {
         List<ReportResponse.ReportDTO> dtoList = reportService.findReportJoinAnotherInfo(divide, page); // 조건에 따라 알맞은 데이터 반환
         Integer rowCount = reportService.findReportCount(divide); // 행의 총 개수 반환
         model.addAttribute("model", dtoList);
-        model.addAttribute("pagination", PageUtil.returnToPageDTO(page, rowCount));
+        model.addAttribute("pagination", PageUtil.returnToPageDTO(page, rowCount, 10));
         model.addAttribute("status", divide);
         return "admin/confirm-report";
     }
 
-    @PostMapping("/transaction/update")
+    // 신고 창 모달에서 경매취소했을 때 (관리자)
+    @PostMapping("/admin/transaction/update")
     public String updateReport(Model model, @RequestParam(defaultValue = "") String reportId, @RequestParam(defaultValue = "") String method) {
         reportService.reportTreatment(reportId, method);
-        return "redirect:/confirm-report";
+        return "redirect:/admin/confirm-report";
     }
 
 }

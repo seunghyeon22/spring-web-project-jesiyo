@@ -130,7 +130,7 @@ public class BidRepository {
     }
 
     // 경매 참여중인 물품(구매) 목록 보기
-    public List<Bid> findByBuyerIdForBuy(Integer id) {
+    public List<Bid> findByBuyerIdForBuy(Integer id, Integer offset, Integer limit) {
 
         String query = """ 
                 select * from bid_tb 
@@ -139,10 +139,24 @@ public class BidRepository {
 
         Query q = em.createNativeQuery(query, Bid.class);
         q.setParameter(1, id);
-        
+        q.setFirstResult(offset);
+        q.setMaxResults(limit);
         return q.getResultList(); // List 반환
 
     }
+
+    // 유저 마이페이지 경매 참여중인 물품 페이지에서 bid 테이블의 총 행 개수 반환 메서드
+    public Integer findAllBidCount(Integer userId) {
+        String query = """ 
+                select count(*) from bid_tb 
+                 where try_price in (select max(try_price) from bid_tb where buyer_id = ? group by goods_id)
+                """;
+
+        Query q = em.createNativeQuery(query);
+        q.setParameter(1, userId);
+        return ((Number) q.getSingleResult()).intValue();
+    }
+
 
     // 경매 참여중인 물품(구매)의 최고 입찰가 조회
     public Bid findMaxPrice(Integer goodsId) {

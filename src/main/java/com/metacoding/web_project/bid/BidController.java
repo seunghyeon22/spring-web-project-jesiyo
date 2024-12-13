@@ -1,18 +1,19 @@
 package com.metacoding.web_project.bid;
 
 import com.metacoding.web_project._core.CommonResp;
+import com.metacoding.web_project.user.User;
 import jakarta.servlet.http.HttpSession;
 import com.metacoding.web_project._core.util.PageUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
@@ -21,13 +22,12 @@ public class BidController {
 
     private final HttpSession session;
 
-    // 로그인 구현 시 경로를 /admin/auction-progress 로 변경 예정
     // 경매 중인 물품 페이지 이동 (관리자)
-    @GetMapping("/auction-progress")
+    @GetMapping("/admin/auction-progress")
     public String auctionProgress(Model model, @RequestParam(defaultValue = "") String divide, @RequestParam(defaultValue = "") String search, @RequestParam(defaultValue = "") String page) {
         List<BidResponse.BidDTO> dtoList = bidService.findBidsAndUser(divide, search, page);
         Integer rowCount = bidService.findBidsCount(divide, search);
-        model.addAttribute("pagination", PageUtil.returnToPageDTO(page, rowCount));
+        model.addAttribute("pagination", PageUtil.returnToPageDTO(page, rowCount, 10));
         model.addAttribute("model", dtoList);
         model.addAttribute("divide", divide);
         model.addAttribute("search", search);
@@ -36,7 +36,7 @@ public class BidController {
     }
 
     // 경매 중인 물품(판매) 화면 열기
-    @GetMapping("/myPage-being-auctioned")
+    @GetMapping("/s/myPage-being-auctioned")
     public String beingAuctioned(Model model) {
         List<BidResponse.BeingAuctionedDTO> beingAuctionedList = bidService.beingAuctionedList();
         model.addAttribute("models", beingAuctionedList);
@@ -44,9 +44,11 @@ public class BidController {
     }
 
     // 경매 참여 중인 물품(구매) 화면 열기
-    @GetMapping("/myPage-participating-auction")
-    public String participatingAuction(Model model) {
-        List<BidResponse.ParticipatingAuctionDTO> participatingAuctionList = bidService.participatingAuctionList();
+    @GetMapping("/s/myPage-participating-auction")
+    public String participatingAuction(@AuthenticationPrincipal User user, Model model, @RequestParam(defaultValue = "") String page) {
+        List<BidResponse.ParticipatingAuctionDTO> participatingAuctionList = bidService.participatingAuctionList(user.getId(), page);
+        Integer rowCount = bidService.findAllBidCount(user.getId());
+        model.addAttribute("pagination", PageUtil.returnToPageDTO(page, rowCount, 5));
         model.addAttribute("models", participatingAuctionList);
         return "participating-auction";
     }

@@ -36,7 +36,7 @@ public class RecodeController {
     public String participateFail(@AuthenticationPrincipal User user, Model model, @RequestParam(defaultValue = "") String divide, @RequestParam(defaultValue = "") String search, @RequestParam(defaultValue = "") String page) {
         List<RecodeResponse.ParticipateFailDTO> dtoList = recodeService.findFailRecodeByUserId(user.getId(), divide, search, page);
         Integer rowCount = recodeService.countFailedRecodeByUserId(user.getId(), divide, search);
-        model.addAttribute("pagination", PageUtil.returnToPageDTO(page, rowCount));
+        model.addAttribute("pagination", PageUtil.returnToPageDTO(page, rowCount, 10));
         model.addAttribute("divide", divide);
         model.addAttribute("search", search);
         model.addAttribute("model", dtoList);
