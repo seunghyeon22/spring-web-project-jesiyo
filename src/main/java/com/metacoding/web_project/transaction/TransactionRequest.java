@@ -34,6 +34,29 @@ public class TransactionRequest {
                     .build();
 
         }
+    }
 
+    // 낙찰된 물품(판매) 화면 - 송장번호등록 DTO
+    // transaction_tb 테이블의 delivery_num update
+    @Data
+    public static class UpdateDeliveryNumberDTO {
+        private Integer transactionId;
+        private Integer deliveryNumber;
+    }
+
+    // 낙찰된 물품(판매) 화면 - 판매 확정하기 DTO
+    // transaction_tb 테이블의 seller_status = 1로 update
+    @Data
+    public static class UpdateSellerStatusDTO {
+        private Integer transactionId;
+        private Integer sellerStatus;
+    }
+
+    // 낙찰된 물품(판매) 화면 - 판매 취소하기 DTO
+    // transaction_tb 테이블의 transaction_status = 1로 update
+    @Data
+    public static class UpdateTransactionStatusDTO {
+        private Integer transactionId;
+        private Integer transactionStatus;
     }
 }
