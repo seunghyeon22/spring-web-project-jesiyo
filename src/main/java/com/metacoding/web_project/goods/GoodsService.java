@@ -1,8 +1,6 @@
 package com.metacoding.web_project.goods;
 
-import com.metacoding.web_project._core.error.ex.Exception400;
 import com.metacoding.web_project._core.error.ex.Exception404;
-import com.metacoding.web_project._core.util.PageUtil;
 import com.metacoding.web_project.bid.Bid;
 import com.metacoding.web_project.bid.BidRepository;
 import com.metacoding.web_project.category.Category;
@@ -66,28 +64,16 @@ public class GoodsService {
     // 제품 등록하기
     @Transactional
     public void goodsSave(GoodsRequest.GoodsSaveDTO goodsSaveDTO) {
-        if (goodsSaveDTO.getCategoryId() == null) {
-            throw new Exception400("카테고리를 제대로 선택하세요");
-        }
-        if (goodsSaveDTO.getSellerId() == null) {
-            throw new Exception400("판매자 아이디를 확인할 수 없습니다.");
-        }
-        if (goodsSaveDTO.getImgUrl() == null) {
-            throw new Exception400("이미지를 업로드 해주세요");
-        }
-        if (goodsSaveDTO.getEndAt() == null) {
-            throw new Exception400("종료날짜를 선택하세요");
-        }
-        if (goodsSaveDTO.getStartingPrice() == null) {
-            throw new Exception400("시작 입찰가를 입력하세요");
-        }
+
         Category category = categoryRepository.findCategoryById(goodsSaveDTO.getCategoryId());
         User user = userRepository.findById(goodsSaveDTO.getSellerId());
         goodsRepository.save(goodsSaveDTO.toEntity(category, user));
     }
 
+
+
     public List<GoodsResponse.GoodsDTO> getGoodsList(Integer categoryId, Integer page, Integer line) {
-        List<Goods> goodList = goodsRepository.findByCategoryId(categoryId,page,line)
+        List<Goods> goodList = goodsRepository.findByCategoryId(categoryId, page, line)
                 .orElseThrow(() -> new Exception404("해당 카테고리의 물품이 존재하지 않습니다."));
 
         List<GoodsResponse.GoodsDTO> goodsList = new ArrayList<>();
@@ -121,11 +107,12 @@ public class GoodsService {
         }
         return goodsList;
     }
+
     // 내가 경매에 내놓은 물품 리스트 보기
-    public List<GoodsResponse.UserGoodsDTO> mySellGoods(String username){
+    public List<GoodsResponse.UserGoodsDTO> mySellGoods(String username) {
         User user = userRepository.findByUsername(username);
         List<Goods> bySellGoods = goodsRepository.findBySellGoods(user.getId());
-       // PageUtil.offsetCount(page, 5), 5
+        // PageUtil.offsetCount(page, 5), 5
         List<GoodsResponse.UserGoodsDTO> goodsList = new ArrayList<>();
 
         for (Goods goods : bySellGoods) {

@@ -11,12 +11,13 @@ public class ExceptionHandlerAdvice {
     @ResponseBody
     @ExceptionHandler(Exception400.class)
     public String err400(Exception400 e) {
+        String message = e.getMessage().replace("'", "\\'");
         String body = """
                 <script>
                     alert('${msg}');
                     history.back();
                 </script>
-                """.replace("${msg}",e.getMessage());
+                """.replace("${msg}", message);
 
         return body;
     }

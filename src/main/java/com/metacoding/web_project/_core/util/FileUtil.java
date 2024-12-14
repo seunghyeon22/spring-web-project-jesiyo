@@ -12,6 +12,7 @@ import java.util.UUID;
 public class FileUtil {
 
     public static String fileSave(MultipartFile file) {
+        System.out.println(file);
         String imgName = UUID.randomUUID()+"_"+file.getOriginalFilename();
         String profileUrl = "images/"+imgName;
         String dbUrl = "/upload/"+imgName;
