@@ -46,22 +46,25 @@
             <hr>
             <div class="my__list__item__box2">
                 {{#goods}}
-                <a href="/goods-detail/{{id}}" style="text-decoration: none; color: #f96506;">
-                    <div class="card" style="border: 2px solid orange">
-                        <input type="hidden" class="id" value="{{id}}">
-                        <img class="card__img__top" src="{{imgUrl}}" alt="ListCard image">
-                        <div class="card__body">
-                            <div style="min-height: 100px">
-                                <h4 class="card__title" style="margin-bottom: 15px">{{title}}</h4>
+                    {{#sellAvailable}}
+                        <a href="/goods-detail/{{id}}" style="text-decoration: none; color: #f96506;">
+                            <div class="card" style="border: 2px solid orange">
+                                <input type="hidden" class="id" value="{{id}}">
+                                <img class="card__img__top" src="{{imgUrl}}" alt="ListCard image">
+                                <div class="card__body">
+                                    <div style="min-height: 100px">
+                                        <h4 class="card__title" style="margin-bottom: 15px">{{title}}</h4>
+                                    </div>
+                                    <p class="card__text">판매자: {{seller}}</p>
+                                    <p class="card__text">카테고리: {{category}}</p>
+                                    <p class="card__text">시작 입찰가: {{startingPrice}}</p>
+                                    <p class="card__text">{{tryPrice}}</p>
+                                    <p class="card__text">{{endAt}}</p>
+                                </div>
                             </div>
-                        <p class="card__text">판매자: {{seller}}</p>
-                        <p class="card__text">카테고리: {{category}}</p>
-                        <p class="card__text">시작 입찰가: {{startingPrice}}</p>
-                        <p class="card__text">{{tryPrice}}</p>
-                        <p class="card__text">{{endAt}}</p>
-                        </div>
-                    </div>
-                </a>
+                        </a>
+                    {{/sellAvailable}}
+
                 {{/goods}}
                 <div class="t1-btn-box">
                     <button type="button" class="t1-more-btn btn btn-secondary" onclick="moreList()">더보기</button>

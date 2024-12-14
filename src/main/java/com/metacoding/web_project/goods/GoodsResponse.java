@@ -58,6 +58,8 @@ public class GoodsResponse {
       private String tryPrice;
       private String endAt;
 
+      private boolean sellAvailable = true;
+
         @Builder
         public GoodsDTO(Goods goods, Integer bidTryPrice) {
             this.id = goods.getId();
@@ -68,6 +70,11 @@ public class GoodsResponse {
             this.startingPrice = goods.getStartingPrice();
             this.tryPrice = bidTryPrice==0? "입찰자가 없습니다.":"최고 입찰가: "+String.valueOf(bidTryPrice);
             this.endAt = formatRemainingTime(goods.getEndAt());
+            if (formatRemainingTime(goods.getEndAt()).equals("경매가 종료되었습니다.")) {
+                sellAvailable = false;
+            }
+
+
         }
 
 
