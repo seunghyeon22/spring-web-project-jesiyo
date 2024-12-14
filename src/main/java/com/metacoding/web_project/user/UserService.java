@@ -62,18 +62,20 @@ public class UserService implements UserDetailsService {
     @Transactional
     public void 비밀번호변경(int id, UserRequest.ChangePwDTO changePwDTO) {
 
-        String enPassword = passwordEncoder.encode(changePwDTO.getPassword());
         String enNewPassword = passwordEncoder.encode(changePwDTO.getNewPassword());
+        Optional<User> user = userRepository.changePw(id);
+        if(user.isPresent()) {
+            user.get().updatePassword(enNewPassword);
+        } else {
+            throw new Exception404("해당하는 유저를 찾을 수 없습니다.");
+        }
 
-        userRepository.changePw(id, enPassword, enNewPassword);
-        System.out.println(enPassword);
-        System.out.println(enNewPassword);
     }
 
     @Transactional
     public UserResponse.CreditDTO 내정보보기(int id) {
          UserAccount userAccount = userRepository.findByIdUserInfo(id)
-                .orElseThrow(()-> new Exception404("0"));
+                .orElseThrow(()-> new Exception404("정보를 불러오는데 실패했습니다."));
 
          return new UserResponse.CreditDTO(userAccount);
     }

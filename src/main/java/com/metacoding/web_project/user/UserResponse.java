@@ -33,7 +33,12 @@ public class UserResponse {
             this.postNum = user.getUser().getPostNum();
             this.addr = user.getUser().getAddr();
             this.addrDetail = user.getUser().getAddrDetail();
-            this.account = user.getAccount();
+            if (user.getAccount() == null) {
+                this.account = "등록된 계좌가 없습니다.";
+            } else {
+                this.account = user.getAccount();
+            }
+
         }
     }
 

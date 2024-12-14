@@ -17,14 +17,14 @@ async function headerLoad(){
             page.innerHTML = `
             <div>
             <a href="/logout">로그아웃</a>
-            <a href="/user-info/${userDetailes.id}">마이페이지</a>
+            <a href="/s/user-info/">마이페이지</a>
             </div>
             `;
-        } else if (userDetailes.role === "ROLE_ADMIN,ROLE_USER") {
+        } else if (userDetailes.role === "ROLE_ADMIN") {
             page.innerHTML = `
             <div>
             <a href="/logout">로그아웃</a>
-            <a href="/confirm-report">관리자페이지</a>
+            <a href="/admin/category">관리자페이지</a>
             </div>
             `;
         }

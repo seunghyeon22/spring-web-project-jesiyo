@@ -20,7 +20,7 @@ public class CategoryController {
     @GetMapping("/admin/category")
     public String category(Model model) {
 
-        List<CategoryResponse.CategoryDTO> DTOList = categoryService.findAllCategory();
+        List<CategoryResponse.CategoryDTO> DTOList = categoryService.findAllCategory(null);
 
         model.addAttribute("model", DTOList);
         return "admin/category";
@@ -42,7 +42,7 @@ public class CategoryController {
     @ResponseBody
     @GetMapping("/api/v1/category")
     public ResponseEntity<?> category() {
-         List<CategoryResponse.CategoryDTO> dto = categoryService.findAllCategory();
+         List<CategoryResponse.CategoryDTO> dto = categoryService.findAllCategory(null);
          CommonResp<List<CategoryResponse.CategoryDTO>> resp = CommonResp.success(dto);
          return new ResponseEntity<>(resp, HttpStatus.OK);
     }
