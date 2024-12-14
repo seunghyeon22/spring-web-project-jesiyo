@@ -22,12 +22,11 @@ public class GoodsResponse {
         String content;
         String imgUrl;
         Integer startingPrice;
-
-        String tryPrice = "아직 입찰자가 없습니다";
-
+        Integer tryPrice;
         String endAtFront;
-
         Timestamp endAtBack;
+
+        boolean hasBuyer = true;
 
         public GoodsDetailDTO(Goods goods, Integer bidTryPrice, String formattedEndAt) {
             this.id = goods.getId();
@@ -37,8 +36,9 @@ public class GoodsResponse {
             this.content = goods.getContent();
             this.imgUrl = goods.getImgUrl();
             this.startingPrice = goods.getStartingPrice();
-            if (bidTryPrice != 0) {
-                this.tryPrice = "최고입찰가 : " + String.valueOf(bidTryPrice) + "원";
+            this.tryPrice = bidTryPrice;
+            if (tryPrice == 0) {
+                hasBuyer = false;
             }
 
             //종료기간

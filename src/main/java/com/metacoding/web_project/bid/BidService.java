@@ -158,7 +158,9 @@ public class BidService {
         // 경매 취소할 물품의 경매목록 가져오기
         List<Bid> bids = bidRepository.findAllByGoodsId(goodsId);
         if(bids.isEmpty()) {
-            throw  new Exception400("경매 데이터가 없습니다.");
+            Optional<Goods> goods = goodsRepository.findById(goodsId);
+            goods.get().cancelAuction();
+            return;
         }
 
         for(Bid bid : bids) {
@@ -185,9 +187,16 @@ public class BidService {
     }
     // 조기 종료 - 물품의 status를 변경
     @Transactional
-    public void endEarlyAuction1(Integer goodsId) {
+    public boolean endEarlyAuction1(Integer goodsId) {
         Optional<Goods> goods = goodsRepository.findById(goodsId);
+        List<Bid> bids = bidRepository.findAllByGoodsId(goodsId);
+        if (bids.isEmpty()) {
+            // 입찰자가 없기 때문에 조기 종료라는 개념이 없다. << 경매 취소만 할 수 있도록 해야 함
+            return false;
+        }
         goods.get().endAuction();
+        
+        return true;
     }
     // 조기 종료 - part2
     @Transactional
@@ -196,6 +205,7 @@ public class BidService {
         Goods goods = goodsRepository.findById(goodsId).get();
         // 종료하는 물품의 입찰 정보를 모두 불러옴
         List<Bid> bids = bidRepository.findAllByGoodsId(goodsId);
+        
         // 최고 경매
         Bid bid = bids.get(bids.size() - 1);
         // 낙찰 테이블 등록
@@ -228,6 +238,7 @@ public class BidService {
         recodeRepositoryInterfase.saveAll(recode);
         // bid에 있는 데이터 삭제
         bidRepository.deleteByGoodsId(goodsId);
+        
     }
 
     @Transactional

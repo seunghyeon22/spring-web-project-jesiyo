@@ -40,14 +40,14 @@ public class TransactionController {
     }
 
     // 낙찰된 물품(판매) 송장 번호 등록 -> transaction_tb 테이블의 delivery_number update
-    @PostMapping("/deliveryNumber/update")
+    @PostMapping("/s/deliveryNumber/update")
     public String deliveryNumUpdate(TransactionRequest.UpdateDeliveryNumberDTO updateDeliveryNumberDTO) {
         transactionService.updateDeliveryNumber(updateDeliveryNumberDTO);
-        return "redirect:/myPage-complete-auction";
+        return "redirect:/s/myPage-complete-auction";
     }
 
     // 낙찰된 물품(판매) 판매 확정하기 -> transaction_tb 테이블의 seller_status = 1로 update
-    @PostMapping("/sellerStatus/update")
+    @PostMapping("/s/sellerStatus/update")
     @ResponseBody
     public ResponseEntity<?> updateSellerStatus(@RequestBody TransactionRequest.UpdateSellerStatusDTO updateSellerStatusDTO) {
         transactionService.updateSellerStatus(updateSellerStatusDTO);
@@ -57,7 +57,7 @@ public class TransactionController {
     }
 
     // 낙찰된 물품(판매) 판매 취소하기 -> transaction_tb 테이블의 transaction_status = 1로 update
-    @PostMapping("/transactionStatusForSeller/update")
+    @PostMapping("/s/transactionStatusForSeller/update")
     @ResponseBody
     public ResponseEntity<?> updateTransactionStatusForSeller(@RequestBody TransactionRequest.UpdateTransactionStatusForSellerDTO updateTransactionStatusForSellerDTO) {
         transactionService.updateTransactionStatusForSeller(updateTransactionStatusForSellerDTO);
@@ -75,7 +75,7 @@ public class TransactionController {
     }
 
     // 낙찰된 물품(구매) 구매 확정하기 -> transaction_tb 테이블의 buyer_status = 1로 update
-    @PostMapping("/buyerStatus/update")
+    @PostMapping("/s/buyerStatus/update")
     @ResponseBody
     public ResponseEntity<?> updateBuyerStatus(@RequestBody TransactionRequest.UpdateBuyerStatusDTO updateBuyerStatusDTO) {
         transactionService.updateBuyerStatus(updateBuyerStatusDTO);
@@ -85,7 +85,7 @@ public class TransactionController {
     }
 
     // 낙찰된 물품(구매) 구매 취소하기 -> transaction_tb 테이블의 transaction_status = 1로 update
-    @PostMapping("/transactionStatusForBuyer/update")
+    @PostMapping("/s/transactionStatusForBuyer/update")
     @ResponseBody
     public ResponseEntity<?> updateTransactionStatusForBuyer(@RequestBody TransactionRequest.UpdateTransactionStatusForBuyerDTO updateTransactionStatusForBuyerDTO) {
         transactionService.updateTransactionStatusForBuyer(updateTransactionStatusForBuyerDTO);

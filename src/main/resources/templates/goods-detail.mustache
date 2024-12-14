@@ -15,135 +15,167 @@
 
 
 {{>layout/header}}
-    <div class="container" style="margin-top: 35px;">
-        <div class="left">
-            <img class="goods__detail__img" src="goodsPng/산책줄.png" alt="DetailPage-img">
-        </div><!--left End-->
+<div class="container" style="margin-top: 35px;">
+    <div class="left">
+        <img class="goods__detail__img" src="goodsPng/산책줄.png" alt="DetailPage-img">
+    </div><!--left End-->
 
-        <div class="right">
-            <div class="p__title"><h2>{{goods.title}}</h2></div><div id="goodsId" hidden="hidden">{{goods.id}}</div>
-            <hr>
+    <div class="right">
+        <div class="p__title"><h2>{{goods.title}}</h2></div>
+        <div id="goodsId" hidden="hidden">{{goods.id}}</div>
+        <hr>
 
-            <div class="d-flex justify-content-start" style="margin-top: 20px;">
-                <div class="p__name"><h3>{{goods.category}}</h3></div>
+        <div class="d-flex justify-content-start" style="margin-top: 20px;">
+            <div class="p__name"><h3>{{goods.category}}</h3></div>
 
-                <div style="margin-top: 10px; margin-left: 10px;">{{goods.endAtFront}}</div> <!--시간 변경될 수 있도록 바꿔야하나?-->
+            <div style="margin-top: 10px; margin-left: 10px;">{{goods.endAtFront}}</div> <!--시간 변경될 수 있도록 바꿔야하나?-->
+        </div>
+
+        <div class="d-flex justify-content-start" style="margin-top: 15px;">
+            <p style="font-weight: bold;font-size: 25px;">판매자ID:</p>
+            <p style="padding: 10px;" id="seller">{{goods.seller}}</p><!--지금 가져온거 username 아님 // 그냥 사용자 이름-->
+        </div>
+
+        <div style="width: 65%">
+            <p style="font-weight: bold;">판매자 양심온도</p>
+            <div class="progress" role="progressbar" aria-label="Danger example" aria-valuenow="55" aria-valuemin="0"
+                 aria-valuemax="100">
+                <div class="progress-bar bg-warning p-3" style="width: 55%"></div>
             </div>
-    
-            <div class="d-flex justify-content-start" style="margin-top: 15px;">
-                <p style="font-weight: bold;font-size: 25px;">판매자ID:</p>
-                <p style="padding: 10px;" id="seller">{{goods.seller}}</p><!--지금 가져온거 username 아님 // 그냥 사용자 이름-->
-            </div>
+        </div>
 
-            <div style="width: 65%">
-                <p style="font-weight: bold;">판매자 양심온도</p>
-                <div class="progress" role="progressbar" aria-label="Danger example" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100">
-                    <div class="progress-bar bg-warning p-3" style="width: 55%"></div>
+        <h4 style="margin-top: 25px;">상품 설명</h4>
+        <div class="p__info" style="margin-bottom: 35px; border: 2px solid; border-radius: 10px;">
+            {{goods.content}}
+        </div>
+
+        <div class="d-flex justify-content-center">
+            {{#goods.hasBuyer}}
+                <div class="now__charge">
+                    최고 입찰가 :
+                    <input type="text" id="successPrice" value="{{goods.tryPrice}}" readonly
+                           style="background-color: transparent; border: none;">
+                    원
+
+
                 </div>
-            </div>
-            
-            <h4 style="margin-top: 25px;">상품 설명</h4>
-            <div class="p__info" style="margin-bottom: 35px; border: 2px solid; border-radius: 10px;">
-                {{goods.content}}
-            </div>
+            {{/goods.hasBuyer}}
+            {{^goods.hasBuyer}}
+                <div class="now__charge">
+                    아직 입찰자가 없습니다
+                    <input type="text" id="successPrice" value="{{goods.tryPrice}}" readonly hidden="hidden">
+                </div>
+            {{/goods.hasBuyer}}
 
-            <div class="d-flex justify-content-center">
-                <div class="now__charge" id="successPrice">{{goods.tryPrice}}</div>
-                <div class="start__charge">시작 입찰가: {{goods.startingPrice}}원</div>
-            </div>
+            <div class="start__charge">시작 입찰가: {{goods.startingPrice}}원</div>
+        </div>
 
-            <!--부트스트랩 MODAL 형식-->
-            <!-- Button to Open the Modal -->
-             <div class="d-flex justify-content-end" id="bidModalContainer">
-                <button type="button" data-bs-toggle="modal" data-bs-target="#myModal" style="font-weight: bold; background-color: #f96506; width: 170px; height: 50px; border-radius: 10px; margin-top: 20px;">
-                    입찰하기
-                </button> 
-             </div>
-            
-            <!-- The Modal -->
-            <div class="modal" id="myModal">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                
-                        <!-- Modal Header -->
-                        <div class="modal-header">
+        <!--부트스트랩 MODAL 형식-->
+        <!-- Button to Open the Modal -->
+        <div class="d-flex justify-content-end" id="bidModalContainer">
+            <button type="button" data-bs-toggle="modal" data-bs-target="#myModal"
+                    style="font-weight: bold; background-color: #f96506; width: 170px; height: 50px; border-radius: 10px; margin-top: 20px;">
+                입찰하기
+            </button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
                         <h4 class="modal-title">입찰가를 제시해주세요.</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                        </div>
-                
-                        <!-- Modal body -->
-                        <div class="modal-body">
-                            <form action="">
-                                <input type="text" class="form-control form-control-lg" placeholder="현재 최고 입찰가: {{goods.tryPrice}}" readonly><br>
-                                <input type="text" class="form-control form-control-lg" name="입찰가" placeholder="입찰가 입력하기..." id="tryPrice"><br>
-                                <!--name에 "입찰가" 변수로 바꾸기-->
-                                <div class="d-flex justify-content-end">
-                                    <button type="button" class="bidding-btn" style="background-color: #f96506; border-radius: 10px;" id="sendBidData">입찰가 제출</button>
-                                </div>
-                            </form>
-                        </div>
-                
-                        <!-- Modal footer -->
-                        <div class="modal-footer">
-                            <p style="color:#ff0000">※</p> <p style="color: gray;">물품은 내 정보의 기본 배송지로 배송됩니다.</p><br>
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                        </div>
-                
                     </div>
-                </div>
-            </div><!--myModal End / 부트스트랩 MODAL 형식 끝-->
-        </div><!--right End-->
 
-    </div><!--container End -->
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <form action="">
+                            <input type="text" class="form-control form-control-lg"
+                                   placeholder="현재 최고 입찰가: {{goods.tryPrice}}" readonly><br>
+                            <input type="number" class="form-control form-control-lg" name="입찰가"
+                                   placeholder="입찰가 입력하기..." id="tryPrice"><br>
+                            <!--name에 "입찰가" 변수로 바꾸기-->
+                            <div class="d-flex justify-content-end">
+                                <button type="button" class="bidding-btn"
+                                        style="background-color: #f96506; border-radius: 10px;" id="sendBidData">입찰가 제출
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <p style="color:#ff0000">※</p>
+                        <p style="color: gray;">물품은 내 정보의 기본 배송지로 배송됩니다.</p><br>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div><!--myModal End / 부트스트랩 MODAL 형식 끝-->
+    </div><!--right End-->
+
+</div><!--container End -->
 {{>layout/footer}}
 <script>
+    // input의 길이를 능동적으로 변경시키기 위한 메서드
+    document.addEventListener('DOMContentLoaded', function () {
+        var inputField = document.getElementById('successPrice');
+        var valueLength = inputField.value.length;
+
+        // ch 단위로 너비 설정
+        inputField.style.width = (valueLength + 1) + 'ch';
+    });
+
+
     const goodsId = document.querySelector("#goodsId").textContent;
 
     //서버에 입찰시도 데이터 보내기
-    document.querySelector("#sendBidData").addEventListener('click',async function () {
-       const tryPrice = document.querySelector("#tryPrice").value;
+    document.querySelector("#sendBidData").addEventListener('click', async function () {
+        const tryPrice = document.querySelector("#tryPrice").value;
 
-       if (!tryPrice) {
-           alert("입찰가를 입력해주세요.");
-           return;
-       }
+        if (!tryPrice) {
+            alert("입찰가를 입력해주세요.");
+            return;
+        }
 
-       try {
-           const response = await fetch("/catchDetailPageData", {
-               method: 'POST',
-               headers: {
-                   'Content-Type' : 'application/json; charset=utf-8'
-               },
-               body: JSON.stringify({ tryPrice: tryPrice, goodsId: goodsId })
-           });
+        try {
+            const response = await fetch("/s/catchDetailPageData", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json; charset=utf-8'
+                },
+                body: JSON.stringify({tryPrice: tryPrice, goodsId: goodsId})
+            });
 
-           if (!response.ok) {
-               throw new Error("서버 요청에 실패했습니다.");
-           }
+            if (!response.ok) {
+                throw new Error("서버 요청에 실패했습니다.");
+            }
 
-           const data = await response.json(); // 서버 응답처리
-           console.log("서버 응답 데이터: ", data);
+            const data = await response.json(); // 서버 응답처리
 
-           // 성공적으로 저장된 경우 모달 창 닫기
-           const modal = document.querySelector("#myModal");
-           const bootstrapModal = bootstrap.Modal.getInstance(modal);
-           bootstrapModal.hide();
+            // 성공적으로 저장된 경우 모달 창 닫기
+            const modal = document.querySelector("#myModal");
+            const bootstrapModal = bootstrap.Modal.getInstance(modal);
+            bootstrapModal.hide();
 
-           // 페이지 새로고침
-           window.location.reload();
+            // 페이지 새로고침
+            window.location.reload();
 
 
-           alert("입찰이 성공적으로 등록되었습니다.");
-       }catch (error) {
-           console.error("에러 발생: " + error);
-           alert("입찰금액이 현재 최고 입찰 금액보다 높아야합니다.");
-       }
+            alert("입찰이 성공적으로 등록되었습니다.");
+        } catch (error) {
+            alert("입찰금액이 현재 최고 입찰 금액보다 높아야합니다.");
+        }
     });
 
     // 경매시간 over goods Status 변경 요청 함수
-    async function updateGoodsStatus(){
-        try{
-            const response = await fetch('/goods-detail/goodsStatus/update',{
+    async function updateGoodsStatus() {
+        try {
+            const response = await fetch('/goods-detail/goodsStatus/update', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -160,46 +192,44 @@
         const seller = document.querySelector("#seller").innerHTML;
 
         // 낙찰가격
-        const successPrice = document.querySelector("#successPrice").textContent;
+        const successPrice = document.querySelector("#successPrice").value;
 
-        console.log("판매자: " + seller);
-        console.log("최고가: " + successPrice);
         try {
-            await fetch('/goods-detail/saveTransaction',{
+            await fetch('/goods-detail/saveTransaction', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({goodsId: parseInt(goodsId), seller: seller, successPrice: parseInt(successPrice)})
             });
-        }catch (error) {
+        } catch (error) {
             alert("오류 발생: ", error);
         }
     }
 
     // 경매 시간이 끝나고 진행기록을 recode_tb에 옮겨담는 요청 메서드
-    async function passBidDataToRecode(){
+    async function passBidDataToRecode() {
         try {
-            await fetch('/goods-detail/saveRecode',{
-               method: 'POST',
-               headers: {
-                   'Content-Type': 'application/json',
-               },
-               body: JSON.stringify({goodsId: goodsId})
+            await fetch('/goods-detail/saveRecode', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({goodsId: goodsId})
             });
-        }catch (error) {
+        } catch (error) {
             alert("오류 발생: ", error);
         }
     }
 
     // 경매기록이 bid_tb -> recode_tb로 옮겨진 후 bid테이블에 남은 기록들 삭제 요청
-    async function deleteEndBidData(){
+    async function deleteEndBidData() {
         try {
             await fetch(`/goods-detail/endBid/${goodsId}/delete`, {
                 method: 'POST'
             });
         } catch (error) {
-            alert ("오류발생: ", error)
+            alert("오류발생: ", error)
         }
     }
 

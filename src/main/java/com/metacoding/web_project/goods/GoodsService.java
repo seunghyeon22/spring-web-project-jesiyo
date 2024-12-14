@@ -42,8 +42,6 @@ public class GoodsService {
                     .orElse(0); //데이터가 없을 경우 tryPrice 0으로 설정
         }
 
-        System.out.println("tryPrice: " + tryPrice);
-
         String formattedEndAt = formatRemainingTime(goods.getEndAt());
 
         return new GoodsResponse.GoodsDetailDTO(goods, tryPrice, formattedEndAt);

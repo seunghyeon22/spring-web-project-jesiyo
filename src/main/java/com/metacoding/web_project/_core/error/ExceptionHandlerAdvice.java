@@ -25,12 +25,13 @@ public class ExceptionHandlerAdvice {
     @ResponseBody
     @ExceptionHandler(Exception401.class)
     public String err401(Exception401 e) {
+        String message = e.getMessage().replace("'", "\\'");
         String body = """
                 <script>
                     alert('${msg}');
                     history.back();
                 </script>
-                """.replace("${msg}",e.getMessage());
+                """.replace("${msg}",message);
 
         return body;
     }
@@ -38,12 +39,13 @@ public class ExceptionHandlerAdvice {
     @ResponseBody
     @ExceptionHandler(Exception403.class)
     public String err403(Exception403 e) {
+        String message = e.getMessage().replace("'", "\\'");
         String body = """
                 <script>
                     alert('${msg}');
                     history.back();
                 </script>
-                """.replace("${msg}",e.getMessage());
+                """.replace("${msg}",message);
 
         return body;
     }
@@ -52,12 +54,13 @@ public class ExceptionHandlerAdvice {
     @ResponseBody
     @ExceptionHandler(Exception404.class)
     public String err404(Exception404 e) {
+        String message = e.getMessage().replace("'", "\\'");
         String body = """
                 <script>
                     alert('${msg}');
                     history.back();
                 </script>
-                """.replace("${msg}",e.getMessage());
+                """.replace("${msg}",message);
 
         return body;
     }
@@ -65,12 +68,13 @@ public class ExceptionHandlerAdvice {
     @ResponseBody
     @ExceptionHandler(Exception500.class)
     public String err500(Exception500 e) {
+        String message = e.getMessage().replace("'", "\\'");
         String body = """
                 <script>
                     alert('${msg}');
                     history.back();
                 </script>
-                """.replace("${msg}",e.getMessage());
+                """.replace("${msg}",message);
 
         return body;
     }

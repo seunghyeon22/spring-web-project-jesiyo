@@ -50,13 +50,13 @@ public class Transaction {
     private Integer successPrice;
 
     @Column(nullable = true)
-    private Integer deliveryNum; // 송장번호
+    private String deliveryNum; // 송장번호
 
     @CreationTimestamp
     private Timestamp updatedAt;
 
     @Builder
-    public Transaction(Integer id, Goods goods, User buyer, User seller, Integer buyerStatus, Integer sellerStatus, Integer successPrice, Integer deliveryNum, Integer transactionStatus, Timestamp updatedAt) {
+    public Transaction(Integer id, Goods goods, User buyer, User seller, Integer buyerStatus, Integer sellerStatus, Integer successPrice, String deliveryNum, Integer transactionStatus, Timestamp updatedAt) {
         this.id = id;
         this.goods = goods;
         this.buyer = buyer;
@@ -70,7 +70,7 @@ public class Transaction {
         this.transactionStatus = transactionStatus;
     }
 
-    public void updateStatus(Integer buyerStatus, Integer sellerStatus, Integer transactionStatus, Integer deliveryNum) {
+    public void updateStatus(Integer buyerStatus, Integer sellerStatus, Integer transactionStatus, String deliveryNum) {
         if (buyerStatus != null) {
             this.buyerStatus = buyerStatus;
         }
