@@ -8,22 +8,22 @@ async function headerLoad(){
     if(userDetailes==null){
         page.innerHTML=`
         <div>
-        <a href="/login-form">로그인</a>
-        <a href="/join-form">회원가입</a>
+        <a href="/login-form">로그인 / </a>
+        <a href="/join-form"> 회원가입</a>
         </div>
         `
     }else {
         if (userDetailes.role === "ROLE_USER") {
             page.innerHTML = `
             <div>
-            <a href="/logout">로그아웃</a>
+            <a href="/logout">로그아웃 / </a>
             <a href="/s/user-info/">마이페이지</a>
             </div>
             `;
         } else if (userDetailes.role === "ROLE_ADMIN") {
             page.innerHTML = `
             <div>
-            <a href="/logout">로그아웃</a>
+            <a href="/logout">로그아웃 / </a>
             <a href="/admin/category">관리자페이지</a>
             </div>
             `;

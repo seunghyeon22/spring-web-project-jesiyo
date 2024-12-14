@@ -12,7 +12,7 @@
     border-radius: 8px; /* 모서리 둥글게 */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
     margin-top: 24px;
-    width: 80%;
+    width: 100%;
     padding: 2%;
 }
 
@@ -44,4 +44,14 @@
 
 .t1-more-btn{
     width: 100%;
+}
+
+.card p {
+    margin: auto;
+}
+
+.card {
+    margin: 15px;
+    padding: 10px;
+
 }
