@@ -16,22 +16,15 @@ insert into useraccount_tb(user_id, score, has_price) values (5, 0, 3000);
 
 
 -- category_tb 더미데이터
-insert into category_tb(name, img_url) values ('카테고리1', '/upload/category1.png');
-insert into category_tb(name, img_url) values ('카테고리2', '/upload/category2.png');
-insert into category_tb(name, img_url) values ('카테고리3', '/upload/category3.png');
+insert into category_tb(name, img_url) values ('디지털기기', '/upload/category1.png');
+insert into category_tb(name, img_url) values ('생활가전', '/upload/category2.png');
+insert into category_tb(name, img_url) values ('가구/인테리어', '/upload/category3.png');
+insert into category_tb(name, img_url) values ('생활/주방', '/upload/category4.png');
+insert into category_tb(name, img_url) values ('유아동', '/upload/category5.png');
+insert into category_tb(name, img_url) values ('유아도서', '/upload/category6.png');
+insert into category_tb(name, img_url) values ('여성의류', '/upload/category7.png');
+insert into category_tb(name, img_url) values ('남성패션', '/upload/category8.png');
 
-insert into category_tb(name, img_url) values ('반려동물 용품', '없습니다.');
-insert into category_tb(name, img_url) values ('디지털기기', '없습니다.');
-insert into category_tb(name, img_url) values ('생활가전', '없습니다.');
-insert into category_tb(name, img_url) values ('가구/인테리어', '없습니다.');
-insert into category_tb(name, img_url) values ('생활/주방', '없습니다.');
-insert into category_tb(name, img_url) values ('가구', '/upload/category1.png');
-insert into category_tb(name, img_url) values ('디지털기기2', '/upload/category2.png');
-insert into category_tb(name, img_url) values ('생활가전2', '/upload/category3.png');
-
-insert into category_tb(name, img_url) values ('카테고리4', '/upload/category1.png');
-insert into category_tb(name, img_url) values ('카테고리5', '/upload/category2.png');
-insert into category_tb(name, img_url) values ('카테고리6', '/upload/category3.png');
 
 -- goods_tb 더미데이터
 
