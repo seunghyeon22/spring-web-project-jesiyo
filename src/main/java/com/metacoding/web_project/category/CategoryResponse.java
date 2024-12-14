@@ -10,10 +10,15 @@ public class CategoryResponse {
         private String name;
         private String imgUrl;
 
-        public CategoryDTO(Category category) {
+        private boolean active = false;
+        public CategoryDTO(Category category, boolean active) {
             this.id = category.getId();
             this.name = category.getName();
             this.imgUrl = category.getImgUrl();
+            
+            if (active) {
+                this.active = true;
+            }
         }
     }
 }

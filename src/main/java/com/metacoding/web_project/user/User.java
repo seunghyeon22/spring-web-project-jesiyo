@@ -67,6 +67,10 @@ public class User implements UserDetails {
         this.role = role;
     }
 
+    public void updatePassword(String password) {
+        this.password = password;
+    }
+
 
     // 사용자의 권한을 반환
     @Override public Collection<? extends GrantedAuthority> getAuthorities() {

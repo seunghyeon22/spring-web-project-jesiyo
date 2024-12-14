@@ -63,16 +63,17 @@ public class GoodsController {
     }
 
     @GetMapping("/goods-list")
-    public String goodsList(@RequestParam("select") String select,@RequestParam("keyword") String keyword, Model model) {
-        model.addAttribute("category", categoryService.findAllCategory());
+    public String goodsList(@RequestParam("select") String select,@RequestParam(defaultValue = "") String keyword, Model model) {
+        model.addAttribute("category", categoryService.findAllCategory(null));
         model.addAttribute("goods", goodsService.searchGoodsList(GoodsRequest.SeacherGoodsDTO.builder().select(select).keyword(keyword).page(1).line(15).build()));
+        model.addAttribute("keyword", new GoodsResponse.KeyWordDTO(keyword));
         return "goods-list";
     }
 
     @GetMapping("/goods-list/{id}")
-    public String goodsList(@PathVariable("id") Integer id, Model model) {
-        model.addAttribute("category", categoryService.findAllCategory());
-        model.addAttribute("goods",goodsService.getGoodsList(id,1,15));
+    public String goodsList(@PathVariable("id") Integer categoryId, Model model) {
+        model.addAttribute("category", categoryService.findAllCategory(categoryId));
+        model.addAttribute("goods",goodsService.getGoodsList(categoryId,1,15));
         return "goods-list";
     }
 
@@ -93,7 +94,7 @@ public class GoodsController {
     }
 
     // 경매 중인 물품(판매) 화면 열기
-    @GetMapping("/myPage-being-auctioned")
+    @GetMapping("/s/myPage-being-auctioned")
     public String beingAuctioned(@AuthenticationPrincipal UserDetails userDetails, Model model) {
         model.addAttribute("models", goodsService.mySellGoods(userDetails.getUsername()));
         return "being-auctioned";

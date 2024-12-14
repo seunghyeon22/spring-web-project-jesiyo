@@ -1,13 +1,11 @@
 package com.metacoding.web_project.user;
 
-import com.metacoding.web_project._core.error.ex.Exception401;
 import com.metacoding.web_project._core.error.ex.Exception404;
 import com.metacoding.web_project.useraccount.UserAccount;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -87,14 +85,16 @@ public class UserRepository {
     }
 
     @Transactional
-    public void changePw(int id, String enPassword, String enNewPassword) {
-        System.out.println("repository"+enPassword);
-        System.out.println("repository"+enNewPassword);
-        Query q = em.createQuery("update User u set u.password = :newPassword where u.password = :password and u.id = :id");
-        q.setParameter("newPassword", enNewPassword);
-        q.setParameter("password", enPassword);
+    public Optional<User> changePw(int id) {
+
+        Query q = em.createQuery("select u from User u where u.id = :id");
         q.setParameter("id", id);
-        q.executeUpdate();
+        try{
+            User user = (User) q.getSingleResult();
+            return Optional.ofNullable(user);
+        }catch (RuntimeException e){
+            return Optional.empty();
+        }
     }
 
     @Transactional

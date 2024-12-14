@@ -1,6 +1,6 @@
 
 -- user_tb 더미데이터
-insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role, tel) values('ssar', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', 'Ssar', '12345', '주소1', '상세주소1', '생일1', 'ROLE_ADMIN,ROLE_USER', '010-1111-1111');
+insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role, tel) values('ssar', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', 'Ssar', '12345', '주소1', '상세주소1', '생일1', 'ROLE_ADMIN', '010-1111-1111');
 insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role, tel) values('cos', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', 'Cos', '12345', '주소2', '상세주소1', '생일2', 'ROLE_USER', '010-2222-2222');
 insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role, tel) values('love', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', 'Love', '12345', '주소2', '상세주소1', '생일2', 'ROLE_USER', '010-3333-3333');
 insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role, tel) values('cos2', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', 'Cos2', '12345', '주소2', '상세주소1', '생일2', 'ROLE_USER', '010-2222-2222');
@@ -64,13 +64,6 @@ insert into goods_tb(title, category_id, seller_id, content, img_url, starting_p
 insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status) values ('강아지 산책줄 나눔합니다2.', '1', '2', '강아지 산책줄 나눔 중입니다2.', '없습니다.', 1000, now(),'2024-12-10 23:00:00', 1);
 insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status) values ('강아지 판매.', '1', '1', '강아지 산책줄.', '없습니다.', 1000, now(),'2024-12-15 23:00:00', 0);
 insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status) values ('강아지 산책줄 나눔합니다.', '1', '2', '강아지 산책줄 나눔 중입니다.', '없습니다.', 1000, now(),'2024-12-10 23:00:00', 0);
-
-insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (1,1,2000,now());
-insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (3,1,3000,now());
-
-insert into useraccount_tb(user_id,account,has_price,score) values(1,'등록계좌없음',0,0);
-insert into useraccount_tb(user_id,account,has_price,score) values(2,'등록계좌없음',0,0);
-insert into useraccount_tb(user_id,account,has_price,score) values(3,'등록계좌없음',0,0);
 
 
 -- bid_tb 더미데이터

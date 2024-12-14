@@ -89,7 +89,14 @@ public class GoodsResponse {
             this.tryPrice = bidTryPrice==0? "입찰자가 없습니다.":"최고 입찰가: "+String.valueOf(bidTryPrice);
             this.endAt = formatRemainingTime(goods.getEndAt());
         }
+    }
 
+    @Data
+    public static class KeyWordDTO {
+        private String searchText;
 
+        public KeyWordDTO(String searchText) {
+            this.searchText = "'" + searchText + "'";
+        }
     }
 }

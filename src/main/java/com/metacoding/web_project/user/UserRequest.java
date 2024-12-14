@@ -10,10 +10,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class UserRequest {
 
 
-
     @Data
-    public static class JoinDTO{
-        private Integer id;
+    public static class JoinDTO {
         @NotBlank
         private String username;
         @NotBlank
@@ -39,21 +37,21 @@ public class UserRequest {
         private String account;
         private User user;
 
-        public User toEntity(PasswordEncoder passwordEncoder){
+        public User toEntity(PasswordEncoder passwordEncoder) {
             String encpw = passwordEncoder.encode(password);
-        return User.builder()
+            return User.builder()
                     .id(null).username(username).password(encpw).name(name).tel(tel)
                     .postNum(postNum).addr(addr).addrDetail(addrDetail).birth(birth).role(role)
                     .build();
         }
 
-        public UserAccount toEntity(User user){
+        public UserAccount toEntity(User user) {
             return UserAccount.builder()
-                                .score(score)
-                                .hasPrice(hasPrice)
-                                .acount(account)
-                                .user(user)
-                                .build();
+                    .score(score)
+                    .hasPrice(hasPrice)
+                    .acount(account)
+                    .user(user)
+                    .build();
 
         }
     }
@@ -79,12 +77,12 @@ public class UserRequest {
 
     @Data
     public static class ChangePwDTO {
-        private String password;
+
         private String newPassword;
     }
 
     @Data
-    public static class CheckIdDTO{
+    public static class CheckIdDTO {
         private String username;
     }
 

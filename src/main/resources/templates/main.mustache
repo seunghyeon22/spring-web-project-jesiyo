@@ -10,44 +10,6 @@
     <link rel="stylesheet" type="text/css" href="/css/header.css"> <!-- 헤더 css-->
     <link rel="stylesheet" type="text/css" href="/css/main.css"> <!-- 메인화면 css-->
 
-    <style>
-        .carousel-inner {
-            position: relative; /* 버튼 위치를 위해 필요 */
-        }
-
-        .category-carousel-control-prev, .category-carousel-control-next {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 5%;
-            height: 60%;
-            background: #f96506;
-            border: none;
-            border-radius: 10px;
-        }
-
-        .category-carousel-control-prev {
-            left: 0;
-        }
-
-        .category-carousel-control-next {
-            right: 0;
-        }
-
-        .carousel-control-prev-icon, .carousel-control-next-icon {
-            background-size: 100%, 100%;
-        }
-
-        .t1-category-box {
-            margin-left: 0px;
-        }
-
-        .rounded {
-            margin-left: 30px;
-            margin-right: 30px;
-        }
-
-    </style>
 </head>
 <body>
 
@@ -90,24 +52,27 @@
         </button>
     </div>
 
-    <div class="t1-categoryTextAndImage">
-        <div class="t1-hotCategory-text">
-            <p style="font-size: 40px; color: #f96506">인기 카테고리</p>
-        </div>
-
-        <div id="categoryCarousel" class="carousel slide" data-bs-interval="0">
-            <div class="carousel-inner t1-hotCategory">
-
+    <div>
+        <div class="t1-categoryTextAndImage">
+            <div class="t1-hotCategory-text">
+                <p style="font-size: 40px; color: #f96506">인기 카테고리</p>
             </div>
-            <!-- Left and right controls/icons -->
-            <button class="category-carousel-control-prev" style="margin-left: 0px" type="button" data-bs-target="#categoryCarousel"
-                    data-bs-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-            </button>
-            <button class="category-carousel-control-next" type="button" data-bs-target="#categoryCarousel"
-                    data-bs-slide="next">
-                <span class="carousel-control-next-icon"></span>
-            </button>
+
+            <div id="categoryCarousel" class="carousel slide" data-bs-interval="0">
+                <div class="carousel-inner t1-hotCategory">
+
+                </div>
+                <!-- Left and right controls/icons -->
+                <button class="category-carousel-control-prev" style="margin-left: 0px" type="button"
+                        data-bs-target="#categoryCarousel"
+                        data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="category-carousel-control-next" type="button" data-bs-target="#categoryCarousel"
+                        data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+            </div>
         </div>
     </div>
 </div>
