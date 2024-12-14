@@ -24,20 +24,19 @@ public class GoodsRequest {
     // 제품 등록 DTO
     @Data
     public static class GoodsSaveDTO {
+        private Integer sellerId;
         private String title;
-        private Category category;
-        private User seller;
+        private Integer categoryId;
         private String content;
         private MultipartFile imgUrl;
         private Integer startingPrice;
         private LocalDate endAt;
 
-        public Goods toEntity() {
-
+        public Goods toEntity(Category categoryEntity, User sellerEntity) {
             return Goods.builder()
                     .title(title)
-                    .category(category)
-                    .seller(seller)
+                    .category(categoryEntity)
+                    .seller(sellerEntity)
                     .content(content)
                     .imgUrl(FileUtil.fileSave(imgUrl))
                     .startingPrice(startingPrice)
@@ -45,6 +44,7 @@ public class GoodsRequest {
                     .build();
         }
     }
+
 
     @Data
     public static class SeacherGoodsDTO {

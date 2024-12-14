@@ -19,4 +19,9 @@ public class CategoryRepository {
     public void insertCategory(Category entity) {
         em.persist(entity);
     }
+
+    // id를 통해 카테고리 1개를 가져오는 메서드
+    public Category findCategoryById(Integer id) {
+        return em.find(Category.class, id);
+    }
 }

@@ -1,9 +1,11 @@
 package com.metacoding.web_project.goods;
 
+import com.metacoding.web_project._core.error.ex.Exception400;
 import com.metacoding.web_project._core.error.ex.Exception404;
 import com.metacoding.web_project._core.util.PageUtil;
 import com.metacoding.web_project.bid.Bid;
 import com.metacoding.web_project.bid.BidRepository;
+import com.metacoding.web_project.category.Category;
 import com.metacoding.web_project.category.CategoryRepository;
 import com.metacoding.web_project.user.User;
 import com.metacoding.web_project.user.UserRepository;
@@ -23,6 +25,7 @@ public class GoodsService {
     private final GoodsRepository goodsRepository;
     private final BidRepository bidRepository;
     private final UserRepository userRepository;
+    private final CategoryRepository categoryRepository;
 
     // 제품 상세페이지 데이터 끌어오기
     @Transactional
@@ -63,7 +66,24 @@ public class GoodsService {
     // 제품 등록하기
     @Transactional
     public void goodsSave(GoodsRequest.GoodsSaveDTO goodsSaveDTO) {
-        goodsRepository.save(goodsSaveDTO.toEntity());
+        if (goodsSaveDTO.getCategoryId() == null) {
+            throw new Exception400("카테고리를 제대로 선택하세요");
+        }
+        if (goodsSaveDTO.getSellerId() == null) {
+            throw new Exception400("판매자 아이디를 확인할 수 없습니다.");
+        }
+        if (goodsSaveDTO.getImgUrl() == null) {
+            throw new Exception400("이미지를 업로드 해주세요");
+        }
+        if (goodsSaveDTO.getEndAt() == null) {
+            throw new Exception400("종료날짜를 선택하세요");
+        }
+        if (goodsSaveDTO.getStartingPrice() == null) {
+            throw new Exception400("시작 입찰가를 입력하세요");
+        }
+        Category category = categoryRepository.findCategoryById(goodsSaveDTO.getCategoryId());
+        User user = userRepository.findById(goodsSaveDTO.getSellerId());
+        goodsRepository.save(goodsSaveDTO.toEntity(category, user));
     }
 
     public List<GoodsResponse.GoodsDTO> getGoodsList(Integer categoryId, Integer page, Integer line) {

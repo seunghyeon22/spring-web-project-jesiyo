@@ -2,7 +2,9 @@ package com.metacoding.web_project.goods;
 
 import com.metacoding.web_project._core.CommonResp;
 import com.metacoding.web_project.bid.BidResponse;
+import com.metacoding.web_project.category.CategoryResponse;
 import com.metacoding.web_project.category.CategoryService;
+import com.metacoding.web_project.user.User;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -40,15 +42,18 @@ public class GoodsController {
 
     // 제품 등록 화면 열기
     @GetMapping("/s/myPage-goods-register")
-    public String register() {
+    public String register(@AuthenticationPrincipal User user, Model model) {
+        List<CategoryResponse.CategoryDTO> allCategory = categoryService.findAllCategory(null);
+        model.addAttribute("model", allCategory);
+        model.addAttribute("sellerId", user.getId());
         return "goods-register";
     }
 
     // 제품 등록
-    @PostMapping("/goods/save")
+    @PostMapping("/s/goods/save")
     public String goodsSave(GoodsRequest.GoodsSaveDTO goodsSaveDTO) {
         goodsService.goodsSave(goodsSaveDTO);
-        return "redirect:/myPage-being-auctioned"; // 경매중인물품 리스트 화면으로 리다이렉트
+        return "redirect:/s/myPage-being-auctioned"; // 경매중인물품 리스트 화면으로 리다이렉트
     }
 
     // 경매시간 종료 상품 상태 변경

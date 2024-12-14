@@ -23,7 +23,7 @@ public class GoodsResponse {
         String imgUrl;
         Integer startingPrice;
 
-        Integer tryPrice;
+        String tryPrice = "아직 입찰자가 없습니다";
 
         String endAtFront;
 
@@ -37,7 +37,10 @@ public class GoodsResponse {
             this.content = goods.getContent();
             this.imgUrl = goods.getImgUrl();
             this.startingPrice = goods.getStartingPrice();
-            this.tryPrice = bidTryPrice;
+            if (bidTryPrice != 0) {
+                this.tryPrice = "최고입찰가 : " + String.valueOf(bidTryPrice) + "원";
+            }
+
             //종료기간
             this.endAtFront = formattedEndAt;
             this.endAtBack = goods.getEndAt();
