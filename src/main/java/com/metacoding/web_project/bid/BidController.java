@@ -55,7 +55,7 @@ public class BidController {
     }
 
     // 경매 시도 금액 데이터 -> DB의 bid_tb 테이블에 insert
-    @PostMapping("/catchDetailPageData")
+    @PostMapping("/s/catchDetailPageData")
     public ResponseEntity<?> uploadBidData(@RequestBody BidRequest.TryBidDTO tryBidDTO) {
         String username = (String) session.getAttribute("username");
         bidService.saveTryPrice(tryBidDTO,username);
@@ -84,9 +84,14 @@ public class BidController {
     @PostMapping("/api/v1/early-transaction")
     @ResponseBody
     public ResponseEntity<?> endEarlyAuctionGoods(@RequestBody Integer goodsId) {
-        bidService.endEarlyAuction1(goodsId);
-        bidService.endEarlyAuction2(goodsId);
-        CommonResp resp = new CommonResp(true, "성공", null);
+        boolean endEarlyAuctionAvailable = bidService.endEarlyAuction1(goodsId);
+        if (endEarlyAuctionAvailable) {
+            bidService.endEarlyAuction2(goodsId);
+            CommonResp resp = new CommonResp(true, "성공", null);
+            return new ResponseEntity<>(resp, HttpStatus.OK);
+        }
+
+        CommonResp resp = new CommonResp(false, "실패", null);
         return new ResponseEntity<>(resp, HttpStatus.OK);
     }
     //입찰 취소

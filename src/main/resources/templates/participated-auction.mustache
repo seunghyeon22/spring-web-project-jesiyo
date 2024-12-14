@@ -44,6 +44,8 @@
                                 {{/transactionStatus}}
                             </div>
                             <div class="btn-group mt-1">
+                                {{^transactionStatus}}
+
                                 {{^buyerStatus}} <!-- buyerStatus = false일때만 구매 확정 버튼이 보이도록 -->
                                     <button type="button" class="btn btn-custom btn-sm" onclick="confirmBuy({{id}})">
                                         구매 확정
@@ -55,8 +57,9 @@
                                     </button>
                                 {{/transactionStatus}}
                                 <button type="button" class="btn btn-custom btn-sm"  data-bs-toggle="modal" data-bs-target="#myModal">
-                                    신고하기
+                                    판매자 신고하기
                                 </button>
+                                {{/transactionStatus}}
                             </div>
                         </div>
                     </div>
@@ -94,7 +97,7 @@
         // 구매 확정하기
         function confirmBuy(transactionId) {
             if (confirm('구매를 확정하시겠습니까?')) {
-                fetch('/buyerStatus/update', {
+                fetch('/s/buyerStatus/update', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -117,7 +120,7 @@
         // 구매 취소하기
         function cancelBuy(transactionId) {
             if (confirm('구매를 취소하시겠습니까?')) {
-                fetch('/transactionStatusForBuyer/update', {
+                fetch('/s/transactionStatusForBuyer/update', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

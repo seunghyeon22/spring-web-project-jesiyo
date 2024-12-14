@@ -6,13 +6,15 @@
     border: 5px solid #f96506;
 }
 
-img {
-    width: 100%; 
-    height: 100%; 
-    background-image: url('your-image-url.jpg'); 
-    background-size: cover; 
-    background-position: center; 
-    background-repeat: no-repeat;
+.image-container {
+    display: flex;
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    height: 20%; /* 전체 화면 높이 */
+}
+
+.image-container img{
+    height: 100px; /* 전체 화면 높이 */
 }
 
 .t1-btn-container {

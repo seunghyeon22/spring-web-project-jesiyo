@@ -7,8 +7,8 @@
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     max-width: 100%;
-    width: 50%;
-    margin: 100px auto;
+    width: 80%;
+    padding: 30px;
 }
 
 .t1-nav-link {

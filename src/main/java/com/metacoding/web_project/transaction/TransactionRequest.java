@@ -43,7 +43,7 @@ public class TransactionRequest {
     @Data
     public static class UpdateDeliveryNumberDTO {
         private Integer transactionId;
-        private Integer deliveryNumber;
+        private String deliveryNumber;
     }
 
     // 낙찰된 물품(판매) 화면 - 판매 확정하기 DTO

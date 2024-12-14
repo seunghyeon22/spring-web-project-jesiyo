@@ -1,5 +1,4 @@
 package com.metacoding.web_project._core.aop;
-
 import com.metacoding.web_project._core.error.ex.Exception400;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -12,7 +11,7 @@ import org.springframework.validation.Errors;
 public class ValidationAspect {
 
     // 행위
-    @Around("@annotation(org.springframework.web.bind.annotation.PostMapping)")
+    @Around("@annotation(org.springframework.web.bind.annotation.PostMapping)") // 포인트컷 자리 (post매핑한 메서드)
     public Object validationCheck(ProceedingJoinPoint jp) throws Throwable {
         Object[] args = jp.getArgs();
 
@@ -21,12 +20,12 @@ public class ValidationAspect {
                 Errors errors = (Errors) arg;
 
                 if(errors.hasErrors()) {
-                    String errMsg = errors.getFieldErrors().get(0).getField() +" : "+ errors.getFieldErrors().get(0).getDefaultMessage();
+                    String errMsg = errors.getFieldErrors().get(0).getDefaultMessage();
                     throw new Exception400(errMsg);
                 }
             }
         }
-        Object ob = jp.proceed();
+        Object ob = jp.proceed(); // 메서드 진행
         return ob;
     }
 }

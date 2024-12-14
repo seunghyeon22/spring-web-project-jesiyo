@@ -6,10 +6,12 @@ async function deleteGoods(goodsId){
         method : "DELETE"
     });
     let responseData = await response.json();
-    if(!responseData.success){
-        throw new Error("네트워크 응답에 문제가 있습니다.");
+    if(responseData.success){
+        alert("물품 경매를 취소하였습니다.")
+    } else {
+        alert("경매 취소에 실패했습니다.")
     }
-    window.location.href="/myPage-being-auctioned";
+    window.location.href="/s/myPage-being-auctioned";
 }
 async function  insertTransaction(goodsId){
     let url = `/api/v1/early-transaction`;
@@ -21,8 +23,10 @@ async function  insertTransaction(goodsId){
         }
     });
     let responseData = await response.json();
-    if(!responseData.success){
-        throw new Error("네트워크 응답에 문제가 있습니다.");
+    if(responseData.success){
+        alert("경매 조기 종료에 성공하였습니다.")
+    } else{
+        alert("입찰자가 없어 조기 종료 할 수 없습니다. 경매를 끝내려면 경매 취소 버튼을 눌러주세요")
     }
-    window.location.href="/myPage-being-auctioned";
+    window.location.href="/s/myPage-being-auctioned";
 }

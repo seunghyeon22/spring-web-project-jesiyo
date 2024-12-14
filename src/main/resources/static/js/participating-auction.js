@@ -17,6 +17,6 @@ async function cancel(userId,goodsId, tryPrice){
     if(!responseData.success){{
         throw  new Error("네트워크 응답에 문제가 있습니다.")
     }}
-    window.location.href = "/myPage-participating-auction";
+    window.location.href = "/s/myPage-participating-auction";
 
 }

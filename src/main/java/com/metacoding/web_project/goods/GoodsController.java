@@ -6,6 +6,7 @@ import com.metacoding.web_project.category.CategoryResponse;
 import com.metacoding.web_project.category.CategoryService;
 import com.metacoding.web_project.user.User;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -51,7 +53,7 @@ public class GoodsController {
 
     // 제품 등록
     @PostMapping("/s/goods/save")
-    public String goodsSave(GoodsRequest.GoodsSaveDTO goodsSaveDTO) {
+    public String goodsSave(@Valid GoodsRequest.GoodsSaveDTO goodsSaveDTO, Errors errors) {
         goodsService.goodsSave(goodsSaveDTO);
         return "redirect:/s/myPage-being-auctioned"; // 경매중인물품 리스트 화면으로 리다이렉트
     }
