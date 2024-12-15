@@ -17,38 +17,47 @@
 {{>layout/header}}
 <div class="container d-flex mt-5">
     {{>layout/mypage-menu}}
-      <div class="box">
+    <div class="box">
         <div class="title-box">
-          <h2>경매중인 물품</h2>
+            <h2>경매중인 물품</h2>
         </div>
-          <div class="item-list mt-5">
-              {{#models}}
-                  <div class="card mb-3">
-                      <div class="card-image">
-                          <img src="{{imgUrl}}" class="card-img-top" />
-                      </div>
-                      <div class="card-body mt-2">
-                          <h4 class="card-title">{{title}}</h4>
-                          <div class="card-text mt-2">
-                              <input type="hidden" name="id" id="{{id}}">
-                              <div>카테고리 : {{category}}</div>
-                              <div>경매 종료 일시 : {{endAt}}</div>
-                              <div>시작 입찰가 : {{startingPrice}}원</div>
-                              <div>현재 입찰가 : {{tryPrice}}</div>
-                              <div class="btn-group mt-1">
-                                  <button type="button" class="btn btn-custom btn-sm" onclick = "deleteGoods({{id}})">경매 취소</button>
-                                  <button type="button" class="btn btn-custom btn-sm" onclick = "insertTransaction({{id}})">조기 종료</button>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              {{/models}}
-          </div>
-      </div>
+        <div class="item-list mt-5">
+            {{#models}}
+                <div class="card mb-3">
+                    <div class="card-image">
+                        <img src="{{imgUrl}}" class="card-img-top"/>
+                    </div>
+                    <div class="card-body mt-2">
+                        <h4 class="card-title">{{title}}</h4>
+                        <div class="card-text mt-2">
+                            <input type="hidden" name="id" id="{{id}}">
+                            <div>카테고리 : {{category}}</div>
+                            <div>경매 종료 일시 : {{endAt}}</div>
+                            <div>시작 입찰가 : {{startingPrice}}원</div>
+                            <div>현재 입찰가 : {{tryPrice}}</div>
+                            <div class="btn-group mt-1">
+                                <button type="button" class="btn btn-custom btn-sm" onclick="deleteGoods({{id}})">경매
+                                    취소
+                                </button>
+                                <button type="button" class="btn btn-custom btn-sm" onclick="insertTransaction({{id}})">
+                                    조기 종료
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {{/models}}
+            {{>layout/paging}}
+        </div>
     </div>
+</div>
 {{>layout/footer}}
 
 <script type="text/javascript" src="/js/being-auctioned.js"></script>
-  </body>
-
+</body>
+<script>
+    function changePage(pageNumber) {
+        window.location.href = `/s/myPage-participated-auction?page=${pageNumber}`;
+    }
+</script>
 </html>

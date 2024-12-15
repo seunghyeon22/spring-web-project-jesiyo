@@ -55,14 +55,24 @@ public class GoodsRepository {
         return Optional.ofNullable(query.getResultList());
     }
     // 유저 아이디로 경매중인 물품 리스트 조회
-    public List<Goods> findBySellGoods(Integer userId) {
+    public List<Goods> findBySellGoods(Integer userId, Integer offset, Integer limit) {
         String sql = "select g from Goods g left join fetch g.category where g.status=:status AND g.seller.id = :userId";
         Query query = em.createQuery(sql);
         query.setParameter("status", 0);
         query.setParameter("userId", userId);
-//        query.setFirstResult(offset);
-//        query.setMaxResults(limit);
+        query.setFirstResult(offset);
+        query.setMaxResults(limit);
         return query.getResultList();
     }
 
+    // 유저가 경매중인 goods 테이블의 총 행 개수 반환 메서드
+    public Integer findBySellGoodsAllCount(Integer userId) {
+        String query = """
+            select count(g) from Goods g where g.status=:status and g.seller.id = :userId
+            """;
+        Query q = em.createQuery(query);
+        q.setParameter("status", 0);
+        q.setParameter("userId", userId);
+        return ((Number) q.getSingleResult()).intValue();
+    }
 }

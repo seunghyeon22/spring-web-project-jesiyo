@@ -1,6 +1,7 @@
 package com.metacoding.web_project.transaction;
 
 import com.metacoding.web_project._core.util.FormatDate;
+import com.metacoding.web_project._core.util.PageUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -46,7 +47,7 @@ public class TransactionRepositoryTest {
         Integer id = 1;
 
         // when (테스트할 메서드 실행)
-        List<Transaction> transactionList = transactionRepository.findByBuyerIdForAllBuy(id);
+        List<Transaction> transactionList = transactionRepository.findByBuyerIdForAllBuy(id, PageUtil.offsetCount(page, 3), 3);
 
         // then(eye) (결과 검증 / 출력으로 직접 확인은 eye)
         for (Transaction transaction : transactionList) {
