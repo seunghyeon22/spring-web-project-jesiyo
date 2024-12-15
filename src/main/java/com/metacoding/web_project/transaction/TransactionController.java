@@ -47,20 +47,13 @@ public class TransactionController {
     }
 
     // 낙찰된 물품(판매) 판매 확정하기 -> transaction_tb 테이블의 seller_status = 1로 update
-//    @PostMapping("/s/sellerStatus/update")
-//    public String deliveryNumUpdate(TransactionRequest.UpdateDeliveryNumberDTO updateDeliveryNumberDTO) {
-//        transactionService.updateDeliveryNumber(updateDeliveryNumberDTO);
-//        return "redirect:/mypage-complete-auction";
-//    }
-
-    // 낙찰된 물품(판매) 판매 확정하기 -> transaction_tb 테이블의 seller_status = 1로 update
-    @PostMapping("/s/sellerstatus/update")
+    @PostMapping("/s/sellerStatus/update")
     @ResponseBody
     public ResponseEntity<?> updateSellerStatus(@RequestBody TransactionRequest.UpdateSellerStatusDTO updateSellerStatusDTO) {
         transactionService.updateSellerStatus(updateSellerStatusDTO);
 
         CommonResp resp = new CommonResp(true, "판매 확정 되었습니다.", null);
-        return ResponseEntity.ok(resp);    
+        return ResponseEntity.ok(resp);
     }
 
     // 낙찰된 물품(판매) 판매 취소하기 -> transaction_tb 테이블의 transaction_status = 1로 update
