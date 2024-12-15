@@ -106,6 +106,4 @@ public class GoodsController {
         model.addAttribute("models", goodsService.mySellGoods(userDetails.getUsername()));
         return "being-auctioned";
     }
-
-
 }
