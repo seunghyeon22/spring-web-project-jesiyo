@@ -40,7 +40,7 @@ public class GoodsController {
     }
 
     // 제품 등록 화면 열기
-    @GetMapping("/s/myPage-goods-register")
+    @GetMapping("/s/mypage-goods-register")
     public String register(@AuthenticationPrincipal User user, Model model) {
         List<CategoryResponse.CategoryDTO> allCategory = categoryService.findAllCategory(null);
         model.addAttribute("model", allCategory);
@@ -52,7 +52,7 @@ public class GoodsController {
     @PostMapping("/s/goods/save")
     public String goodsSave(@Valid GoodsRequest.GoodsSaveDTO goodsSaveDTO, Errors errors) {
         goodsService.goodsSave(goodsSaveDTO);
-        return "redirect:/s/myPage-being-auctioned"; // 경매중인물품 리스트 화면으로 리다이렉트
+        return "redirect:/s/mypage-being-auctioned"; // 경매중인물품 리스트 화면으로 리다이렉트
     }
 
     // 경매시간 종료 상품 상태 변경
@@ -98,7 +98,7 @@ public class GoodsController {
     }
 
     // 경매 중인 물품(판매) 화면 열기
-    @GetMapping("/s/myPage-being-auctioned")
+    @GetMapping("/s/mypage-being-auctioned")
     public String beingAuctioned(@AuthenticationPrincipal User user, Model model, @RequestParam(defaultValue = "") String page) {
         List<GoodsResponse.UserGoodsDTO> userGoodsDTOS = goodsService.mySellGoods(user.getUsername(), page);
         int rowCount = goodsService.mySellGoodsAllCount(user.getId());
