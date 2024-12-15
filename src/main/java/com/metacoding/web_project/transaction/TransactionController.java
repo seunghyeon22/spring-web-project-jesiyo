@@ -30,7 +30,7 @@ public class TransactionController {
     }
 
     // 낙찰된 물품(판매) 화면 열기 - 판매 확정 누름, 안 누름 전부 포함
-    @GetMapping("/s/myPage-complete-auction")
+    @GetMapping("/s/mypage-complete-auction")
     public String completeAuction(@AuthenticationPrincipal User user, Model model, @RequestParam(defaultValue = "") String page) {
         List<TransactionResponse.CompleteAuctionDTO> completeAuctionList = transactionService.completeAuctionList(user.getId(), page);
         Integer rowCount = transactionService.totalCompleteAuctionListCount(user.getId());
@@ -53,7 +53,7 @@ public class TransactionController {
         transactionService.updateSellerStatus(updateSellerStatusDTO);
 
         CommonResp resp = new CommonResp(true, "판매 확정 되었습니다.", null);
-        return ResponseEntity.ok(resp);    
+        return ResponseEntity.ok(resp);
     }
 
     // 낙찰된 물품(판매) 판매 취소하기 -> transaction_tb 테이블의 transaction_status = 1로 update
@@ -67,7 +67,7 @@ public class TransactionController {
     }
 
     // 낙찰된 물품(구매) 화면 열기 - 구매 확정 누름, 안 누름 전부 포함
-    @GetMapping("/s/myPage-participated-auction")
+    @GetMapping("/s/mypage-participated-auction")
     public String participatedAuction(Model model) {
         List<TransactionResponse.ParticipatedAuctionDTO> participatedAuctionList = transactionService.participatedAuctionList();
         model.addAttribute("models", participatedAuctionList);

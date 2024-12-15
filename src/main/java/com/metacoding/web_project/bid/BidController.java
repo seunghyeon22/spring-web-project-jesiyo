@@ -45,7 +45,7 @@ public class BidController {
 //    }
 
     // 경매 참여 중인 물품(구매) 화면 열기
-    @GetMapping("/s/myPage-participating-auction")
+    @GetMapping("/s/mypage-participating-auction")
     public String participatingAuction(@AuthenticationPrincipal User user, Model model, @RequestParam(defaultValue = "") String page) {
         List<BidResponse.ParticipatingAuctionDTO> participatingAuctionList = bidService.participatingAuctionList(user.getId(), page);
         Integer rowCount = bidService.findAllBidCount(user.getId());
