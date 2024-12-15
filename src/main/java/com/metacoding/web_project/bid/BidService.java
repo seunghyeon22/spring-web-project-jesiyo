@@ -268,12 +268,6 @@ public class BidService {
         ua.minusPrice((dto.getReTryPrice()-dto.getTryPrice()));
         // 입찰 정보를 조회 - 업데이트
         Bid bid = bidRepository.findById(dto.getBidId());
-        if(bid.getTryPrice().equals(highestBid.get().getTryPrice())){
-            throw new Exception400("자신의 입찰이 최고가이면 입찰을 할 수 없습니다.");
-        }
-        if(!bid.getBuyer().getId().equals(user.getId())){
-            throw new Exception400("자신이 입찰한 물건이 아니면 재입찰이 불가능합니다.");
-        }
         bid.updatePrice(dto.getReTryPrice());
     }
 

@@ -14,9 +14,11 @@ async function cancel(userId,goodsId, tryPrice){
         }
     })
     let responseData = await response.json();
-    if(!responseData.success){{
+    if(!responseData.success){
         throw  new Error("네트워크 응답에 문제가 있습니다.")
-    }}
+    }else {
+        alert("입찰을 취소하였습니다.")
+    }
     window.location.href = "/s/myPage-participating-auction";
 
 }
@@ -50,6 +52,8 @@ async function reRid(){
     console.log(responseData)
     if(!responseData.success){
         alert(responseData.message);
+    }else{
+        alert("입찰가를 수정하였습니다.")
     }
     window.location.href = `/s/myPage-participating-auction`;
 }
