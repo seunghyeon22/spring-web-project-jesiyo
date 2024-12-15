@@ -40,4 +40,13 @@ public class BidRequest {
 
     }
 
+    @Data
+    public static class ReBidRequestDTO {
+        private Integer bidId;
+        private Integer goodsId;
+        private Integer tryPrice;
+        private Integer reTryPrice;
+
+    }
+
 }

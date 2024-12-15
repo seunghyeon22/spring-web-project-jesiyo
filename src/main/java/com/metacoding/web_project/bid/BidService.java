@@ -247,5 +247,34 @@ public class BidService {
         UserAccount ua = userAccountRepository.findById(dto.getUserId());
         ua.updateUserInfo(dto.getTryPrice());
     }
+    // 재입찰
+    @Transactional
+    public void reBid(String username,BidRequest.ReBidRequestDTO dto) {
+        // 동시성 체크
+        // 물품의 최고 입찰가를 조회
+        Optional<Bid> highestBid = bidRepository.findByGoodsIdDescWithLock(dto.getGoodsId());
+        if (highestBid.isPresent()) {
+            Integer currentHighestPrice = highestBid.get().getTryPrice();
+            if (dto.getReTryPrice() <= currentHighestPrice) {
+                throw new Exception400("입찰금액이 현재 최고 입찰 금액보다 높아야합니다.");
+            }
+        }
+        // 유저의 잔액을 조회 - 업데이트
+        User user = userRepository.findByUsername(username);
+        UserAccount ua = userAccountRepository.findById(user.getId());
+        if((dto.getReTryPrice()-dto.getTryPrice())> ua.getHasPrice()){
+            throw new Exception400("자신의 보유 금액보다 높게 입찰할 수 없습니다.");
+        }
+        ua.minusPrice((dto.getReTryPrice()-dto.getTryPrice()));
+        // 입찰 정보를 조회 - 업데이트
+        Bid bid = bidRepository.findById(dto.getBidId());
+        if(bid.getTryPrice().equals(highestBid.get().getTryPrice())){
+            throw new Exception400("자신의 입찰이 최고가이면 입찰을 할 수 없습니다.");
+        }
+        if(!bid.getBuyer().getId().equals(user.getId())){
+            throw new Exception400("자신이 입찰한 물건이 아니면 재입찰이 불가능합니다.");
+        }
+        bid.updatePrice(dto.getReTryPrice());
+    }
 
 }

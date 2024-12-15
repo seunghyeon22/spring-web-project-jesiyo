@@ -68,7 +68,7 @@ public class GoodsResponse {
             this.seller = goods.getSeller().getName();
             this.imgUrl = goods.getImgUrl();
             this.startingPrice = goods.getStartingPrice();
-            this.tryPrice = bidTryPrice==0? "입찰자가 없습니다.":"최고 입찰가: "+String.valueOf(bidTryPrice);
+            this.tryPrice = bidTryPrice==0? "입찰자가 없습니다.":"최고 입찰가: "+String.valueOf(bidTryPrice)+"원";
             this.endAt = formatRemainingTime(goods.getEndAt());
             if (formatRemainingTime(goods.getEndAt()).equals("경매가 종료되었습니다.")) {
                 sellAvailable = false;
@@ -96,7 +96,7 @@ public class GoodsResponse {
             this.category = goods.getCategory().getName();
             this.imgUrl = goods.getImgUrl();
             this.startingPrice = goods.getStartingPrice();
-            this.tryPrice = bidTryPrice==0? "입찰자가 없습니다.":"최고 입찰가: "+String.valueOf(bidTryPrice);
+            this.tryPrice = bidTryPrice==0? "입찰자가 없습니다.":"최고 입찰가: "+String.valueOf(bidTryPrice)+"원";
             this.endAt = formatRemainingTime(goods.getEndAt());
         }
     }

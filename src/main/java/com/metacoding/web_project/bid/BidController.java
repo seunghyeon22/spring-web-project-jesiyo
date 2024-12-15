@@ -98,12 +98,17 @@ public class BidController {
     @PostMapping("/api/v1/cancelBid")
     @ResponseBody
     public ResponseEntity<?> cancelBid(@RequestBody BidRequest.CancelBidDTO cancelBidDTO) {
-        System.out.println(cancelBidDTO.getGoodsId());
-        System.out.println(cancelBidDTO.getUserId());
-        System.out.println(cancelBidDTO.getTryPrice());
         bidService.cancelBid(cancelBidDTO);
         CommonResp resp = new CommonResp(true,"성공", null);
         return new ResponseEntity<>(resp, HttpStatus.OK);
     }
-
+    // 재입찰
+    @PostMapping("/api/v1/re-bid")
+    @ResponseBody
+    public ResponseEntity<?> reBid(@AuthenticationPrincipal User user,@RequestBody BidRequest.ReBidRequestDTO dto) {
+        System.out.println(user.getId());
+        bidService.reBid(user.getUsername(),dto);
+        CommonResp resp = new CommonResp(true,"성공", null);
+        return new ResponseEntity<>(resp, HttpStatus.OK);
+    }
 }

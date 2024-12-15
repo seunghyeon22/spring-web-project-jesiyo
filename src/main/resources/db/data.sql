@@ -7,10 +7,10 @@ insert into user_tb(username, password, name, post_num, addr, addr_detail, birth
 insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role, tel) values('love2', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', 'Love2', '12345', '주소2', '상세주소1', '생일2', 'ROLE_USER', '010-3333-3333');
 
 insert into useraccount_tb(user_id, score, has_price) values (1, 0, 0);
-insert into useraccount_tb(user_id, score, has_price) values (2, 0, 3000);
-insert into useraccount_tb(user_id, score, has_price) values (3, 0, 3000);
-insert into useraccount_tb(user_id, score, has_price) values (4, 0, 3000);
-insert into useraccount_tb(user_id, score, has_price) values (5, 0, 3000);
+insert into useraccount_tb(user_id, score, has_price) values (2, 0, 15000);
+insert into useraccount_tb(user_id, score, has_price) values (3, 0, 15000);
+insert into useraccount_tb(user_id, score, has_price) values (4, 0, 15000);
+insert into useraccount_tb(user_id, score, has_price) values (5, 0, 15000);
 
 
 
@@ -27,8 +27,8 @@ insert into category_tb(name, img_url) values ('남성패션', '/upload/category
 
 
 -- goods_tb 더미데이터
+insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status) values ('강아지 산책줄 나눔합니다.', '4', '4', '강아지 산책줄 나눔 중입니다.', '없습니다.', 1000, '2024-12-10 12:20:00','2024-12-13 16:15:00', 0);
 
-insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status) values ('강아지 산책줄 나눔합니다.', '4', '2', '강아지 산책줄 나눔 중입니다.', '/upload/category1.png', 1000, '2024-12-10 12:20:00','2024-12-13 16:15:00', 0);
 insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status) values ('책상 팝니다', '7', '1', '2년 썼고 생활기스 있어요.', '없습니다', 20000, now(),'2024-12-12 22:00:00', 0);
 
 insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status) values ('강아지 산책줄 나눔합니다.', '4', '2', '강아지 산책줄 나눔 중입니다.', '/upload/category1.png', 1000, '2024-12-10 12:20:00','2024-12-13 12:55:00', 0);

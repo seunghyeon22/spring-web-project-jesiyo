@@ -132,9 +132,13 @@ public class BidRepository {
     // 경매 참여중인 물품(구매) 목록 보기
     public List<Bid> findByBuyerIdForBuy(Integer id, Integer offset, Integer limit) {
 
+//        String query = """
+//                select * from bid_tb
+//                 where try_price in (select max(try_price) from bid_tb where buyer_id = ? group by goods_id)
+//                """;
+
         String query = """ 
-                select * from bid_tb 
-                 where try_price in (select max(try_price) from bid_tb where buyer_id = ? group by goods_id)
+                select * from bid_tb where buyer_id = ?
                 """;
 
         Query q = em.createNativeQuery(query, Bid.class);
@@ -191,4 +195,11 @@ public class BidRepository {
         q.setParameter(2, userId);
         q.executeUpdate();
     }
+    public Bid findById(Integer id) {
+        String sql = "select * from bid_tb where id = ?";
+        Query q = em.createNativeQuery(sql, Bid.class);
+        q.setParameter(1, id);
+        return (Bid) q.getSingleResult();
+    }
+
 }
