@@ -1,6 +1,8 @@
 package com.metacoding.web_project._core.error;
 
 import com.metacoding.web_project._core.error.ex.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -31,7 +33,7 @@ public class ExceptionHandlerAdvice {
                     alert('${msg}');
                     history.back();
                 </script>
-                """.replace("${msg}",message);
+                """.replace("${msg}", message);
 
         return body;
     }
@@ -45,7 +47,7 @@ public class ExceptionHandlerAdvice {
                     alert('${msg}');
                     history.back();
                 </script>
-                """.replace("${msg}",message);
+                """.replace("${msg}", message);
 
         return body;
     }
@@ -60,7 +62,7 @@ public class ExceptionHandlerAdvice {
                     alert('${msg}');
                     history.back();
                 </script>
-                """.replace("${msg}",message);
+                """.replace("${msg}", message);
 
         return body;
     }
@@ -74,8 +76,13 @@ public class ExceptionHandlerAdvice {
                     alert('${msg}');
                     history.back();
                 </script>
-                """.replace("${msg}",message);
+                """.replace("${msg}", message);
 
         return body;
+    }
+
+    @ExceptionHandler(Exception400Json.class)
+    public ResponseEntity<String> Exception400Json(Exception400Json ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
     }
 }

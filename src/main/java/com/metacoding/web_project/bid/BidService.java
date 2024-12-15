@@ -1,6 +1,7 @@
 package com.metacoding.web_project.bid;
 
 import com.metacoding.web_project._core.error.ex.Exception400;
+import com.metacoding.web_project._core.error.ex.Exception400Json;
 import com.metacoding.web_project.user.User;
 import com.metacoding.web_project.user.UserRepository;
 import com.metacoding.web_project.goods.Goods;
@@ -32,31 +33,46 @@ public class BidService {
 
     private final UserRepository userRepository;
     private final UserAccountRepository userAccountRepository;
-    private final RecodeRepository recodeRepository;
     private final RecodeRepositoryInterface recodeRepositoryInterfase;
     private final GoodsRepository goodsRepository;
     private final TransactionRepository transactionRepository;
-    private final HttpSession session;
 
     @Transactional
-    public void saveTryPrice(BidRequest.TryBidDTO tryBidDTO, String username) {
-
-        User user = userRepository.findByUsername(username);
+    public void saveTryPrice(BidRequest.TryBidDTO tryBidDTO, Integer userId) {
 
         Integer goodsId = tryBidDTO.getGoodsId();
         Integer tryPrice = tryBidDTO.getTryPrice();
 
         Optional<Bid> highestBid = bidRepository.findByGoodsIdDescWithLock(goodsId);
 
+        // 시도한 금액이 최고가 보다 높은지 체크
         if (highestBid.isPresent()) {
             Integer currentHighestPrice = highestBid.get().getTryPrice();
             if (tryPrice <= currentHighestPrice) {
-                throw new Exception400("입찰금액이 현재 최고 입찰 금액보다 높아야합니다.");
+                throw new Exception400Json("입찰금액이 현재 최고 입찰 금액보다 높아야합니다");
             }
         }
 
+        // 유저의 현재 금액을 대조하여 업데이트하는 내용
+        UserAccount userAccount = userAccountRepository.findById(userId);
+        Optional<Bid> userBidOP = bidRepository.findByIdToUserBestAuction(userId, goodsId);
+
+        int requiredPay;
+        if (userBidOP.isPresent()) {
+            Bid bid = userBidOP.get();
+            requiredPay = tryPrice - bid.getTryPrice();
+        } else {
+            requiredPay = tryPrice;
+        }
+
+        if (userAccount.getHasPrice() < requiredPay) {
+            throw new Exception400Json("잔고가 부족하여 입찰할 수 없습니다");
+        }
+        userAccount.minusPrice(requiredPay);
+
+
         // ***다음버전 toEntity userId 유동적으로 받을 수 있게 바꿔야됨
-        bidRepository.saveV1(tryBidDTO.toEntity(1));
+        bidRepository.saveV1(tryBidDTO.toEntity(userId));
     }
 
 
@@ -157,26 +173,26 @@ public class BidService {
     public void cancelAuction(Integer goodsId) {
         // 경매 취소할 물품의 경매목록 가져오기
         List<Bid> bids = bidRepository.findAllByGoodsId(goodsId);
-        if(bids.isEmpty()) {
+        if (bids.isEmpty()) {
             Optional<Goods> goods = goodsRepository.findById(goodsId);
             goods.get().cancelAuction();
             return;
         }
 
-        for(Bid bid : bids) {
+        for (Bid bid : bids) {
             // 경매에 참여한 입찰자들의 돈을 반환
             UserAccount ua = userAccountRepository.findById(bid.getBuyer().getId());
             ua.updateUserInfo(bid.getTryPrice());
         }
         // 경매에 참여한 데이터들을 recode 테이블로 옮김
-        List<Recode> recode = IntStream.range(0,bids.size()).mapToObj(i->
-             Recode.builder().
-                    buyer(bids.get(i).getBuyer()).
-                    goods(bids.get(i).getGoods()).
-                    tryPrice(bids.get(i).getTryPrice()).
-                    successStatus(0).
-                    createdAt(bids.get(i).getCreatedAt()).
-                    build()).collect(Collectors.toList());
+        List<Recode> recode = IntStream.range(0, bids.size()).mapToObj(i ->
+                Recode.builder().
+                        buyer(bids.get(i).getBuyer()).
+                        goods(bids.get(i).getGoods()).
+                        tryPrice(bids.get(i).getTryPrice()).
+                        successStatus(0).
+                        createdAt(bids.get(i).getCreatedAt()).
+                        build()).collect(Collectors.toList());
         recodeRepositoryInterfase.saveAll(recode);
 
         //물품에 대한 경매에 참여중인 데이터 삭제
@@ -185,6 +201,7 @@ public class BidService {
         Optional<Goods> goods = goodsRepository.findById(goodsId);
         goods.get().cancelAuction();
     }
+
     // 조기 종료 - 물품의 status를 변경
     @Transactional
     public boolean endEarlyAuction1(Integer goodsId) {
@@ -195,9 +212,10 @@ public class BidService {
             return false;
         }
         goods.get().endAuction();
-        
+
         return true;
     }
+
     // 조기 종료 - part2
     @Transactional
     public void endEarlyAuction2(Integer goodsId) {
@@ -205,51 +223,52 @@ public class BidService {
         Goods goods = goodsRepository.findById(goodsId).get();
         // 종료하는 물품의 입찰 정보를 모두 불러옴
         List<Bid> bids = bidRepository.findAllByGoodsId(goodsId);
-        
+
         // 최고 경매
         Bid bid = bids.get(bids.size() - 1);
         // 낙찰 테이블 등록
         transactionRepository.save(Transaction.builder().goods(goods).
-               buyer(bid.getBuyer()).
-               seller(goods.getSeller()).
-               buyerStatus(0).
-               sellerStatus(0).
-               transactionStatus(0).
-               successPrice(bid.getTryPrice()).
-               build());
+                buyer(bid.getBuyer()).
+                seller(goods.getSeller()).
+                buyerStatus(0).
+                sellerStatus(0).
+                transactionStatus(0).
+                successPrice(bid.getTryPrice()).
+                build());
 
-       for(int i=0; i<bids.size()-1; i++) {
-           // 최고가를 제외한 나머지 입찰금액 반환
-           UserAccount ua = userAccountRepository.findById(bids.get(i).getBuyer().getId());
-           ua.updateUserInfo(bids.get(i).getTryPrice());
+        for (int i = 0; i < bids.size() - 1; i++) {
+            // 최고가를 제외한 나머지 입찰금액 반환
+            UserAccount ua = userAccountRepository.findById(bids.get(i).getBuyer().getId());
+            ua.updateUserInfo(bids.get(i).getTryPrice());
         }
         // 경매에 참여한 데이터들을 recode 테이블로 옮김
-        List<Recode> recode = IntStream.range(0,bids.size()).mapToObj(i->{
-            int successStatus = (i == bids.size()-1)?1:0;
-                return Recode.builder().
-                buyer(bids.get(i).getBuyer()).
-                goods(bids.get(i).getGoods()).
-                tryPrice(bids.get(i).getTryPrice()).
-                successStatus(successStatus).
-                createdAt(bids.get(i).getCreatedAt()).
-                build();
+        List<Recode> recode = IntStream.range(0, bids.size()).mapToObj(i -> {
+            int successStatus = (i == bids.size() - 1) ? 1 : 0;
+            return Recode.builder().
+                    buyer(bids.get(i).getBuyer()).
+                    goods(bids.get(i).getGoods()).
+                    tryPrice(bids.get(i).getTryPrice()).
+                    successStatus(successStatus).
+                    createdAt(bids.get(i).getCreatedAt()).
+                    build();
         }).collect(Collectors.toList());
         // 한번에 insert
         recodeRepositoryInterfase.saveAll(recode);
         // bid에 있는 데이터 삭제
         bidRepository.deleteByGoodsId(goodsId);
-        
+
     }
 
     @Transactional
-    public void cancelBid(BidRequest.CancelBidDTO dto){
-        bidRepository.deleteBid(dto.getGoodsId(),dto.getUserId());
+    public void cancelBid(BidRequest.CancelBidDTO dto) {
+        bidRepository.deleteBid(dto.getGoodsId(), dto.getUserId());
         UserAccount ua = userAccountRepository.findById(dto.getUserId());
         ua.updateUserInfo(dto.getTryPrice());
     }
+
     // 재입찰
     @Transactional
-    public void reBid(String username,BidRequest.ReBidRequestDTO dto) {
+    public void reBid(String username, BidRequest.ReBidRequestDTO dto) {
         // 동시성 체크
         // 물품의 최고 입찰가를 조회
         Optional<Bid> highestBid = bidRepository.findByGoodsIdDescWithLock(dto.getGoodsId());
@@ -262,10 +281,10 @@ public class BidService {
         // 유저의 잔액을 조회 - 업데이트
         User user = userRepository.findByUsername(username);
         UserAccount ua = userAccountRepository.findById(user.getId());
-        if((dto.getReTryPrice()-dto.getTryPrice())> ua.getHasPrice()){
+        if ((dto.getReTryPrice() - dto.getTryPrice()) > ua.getHasPrice()) {
             throw new Exception400("자신의 보유 금액보다 높게 입찰할 수 없습니다.");
         }
-        ua.minusPrice((dto.getReTryPrice()-dto.getTryPrice()));
+        ua.minusPrice((dto.getReTryPrice() - dto.getTryPrice()));
         // 입찰 정보를 조회 - 업데이트
         Bid bid = bidRepository.findById(dto.getBidId());
         bid.updatePrice(dto.getReTryPrice());
