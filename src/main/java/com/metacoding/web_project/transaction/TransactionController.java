@@ -67,7 +67,6 @@ public class TransactionController {
     }
 
     // 낙찰된 물품(구매) 화면 열기 - 구매 확정 누름, 안 누름 전부 포함
-
     @GetMapping("/s/mypage-participated-auction")
     public String participatedAuction(@AuthenticationPrincipal User user, Model model, @RequestParam(defaultValue = "") String page) {
         List<TransactionResponse.ParticipatedAuctionDTO> participatedAuctionList = transactionService.participatedAuctionList(user.getId(), page);
