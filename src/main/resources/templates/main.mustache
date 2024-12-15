@@ -16,68 +16,57 @@
 {{>layout/header}} <!-- 공통 헤더 -->
 
 <!-- 이미지 슬라이드쇼 -->
-<div class="container">
-    <div id="demo" class="carousel slide" data-bs-ride="carousel">
+<div id="demo" class="carousel slide" data-bs-ride="carousel">
 
-        <!-- Indicators/dots -->
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
-            <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-            <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
-            <button type="button" data-bs-target="#demo" data-bs-slide-to="3"></button>
-        </div>
-
-        <!-- The slideshow/carousel -->
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="/upload/img.png" alt="flower" class="d-block w-100" style="height: 60vh; object-fit: cover;">
-            </div>
-            <div class="carousel-item">
-                <img src="/upload/img.png" alt="flower2" class="d-block w-100" style="height: 60vh; object-fit: cover;">
-            </div>
-            <div class="carousel-item">
-                <img src="/upload/img.png" alt="flower3" class="d-block w-100" style="height: 60vh; object-fit: cover;">
-            </div>
-            <div class="carousel-item">
-                <img src="/upload/img.png" alt="flower4" class="d-block w-100" style="height: 60vh; object-fit: cover;">
-            </div>
-        </div>
-
-        <!-- Left and right controls/icons -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
-            <span class="carousel-control-next-icon"></span>
-        </button>
+    <!-- Indicators/dots -->
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
     </div>
 
-    <div>
-        <div class="t1-categoryTextAndImage">
-            <div class="t1-hotCategory-text">
-                <p style="font-size: 40px; color: #f96506">인기 카테고리</p>
-            </div>
+    <!-- The slideshow/carousel -->
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="/image/slideimage.png" alt="slideimage" class="d-block w-100" style="height: 60vh; object-fit: cover;">
+        </div>
+        <div class="carousel-item">
+            <img src="/image/slideimage2.png" alt="slideimage2" class="d-block w-100" style="height: 60vh; object-fit: cover;">
+        </div>
+    </div>
 
-            <div id="categoryCarousel" class="carousel slide" data-bs-interval="0">
-                <div class="carousel-inner t1-hotCategory">
+    <!-- Left and right controls/icons -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
+</div>
 
-                </div>
-                <!-- Left and right controls/icons -->
-                <button class="category-carousel-control-prev" style="margin-left: 0px" type="button"
-                        data-bs-target="#categoryCarousel"
-                        data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon"></span>
-                </button>
-                <button class="category-carousel-control-next" type="button" data-bs-target="#categoryCarousel"
-                        data-bs-slide="next">
-                    <span class="carousel-control-next-icon"></span>
-                </button>
+<div>
+    <div class="t1-categoryTextAndImage">
+        <div class="t1-hotCategory-text">
+            <p style="font-size: 40px; color: #f96506">인기 카테고리</p>
+        </div>
+
+        <div id="categoryCarousel" class="carousel slide" data-bs-interval="0">
+            <div class="carousel-inner t1-hotCategory">
+
             </div>
+            <!-- Left and right controls/icons -->
+            <button class="category-carousel-control-prev" style="margin-left: 0px" type="button"
+                    data-bs-target="#categoryCarousel"
+                    data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="category-carousel-control-next" type="button" data-bs-target="#categoryCarousel"
+                    data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
         </div>
     </div>
 </div>
 {{>layout/footer}}
 <script type="text/javascript" src="/js/main.js"></script>
 </body>
-
 </html>
