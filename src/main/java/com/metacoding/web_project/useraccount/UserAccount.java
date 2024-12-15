@@ -39,5 +39,7 @@ public class UserAccount {
     public void updateUserInfo(Integer price) {
         this.hasPrice = hasPrice + price;
     }
-
+    public void minusPrice(Integer price) {
+        this.hasPrice = hasPrice - price;
+    }
 }

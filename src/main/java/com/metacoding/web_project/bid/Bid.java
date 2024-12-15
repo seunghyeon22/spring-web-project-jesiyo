@@ -38,4 +38,8 @@ public class Bid{
         this.tryPrice = tryPrice;
         this.createdAt = createdAt;
     }
+
+    public void updatePrice(Integer price){
+        this.tryPrice = price;
+    }
 }

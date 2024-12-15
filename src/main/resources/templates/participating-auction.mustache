@@ -38,7 +38,8 @@
                             <div>내가 입찰한 가격 : {{buyerTryPrice}}원</div>
                             <div class="btn-group mt-1">
                                 <button type="button" class="btn btn-custom btn-sm" onclick="cancel({{buyerId}},{{goodsId}},{{buyerTryPrice}})">입찰 취소</button>
-                                <button type="button" class="btn btn-custom btn-sm">입찰 금액 수정</button>
+                                <button type="button" class="btn btn-custom btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#t1-re-bid-modal" onclick ="addReBid({{id}},{{goodsId}},{{buyerTryPrice}})">입찰 금액 수정</button>
                             </div>
                         </div>
                     </div>
@@ -49,6 +50,32 @@
         </div>
       </div>
     </div>
+<!-- 재입찰 모달창 -->
+<div class="modal fade" id="t1-re-bid-modal" tabindex="-1" aria-labelledby="t1-re-bid-modal-Label"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="t1-re-bid-modal-Label">입찰금액 수정</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="deliveryNumber" class="form-label">입찰금</label>
+                        <input type="number" class="form-control" id="t1-re-bid-price" name="t1-re-bid-price"
+                               placeholder="숫자만 입력하세요" required>
+                    </div>
+                    <!-- 숨겨진 필드에 transactionId 설정 -->
+                    <input type="hidden" id="bid-Id" name="bid-Id">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                    <button type="submit" class="btn btn-primary" onclick="reRid()">재입찰</button>
+                </div>
+        </div>
+    </div>
+</div>
+
 {{>layout/footer}}
 <script type="text/javascript" src="/js/participating-auction.js"></script>
   </body>

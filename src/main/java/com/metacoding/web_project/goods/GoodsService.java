@@ -109,6 +109,7 @@ public class GoodsService {
     // 내가 경매에 내놓은 물품 리스트 보기
     public List<GoodsResponse.UserGoodsDTO> mySellGoods(String username) {
         User user = userRepository.findByUsername(username);
+        System.out.println(user.getId());
         List<Goods> bySellGoods = goodsRepository.findBySellGoods(user.getId());
         // PageUtil.offsetCount(page, 5), 5
         List<GoodsResponse.UserGoodsDTO> goodsList = new ArrayList<>();
