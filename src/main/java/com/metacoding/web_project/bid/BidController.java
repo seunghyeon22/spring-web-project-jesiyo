@@ -105,8 +105,7 @@ public class BidController {
     // 재입찰
     @PostMapping("/api/v1/re-bid")
     @ResponseBody
-    public ResponseEntity<?> reBid(@AuthenticationPrincipal User user,@RequestBody BidRequest.ReBidRequestDTO dto) {
-        System.out.println(user.getId());
+    public ResponseEntity<?> reBid(@AuthenticationPrincipal UserDetails user,@RequestBody BidRequest.ReBidRequestDTO dto) {
         bidService.reBid(user.getUsername(),dto);
         CommonResp resp = new CommonResp(true,"성공", null);
         return new ResponseEntity<>(resp, HttpStatus.OK);
