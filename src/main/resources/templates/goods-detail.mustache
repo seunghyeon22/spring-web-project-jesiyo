@@ -148,11 +148,12 @@
                 headers: {
                     'Content-Type': 'application/json; charset=utf-8'
                 },
-                body: JSON.stringify({tryPrice: tryPrice, goodsId: goodsId})
+                body: JSON.stringify({ tryPrice: tryPrice, goodsId: goodsId })
             });
 
             if (!response.ok) {
-                throw new Error("서버 요청에 실패했습니다.");
+                const errorText = await response.text(); // 서버로부터의 텍스트 응답 받기
+                throw new Error(`${errorText}`);
             }
 
             const data = await response.json(); // 서버 응답처리
@@ -164,13 +165,12 @@
 
             // 페이지 새로고침
             window.location.reload();
-
-
             alert("입찰이 성공적으로 등록되었습니다.");
         } catch (error) {
-            alert("입찰금액이 현재 최고 입찰 금액보다 높아야합니다.");
+            alert(`${error.message}`);
         }
     });
+
 
     // 경매시간 over goods Status 변경 요청 함수
     async function updateGoodsStatus() {

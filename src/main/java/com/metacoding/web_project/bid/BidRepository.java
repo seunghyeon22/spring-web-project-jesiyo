@@ -28,6 +28,17 @@ public class BidRepository {
         }
     }
 
+    // 유저 pk 값을 기반으로 bid 테이블에서 가장 높은 금액을 찾는 메서드
+    public Optional<Bid> findByIdToUserBestAuction(Integer userId, Integer goodsId) {
+        try{
+            Query q = em.createQuery("select b from Bid b where b.buyer.id = " + userId + " And b.goods.id=" + goodsId + " order by b.tryPrice desc", Bid.class);
+            q.setMaxResults(1); // limit
+            return Optional.ofNullable((Bid) q.getSingleResult());
+        } catch (NoResultException e) {
+            return Optional.empty();
+        }
+    }
+
     // 사용자 입찰 시도 시 현재 최고금액 조회 (SELECT ~ FOR UPDATE)
     public Optional<Bid> findByGoodsIdDescWithLock(Integer id) {
         try{

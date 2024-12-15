@@ -56,9 +56,9 @@ public class BidController {
 
     // 경매 시도 금액 데이터 -> DB의 bid_tb 테이블에 insert
     @PostMapping("/s/catchDetailPageData")
-    public ResponseEntity<?> uploadBidData(@RequestBody BidRequest.TryBidDTO tryBidDTO) {
+    public ResponseEntity<?> uploadBidData(@AuthenticationPrincipal User user, @RequestBody BidRequest.TryBidDTO tryBidDTO) {
         String username = (String) session.getAttribute("username");
-        bidService.saveTryPrice(tryBidDTO,username);
+        bidService.saveTryPrice(tryBidDTO,user.getId());
 
         CommonResp resp = new CommonResp(true, "성공", null);
         return ResponseEntity.ok(resp);
@@ -67,7 +67,6 @@ public class BidController {
     // 경매가 끝난 물건 경매기록 삭제 (recode_tb에 옮긴 후 실행됩니다.)
     @PostMapping("/goods-detail/endBid/{id}/delete")
     public ResponseEntity<?> deleteBid(@PathVariable("id") Integer id) {
-        System.out.println("요청왔음 받은 아이디: " + id);
         bidService.deleteByGoodsId(id);
         return ResponseEntity.ok(CommonResp.success(null));
     }
