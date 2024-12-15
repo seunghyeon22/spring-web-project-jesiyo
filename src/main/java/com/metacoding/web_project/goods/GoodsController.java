@@ -48,7 +48,7 @@ public class GoodsController {
     @PostMapping("/goods/save")
     public String goodsSave(GoodsRequest.GoodsSaveDTO goodsSaveDTO) {
         goodsService.goodsSave(goodsSaveDTO);
-        return "redirect:/myPage-being-auctioned"; // 경매중인물품 리스트 화면으로 리다이렉트
+        return "redirect:/mypage-being-auctioned"; // 경매중인물품 리스트 화면으로 리다이렉트
     }
 
     // 경매시간 종료 상품 상태 변경
@@ -93,7 +93,7 @@ public class GoodsController {
     }
 
     // 경매 중인 물품(판매) 화면 열기
-    @GetMapping("/myPage-being-auctioned")
+    @GetMapping("/mypage-being-auctioned")
     public String beingAuctioned(@AuthenticationPrincipal UserDetails userDetails, Model model) {
         model.addAttribute("models", goodsService.mySellGoods(userDetails.getUsername()));
         return "being-auctioned";
