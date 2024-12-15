@@ -43,7 +43,7 @@ public class TransactionController {
     @PostMapping("/s/deliveryNumber/update")
     public String deliveryNumUpdate(TransactionRequest.UpdateDeliveryNumberDTO updateDeliveryNumberDTO) {
         transactionService.updateDeliveryNumber(updateDeliveryNumberDTO);
-        return "redirect:/s/myPage-complete-auction";
+        return "redirect:/s/mypage-complete-auction";
     }
 
     // 낙찰된 물품(판매) 판매 확정하기 -> transaction_tb 테이블의 seller_status = 1로 update
@@ -68,7 +68,7 @@ public class TransactionController {
 
     // 낙찰된 물품(구매) 화면 열기 - 구매 확정 누름, 안 누름 전부 포함
 
-    @GetMapping("/s/myPage-participated-auction")
+    @GetMapping("/s/mypage-participated-auction")
     public String participatedAuction(@AuthenticationPrincipal User user, Model model, @RequestParam(defaultValue = "") String page) {
         List<TransactionResponse.ParticipatedAuctionDTO> participatedAuctionList = transactionService.participatedAuctionList(user.getId(), page);
         int rowCount = transactionService.participatedAuctionListCount(user.getId());

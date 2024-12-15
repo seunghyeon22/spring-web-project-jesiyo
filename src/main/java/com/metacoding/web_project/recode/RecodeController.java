@@ -32,7 +32,7 @@ public class RecodeController {
     }
 
     // 입찰 실패 이력 페이지 이동
-    @GetMapping("/s/myPage-participate-fail")
+    @GetMapping("/s/mypage-participate-fail")
     public String participateFail(@AuthenticationPrincipal User user, Model model, @RequestParam(defaultValue = "") String divide, @RequestParam(defaultValue = "") String search, @RequestParam(defaultValue = "") String page) {
         List<RecodeResponse.ParticipateFailDTO> dtoList = recodeService.findFailRecodeByUserId(user.getId(), divide, search, page);
         Integer rowCount = recodeService.countFailedRecodeByUserId(user.getId(), divide, search);
