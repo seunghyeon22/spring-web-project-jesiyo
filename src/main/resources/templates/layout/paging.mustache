@@ -1,8 +1,12 @@
 <nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center"> {{#pagination.pages}}
-        <li class="page-item {{#isActive}}active{{/isActive}}">
-            <a class="page-link" href="#" onclick="changePage({{pageNumber}})">{{pageNumber}}</a>
-        </li> {{/pagination.pages}}
+    <ul class="pagination justify-content-center">
+        {{#pagination.pages}}
+            <li class="page-item {{#isActive}}active{{/isActive}}">
+                <a class="page-link"
+                   style="background-color: #f96506; border-color: #f96506; color: {{#isActive}}#FFFF00{{/isActive}}{{^isActive}}#CCCCCC{{/isActive}};"
+                   href="#"
+                   onclick="changePage({{pageNumber}})">{{pageNumber}}</a>
+            </li>
+        {{/pagination.pages}}
     </ul>
 </nav>
-

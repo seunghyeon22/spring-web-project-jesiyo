@@ -29,8 +29,8 @@ public class TransactionRepository {
     // Transaction 테이블을 join하여 조회(goods,user)(관리자용)
     public List<Transaction> findTransactionJoinAnotherInfo(String query, Integer offset, int limit) {
         String sql = """
-                select t from Transaction t join fetch t.goods join fetch t.buyer join fetch t.seller
-            """;
+                    select t from Transaction t join fetch t.goods join fetch t.buyer join fetch t.seller
+                """;
         sql += query;
         Query q = em.createQuery(sql, Transaction.class);
         q.setFirstResult(offset); // offset
@@ -61,15 +61,27 @@ public class TransactionRepository {
     }
 
     // 낙찰된 물품(구매) 목록 조회(구매 확정 누름, 안 누름 전부 포함)
-    public List<Transaction> findByBuyerIdForAllBuy(Integer id) {
+    public List<Transaction> findByBuyerIdForBuy(Integer id, Integer offset, Integer limit) {
         String sql = """
                 select * from transaction_tb where buyer_id = ?
                 """;
 
         Query q = em.createNativeQuery(sql, Transaction.class);
         q.setParameter(1, id);
+        q.setFirstResult(offset);
+        q.setMaxResults(limit);
 
         return q.getResultList();
+    }
+
+    // 특정 유저의 transaction 테이블의 총 행 개수 반환 메서드
+    public int findByBuyerIdForAllBuyCount(Integer userId) {
+        String query = """
+                select count(*) from transaction_tb where buyer_id = ?
+                """;
+        Query q = em.createNativeQuery(query);
+        q.setParameter(1, userId);
+        return ((Number) q.getSingleResult()).intValue();
     }
 
     public Optional<Transaction> findById(Integer id) {
@@ -80,13 +92,15 @@ public class TransactionRepository {
     // 유저 낙찰된 물품(판매) 관련 transaction 테이블의 총 행 개수 반환 메서드
     public Integer findBySellerIdNotConfirmOfSellCount(Integer userId) {
         String query = """
-            select count(*) from transaction_tb where seller_id = ?
-            """;
+                select count(*) from transaction_tb where seller_id = ?
+                """;
         Query q = em.createNativeQuery(query);
         q.setParameter(1, userId);
 
         // Native Query는 기본적으로 Long 타입을 반환하므로 이를 Integer로 변환합니다.
         return ((Number) q.getSingleResult()).intValue();
     }
+
+
 }
 

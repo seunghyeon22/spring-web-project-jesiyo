@@ -81,7 +81,7 @@ public class TransactionService {
     public List<TransactionResponse.CompleteAuctionDTO> completeAuctionList(Integer userId, String page) {
         
         // 임시로 sellerId = 1인 경우만 가져옴, 로그인과 연결할 때 바꿀 것
-        List<Transaction> transactionList = transactionRepository.findBySellerIdNotConfirmOfSell(userId, PageUtil.offsetCount(page, 5), 5);
+        List<Transaction> transactionList = transactionRepository.findBySellerIdNotConfirmOfSell(userId, PageUtil.offsetCount(page, 3), 3);
 
         // completeAuctionDTO로 변환
         List<TransactionResponse.CompleteAuctionDTO> completeAuctionDTOList = new ArrayList<>();
@@ -131,10 +131,10 @@ public class TransactionService {
 
     // 낙찰된 물품(구매) 화면 열기 - 구매 확정 누름, 안 누름 다 포함
     @Transactional
-    public List<TransactionResponse.ParticipatedAuctionDTO> participatedAuctionList() {
+    public List<TransactionResponse.ParticipatedAuctionDTO> participatedAuctionList(Integer userId, String page) {
 
         // 임시로 buyerId = 1인 경우만 가져옴, 로그인과 연결할 때 바꿀 것
-        List<Transaction> transactionList = transactionRepository.findByBuyerIdForAllBuy(1);
+        List<Transaction> transactionList = transactionRepository.findByBuyerIdForBuy(userId, PageUtil.offsetCount(page, 3), 3);
 
         // ParticipatedAuctionDTO로 변환
         List<TransactionResponse.ParticipatedAuctionDTO> participatedAuctionDTOList = new ArrayList<>();
@@ -143,6 +143,11 @@ public class TransactionService {
             participatedAuctionDTOList.add(new TransactionResponse.ParticipatedAuctionDTO(transaction));
         }
         return participatedAuctionDTOList;
+    }
+
+    // 낙찰된 물품(구매) 화면에서 필요한 총 요소 count
+    public int participatedAuctionListCount(Integer userId) {
+        return transactionRepository.findByBuyerIdForAllBuyCount(userId);
     }
 
     // 낙찰된 물품(구매) 화면 - 구매 확정하기(transaction_tb 테이블의 buyer_status = 1로 update)
@@ -177,4 +182,6 @@ public class TransactionService {
     public Integer totalCompleteAuctionListCount(Integer userId) {
         return transactionRepository.findBySellerIdNotConfirmOfSellCount(userId);
     }
+
+
 }

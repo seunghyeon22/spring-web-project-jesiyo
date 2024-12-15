@@ -1,6 +1,7 @@
 package com.metacoding.web_project.goods;
 
 import com.metacoding.web_project._core.error.ex.Exception404;
+import com.metacoding.web_project._core.util.PageUtil;
 import com.metacoding.web_project.bid.Bid;
 import com.metacoding.web_project.bid.BidRepository;
 import com.metacoding.web_project.category.Category;
@@ -107,11 +108,9 @@ public class GoodsService {
     }
 
     // 내가 경매에 내놓은 물품 리스트 보기
-    public List<GoodsResponse.UserGoodsDTO> mySellGoods(String username) {
+    public List<GoodsResponse.UserGoodsDTO> mySellGoods(String username, String page) {
         User user = userRepository.findByUsername(username);
-        System.out.println(user.getId());
-        List<Goods> bySellGoods = goodsRepository.findBySellGoods(user.getId());
-        // PageUtil.offsetCount(page, 5), 5
+        List<Goods> bySellGoods = goodsRepository.findBySellGoods(user.getId(), PageUtil.offsetCount(page, 3), 3);
         List<GoodsResponse.UserGoodsDTO> goodsList = new ArrayList<>();
 
         for (Goods goods : bySellGoods) {
@@ -125,5 +124,10 @@ public class GoodsService {
                             .build()));
         }
         return goodsList;
+    }
+
+    // 유저가 경매중인 goods 테이블의 총 행 개수 반환 메서드
+    public Integer mySellGoodsAllCount(Integer userId) {
+        return goodsRepository.findBySellGoodsAllCount(userId);
     }
 }

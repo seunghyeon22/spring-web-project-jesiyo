@@ -65,13 +65,13 @@
                     </div>
                 </div>
             {{/models}}
-
+            {{>layout/paging}}
         </div>
       </div>
     </div>
     <div class="modal" id="myModal">
       <div class="modal-dialog modal-dialog-scrollable">
-        <div class="modal-content">
+        <div class="modal-content" style="padding: 20px">
     
           <!-- Modal Header -->
           <div class="modal-header">
@@ -84,7 +84,7 @@
          
     
           <!-- Modal footer -->
-          <div class="modal-footer">
+          <div class="modal-footer" style="margin-top: 30px">
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">취소</button>
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">신고하기</button>
           </div>
@@ -143,4 +143,10 @@
 
     {{>layout/footer}}
   </body>
+<script>
+
+    function changePage(pageNumber) {
+        window.location.href = `/s/myPage-participated-auction?page=${pageNumber}`;
+    }
+</script>
 </html>
