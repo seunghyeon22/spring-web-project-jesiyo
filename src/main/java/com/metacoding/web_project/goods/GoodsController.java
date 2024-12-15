@@ -1,6 +1,7 @@
 package com.metacoding.web_project.goods;
 
 import com.metacoding.web_project._core.CommonResp;
+import com.metacoding.web_project._core.util.PageUtil;
 import com.metacoding.web_project.bid.BidResponse;
 import com.metacoding.web_project.category.CategoryResponse;
 import com.metacoding.web_project.category.CategoryService;
@@ -31,10 +32,6 @@ public class GoodsController {
     // 제품 상세페이지 불러오기
     @GetMapping("/goods-detail/{id}")
     public String goodsDetail(@PathVariable("id")Integer id, Model model) {
-
-        // ***임시*** // 세션에 username 저장
-        String username = "ssar";
-        session.setAttribute("username", username);
 
         GoodsResponse.GoodsDetailDTO goodsDetailDTO = goodsService.getGoodsInfo(id);
         model.addAttribute("goods", goodsDetailDTO);
@@ -102,8 +99,11 @@ public class GoodsController {
 
     // 경매 중인 물품(판매) 화면 열기
     @GetMapping("/s/myPage-being-auctioned")
-    public String beingAuctioned(@AuthenticationPrincipal UserDetails userDetails, Model model) {
-        model.addAttribute("models", goodsService.mySellGoods(userDetails.getUsername()));
+    public String beingAuctioned(@AuthenticationPrincipal User user, Model model, @RequestParam(defaultValue = "") String page) {
+        List<GoodsResponse.UserGoodsDTO> userGoodsDTOS = goodsService.mySellGoods(user.getUsername(), page);
+        int rowCount = goodsService.mySellGoodsAllCount(user.getId());
+        model.addAttribute("pagination", PageUtil.returnToPageDTO(page, rowCount, 3));
+        model.addAttribute("models", userGoodsDTOS);
         return "being-auctioned";
     }
 
