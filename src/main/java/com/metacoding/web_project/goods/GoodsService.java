@@ -110,7 +110,7 @@ public class GoodsService {
     // 내가 경매에 내놓은 물품 리스트 보기
     public List<GoodsResponse.UserGoodsDTO> mySellGoods(String username, String page) {
         User user = userRepository.findByUsername(username);
-        List<Goods> bySellGoods = goodsRepository.findBySellGoods(user.getId(), PageUtil.offsetCount(page, 3), 3);
+        List<Goods> bySellGoods = goodsRepository.findBySellGoods(user.getId(), PageUtil.offsetCount(page, 5), 5);
         List<GoodsResponse.UserGoodsDTO> goodsList = new ArrayList<>();
 
         for (Goods goods : bySellGoods) {

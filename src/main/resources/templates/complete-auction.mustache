@@ -44,25 +44,28 @@
                                 {{/buyerStatus}}
                             </div>
                             <div>
-                                <!-- transactionStatus = true일때만 판매 취소 문구가 보이도록 -->
-                                {{#transactionStatus}}
-                                    판매 취소
+                                {{#transactionStatus}} <!-- transactionStatus = true일때만 판매 취소 문구가 보이도록 -->
+                                    판매 취소됨
                                 {{/transactionStatus}}
                             </div>
                             <div class="btn-group mt-1">
                                 {{^transactionStatus}}
-                                <button type="button" class="btn btn-custom btn-sm"
+                                    <button type="button" class="btn btn-custom btn-sm"
                                         onclick="addNumber({{id}})"
                                         data-bs-toggle="modal"
                                         data-bs-target="#deliveryNumberModal">
-                                    송장번호등록
-                                </button>
-                                {{/transactionStatus}}
-                                {{^sellerStatus}} <!-- sellerStatus = false일때만 판매 확정 버튼이 보이도록 -->
-                                    <button type="button" class="btn btn-custom btn-sm" onclick="confirmSale({{id}})">판매 확정</button>
-                                {{/sellerStatus}}
-                                {{^transactionStatus}} <!-- transactionStatus = false일때만 판매 취소 버튼이 보이도록 -->
+                                        송장번호등록
+                                    </button>
+                                    {{^sellerStatus}} <!-- sellerStatus = false일때만 판매 확정 버튼이 보이도록 -->
+                                        <button type="button" class="btn btn-custom btn-sm" onclick="confirmSale({{id}})">판매 확정</button>
+                                    {{/sellerStatus}}
                                     <button type="button" class="btn btn-custom btn-sm" onclick="cancelSale({{id}})">판매 취소</button>
+                                    <button type="button" class="btn btn-custom btn-sm"
+                                            onclick="reportBuyer({{id}})"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#myModal">
+                                        구매자신고
+                                    </button>
                                 {{/transactionStatus}}
                             </div>
                         </div>
@@ -102,6 +105,35 @@
     </div>
 </div>
 
+<!-- 신고하기 모달창 -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content" style="padding: 20px">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">신고하기</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <form action="/s/report-buyer" method="post">
+                <input type="text" class="modal-body" id="reportContent" name="reportContent"
+                       placeholder="신고내용을 작성해주세요." style="resize: none;" required>
+                <!-- 숨겨진 필드에 buyerId 설정 -->
+                <input type="hidden" id="reportBuyerId" name="buyerId">
+
+                <!-- Modal footer -->
+                <div class="modal-footer" style="margin-top: 30px">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">취소</button>
+                    <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">신고하기</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
 <script>
     function changePage(pageNumber) {
         window.location.href = `/s/mypage-complete-auction?page=${pageNumber}`;
@@ -110,6 +142,11 @@
     // 송장번호등록을 위한 모달창에 해당 물품의 transactionId값 넣기
     function addNumber(transactionId){
         document.getElementById('hiddenId').value = transactionId;
+    }
+
+    // 구매자 신고를 위한 모달창에 해당 물품 구매자의 buyerId값 넣기
+    function reportBuyer(buyerId){
+        document.getElementById('reportBuyerId').value = buyerId;
     }
 
     // 판매 확정하기

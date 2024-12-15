@@ -82,9 +82,9 @@ insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_s
 insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_status, transaction_status, success_price, updated_at) values (1, 3, 1, 0, 0, 0,86000, now());
 insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_status, transaction_status, success_price, updated_at) values (4, 3, 1, 0, 0, 0,3000, now());
 insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_status, transaction_status, success_price, updated_at) values (2, 3, 1, 1, 1, 0,100000, now());
-insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_status, transaction_status, success_price, updated_at) values (3, 1, 2, 0, 1, 0,50000, now());
+insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_status, transaction_status, success_price, updated_at) values (3, 1, 2, 0, 0, 0,50000, now());
 insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_status, transaction_status, success_price, updated_at) values (7, 1, 3, 0, 1, 0,9200, now());
-insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_status, transaction_status, success_price, updated_at) values (4, 1, 2, 0, 1, 0,45000, now());
+insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_status, transaction_status, success_price, updated_at) values (4, 1, 2, 0, 0, 0,45000, now());
 insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_status, transaction_status, success_price, updated_at) values (5, 1, 3, 1, 1, 0,7000, now());
 insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_status, transaction_status, success_price, updated_at) values (2, 1, 2, 1, 1, 0,6500, now());
 

@@ -34,7 +34,7 @@ public class TransactionController {
     public String completeAuction(@AuthenticationPrincipal User user, Model model, @RequestParam(defaultValue = "") String page) {
         List<TransactionResponse.CompleteAuctionDTO> completeAuctionList = transactionService.completeAuctionList(user.getId(), page);
         Integer rowCount = transactionService.totalCompleteAuctionListCount(user.getId());
-        model.addAttribute("pagination", PageUtil.returnToPageDTO(page, rowCount, 3));
+        model.addAttribute("pagination", PageUtil.returnToPageDTO(page, rowCount, 5));
         model.addAttribute("models", completeAuctionList);
         return "complete-auction";
     }
@@ -71,7 +71,7 @@ public class TransactionController {
     public String participatedAuction(@AuthenticationPrincipal User user, Model model, @RequestParam(defaultValue = "") String page) {
         List<TransactionResponse.ParticipatedAuctionDTO> participatedAuctionList = transactionService.participatedAuctionList(user.getId(), page);
         int rowCount = transactionService.participatedAuctionListCount(user.getId());
-        model.addAttribute("pagination", PageUtil.returnToPageDTO(page, rowCount, 3));
+        model.addAttribute("pagination", PageUtil.returnToPageDTO(page, rowCount, 5));
         model.addAttribute("models", participatedAuctionList);
         return "participated-auction";
     }

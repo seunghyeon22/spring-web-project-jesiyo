@@ -102,7 +102,7 @@ public class GoodsController {
     public String beingAuctioned(@AuthenticationPrincipal User user, Model model, @RequestParam(defaultValue = "") String page) {
         List<GoodsResponse.UserGoodsDTO> userGoodsDTOS = goodsService.mySellGoods(user.getUsername(), page);
         int rowCount = goodsService.mySellGoodsAllCount(user.getId());
-        model.addAttribute("pagination", PageUtil.returnToPageDTO(page, rowCount, 3));
+        model.addAttribute("pagination", PageUtil.returnToPageDTO(page, rowCount, 5));
         model.addAttribute("models", userGoodsDTOS);
         return "being-auctioned";
     }
