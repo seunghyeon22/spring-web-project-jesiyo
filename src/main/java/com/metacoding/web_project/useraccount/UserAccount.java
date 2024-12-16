@@ -28,12 +28,12 @@ public class UserAccount {
     private String account;
 
     @Builder
-    public UserAccount(Integer id, User user, Integer score, Integer hasPrice, String acount) {
+    public UserAccount(Integer id, User user, Integer score, Integer hasPrice, String account) {
         this.id = id;
         this.user = user;
         this.score = score;
         this.hasPrice = hasPrice;
-        this.account = acount;
+        this.account = account;
     }
 
     public void updateUserInfo(Integer price) {

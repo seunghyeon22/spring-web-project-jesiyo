@@ -6,11 +6,11 @@ insert into user_tb(username, password, name, post_num, addr, addr_detail, birth
 insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role, tel) values('cos2', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', 'Cos2', '12345', '주소2', '상세주소1', '생일2', 'ROLE_USER', '010-2222-2222');
 insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role, tel) values('love2', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', 'Love2', '12345', '주소2', '상세주소1', '생일2', 'ROLE_USER', '010-3333-3333');
 
-insert into useraccount_tb(user_id, score, has_price) values (1, 0, 0);
-insert into useraccount_tb(user_id, score, has_price) values (2, 0, 15000);
-insert into useraccount_tb(user_id, score, has_price) values (3, 0, 15000);
-insert into useraccount_tb(user_id, score, has_price) values (4, 0, 15000);
-insert into useraccount_tb(user_id, score, has_price) values (5, 0, 15000);
+insert into useraccount_tb(user_id, score, has_price, account) values (1, 0, 0,'등록계좌없음');
+insert into useraccount_tb(user_id, score, has_price, account) values (2, 0, 15000,'등록계좌없음');
+insert into useraccount_tb(user_id, score, has_price, account) values (3, 0, 15000,'등록계좌없음');
+insert into useraccount_tb(user_id, score, has_price, account) values (4, 0, 15000,'등록계좌없음');
+insert into useraccount_tb(user_id, score, has_price, account) values (5, 0, 15000,'등록계좌없음');
 
 
 
