@@ -1,10 +1,10 @@
 
 -- user_tb 더미데이터
-insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role, tel) values('ssar', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', 'Ssar', '12345', '주소1', '상세주소1', '생일1', 'ROLE_ADMIN', '010-1111-1111');
-insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role, tel) values('cos', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', 'Cos', '12345', '주소2', '상세주소1', '생일2', 'ROLE_USER', '010-2222-2222');
-insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role, tel) values('love', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', 'Love', '12345', '주소2', '상세주소1', '생일2', 'ROLE_USER', '010-3333-3333');
-insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role, tel) values('cos2', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', 'Cos2', '12345', '주소2', '상세주소1', '생일2', 'ROLE_USER', '010-2222-2222');
-insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role, tel) values('love2', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', 'Love2', '12345', '주소2', '상세주소1', '생일2', 'ROLE_USER', '010-3333-3333');
+insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role, tel) values('ssar', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', 'Ssar', '12345', '주소1', '상세주소1', '생일1', 'ROLE_ADMIN', '01011111111');
+insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role, tel) values('cos', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', 'Cos', '12345', '주소2', '상세주소1', '생일2', 'ROLE_USER', '01022222222');
+insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role, tel) values('love', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', 'Love', '12345', '주소2', '상세주소1', '생일2', 'ROLE_USER', '01033333333');
+insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role, tel) values('cos2', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', 'Cos2', '12345', '주소2', '상세주소1', '생일2', 'ROLE_USER', '01022222222');
+insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role, tel) values('love2', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', 'Love2', '12345', '주소2', '상세주소1', '생일2', 'ROLE_USER', '01033333333');
 
 insert into useraccount_tb(user_id, score, has_price, account) values (1, 0, 0,'등록계좌없음');
 insert into useraccount_tb(user_id, score, has_price, account) values (2, 0, 15000,'등록계좌없음');

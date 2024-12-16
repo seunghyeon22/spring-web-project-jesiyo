@@ -4,6 +4,7 @@ import com.metacoding.web_project._core.error.ex.Exception400;
 import com.metacoding.web_project._core.error.ex.Exception404;
 import com.metacoding.web_project.useraccount.UserAccount;
 import jakarta.transaction.Transactional;
+import jakarta.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -58,17 +59,17 @@ public class UserService implements UserDetailsService {
     }
 
     @Transactional
-    public void 비밀번호변경(int id, UserRequest.ChangePwDTO changePwDTO) {
+    public int 비밀번호변경(int id, UserRequest.ChangePwDTO changePwDTO) {
         String newPassword = passwordEncoder.encode(changePwDTO.getNewPassword());
-
         User userPS = userRepository.findById(id); //repository에서 select해서 db에서 가져온 비번
-
         boolean isSame = passwordEncoder.matches(changePwDTO.getPassword(), userPS.getPassword());
-
         if(isSame){
             userPS.changePassword(newPassword);
+            return 1;
+        }else{
+            return 0;
         }
-    } // 더티체킹
+    }
 
     @Transactional
     public UserResponse.CreditDTO 내정보보기(int id) {
