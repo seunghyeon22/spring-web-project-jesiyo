@@ -125,7 +125,7 @@ public class BidService {
     public List<BidResponse.ParticipatingAuctionDTO> participatingAuctionList(Integer id, String page) {
 
         // 임시로 buyerId = 1인 경우만 가져옴 로그인과 연결할 때 바꿀것
-        List<Bid> bidList = bidRepository.findByBuyerIdForBuy(id, PageUtil.offsetCount(page, 3), 3);
+        List<Bid> bidList = bidRepository.findByBuyerIdForBuy(id, PageUtil.offsetCount(page, 5), 5);
 
         // ParticipatingAuctionDTO로 변환
         List<BidResponse.ParticipatingAuctionDTO> participatingAuctionDtoList = new ArrayList<>();

@@ -11,7 +11,11 @@ import java.util.List;
 @Repository
 public class ReportRepository {
     private final EntityManager em;
-
+    
+    // 신고 하기(등록)
+    public void save(Report report) {
+        em.persist(report);
+    }
 
     //  신고 관련 테이블의 내용을 다른 테이블들과 join 하여 가져오는 메서드 (관리자)
     public List<Report> findReportJoinAnotherInfo(String query, int offset, int limit) {
@@ -24,7 +28,6 @@ public class ReportRepository {
         q.setMaxResults(limit); // limit
         return (List<Report>) q.getResultList();
     }
-
 
     // report id 로 1건을 조회하는 메서드 (관리자용)
     // 추후 다른 여러값들을 get 하기 때문에 일부러 find 대신 join 문을 사용
@@ -52,6 +55,4 @@ public class ReportRepository {
         // Native Query는 기본적으로 Long 타입을 반환하므로 이를 Integer로 변환합니다.
         return ((Number) q.getSingleResult()).intValue();
     }
-
-
 }

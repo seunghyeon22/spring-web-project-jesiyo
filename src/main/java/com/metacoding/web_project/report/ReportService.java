@@ -2,6 +2,10 @@ package com.metacoding.web_project.report;
 
 import com.metacoding.web_project._core.error.ex.Exception400;
 import com.metacoding.web_project._core.util.PageUtil;
+import com.metacoding.web_project.transaction.Transaction;
+import com.metacoding.web_project.transaction.TransactionRepository;
+import com.metacoding.web_project.user.User;
+import com.metacoding.web_project.user.UserRepository;
 import com.metacoding.web_project.useraccount.UserAccount;
 import com.metacoding.web_project.useraccount.UserAccountRepository;
 import jakarta.transaction.Transactional;
@@ -16,6 +20,8 @@ import java.util.List;
 public class ReportService {
     private final ReportRepository reportRepository;
     private final UserAccountRepository userAccountRepository;
+    private final TransactionRepository transactionRepository;
+    private final UserRepository userRepository;
 
     // 신고 관련 테이블과 다른 테이블들을 join 한 결과를 받아 DTO로 변환한 뒤 반환하는 메서드 (관리자)
     public List<ReportResponse.ReportDTO> findReportJoinAnotherInfo(String divide, String page) {
@@ -56,5 +62,14 @@ public class ReportService {
             sellerAccount.updateUserInfo(reportPC.getTransaction().getSuccessPrice());
         }
 
+    }
+    
+    // 신고하기
+    @Transactional
+    public void save(ReportRequest.ReportSaveDTO reportSaveDTO) {
+//        Transaction transaction = transactionRepository.findSuccessBuyerByGoodsId();
+//        User reporter =
+//        User reported =
+//        transactionRepository.save(reportSaveDTO.toEntity(reporter, reported));
     }
 }

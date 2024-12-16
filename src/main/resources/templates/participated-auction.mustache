@@ -45,20 +45,20 @@
                             </div>
                             <div class="btn-group mt-1">
                                 {{^transactionStatus}}
-
-                                {{^buyerStatus}} <!-- buyerStatus = false일때만 구매 확정 버튼이 보이도록 -->
-                                    <button type="button" class="btn btn-custom btn-sm" onclick="confirmBuy({{id}})">
-                                        구매 확정
-                                    </button>
-                                {{/buyerStatus}}
-                                {{^transactionStatus}} <!-- transactionStatus = false일때만 구매 취소 버튼이 보이도록 -->
+                                    {{^buyerStatus}} <!-- buyerStatus = false일때만 구매 확정 버튼이 보이도록 -->
+                                        <button type="button" class="btn btn-custom btn-sm" onclick="confirmBuy({{id}})">
+                                            구매 확정
+                                        </button>
+                                    {{/buyerStatus}}
                                     <button type="button" class="btn btn-custom btn-sm" onclick="cancelBuy({{id}})">
                                         구매 취소
                                     </button>
-                                {{/transactionStatus}}
-                                <button type="button" class="btn btn-custom btn-sm"  data-bs-toggle="modal" data-bs-target="#myModal">
-                                    판매자 신고하기
-                                </button>
+                                    <button type="button" class="btn btn-custom btn-sm"
+                                        onclick="reportSeller({{id}})"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#myModal">
+                                     판매자 신고
+                                    </button>
                                 {{/transactionStatus}}
                             </div>
                         </div>
@@ -69,6 +69,8 @@
         </div>
       </div>
     </div>
+
+    <!-- 신고하기 모달창 -->
     <div class="modal" id="myModal">
       <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content" style="padding: 20px">
@@ -80,20 +82,29 @@
           </div>
     
           <!-- Modal body -->
-            <textarea class="modal-body" placeholder="신고내용을 작성해주세요." style="resize: none;" ></textarea>
-         
-    
-          <!-- Modal footer -->
-          <div class="modal-footer" style="margin-top: 30px">
-            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">취소</button>
-            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">신고하기</button>
-          </div>
+          <form action="/s/report-seller" method="post">
+              <input type="text" class="modal-body" id="reportContent" name="reportContent"
+                     placeholder="신고내용을 작성해주세요." style="resize: none;" required>
+              <!-- 숨겨진 필드에 sellerId 설정 -->
+              <input type="hidden" id="reportSellerId" name="sellerId">
+
+              <!-- Modal footer -->
+              <div class="modal-footer" style="margin-top: 30px">
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">취소</button>
+                  <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">신고하기</button>
+              </div>
+          </form>
     
         </div>
       </div>
     </div>
 
     <script>
+        // 판매자 신고를 위한 모달창에 해당 물품 판매자의 sellerId값 넣기
+        function reportBuyer(sellerId){
+            document.getElementById('reportSellerId').value = sellerId;
+        }
+
         // 구매 확정하기
         function confirmBuy(transactionId) {
             if (confirm('구매를 확정하시겠습니까?')) {
@@ -111,7 +122,8 @@
                         alert('구매가 확정되었습니다.');
                         location.reload();
                     } else {
-                        alert('구매 확정에 실패했습니다.');
+                        // alert('구매 확정에 실패했습니다.');
+                        response.text().then(text => alert('구매 확정에 실패했습니다: ' + text));
                     }
                 });
             }
@@ -139,14 +151,12 @@
                 });
             }
         }
+
+        function changePage(pageNumber) {
+            window.location.href = `/s/mypage-participated-auction?page=${pageNumber}`;
+        }
     </script>
 
     {{>layout/footer}}
   </body>
-<script>
-
-    function changePage(pageNumber) {
-        window.location.href = `/s/myPage-participated-auction?page=${pageNumber}`;
-    }
-</script>
 </html>

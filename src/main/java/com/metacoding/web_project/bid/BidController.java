@@ -42,7 +42,7 @@ public class BidController {
     public String participatingAuction(@AuthenticationPrincipal User user, Model model, @RequestParam(defaultValue = "") String page) {
         List<BidResponse.ParticipatingAuctionDTO> participatingAuctionList = bidService.participatingAuctionList(user.getId(), page);
         Integer rowCount = bidService.findAllBidCount(user.getId());
-        model.addAttribute("pagination", PageUtil.returnToPageDTO(page, rowCount, 3));
+        model.addAttribute("pagination", PageUtil.returnToPageDTO(page, rowCount, 5));
         model.addAttribute("models", participatingAuctionList);
         return "participating-auction";
     }

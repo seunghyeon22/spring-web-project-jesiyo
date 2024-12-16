@@ -18,11 +18,11 @@
 }
 
 .carousel-control-prev {
-    margin-top: 120px;
+    margin-top: 60px;
 }
 
 .carousel-control-next {
-    margin-top: 120px;
+    margin-top: 60px;
 }
 
 .category-carousel-control-prev {
@@ -42,16 +42,7 @@
 .t1-category-TextAndImage{
     width: 100%;
 }
-/*.t1-category-box{*/
 
-/*}*/
-/*.t1-category-item{*/
-/*    width: 1000px;*/
-/*}*/
-
-/*.t1-category{*/
-/*    width: 200px;*/
-/*}*/
 img{
     width: 150px;
     height: 100px;
@@ -59,6 +50,7 @@ img{
 
 .carousel-inner {
     position: relative; /* 버튼 위치를 위해 필요 */
+    margin-top: 0;
 }
 
 .category-carousel-control-prev, .category-carousel-control-next {
