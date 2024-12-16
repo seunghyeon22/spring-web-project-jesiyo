@@ -19,9 +19,9 @@ public class ReportResponse {
         public ReportDTO(Report report) {
 
             if (report.getReporter().getId() == report.getTransaction().getSeller().getId()) {
-                sellerName += "(신고자)";
+                sellerName += "[신고자]";
             } else {
-                buyerName += "(신고자)";
+                buyerName += "[신고자]";
             }
             this.reportId = report.getId();
             this.sellerName += report.getTransaction().getSeller().getName();

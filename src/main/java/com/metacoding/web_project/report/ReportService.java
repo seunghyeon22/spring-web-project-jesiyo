@@ -22,7 +22,6 @@ public class ReportService {
     private final ReportRepository reportRepository;
     private final UserAccountRepository userAccountRepository;
     private final TransactionRepository transactionRepository;
-    private final UserRepository userRepository;
 
     // 신고 관련 테이블과 다른 테이블들을 join 한 결과를 받아 DTO로 변환한 뒤 반환하는 메서드 (관리자)
     public List<ReportResponse.ReportDTO> findReportJoinAnotherInfo(String divide, String page) {
@@ -53,15 +52,23 @@ public class ReportService {
             throw new Exception400("잘못된 요청입니다.");
         }
         Report reportPC = reportRepository.findById(reportId);
+        Optional<Transaction> transaction = transactionRepository.findById(reportPC.getTransaction().getId());
+        if (!transaction.isPresent()) {
+            throw new Exception400("잘못된 요청입니다.");
+        }
+
         reportPC.updateStatus(method);
         if (method.equals("cancel")) {
             UserAccount buyerAccount = userAccountRepository.findByUsername(reportPC.getTransaction().getBuyer().getUsername());
             buyerAccount.updateUserInfo(reportPC.getTransaction().getSuccessPrice());
+            transaction.get().updateStatus(null, null, 4, null);
         }
         if (method.equals("seller")) {
             UserAccount sellerAccount = userAccountRepository.findByUsername(reportPC.getTransaction().getSeller().getUsername());
             sellerAccount.updateUserInfo(reportPC.getTransaction().getSuccessPrice());
+            transaction.get().updateStatus(null, null, 5, null);
         }
+
 
     }
     

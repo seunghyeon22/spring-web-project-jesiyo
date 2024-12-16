@@ -37,30 +37,50 @@
                             <div>카테고리 : {{categoryName}}</div>
                             <div>낙찰가 : {{successPrice}}원</div>
                             <div>송장번호 확인 : {{deliveryNum}}</div>
-                            <div>
-                                <!-- transactionStatus = true일때만 구매 취소 문구가 보이도록 -->
-                                {{#transactionStatus}}
-                                    구매 취소됨
-                                {{/transactionStatus}}
-                            </div>
-                            <div class="btn-group mt-1">
-                                {{^transactionStatus}}
-                                    {{^buyerStatus}} <!-- buyerStatus = false일때만 구매 확정 버튼이 보이도록 -->
-                                        <button type="button" class="btn btn-custom btn-sm" onclick="confirmBuy({{id}})">
-                                            구매 확정
-                                        </button>
-                                    {{/buyerStatus}}
-                                    <button type="button" class="btn btn-custom btn-sm" onclick="cancelBuy({{id}})">
-                                        구매 취소
-                                    </button>
-                                    <button type="button" class="btn btn-custom btn-sm"
-                                        onclick="reportSeller({{id}})"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#myModal">
-                                     판매자 신고
-                                    </button>
-                                {{/transactionStatus}}
-                            </div>
+                            {{#auctionSuccess}}
+                                최종 거래가 완료 되었습니다
+                            {{/auctionSuccess}}
+                            {{^auctionSuccess}}
+                                {{#depositMoneyToSeller}}
+                                    관리자에 의해 판매자에게 입찰금이 전달되었습니다
+                                {{/depositMoneyToSeller}}
+                                {{^depositMoneyToSeller}}
+                                    {{#auctionCancel}}
+                                        관리자에 의해 경매가 취소되었습니다
+                                    {{/auctionCancel}}
+                                    {{^auctionCancel}}
+                                        {{#reporting}}
+                                            신고가 접수되어 처리 중 입니다
+                                        {{/reporting}}
+                                        {{^reporting}}
+                                            <div>
+                                                <!-- transactionStatus = true일때만 구매 취소 문구가 보이도록 -->
+                                                {{#transactionStatus}}
+                                                    구매 취소됨
+                                                {{/transactionStatus}}
+                                            </div>
+                                            <div class="btn-group mt-1">
+                                                {{^transactionStatus}}
+                                                    {{^buyerStatus}} <!-- buyerStatus = false일때만 구매 확정 버튼이 보이도록 -->
+                                                        <button type="button" class="btn btn-custom btn-sm" onclick="confirmBuy({{id}})">
+                                                            구매 확정
+                                                        </button>
+                                                    {{/buyerStatus}}
+                                                    <button type="button" class="btn btn-custom btn-sm" onclick="cancelBuy({{id}})">
+                                                        구매 취소
+                                                    </button>
+                                                    <button type="button" class="btn btn-custom btn-sm"
+                                                            onclick="reportSeller({{id}})"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#myModal">
+                                                        판매자 신고
+                                                    </button>
+                                                {{/transactionStatus}}
+                                            </div>
+                                        {{/reporting}}
+                                    {{/auctionCancel}}
+                                {{/depositMoneyToSeller}}
+                            {{/auctionSuccess}}
                         </div>
                     </div>
                 </div>
