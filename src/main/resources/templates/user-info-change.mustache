@@ -94,24 +94,24 @@
                                           <h1 class="modal-title fs-5" id="exampleModalLabel">계좌실명확인</h1>
                                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
-                                        <div class="modal-body">
-                                            <div class="mb-3">
-                                              <input type="text" name="account" class="form-control" id="recipient-name" placeholder="성함을 입력해주세요">
+                                            <div class="modal-body">
+                                                <div class="mb-3">
+                                                    <input type="text" class="form-control" placeholder="성함을 입력해주세요" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <input type="text" class="form-control" placeholder="은행을 입력해주세요" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <input type="text" class="form-control" placeholder="주민등록번호 7자리를 입력해주세요" id="ssn-input" maxlength="7" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <input type="number" name="account" class="form-control" placeholder="계좌번호를 -없이 입력해주세요" required>
+                                                </div>
+
+                                                <button type="submit" class="btn btn-primary">Send message</button>
                                             </div>
-                                          <div class="mb-3">
-                                              <input type="text" name="account" class="form-control" id="recipient-name" placeholder="은행을 입력해주세요">
-                                            </div>
-                                          <div class="mb-3">
-                                              <input type="text" name="account" class="form-control" id="recipient-name" placeholder="주민등록번호 7자리를 입력해주세요">
-                                            </div>
-                                          <div class="mb-3">
-                                              <input type="text" name="account" class="form-control" id="recipient-name" placeholder="계좌번호를 -없이 입력해주세요">
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                          <button type="button" class="btn btn-primary">Send message</button>
-                                        </div>
+
+
                                       </div>
                                     </div>
                                   </div>

@@ -29,7 +29,7 @@ public class ReportController {
         return "admin/confirm-report";
     }
 
-    // 신고 창 모달에서 경매취소했을 때 (관리자)
+    // 신고 창 모달에서 신고처리 했을 때 (관리자)
     @PostMapping("/admin/transaction/update")
     public String updateReport(Model model, @RequestParam(defaultValue = "") String reportId, @RequestParam(defaultValue = "") String method) {
         reportService.reportTreatment(reportId, method);

@@ -48,6 +48,14 @@ public class TransactionResponse {
         private Boolean sellerStatus = false; // 판매 확정 상태 (false = 안 누름, true = 누름)
         private Boolean buyerStatus = false; // 구매 확정 상태 (false = 안 누름, true = 누름)
         private Boolean transactionStatus = false; // 판매 취소 상태 (false = 안 누름, true = 누름)
+        // 신고 처리 전일 때
+        private Boolean reporting = false;
+        // 관리자가 신고 처리했을 때 (경매 취소)
+        private Boolean auctionCancel = false;
+        // 관리자가 신고 처리했을 때 (판매자에게 강제 입금)
+        private Boolean depositMoneyToSeller = false;
+        // 최종 거래가 완료되었을 때
+        private Boolean auctionSuccess = false;
 
         public CompleteAuctionDTO(Transaction transaction) {
             this.id = transaction.getId();
@@ -73,9 +81,25 @@ public class TransactionResponse {
                 this.buyerStatus = true;
             }
 
+            if (transaction.getBuyerStatus() == 1 && transaction.getSellerStatus() == 1) {
+                this.auctionSuccess = true;
+            }
+
             if (transaction.getTransactionStatus() == 1) {
                 this.transactionStatus = true;
             }
+
+
+            if (transaction.getTransactionStatus() == 3) {
+                this.reporting = true;
+            }
+            if (transaction.getTransactionStatus() == 4) {
+                this.auctionCancel = true;
+            }
+            if (transaction.getTransactionStatus() == 5) {
+                this.depositMoneyToSeller = true;
+            }
+
         }
     }
 
@@ -92,6 +116,15 @@ public class TransactionResponse {
         private Boolean sellerStatus = false; // 판매 확정 상태 (false = 안 누름, true = 누름)
         private Boolean buyerStatus = false; // 구매 확정 상태 (false = 안 누름, true = 누름)
         private Boolean transactionStatus = false; // 판매 취소 상태 (false = 안 누름, true = 누름)
+
+        // 신고 처리 전일 때
+        private Boolean reporting = false;
+        // 관리자가 신고 처리했을 때 (경매 취소)
+        private Boolean auctionCancel = false;
+        // 관리자가 신고 처리했을 때 (판매자에게 강제 입금)
+        private Boolean depositMoneyToSeller = false;
+        // 최종 거래가 완료되었을 때
+        private Boolean auctionSuccess = false;
 
         public ParticipatedAuctionDTO(Transaction transaction) {
             this.id = transaction.getId();
@@ -116,9 +149,25 @@ public class TransactionResponse {
                 this.buyerStatus = true;
             }
 
+            if (transaction.getBuyerStatus() == 1 && transaction.getSellerStatus() == 1) {
+                this.auctionSuccess = true;
+            }
+
             if (transaction.getTransactionStatus() == 2) {
                 this.transactionStatus = true;
             }
+
+            if (transaction.getTransactionStatus() == 3) {
+                this.reporting = true;
+            }
+            if (transaction.getTransactionStatus() == 4) {
+                this.auctionCancel = true;
+            }
+            if (transaction.getTransactionStatus() == 5) {
+                this.depositMoneyToSeller = true;
+            }
+
+
         }
     }
 }

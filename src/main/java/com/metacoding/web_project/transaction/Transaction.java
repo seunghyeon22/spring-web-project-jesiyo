@@ -43,6 +43,8 @@ public class Transaction {
     // 1 : 판매 취소 버튼 누른 후
     // 2 : 구매 취소 버튼 누른 후
     // 3 : 신고상태
+    // 4 : 신고 처리 완료 (관리자가 거래취소)
+    // 5 : 신고 처리 완료 (관리자가 판매자에게 입찰금 전달)
     @Column(nullable = false)
     private Integer transactionStatus;
 
