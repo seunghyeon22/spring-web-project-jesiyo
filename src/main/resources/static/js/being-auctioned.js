@@ -11,7 +11,7 @@ async function deleteGoods(goodsId){
     } else {
         alert("경매 취소에 실패했습니다.")
     }
-    window.location.href="/s/myPage-being-auctioned";
+    window.location.href="/s/mypage-being-auctioned";
 }
 async function  insertTransaction(goodsId){
     let url = `/api/v1/early-transaction`;
@@ -28,5 +28,5 @@ async function  insertTransaction(goodsId){
     } else{
         alert("입찰자가 없어 조기 종료 할 수 없습니다. 경매를 끝내려면 경매 취소 버튼을 눌러주세요")
     }
-    window.location.href="/s/myPage-being-auctioned";
+    window.location.href="/s/mypage-being-auctioned";
 }

@@ -2,14 +2,14 @@ package com.metacoding.web_project.report;
 
 import com.metacoding.web_project._core.CommonResp;
 import com.metacoding.web_project._core.util.PageUtil;
+import com.metacoding.web_project.user.User;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -36,21 +36,21 @@ public class ReportController {
         return "redirect:/admin/confirm-report";
     }
     
-    // 구매자 신고하기
-    @PostMapping("/s/report-buyer")
-    public ResponseEntity<?> reportBuyer(@RequestBody ReportRequest.ReportSaveDTO reportSaveDTO) {
-        reportService.save(reportSaveDTO);
-
-        CommonResp resp = new CommonResp(true, "구매자 신고 성공", null);
-        return ResponseEntity.ok(resp);
+    // 판매자, 구매자 신고하기
+    @PostMapping("/api/v1/report")
+    @ResponseBody
+    public ResponseEntity<?> reportBuyer(@AuthenticationPrincipal User user, @RequestBody ReportRequest.ReportSaveDTO reportSaveDTO) {
+        reportService.save(user.getId(),reportSaveDTO);
+        CommonResp resp = new CommonResp(true, "신고 성공", null);
+        return new ResponseEntity<>(resp, HttpStatus.OK);
     }
 
     // 판매자 신고하기
-    @PostMapping("/s/report-seller")
-    public String reportSeller(ReportRequest.ReportSaveDTO reportSaveDTO) {
-        reportService.save(reportSaveDTO);
-
-        CommonResp resp = new CommonResp(true, "판매자 신고 성공", null);
-        return "redirect:/s/mypage-participated-auction";
-    }
+//    @PostMapping("/s/report-seller")
+//    public String reportSeller(ReportRequest.ReportSaveDTO reportSaveDTO) {
+////        reportService.save(reportSaveDTO);
+//
+//        CommonResp resp = new CommonResp(true, "판매자 신고 성공", null);
+//        return "redirect:/s/mypage-participated-auction";
+//    }
 }
