@@ -7,7 +7,7 @@ function telCheck() {
     }
 }
 
-document.getElementById('tel').addEventListener('keyup',telCheck);
+document.getElementById('tel').addEventListener('keyup', telCheck);
 
 // 우편번호 검색
 //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
@@ -59,21 +59,21 @@ function sample4_execDaumPostcode() {
 async function checkDbPassword() {
     let password = document.querySelector('#password').value;
     let newpassword = document.querySelector('#pw1').value;
-    let response = await fetch('/s/user-info/pw-change',{
-        method:'post',
-        headers:{
-            'Content-Type':'application/json',
+    let response = await fetch('/s/user-info/pw-change', {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json',
         },
-        body: JSON.stringify({password:password, newPassword:newpassword}),
+        body: JSON.stringify({password: password, newPassword: newpassword}),
     });
     let result = await response.json();
     console.log(result);
-    if (result.result == 1){
+    if (result.result == 1) {
         alert('비밀번호 변경이 완료되었습니다.');
-        location.href='/s/user-info/';
-    } else if (result.result == 0){
+        location.href = '/s/user-info/';
+    } else if (result.result == 0) {
         alert('잘못된 비밀번호를 입력하셨습니다.');
-    }else{
+    } else {
         alert('error');
     }
 
@@ -88,24 +88,21 @@ function pwCheck(password) {
     if (password.length < 8) {
         isPasswordValid = false;
         return '비밀번호는 최소 8자 이상이어야 합니다.';
-    }
-    else if (!hasLetter) {
+    } else if (!hasLetter) {
         isPasswordValid = false;
         return '비밀번호에는 영문자가 포함되어야 합니다.';
-    }
-    else if (!hasNumber) {
+    } else if (!hasNumber) {
         isPasswordValid = false;
         return '비밀번호에는 숫자가 포함되어야 합니다.';
-    }
-    else if (!hasSpecialChar) {
+    } else if (!hasSpecialChar) {
         isPasswordValid = false;
         return '비밀번호에는 특수문자가 포함되어야합니다.';
-    }
-    else {
+    } else {
         isPasswordValid = true;
         return "정상입니다";
     }
 }
+
 // 비밀번호 일치 확인
 function pwAcc() {
     const pw1 = document.querySelector('#pw1').value;
@@ -136,5 +133,10 @@ document.getElementById('pw1').addEventListener('keyup', pwAcc);
 document.getElementById('pw2').addEventListener('keyup', pwAcc);
 
 
-
-
+const input = document.getElementById('ssn-input');
+input.addEventListener('input', function () {
+    this.value = this.value.replace(/[^0-9]/g, '');
+    if (this.value.length > 7) {
+        this.value = this.value.slice(0, 7);
+    }
+});
