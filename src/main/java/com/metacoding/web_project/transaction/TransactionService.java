@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 @RequiredArgsConstructor
 @Service
 public class TransactionService {
@@ -110,7 +112,7 @@ public class TransactionService {
         transaction.updateStatus(null, updateSellerStatusDTO.getSellerStatus(), null, null);
 
         // 판매 확정 + 구매 확정된 물품의 판매자의 돈에 낙찰가 추가
-        if (updateSellerStatusDTO.getSellerStatus() == 1 && updateSellerStatusDTO.getBuyerStatus() == 1) {
+        if (transaction.getSellerStatus() == 1 && transaction.getBuyerStatus() == 1) {
             UserAccount userAccount = userAccountRepository.findById(transaction.getSeller().getId());
             userAccount.updateUserInfo(transaction.getSuccessPrice());
         }
@@ -156,10 +158,10 @@ public class TransactionService {
         Transaction transaction = transactionRepository.findById(updateBuyerStatusDTO.getTransactionId())
                 .orElseThrow(() -> new Exception404("해당 물품이 없습니다."));
 
-        transaction.updateStatus(updateBuyerStatusDTO.getBuyerStatus(), null, null, null);
 
+        transaction.updateStatus(updateBuyerStatusDTO.getBuyerStatus(), null, null, null);
         // 판매 확정 + 구매 확정된 물품의 판매자의 돈에 낙찰가 추가
-        if (updateBuyerStatusDTO.getBuyerStatus() == 1 && updateBuyerStatusDTO.getSellerStatus() == 1) {
+        if (transaction.getBuyerStatus() == 1 && transaction.getSellerStatus() == 1) {
             UserAccount userAccount = userAccountRepository.findById(transaction.getSeller().getId());
             userAccount.updateUserInfo(transaction.getSuccessPrice());
         }
