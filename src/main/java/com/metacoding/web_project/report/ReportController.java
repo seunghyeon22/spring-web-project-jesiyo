@@ -47,10 +47,10 @@ public class ReportController {
 
     // 판매자 신고하기
     @PostMapping("/s/report-seller")
-    public ResponseEntity<?> reportSeller(@RequestBody ReportRequest.ReportSaveDTO reportSaveDTO) {
+    public String reportSeller(ReportRequest.ReportSaveDTO reportSaveDTO) {
         reportService.save(reportSaveDTO);
 
         CommonResp resp = new CommonResp(true, "판매자 신고 성공", null);
-        return ResponseEntity.ok(resp);
+        return "redirect:/s/mypage-participated-auction";
     }
 }
