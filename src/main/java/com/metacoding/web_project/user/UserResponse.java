@@ -2,9 +2,6 @@ package com.metacoding.web_project.user;
 
 import com.metacoding.web_project.useraccount.UserAccount;
 import lombok.Data;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import java.util.List;
 
 public class UserResponse {
 
@@ -48,12 +45,14 @@ public class UserResponse {
         private String username;
         private Integer score;
         private Integer hasPrice;
+        private String account;
 
         public CreditDTO(UserAccount userAccount) {
             this.id = userAccount.getUser().getId();
             this.username = userAccount.getUser().getUsername();
             this.score = userAccount.getScore();
             this.hasPrice = userAccount.getHasPrice();
+            this.account = userAccount.getAccount();
         }
     }
 

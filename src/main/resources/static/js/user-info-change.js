@@ -1,44 +1,3 @@
-// 비밀번호 유효성 검사
-function pwCheck(){
-    const pw1 = document.querySelector("#pw1").value;
-}
-
-// 비밀번호 일치 
-function pwAcc() {
-    const pw1 = document.querySelector("#pw1").value.trim();
-    const pw2 = document.querySelector('#pw2').value.trim();
-    const pwck = document.querySelector('#pwck');
-    if( pw1&&pw2 ){
-        if (pw1 == pw2) {
-            pwck.textContent = '비밀번호 일치';
-            pwck.style.color = 'green';
-        } else {
-            pwck.textContent = '비밀번호 불일치';
-            pwck.style.color = 'red';
-        }
-    }else{
-        pwck.textContent = '비밀번호를 입력해주세요';
-        pwck.style.color = 'orange';
-    }
-}
-
-document.querySelector('#pw1').addEventListener('keyup', pwAcc);
-document.querySelector('#pw2').addEventListener('keyup', pwAcc);
-
-const btnPwChange = document.querySelector('#btnPwChange');
-const pwck = document.querySelector('#pwck');
-
-btnPwChange.addEventListener('click',(e)=>{
-    if(pwck.textContent !=="비밀번호 일치"){
-        e.preventDefault();
-        alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.')
-    }
-});
-
-
-
-
-
 // 전화번호에 숫자만 입력가능 알림창
 function telCheck() {
     let tel = document.getElementById('tel').value;
@@ -49,9 +8,6 @@ function telCheck() {
 }
 
 document.getElementById('tel').addEventListener('keyup',telCheck);
-
-
-
 
 // 우편번호 검색
 //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
@@ -98,6 +54,87 @@ function sample4_execDaumPostcode() {
         }
     }).open();
 }
+
+// 현재 비밀번호 일치 여부
+async function checkDbPassword() {
+    let password = document.querySelector('#password').value;
+    let newpassword = document.querySelector('#pw1').value;
+    let response = await fetch('/s/user-info/pw-change',{
+        method:'post',
+        headers:{
+            'Content-Type':'application/json',
+        },
+        body: JSON.stringify({password:password, newPassword:newpassword}),
+    });
+    let result = await response.json();
+    console.log(result);
+    if (result.result == 1){
+        alert('비밀번호 변경이 완료되었습니다.');
+        location.href='/s/user-info/';
+    } else if (result.result == 0){
+        alert('잘못된 비밀번호를 입력하셨습니다.');
+    }else{
+        alert('error');
+    }
+
+}
+
+// 비밀번호 유효성 검사
+function pwCheck(password) {
+    const hasLetter = /[a-zA-Z]/.test(password); // 영문자 포함
+    const hasNumber = /[0-9]/.test(password); // 숫자 포함
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password); // 특수문자 포함
+
+    if (password.length < 8) {
+        isPasswordValid = false;
+        return '비밀번호는 최소 8자 이상이어야 합니다.';
+    }
+    else if (!hasLetter) {
+        isPasswordValid = false;
+        return '비밀번호에는 영문자가 포함되어야 합니다.';
+    }
+    else if (!hasNumber) {
+        isPasswordValid = false;
+        return '비밀번호에는 숫자가 포함되어야 합니다.';
+    }
+    else if (!hasSpecialChar) {
+        isPasswordValid = false;
+        return '비밀번호에는 특수문자가 포함되어야합니다.';
+    }
+    else {
+        isPasswordValid = true;
+        return "정상입니다";
+    }
+}
+// 비밀번호 일치 확인
+function pwAcc() {
+    const pw1 = document.querySelector('#pw1').value;
+    const pw2 = document.querySelector('#pw2').value;
+
+    const pwck = document.querySelector('#pwck');
+    const pwvalid = document.querySelector('#pwvalid');
+
+    const msg = pwCheck(pw1);
+
+    pwvalid.style.color = 'orange';
+    pwvalid.textContent = msg;
+
+    if (pw1 && pw2 != null) {
+        if (pw1 == pw2) {
+            pwck.textContent = '비밀번호 일치';
+            pwck.style.color = 'green';
+            isPasswordSame = true;
+        } else {
+            pwck.textContent = '비밀번호 불일치';
+            pwck.style.color = 'red';
+            isPasswordSame = false;
+        }
+    }
+}
+
+document.getElementById('pw1').addEventListener('keyup', pwAcc);
+document.getElementById('pw2').addEventListener('keyup', pwAcc);
+
 
 
 

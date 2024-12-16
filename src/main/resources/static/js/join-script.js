@@ -1,8 +1,19 @@
+/*
+let isUsernameVaild = false;
+let isUsernameOk = false;
+let isPasswordValid = false;
+let isPasswordSame = false;
+
+function onSubmitCheck(){
+    return isUsernameVaild && isUsernameOk && isPasswordValid && isPasswordSame;
+}
+*/
+
 
 // 아이디 유효성 검증
 function idCheck() {
-    let id = document.getElementById('id').value;
-    let idck = document.getElementById('idck');
+    let id = document.querySelector('#id').value;
+    let idck = document.querySelector('#idck');
     let regex = /^[a-zA-Z][a-zA-Z0-9]*$/; // 영문자로 시작하고 영문자와 숫자만 포함
 
     idck.textContent = '';
@@ -11,23 +22,23 @@ function idCheck() {
     if (id.length < 3 || id.length > 12) {
         idck.textContent = '아이디는 3자 이상 12자 이하이어야 합니다.';
         idck.style.color = 'red';
+        isUsernameVaild = false;
         return;
-    }
-
-    if (id.includes(" ")) {
+    }else if (id.includes(" ")) {
         idck.textContent = '아이디는 공백을 포함할 수 없습니다.';
         idck.style.color = 'red';
+        isUsernameVaild = false;
         return;
-    }
-
-    if (!regex.test(id)) {
+    }else if (!regex.test(id)) {
         idck.textContent = '아이디는 영문자로 시작하고, 영문자와 숫자만 포함할 수 있습니다.';
         idck.style.color = 'red';
+        isUsernameVaild = false;
         return;
+    }else {
+        idck.textContent = '유효한 아이디입니다.';
+        idck.style.color = 'green';
+        isUsernameVaild = true;
     }
-
-    idck.textContent = '유효한 아이디입니다.';
-    idck.style.color = 'green';
 }
 
 document.getElementById('id').addEventListener('keyup', idCheck);
@@ -37,7 +48,6 @@ document.getElementById('id').addEventListener('keyup', idCheck);
 // 아이디 중복 체크
 async function idDupCheck(){
     let idInput = document.querySelector('#id');
-    let isIdDuplicated = false; // 아이디 중복 여부 상태
 
     let username = idInput.value;
 
@@ -47,7 +57,7 @@ async function idDupCheck(){
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ username }),
+            body: JSON.stringify({ username:username }),
         });
 
         if (!response.ok) {
@@ -58,10 +68,10 @@ async function idDupCheck(){
 
         if (result === 0) {
             alert('사용가능한 아이디입니다.')
-            isIdDuplicated = false; // 아이디가 중복되지 않은 상태로 설정
+            isUsernameOk = true;
         } else {
             alert('이미 사용중인 아이디입니다. 다른 아이디를 등록해주세요.')
-            isIdDuplicated = true; // 아이디가 중복된 상태로 설정
+            isUsernameOk = false;
         }
     } catch (error) {
         alert('error')
@@ -69,49 +79,64 @@ async function idDupCheck(){
     }
 }
 
-// 비밀번호 유효성 검사 함수
-function pwCheck(password){
+// 비밀번호 유효성 검사
+function pwCheck(password) {
     const hasLetter = /[a-zA-Z]/.test(password); // 영문자 포함
     const hasNumber = /[0-9]/.test(password); // 숫자 포함
     const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password); // 특수문자 포함
 
-    if(pw1.length < 8) return '비밀번호는 최소 8자 이상이어야 합니다.';
-    if(!hasLetter) return '비밀번호에는 영문자가 포함되어야 합니다.';
-    if(!hasNumber) return '비밀번호에는 숫자가 포함되어야 합니다.';
-    if(!hasSpecialChar) return '비밀번호에는 특수문자가 포함되어야합니다.';
-    return '사용하실 수 있는 비밀번호 입니다.'
+    if (password.length < 8) {
+        isPasswordValid = false;
+        return '비밀번호는 최소 8자 이상이어야 합니다.';
+    }
+    else if (!hasLetter) {
+        isPasswordValid = false;
+        return '비밀번호에는 영문자가 포함되어야 합니다.';
+    }
+    else if (!hasNumber) {
+        isPasswordValid = false;
+        return '비밀번호에는 숫자가 포함되어야 합니다.';
+    }
+    else if (!hasSpecialChar) {
+        isPasswordValid = false;
+        return '비밀번호에는 특수문자가 포함되어야합니다.';
+    }
+    else {
+        isPasswordValid = true;
+        return "정상입니다";
+    }
 
 }
 
-// 비밀번호 일치 확인 함수
+// 비밀번호 일치 확인
 function pwAcc() {
-    const pw1 = document.getElementById('pw1').value;
-    const pw2 = document.getElementById('pw2').value;
-    const pwck = document.getElementById('pwck');
-    const pwvalid = document.querySelector('#pwvalid')
+    const pw1 = document.querySelector('#pw1').value;
+    const pw2 = document.querySelector('#pw2').value;
 
-    const pwVaild = pwCheck(pw1);
-    if(pwCheck){
-        pwvaild.textContent = pwVaild;
-        pwvalid.style.color = 'orange';
-        return;
-    }
+    const pwck = document.querySelector('#pwck');
+    const pwvalid = document.querySelector('#pwvalid');
 
-    if( pw1&&pw2 != null){
+    const msg = pwCheck(pw1);
+
+    pwvalid.style.color = 'orange';
+    pwvalid.textContent = msg;
+
+    if (pw1 && pw2 != null) {
         if (pw1 == pw2) {
             pwck.textContent = '비밀번호 일치';
             pwck.style.color = 'green';
+            isPasswordSame = true;
         } else {
             pwck.textContent = '비밀번호 불일치';
             pwck.style.color = 'red';
+            isPasswordSame = false;
         }
-    }else{
-        pwck.textContent = '비밀번호를 입력해주세요';
     }
 }
 
 document.getElementById('pw1').addEventListener('keyup', pwAcc);
 document.getElementById('pw2').addEventListener('keyup', pwAcc);
+
 
 
 

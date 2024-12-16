@@ -67,7 +67,7 @@ public class User implements UserDetails {
         this.role = role;
     }
 
-    public void updatePassword(String password) {
+    public void changePassword(String password) {
         this.password = password;
     }
 
