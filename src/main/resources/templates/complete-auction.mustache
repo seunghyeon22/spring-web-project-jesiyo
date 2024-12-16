@@ -117,7 +117,7 @@
             </div>
 
             <!-- Modal body -->
-            <form action="/s/report-buyer" method="post">
+<!--            <form action="/s/report-buyer" method="post">-->
                 <input type="text" class="modal-body" id="reportContent" name="reportContent"
                        placeholder="신고내용을 작성해주세요." style="resize: none;" required>
                 <!-- 숨겨진 필드에 buyerId 설정 -->
@@ -126,9 +126,9 @@
                 <!-- Modal footer -->
                 <div class="modal-footer" style="margin-top: 30px">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">취소</button>
-                    <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">신고하기</button>
+                    <button type="submit" class="btn btn-danger" data-bs-dismiss="modal" onclick="report_buyer()">신고하기</button>
                 </div>
-            </form>
+<!--            </form>-->
 
         </div>
     </div>
@@ -144,9 +144,10 @@
         document.getElementById('hiddenId').value = transactionId;
     }
 
+    let transaction_id=""
     // 구매자 신고를 위한 모달창에 해당 물품 구매자의 buyerId값 넣기
-    function reportBuyer(buyerId){
-        document.getElementById('reportBuyerId').value = buyerId;
+    function reportBuyer(transactionId){
+        transaction_id = transactionId;
     }
 
     // 판매 확정하기
@@ -193,6 +194,32 @@
                 }
             });
         }
+    }
+
+    // 신고하기
+    async function report_buyer() {
+        let reportContent = document.getElementById('reportContent').value;
+        console.log(transaction_id);
+        console.log(reportContent);
+
+        let url = `/api/v1/report`;
+        let response = await fetch(url, {
+            method: 'Post',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body : JSON.stringify({
+                transactionId: transaction_id,
+                reason : reportContent
+            })
+        })
+        let responseData = await response.json();
+        if (!responseData.success) {
+            alert(responseData.msg);
+        }else{
+            window.location.href =`/s/mypage-complete-auction`;
+        }
+
     }
 </script>
 

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -66,10 +67,33 @@ public class ReportService {
     
     // 신고하기
     @Transactional
-    public void save(ReportRequest.ReportSaveDTO reportSaveDTO) {
-//        Transaction transaction = transactionRepository.findSuccessBuyerByGoodsId();
-//        User reporter =
-//        User reported =
-//        transactionRepository.save(reportSaveDTO.toEntity(reporter, reported));
+    public void save(Integer userId, ReportRequest.ReportSaveDTO reportSaveDTO) {
+       Optional<Transaction> transaction = transactionRepository.findById(reportSaveDTO.getTransactionId());
+       if(transaction.isPresent()) {
+           if(transaction.get().getBuyer().getId().equals(userId)){
+               Report report = Report.builder().
+                       reporter(transaction.get().getBuyer()).
+                       reported(transaction.get().getSeller()).
+                       reason(reportSaveDTO.getReason()).
+                       transaction(transaction.get()).
+                       status(0).
+                       build();
+               reportRepository.save(report);
+           }else if(transaction.get().getSeller().getId().equals(userId)){
+               Report report = Report.builder().
+                      reporter(transaction.get().getSeller()).
+                      reported(transaction.get().getBuyer()).
+                      reason(reportSaveDTO.getReason()).
+                      transaction(transaction.get()).
+                      status(0).
+                      build();
+               reportRepository.save(report);
+           }else{
+               throw new Exception400("자신이 등록한 물품 혹은 낙찰된 물품이 아닙니다.");
+           }
+       }
+        // 일단 3번으로 바꿈
+        transaction.get().statusReport(3);
+
     }
 }
