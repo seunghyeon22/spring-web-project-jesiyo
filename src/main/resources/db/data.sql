@@ -1,5 +1,24 @@
 
 -- user_tb 더미데이터
+insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role, tel) values('ssar', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', 'Ssar', '12345', '주소1', '상세주소1', '생일1', 'ROLE_ADMIN', '010-1111-1111');
+insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role, tel) values('cos', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', 'Cos', '12345', '주소2', '상세주소1', '생일2', 'ROLE_USER', '010-2222-2222');
+insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role, tel) values('love', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', 'Love', '12345', '주소2', '상세주소1', '생일2', 'ROLE_USER', '010-3333-3333');
+insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role, tel) values('cos2', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', 'Cos2', '12345', '주소2', '상세주소1', '생일2', 'ROLE_USER', '010-2222-2222');
+insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role, tel) values('love2', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', 'Love2', '12345', '주소2', '상세주소1', '생일2', 'ROLE_USER', '010-3333-3333');
+insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role, tel)
+values ('hgd', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', '홍길동', '12345', '주소6', '상세주소6', '생일6', 'ROLE_USER', '010-6666-6666');
+
+insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role, tel)
+values ('cug', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', '최엄지', '12345', '주소7', '상세주소7', '생일7', 'ROLE_USER', '010-7777-7777');
+
+insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role, tel)
+values ('ijm', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', '일지매', '12345', '주소8', '상세주소8', '생일8', 'ROLE_USER', '010-8888-8888');
+
+insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role, tel)
+values ('lss', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', '이순신', '12345', '주소9', '상세주소9', '생일9', 'ROLE_USER', '010-9999-9999');
+
+insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role, tel)
+values ('klc', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', '김링컨', '12345', '주소10', '상세주소10', '생일10', 'ROLE_USER', '010-1010-1010');
 insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role, tel) values('ssar', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', 'Ssar', '12345', '주소1', '상세주소1', '생일1', 'ROLE_ADMIN', '01011111111');
 insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role, tel) values('cos', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', 'Cos', '12345', '주소2', '상세주소1', '생일2', 'ROLE_USER', '01022222222');
 insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role, tel) values('love', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', 'Love', '12345', '주소2', '상세주소1', '생일2', 'ROLE_USER', '01033333333');
@@ -12,6 +31,16 @@ insert into useraccount_tb(user_id, score, has_price, account) values (3, 0, 150
 insert into useraccount_tb(user_id, score, has_price, account) values (4, 0, 15000,'등록계좌없음');
 insert into useraccount_tb(user_id, score, has_price, account) values (5, 0, 15000,'등록계좌없음');
 
+insert into useraccount_tb(user_id, score, has_price) values (1, 0, 0);
+insert into useraccount_tb(user_id, score, has_price) values (2, 0, 15000);
+insert into useraccount_tb(user_id, score, has_price) values (3, 0, 15000);
+insert into useraccount_tb(user_id, score, has_price) values (4, 0, 15000);
+insert into useraccount_tb(user_id, score, has_price) values (5, 0, 15000);
+insert into useraccount_tb(user_id, score, has_price) values (6, 0, 100000);
+insert into useraccount_tb(user_id, score, has_price) values (7, 0, 200000);
+insert into useraccount_tb(user_id, score, has_price) values (8, 0, 400000);
+insert into useraccount_tb(user_id, score, has_price) values (9, 0, 450000);
+insert into useraccount_tb(user_id, score, has_price) values (10, 0, 500000);
 
 
 
@@ -32,21 +61,64 @@ insert into goods_tb(title, category_id, seller_id, content, img_url, starting_p
 insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status) values ('강아지 산책줄 나눔합니다.', '4', '2', '강아지 산책줄 나눔 중입니다.', '/upload/category1.png', 1000, '2024-12-10 12:20:00','2024-12-13 12:55:00', 0);
 insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status) values ('책상 팝니다', '7', '2', '2년 썼고 생활기스 있어요.', '없습니다', 20000, now(),'2024-12-16 22:00:00', 0);
 
-insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status) values ('냄비 팔아요', '8', '2', '산지 얼마 안돼서 새것 같아요.', '없습니다', 5000, now(),'2024-12-16 21:00:00', 0);
-insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status) values ('작년에 산 노트북 입니다.', '5', '2', '작년에 사서 몇 번 안썼어요.', '없습니다', 100000, now(),'2024-12-16 19:00:00', 0);
-insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status) values ('강아지 ', '1', '1', '이거만.', '/upload/mainlogo.jpg', 100, now(),'2024-12-16 23:00:00', 0);
-insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status) values ('고양이', '2', '2', '강아지 산책줄 나눔 중입니다.', '/upload/category1.png', 200, now(),'2024-12-10 23:00:00', 0);
-insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status) values ('고양이2.', '3', '1', '강아지 산책줄 나눔 중입니다.', '/upload/category1.png', 300, now(),'2024-12-10 23:00:00', 0);
-insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status) values ('1고양이즈', '1', '2', '강아지 산책줄 나눔 중입니다.', '/upload/category1.png', 400, now(),'2024-12-10 23:00:00', 0);
-insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status) values ('강아', '2', '1', '니다.', '/upload/category1.png', 500, now(),'2024-12-10 23:00:00', 0);
-insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status) values ('소.', '3', '2', '강아지 .', '/upload/category1.png', 600, now(),'2024-12-10 23:00:00', 0);
-insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status) values ('양', '1', '1', '강아지 산책다.', '/upload/category1.png', 700, now(),'2024-12-10 23:00:00', 0);
-insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status) values ('사람', '2', '1', '강아지 산책줄 .', '/upload/category1.png', 800, now(),'2024-12-10 23:00:00', 0);
-insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status) values ('강아지 산.', '3', '2', '강아지 산책줄 나눔 중입니다.', '/upload/category1.png', 900, now(),'2024-12-10 23:00:00', 0);
-insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status) values ('강아지 산책줄 나눔합니다.', '1', '2', '강아지 산책줄 나눔 중입니다.', '/upload/category1.png', 1000, now(),'2024-12-10 23:00:00', 0);
-insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status) values ('강아지 산책줄 나눔합니다2.', '1', '2', '강아지 산책줄 나눔 중입니다2.', '/upload/category1.png', 1000, now(),'2024-12-10 23:00:00', 1);
-insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status) values ('강아지 판매.', '1', '1', '강아지 산책줄.', '/upload/category1.png', 1000, now(),'2024-12-15 23:00:00', 0);
-insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status) values ('강아지 산책줄 나눔합니다.', '1', '2', '강아지 산책줄 나눔 중입니다.', '/upload/category1.png', 1000, now(),'2024-12-10 23:00:00', 0);
+-- goods_tb 더미데이터 8,9,10 유저만 물품 하나씩등록 / 나머지 2개씩 등록한 상태
+insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status)
+values ('강아지 산책줄 나눔합니다.', '4', '4', '강아지 산책줄 나눔 중입니다.', '/upload/dog_line.png.', 1000, '2024-12-10 12:20:00','2024-12-13 16:15:00', 1);
+
+insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status)
+values ('아이패드 9세대 판매합니다.', '1', '2', '거의 새 제품 같은 아이패드 9세대입니다. 액정 보호필름 부착, 케이스 포함.', '/upload/ipad9.png', 250000, '2024-12-12 10:00:00', '2024-12-20 18:00:00', 0);
+
+insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status)
+values ('삼성 스마트 TV 55인치 중고', '2', '2', '화질 좋고 잘 작동하는 삼성 스마트 TV 55인치입니다.', '/upload/tv_samsung.png', 150000, '2024-12-01 15:00:00', '2024-12-08 20:00:00', 1);
+
+insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status)
+values ('원목 식탁 4인용 저렴하게 판매', '3', '3', '사용감은 있지만 튼튼한 원목 4인용 식탁입니다.', '/upload/wood_table.png', 50000, '2024-12-05 09:00:00', '2024-12-10 21:00:00', 1);
+
+insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status)
+values ('아기 유모차 깨끗한 상태입니다.', '5', '5', '아기 유모차 깨끗하게 관리되어 있습니다. 부드럽게 잘 굴러갑니다.', '/upload/stroller.png', 80000, '2024-12-07 11:00:00', '2024-12-12 19:00:00', 1);
+
+insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status)
+values ('아기 그림책 세트 (10권)', '6', '6', '유아용 그림책 10권 세트로 판매합니다. 상태 좋음.', '/upload/kids_books.png', 30000, '2024-12-08 14:00:00', '2024-12-15 17:00:00', 1);
+
+insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status)
+values ('여성 겨울 코트', '7', '7', '따뜻하고 멋스러운 겨울 코트입니다. 사이즈 55.', '/upload/women_coat.png', 40000, '2024-12-09 10:00:00', '2024-12-16 20:00:00', 0);
+
+insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status)
+values ('남성용 가죽 자켓', '8', '8', '고급스러운 가죽 자켓, 사이즈 100.', '/upload/mens_jacket.png', 60000, '2024-12-10 13:00:00', '2024-12-18 22:00:00', 0);
+
+insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status)
+values ('갤럭시 워치 4 판매합니다.', '1', '9', '갤럭시 워치 4 블랙 컬러, 44mm. 박스 포함.', '/upload/galaxy_watch4.png', 80000, '2024-12-11 09:30:00', '2024-12-14 23:59:00', 1);
+
+insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status)
+values ('다이슨 무선 청소기 V10', '2', '10', '다이슨 무선 청소기 V10, 필터 교체 완료.', '/upload/dyson_v10.png', 200000, '2024-12-12 11:00:00', '2024-12-19 19:30:00', 0);
+
+insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status)
+values ('원목 의자 2개 세트', '3', '2', '원목 의자 2개 세트로 판매. 약간의 생활 기스.', '/upload/wood_chairs.png', 30000, '2024-12-13 14:00:00', '2024-12-18 20:00:00', 0);
+
+insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status)
+values ('아기 침대, 매트리스 포함', '5', '3', '아기 침대와 매트리스 포함, 안전 가드 포함.', '/upload/baby_bed.png', 120000, '2024-12-14 08:00:00', '2024-12-20 22:00:00', 0);
+
+insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status)
+values ('여성 가죽 백 (브라운)', '7', '2', '고급스러운 가죽 백. 상태 A급.', '/upload/women_bag.png', 70000, '2024-12-15 10:30:00', '2024-12-22 23:59:00', 0);
+
+insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status)
+values ('남성 정장 신발 (260mm)', '8', '3', '사용감 적은 남성 정장 신발입니다.', '/upload/mens_shoes.png', 50000, '2024-12-16 12:00:00', '2024-12-23 21:00:00', 0);
+
+insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status)
+values ('로봇 청소기 중고', '2', '3', '로봇 청소기 사용감 있지만 성능 좋음.', '/upload/robot_vacuum.png', 90000, '2024-12-17 14:00:00', '2024-12-24 22:00:00', 0);
+
+insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status)
+values ('스탠드 조명', '3', '4', '독서용으로 적합한 스탠드 조명.', '/upload/stand_light.png', 20000, '2024-12-18 13:00:00', '2024-12-25 20:00:00', 3);
+
+insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status)
+values ('유아 장난감 세트 (5종)', '5', '5', '유아용 장난감 5종 세트. 깨끗이 세척.', '/upload/toy_set.png', 15000, '2024-12-19 09:00:00', '2024-12-26 22:00:00', 3);
+
+insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status)
+values ('여성 겨울 부츠', '7', '6', '방수 기능 있는 여성 겨울 부츠. 사이즈 240.', '/upload/women_boot.png', 40000, '2024-12-20 10:00:00', '2024-12-27 23:59:00', 0);
+
+insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status)
+values ('남성 스니커즈', '8', '7', '깔끔한 디자인의 남성 스니커즈, 사이즈 270.', '/upload/mens_sneakers.png', 45000, '2024-12-21 11:00:00', '2024-12-28 20:00:00', 3);
+
 
 
 -- bid_tb 더미데이터
@@ -65,6 +137,15 @@ insert into goods_tb(title, category_id, seller_id, content, img_url, starting_p
 -- insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (4,2,24000,now());
 -- insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (3,1,5000,now());
 -- insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (4,1,10000,now());
+
+insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (2,2,21000,now());
+insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (1,2,22000,now());
+insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (5,2,23000,now());
+insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (4,2,24000,now());
+
+
+insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (3,1,5000,now());
+insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (4,1,10000,now());
 
 -- transaction_tb 더미데이터
 insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_status, transaction_status, success_price, updated_at) values (1, 3, 4, 0, 0, 0,86000, now());
