@@ -1,7 +1,7 @@
 package com.metacoding.web_project.bid;
 
 import com.metacoding.web_project._core.error.ex.Exception400;
-import com.metacoding.web_project._core.error.ex.Exception400Json;
+import com.metacoding.web_project._core.error.ex.Exception400NotHTML;
 import com.metacoding.web_project.user.User;
 import com.metacoding.web_project.user.UserRepository;
 import com.metacoding.web_project.goods.Goods;
@@ -47,14 +47,14 @@ public class BidService {
         if (highestBid.isPresent()) {
             Integer currentHighestPrice = highestBid.get().getTryPrice();
             if (tryPrice <= currentHighestPrice) {
-                throw new Exception400Json("입찰금액이 현재 최고 입찰 금액보다 높아야합니다");
+                throw new Exception400NotHTML("입찰금액이 현재 최고 입찰 금액보다 높아야합니다");
             }
         } else {
             Optional<Goods> goodsOP = goodsRepository.findById(goodsId);
             if (goodsOP.isPresent()) {
                 int statingPrice = goodsOP.get().getStartingPrice();
                 if (tryPrice <= statingPrice) {
-                    throw new Exception400Json("입찰금액이 시작 입찰가 보다 높아야합니다");
+                    throw new Exception400NotHTML("입찰금액이 시작 입찰가 보다 높아야합니다");
                 }
             }
         }
@@ -72,7 +72,7 @@ public class BidService {
         }
 
         if (userAccount.getHasPrice() < requiredPay) {
-            throw new Exception400Json("잔고가 부족하여 입찰할 수 없습니다");
+            throw new Exception400NotHTML("잔고가 부족하여 입찰할 수 없습니다");
         }
         userAccount.minusPrice(requiredPay);
 

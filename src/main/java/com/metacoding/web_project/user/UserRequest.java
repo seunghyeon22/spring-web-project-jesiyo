@@ -3,6 +3,7 @@ package com.metacoding.web_project.user;
 
 import com.metacoding.web_project.useraccount.UserAccount;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -14,13 +15,18 @@ public class UserRequest {
     public static class JoinDTO{
         private Integer id;
         @NotBlank
+        @Size(min = 1, max = 20)
         private String username;
         @NotBlank
+        @Size(min = 8, max = 20)
         private String password;
         @NotBlank
+        @Size(min = 10, max = 15)
         private String tel;
         @NotBlank
+        @Size(min = 1, max = 20)
         private String name;
+        @Size(min = 5, max = 5)
         @NotBlank
         private String postNum;
         @NotBlank

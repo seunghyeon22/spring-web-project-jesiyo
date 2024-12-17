@@ -20,7 +20,7 @@ public class ValidationAspect {
                 Errors errors = (Errors) arg;
 
                 if(errors.hasErrors()) {
-                    String errMsg = errors.getFieldErrors().get(0).getDefaultMessage();
+                    String errMsg = errors.getFieldErrors().get(0).getField() +" 은(는) "+ errors.getFieldErrors().get(0).getDefaultMessage();
                     throw new Exception400(errMsg);
                 }
             }
