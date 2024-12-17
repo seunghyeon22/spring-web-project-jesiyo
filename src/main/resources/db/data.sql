@@ -26,11 +26,13 @@ insert into useraccount_tb(user_id, score, has_price, account) values (2, 0, 150
 insert into useraccount_tb(user_id, score, has_price, account) values (3, 0, 15000,'등록계좌없음');
 insert into useraccount_tb(user_id, score, has_price, account) values (4, 0, 15000,'등록계좌없음');
 insert into useraccount_tb(user_id, score, has_price, account) values (5, 0, 15000,'등록계좌없음');
+
 insert into useraccount_tb(user_id, score, has_price, account) values (6, 0, 100000,'등록계좌없음');
 insert into useraccount_tb(user_id, score, has_price, account) values (7, 0, 200000,'등록계좌없음');
 insert into useraccount_tb(user_id, score, has_price, account) values (8, 0, 400000,'등록계좌없음');
 insert into useraccount_tb(user_id, score, has_price, account) values (9, 0, 450000,'등록계좌없음');
 insert into useraccount_tb(user_id, score, has_price, account) values (10, 0, 500000,'등록계좌없음');
+
 
 
 

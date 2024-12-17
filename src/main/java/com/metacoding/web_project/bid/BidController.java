@@ -48,7 +48,6 @@ public class BidController {
     // 경매 시도 금액 데이터 -> DB의 bid_tb 테이블에 insert
     @PostMapping("/s/catchDetailPageData")
     public ResponseEntity<?> uploadBidData(@AuthenticationPrincipal User user, @RequestBody BidRequest.TryBidDTO tryBidDTO) {
-        String username = (String) session.getAttribute("username");
         bidService.saveTryPrice(tryBidDTO,user.getId());
 
         CommonResp resp = new CommonResp(true, "성공", null);
