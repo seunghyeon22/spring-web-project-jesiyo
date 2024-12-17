@@ -1,4 +1,23 @@
- <header style="margin-bottom: 50px">
+<style>
+    @font-face {
+        font-family: 'contentFont'; /* 폰트 이름 지정 */
+        src: url('/fonts/BMDOHYEON.ttf') format('truetype'); /* 경로와 파일 형식 */
+    }
+
+    .t1-title {
+        font-family: 'contentFont', serif;
+    }
+
+    .t1-auth-links {
+        font-family: 'contentFont', serif;
+    }
+
+    .t1-search-container {
+        font-family: 'contentFont', serif;
+    }
+</style>
+
+<header style="margin-bottom: 50px">
         <div class="d-flex justify-content-between align-items-center">
 
             <!-- 왼쪽 공백 영역 -->
@@ -21,10 +40,6 @@
                 <!-- 로그인 안 했을 때 -->
                 <a href="/login-form">로그인</a>
                 <a href="#">회원가입</a>
-
-                <!-- 로그인 했을 때 -->
-                <!-- <a href="#">로그아웃</a> -->
-                <!-- <a href="#">마이페이지</a> -->
             </div>
         </div>
 

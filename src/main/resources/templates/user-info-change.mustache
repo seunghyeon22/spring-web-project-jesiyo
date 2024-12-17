@@ -10,6 +10,33 @@
     <link rel="stylesheet" type="text/css" href="/css/nav.css">
     <link rel="stylesheet" href="/css/user-info-change.css">
 
+    <style>
+        @font-face {
+            font-family: 'contentFont'; /* 폰트 이름 지정 */
+            src: url('/fonts/BMDOHYEON.ttf') format('truetype'); /* 경로와 파일 형식 */
+        }
+
+        h2 {
+            font-family: 'contentFont', serif;
+        }
+
+        .nav-item {
+            font-family: 'contentFont', serif;
+        }
+
+        #btnIdChange {
+            font-family: 'contentFont', serif;
+        }
+
+        #btnPwChange {
+            font-family: 'contentFont', serif;
+        }
+
+        .modal {
+            font-family: 'contentFont', serif;
+        }
+    </style>
+
 </head>
 <body>
 
@@ -120,7 +147,7 @@
                             </tbody>
                         </table>
                         <div class="t1-btn-container">
-                            <button type="submit" class="btn btn-outline-secondary t1-btn">수정하기</button>
+                            <button type="submit" class="btn btn-outline-secondary t1-btn" id="btnIdChange">수정하기</button>
                         </div>
                     </form>
                 </div>

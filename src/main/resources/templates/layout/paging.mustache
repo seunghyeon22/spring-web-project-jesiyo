@@ -1,3 +1,14 @@
+<style>
+    @font-face {
+        font-family: 'contentFont'; /* 폰트 이름 지정 */
+        src: url('/fonts/BMDOHYEON.ttf') format('truetype'); /* 경로와 파일 형식 */
+    }
+
+    .page-item {
+        font-family: 'contentFont', serif;
+    }
+</style>
+
 <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
         {{#pagination.pages}}

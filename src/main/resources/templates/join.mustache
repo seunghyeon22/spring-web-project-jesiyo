@@ -10,6 +10,22 @@
     <link rel="stylesheet" type="text/css" href="/css/header.css">
 
     <link rel="stylesheet" href="/css/join.css">
+
+    <style>
+        @font-face {
+            font-family: 'contentFont'; /* 폰트 이름 지정 */
+            src: url('/fonts/BMDOHYEON.ttf') format('truetype'); /* 경로와 파일 형식 */
+        }
+
+        #join-btn {
+            font-family: 'contentFont', serif;
+        }
+
+        h1 {
+            font-family: 'contentFont', serif;
+        }
+    </style>
+
 </head>
 <body>
 
@@ -17,12 +33,6 @@
 {{>layout/header}}
     <div class="container-join">
         <div class="t1-join-inner">
-            <h1 class="t1-join-logo">
-                <a href="/" class="link">
-                    <img src="logo.png">
-                </a>
-            </h1>
-            
             <div>
                 <form class="t1-join-form" action="/join" method="post" onsubmit="return onSubmitCheck()">
                     <h1>회원가입</h1><br>
