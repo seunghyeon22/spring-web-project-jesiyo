@@ -148,7 +148,7 @@ insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (3,1,5000,now(
 insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (4,1,10000,now());
 
 -- transaction_tb 더미데이터
-insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_status, transaction_status, success_price, updated_at) values (1, 3, 4, 0, 0, 0,86000, now());
+insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_status, transaction_status, success_price, updated_at) values (1, 3, 4, 0, 1, 0,86000, now());
 insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_status, transaction_status, success_price, updated_at) values (2, 3, 1, 1, 1, 0,100000, now());
 insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_status, transaction_status, success_price, updated_at) values (3, 4, 3, 1, 1, 0,9200, now());
 insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_status, transaction_status, success_price, updated_at) values (4, 4, 2, 0, 1, 0,45000, now());

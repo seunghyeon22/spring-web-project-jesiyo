@@ -2,7 +2,6 @@ package com.metacoding.web_project.recode;
 
 import com.metacoding.web_project._core.CommonResp;
 import com.metacoding.web_project._core.util.PageUtil;
-import com.metacoding.web_project.bid.BidResponse;
 import com.metacoding.web_project.goods.GoodsRequest;
 import com.metacoding.web_project.user.User;
 import lombok.RequiredArgsConstructor;

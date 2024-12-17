@@ -42,4 +42,8 @@ public class UserAccount {
     public void minusPrice(Integer price) {
         this.hasPrice = hasPrice - price;
     }
+
+    public void updateUserScore(Integer scoreNum) {
+        this.score = this.score + scoreNum;
+    }
 }

@@ -4,8 +4,6 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.sql.Timestamp;
-import java.util.List;
-import java.util.Optional;
 
 import static com.metacoding.web_project._core.util.FormatDate.formatRemainingTime;
 
