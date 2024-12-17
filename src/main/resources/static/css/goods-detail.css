@@ -57,3 +57,12 @@
         background-color: #ff0000; /* 원래 색으로 복귀 */
     }
 }
+
+@font-face {
+    font-family: 'contentFont'; /* 폰트 이름 지정 */
+    src: url('/fonts/BMDOHYEON.ttf') format('truetype'); /* 경로와 파일 형식 */
+}
+
+body {
+    font-family: 'contentFont', Arial, sans-serif; /* 기본 폰트로 설정 */
+}
