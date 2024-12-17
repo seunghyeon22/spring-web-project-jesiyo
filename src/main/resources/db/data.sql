@@ -31,7 +31,7 @@ insert into useraccount_tb(user_id, score, has_price, account) values (6, 0, 100
 insert into useraccount_tb(user_id, score, has_price, account) values (7, 0, 200000,'등록계좌없음');
 insert into useraccount_tb(user_id, score, has_price, account) values (8, 0, 400000,'등록계좌없음');
 insert into useraccount_tb(user_id, score, has_price, account) values (9, 0, 450000,'등록계좌없음');
-insert into useraccount_tb(user_id, score, has_price, account) values (10, 0, 500000,'등록계좌없음');
+insert into useraccount_tb(user_id, score, has_price, account) values (10, 40, 500000,'등록계좌없음');
 
 
 
@@ -118,9 +118,9 @@ insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (10,8,60000,no
 
 
 -- transaction_tb 더미데이터
-insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_status, transaction_status, success_price, updated_at) values (1, 10, 4, 0, 0, 0,86000, now());
+insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_status, transaction_status, success_price, updated_at) values (1, 10, 4, 0, 1, 0,86000, now());
 insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_status, transaction_status, success_price, updated_at) values (6, 10, 1, 1, 1, 0,100000, now());
-insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_status, transaction_status, success_price, updated_at) values (3, 4, 10, 1, 0, 0,500000, now());
+insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_status, transaction_status, success_price, updated_at) values (3, 4, 10, 0, 0, 0,500000, now());
 insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_status, transaction_status, success_price, updated_at) values (4, 2, 10, 0, 1, 0,200000, now());
 insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_status, transaction_status, success_price, updated_at) values (5, 4, 10, 1, 1, 0,150000, now());
 
