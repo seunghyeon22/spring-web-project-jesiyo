@@ -43,7 +43,7 @@
     width: 100%;
 }
 
-img{
+.t1-categoryTextAndImage img {
     width: 150px;
     height: 100px;
 }
@@ -85,11 +85,3 @@ img{
     margin-right: 30px;
 }
 
-@font-face {
-    font-family: 'contentFont'; /* 폰트 이름 지정 */
-    src: url('/fonts/BMDOHYEON.ttf') format('truetype'); /* 경로와 파일 형식 */
-}
-
-body {
-    font-family: 'contentFont', Arial, sans-serif; /* 기본 폰트로 설정 */
-}

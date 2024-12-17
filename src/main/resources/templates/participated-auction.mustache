@@ -10,6 +10,24 @@
     <link rel="stylesheet" type="text/css" href="/css/nav.css">
     <link rel="stylesheet" type="text/css" href="/css/header.css">
     <link rel="stylesheet" href="/css/myPage.css">
+    <style>
+        @font-face {
+            font-family: 'contentFont'; /* 폰트 이름 지정 */
+            src: url('/fonts/BMDOHYEON.ttf') format('truetype'); /* 경로와 파일 형식 */
+        }
+
+        .card-body {
+            font-family: 'contentFont', serif;
+        }
+
+        .title-box {
+            font-family: 'contentFont', serif;
+        }
+
+        .modal {
+            font-family: 'contentFont', serif;
+        }
+    </style>
 </head>
 <body>
 
@@ -102,7 +120,6 @@
           </div>
     
           <!-- Modal body -->
-<!--          <form action="/s/report-seller" method="post">-->
               <input type="text" class="modal-body" id="reportContent" name="reportContent"
                      placeholder="신고내용을 작성해주세요." style="resize: none;" required>
               <!-- 숨겨진 필드에 sellerId 설정 -->
@@ -113,7 +130,6 @@
                   <button type="button" class="btn btn-danger" data-bs-dismiss="modal">취소</button>
                   <button type="submit" class="btn btn-danger" data-bs-dismiss="modal" onclick="report_seller()">신고하기</button>
               </div>
-<!--          </form>-->
 
         </div>
       </div>
