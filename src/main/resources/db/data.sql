@@ -19,28 +19,18 @@ values ('lss', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', '
 
 insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role, tel)
 values ('klc', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', '김링컨', '12345', '주소10', '상세주소10', '생일10', 'ROLE_USER', '010-1010-1010');
-insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role, tel) values('ssar', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', 'Ssar', '12345', '주소1', '상세주소1', '생일1', 'ROLE_ADMIN', '01011111111');
-insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role, tel) values('cos', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', 'Cos', '12345', '주소2', '상세주소1', '생일2', 'ROLE_USER', '01022222222');
-insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role, tel) values('love', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', 'Love', '12345', '주소2', '상세주소1', '생일2', 'ROLE_USER', '01033333333');
-insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role, tel) values('cos2', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', 'Cos2', '12345', '주소2', '상세주소1', '생일2', 'ROLE_USER', '01022222222');
-insert into user_tb(username, password, name, post_num, addr, addr_detail, birth, role, tel) values('love2', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', 'Love2', '12345', '주소2', '상세주소1', '생일2', 'ROLE_USER', '01033333333');
+
 
 insert into useraccount_tb(user_id, score, has_price, account) values (1, 0, 0,'등록계좌없음');
 insert into useraccount_tb(user_id, score, has_price, account) values (2, 0, 15000,'등록계좌없음');
 insert into useraccount_tb(user_id, score, has_price, account) values (3, 0, 15000,'등록계좌없음');
 insert into useraccount_tb(user_id, score, has_price, account) values (4, 0, 15000,'등록계좌없음');
 insert into useraccount_tb(user_id, score, has_price, account) values (5, 0, 15000,'등록계좌없음');
-
-insert into useraccount_tb(user_id, score, has_price) values (1, 0, 0);
-insert into useraccount_tb(user_id, score, has_price) values (2, 0, 15000);
-insert into useraccount_tb(user_id, score, has_price) values (3, 0, 15000);
-insert into useraccount_tb(user_id, score, has_price) values (4, 0, 15000);
-insert into useraccount_tb(user_id, score, has_price) values (5, 0, 15000);
-insert into useraccount_tb(user_id, score, has_price) values (6, 0, 100000);
-insert into useraccount_tb(user_id, score, has_price) values (7, 0, 200000);
-insert into useraccount_tb(user_id, score, has_price) values (8, 0, 400000);
-insert into useraccount_tb(user_id, score, has_price) values (9, 0, 450000);
-insert into useraccount_tb(user_id, score, has_price) values (10, 0, 500000);
+insert into useraccount_tb(user_id, score, has_price, account) values (6, 0, 100000,'등록계좌없음');
+insert into useraccount_tb(user_id, score, has_price, account) values (7, 0, 200000,'등록계좌없음');
+insert into useraccount_tb(user_id, score, has_price, account) values (8, 0, 400000,'등록계좌없음');
+insert into useraccount_tb(user_id, score, has_price, account) values (9, 0, 450000,'등록계좌없음');
+insert into useraccount_tb(user_id, score, has_price, account) values (10, 0, 500000,'등록계좌없음');
 
 
 
@@ -54,12 +44,6 @@ insert into category_tb(name, img_url) values ('유아도서', '/upload/category
 insert into category_tb(name, img_url) values ('여성의류', '/upload/category7.png');
 insert into category_tb(name, img_url) values ('남성패션', '/upload/category8.png');
 
-
--- goods_tb 더미데이터
-insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status) values ('강아지 산책줄 나눔합니다.', '4', '4', '강아지 산책줄 나눔 중입니다.', '없습니다.', 1000, '2024-12-10 12:20:00','2024-12-13 16:15:00', 0);
-insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status) values ('책상 팝니다', '7', '1', '2년 썼고 생활기스 있어요.', '없습니다', 20000, now(),'2024-12-12 22:00:00', 0);
-insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status) values ('강아지 산책줄 나눔합니다.', '4', '2', '강아지 산책줄 나눔 중입니다.', '/upload/category1.png', 1000, '2024-12-10 12:20:00','2024-12-13 12:55:00', 0);
-insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status) values ('책상 팝니다', '7', '2', '2년 썼고 생활기스 있어요.', '없습니다', 20000, now(),'2024-12-16 22:00:00', 0);
 
 -- goods_tb 더미데이터 8,9,10 유저만 물품 하나씩등록 / 나머지 2개씩 등록한 상태
 insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status)
@@ -120,24 +104,6 @@ insert into goods_tb(title, category_id, seller_id, content, img_url, starting_p
 values ('남성 스니커즈', '8', '7', '깔끔한 디자인의 남성 스니커즈, 사이즈 270.', '/upload/mens_sneakers.png', 45000, '2024-12-21 11:00:00', '2024-12-28 20:00:00', 3);
 
 
-
--- bid_tb 더미데이터
--- insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (1,2,21000,now());
--- insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (1,3,5500,now());
--- insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (3,3,6000,now());
--- insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (2,4,130000,now());
--- insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (2,1,3000,now());
--- insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (1,1,4000,now());
--- insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (1,1,3000,now());
--- insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (1,1,4000,now());
--- insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (1,1,5000,now());
--- insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (2,2,21000,now());
--- insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (1,2,22000,now());
--- insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (5,2,23000,now());
--- insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (4,2,24000,now());
--- insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (3,1,5000,now());
--- insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (4,1,10000,now());
-
 insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (2,2,21000,now());
 insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (1,2,22000,now());
 insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (5,2,23000,now());
@@ -153,11 +119,6 @@ insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_s
 insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_status, transaction_status, success_price, updated_at) values (3, 4, 3, 1, 1, 0,9200, now());
 insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_status, transaction_status, success_price, updated_at) values (4, 4, 2, 0, 1, 0,45000, now());
 insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_status, transaction_status, success_price, updated_at) values (5, 4, 2, 1, 1, 0,7000, now());
-
---report_tb 더미데이터
--- insert into report_tb(reporter_id, reported_id, reason, transaction_id, status) values (3, 2, '아 자바스크립트', 1, 0);
--- insert into report_tb(reporter_id, reported_id, reason, transaction_id, status) values (3, 2, '개화난다', 1, 1);
-
 
 
 --recode_tb 더미데이터
