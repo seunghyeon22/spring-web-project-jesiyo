@@ -59,6 +59,7 @@ public class BidRepository {
                 select b from Bid b join fetch b.buyer join fetch b.goods g join fetch g.seller
                 """;
         sql += query;
+        sql += " order by b.id desc";
         Query q = em.createQuery(sql, Bid.class);
         q.setFirstResult(offset); // offset
         q.setMaxResults(limit); // limit
