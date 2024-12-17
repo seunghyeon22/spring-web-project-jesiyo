@@ -2,7 +2,6 @@ package com.metacoding.web_project.goods;
 
 import com.metacoding.web_project._core.CommonResp;
 import com.metacoding.web_project._core.util.PageUtil;
-import com.metacoding.web_project.bid.BidResponse;
 import com.metacoding.web_project.category.CategoryResponse;
 import com.metacoding.web_project.category.CategoryService;
 import com.metacoding.web_project.user.User;
@@ -12,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;

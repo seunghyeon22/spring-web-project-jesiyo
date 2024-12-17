@@ -4,8 +4,6 @@ import com.metacoding.web_project._core.error.ex.Exception400;
 import com.metacoding.web_project._core.util.PageUtil;
 import com.metacoding.web_project.transaction.Transaction;
 import com.metacoding.web_project.transaction.TransactionRepository;
-import com.metacoding.web_project.user.User;
-import com.metacoding.web_project.user.UserRepository;
 import com.metacoding.web_project.useraccount.UserAccount;
 import com.metacoding.web_project.useraccount.UserAccountRepository;
 import jakarta.transaction.Transactional;
@@ -99,8 +97,7 @@ public class ReportService {
                throw new Exception400("자신이 등록한 물품 혹은 낙찰된 물품이 아닙니다.");
            }
        }
-        // 일단 3번으로 바꿈
-        transaction.get().statusReport(3);
 
+        transaction.get().statusReport(3);
     }
 }

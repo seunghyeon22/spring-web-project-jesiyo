@@ -3,7 +3,6 @@ package com.metacoding.web_project.user;
 
 import com.metacoding.web_project.useraccount.UserAccount;
 import jakarta.validation.constraints.NotBlank;
-import lombok.Builder;
 import lombok.Data;
 import org.springframework.security.crypto.password.PasswordEncoder;
 

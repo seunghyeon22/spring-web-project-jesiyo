@@ -5,7 +5,6 @@ import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -142,11 +141,6 @@ public class BidRepository {
 
     // 경매 참여중인 물품(구매) 목록 보기
     public List<Bid> findByBuyerIdForBuy(Integer id, Integer offset, Integer limit) {
-
-//        String query = """
-//                select * from bid_tb
-//                 where try_price in (select max(try_price) from bid_tb where buyer_id = ? group by goods_id)
-//                """;
 
         String query = """ 
                 select * from bid_tb where buyer_id = ?

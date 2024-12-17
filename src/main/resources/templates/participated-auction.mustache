@@ -149,7 +149,7 @@
 
         // 구매 취소하기
         function cancelBuy(transactionId) {
-            if (confirm('구매를 취소하시겠습니까?')) {
+            if (confirm('구매를 취소하시겠습니까? 낙찰이 완료된 상태에서 구매 취소시 양심온도가 하락됩니다')) {
                 fetch('/s/transactionStatusForBuyer/update', {
                     method: 'POST',
                     headers: {

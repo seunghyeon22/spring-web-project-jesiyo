@@ -6,11 +6,6 @@ import lombok.Data;
 public class UserResponse {
 
     @Data
-    public static class FindIdDTO{
-        private String username;
-    }
-
-    @Data
     public static class InfoDTO{
         private String id;
         private String username;
@@ -56,8 +51,4 @@ public class UserResponse {
         }
     }
 
-    @Data
-    public static class FindUserDTO{
-        private String username;
-    }
 }

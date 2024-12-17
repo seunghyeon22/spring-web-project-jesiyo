@@ -2,7 +2,6 @@ package com.metacoding.web_project.transaction;
 
 import com.metacoding.web_project._core.CommonResp;
 import com.metacoding.web_project._core.util.PageUtil;
-import com.metacoding.web_project.bid.BidResponse;
 import com.metacoding.web_project.user.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

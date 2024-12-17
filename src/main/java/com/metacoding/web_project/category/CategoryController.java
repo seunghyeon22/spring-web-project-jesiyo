@@ -33,12 +33,6 @@ public class CategoryController {
         return "redirect:/admin/category";
     }
 
-    // 일단 임시
-    @GetMapping("/")
-    public String main(Model model) {
-        return "main";
-    }
-
     @ResponseBody
     @GetMapping("/api/v1/category")
     public ResponseEntity<?> category() {

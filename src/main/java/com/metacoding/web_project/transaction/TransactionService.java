@@ -113,8 +113,11 @@ public class TransactionService {
 
         // 판매 확정 + 구매 확정된 물품의 판매자의 돈에 낙찰가 추가
         if (transaction.getSellerStatus() == 1 && transaction.getBuyerStatus() == 1) {
-            UserAccount userAccount = userAccountRepository.findById(transaction.getSeller().getId());
-            userAccount.updateUserInfo(transaction.getSuccessPrice());
+            UserAccount userAccountSeller = userAccountRepository.findById(transaction.getSeller().getId());
+            UserAccount userAccountBuyer = userAccountRepository.findById(transaction.getBuyer().getId());
+            userAccountSeller.updateUserInfo(transaction.getSuccessPrice());
+            userAccountSeller.updateUserScore(5);
+            userAccountBuyer.updateUserScore(5);
         }
     }
 
@@ -127,8 +130,11 @@ public class TransactionService {
         transaction.updateStatus(null, null, updateTransactionStatusForSellerDTO.getTransactionStatus(), null);
 
         // 판매 취소 됐을 때 해당 구매자의 돈 반환
-        UserAccount userAccount = userAccountRepository.findById(transaction.getBuyer().getId());
-        userAccount.updateUserInfo(transaction.getSuccessPrice());
+        UserAccount userAccountBuyer = userAccountRepository.findById(transaction.getBuyer().getId());
+        userAccountBuyer.updateUserInfo(transaction.getSuccessPrice());
+
+        UserAccount userAccountSeller = userAccountRepository.findById(transaction.getSeller().getId());
+        userAccountSeller.updateUserScore(-5);
     }
 
     // 낙찰된 물품(구매) 화면 열기 - 구매 확정 누름, 안 누름 다 포함
@@ -161,9 +167,12 @@ public class TransactionService {
 
         transaction.updateStatus(updateBuyerStatusDTO.getBuyerStatus(), null, null, null);
         // 판매 확정 + 구매 확정된 물품의 판매자의 돈에 낙찰가 추가
-        if (transaction.getBuyerStatus() == 1 && transaction.getSellerStatus() == 1) {
-            UserAccount userAccount = userAccountRepository.findById(transaction.getSeller().getId());
-            userAccount.updateUserInfo(transaction.getSuccessPrice());
+        if (transaction.getSellerStatus() == 1 && transaction.getBuyerStatus() == 1) {
+            UserAccount userAccountSeller = userAccountRepository.findById(transaction.getSeller().getId());
+            UserAccount userAccountBuyer = userAccountRepository.findById(transaction.getBuyer().getId());
+            userAccountSeller.updateUserInfo(transaction.getSuccessPrice());
+            userAccountSeller.updateUserScore(5);
+            userAccountBuyer.updateUserScore(5);
         }
     }
 
@@ -178,6 +187,7 @@ public class TransactionService {
         // 구매 취소 됐을 때 해당 구매자의 돈 반환
         UserAccount userAccount = userAccountRepository.findById(transaction.getBuyer().getId());
         userAccount.updateUserInfo(transaction.getSuccessPrice());
+        userAccount.updateUserScore(-5);
     }
 
     // 낙찰된 물품 (판매) 페이지에 필요한 List의 총 개수 반환

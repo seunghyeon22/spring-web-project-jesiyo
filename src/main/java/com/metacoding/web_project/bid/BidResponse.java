@@ -1,9 +1,6 @@
 package com.metacoding.web_project.bid;
 
 import lombok.Data;
-
-import java.sql.Timestamp;
-
 import com.metacoding.web_project._core.util.FormatDate;
 
 
@@ -81,18 +78,6 @@ public class BidResponse {
             this.goodsCreatedAt = FormatDate.formatToyyyypMMpdd(bid.getGoods().getCreatedAt());
             this.bidCreatedAt = FormatDate.formatToyyyypMMpdd(bid.getCreatedAt());
 
-        }
-    }
-
-    @Data
-    public static class adminBidPageStatusDTO{
-
-        private String divide;
-        private String search;
-
-        public adminBidPageStatusDTO(String divide, String search) {
-            this.divide = divide;
-            this.search = search;
         }
     }
 }
