@@ -1,10 +1,15 @@
 package com.metacoding.web_project._core.error;
 
+import com.metacoding.web_project._core.CommonResp;
 import com.metacoding.web_project._core.error.ex.*;
+import com.metacoding.web_project.report.ReportRequest;
+import com.metacoding.web_project.user.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @ControllerAdvice
@@ -81,8 +86,10 @@ public class ExceptionHandlerAdvice {
         return body;
     }
 
-    @ExceptionHandler(Exception400Json.class)
-    public ResponseEntity<String> Exception400Json(Exception400Json ex) {
+
+    // Json 응답말고 단순 평문으로도 해결되어 아래와 같이 작성
+    @ExceptionHandler(Exception400NotHTML.class)
+    public ResponseEntity<?> Exception400NotHTML(Exception400NotHTML ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
     }
 }
