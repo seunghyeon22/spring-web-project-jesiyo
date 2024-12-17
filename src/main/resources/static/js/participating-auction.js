@@ -19,7 +19,7 @@ async function cancel(userId,goodsId, tryPrice){
     }else {
         alert("입찰을 취소하였습니다.")
     }
-    window.location.href = "/s/myPage-participating-auction";
+    window.location.href = "/s/mypage-participating-auction";
 
 }
 
@@ -55,6 +55,6 @@ async function reRid(){
     }else{
         alert("입찰가를 수정하였습니다.")
     }
-    window.location.href = `/s/myPage-participating-auction`;
+    window.location.href = `/s/mypage-participating-auction`;
 }
 
