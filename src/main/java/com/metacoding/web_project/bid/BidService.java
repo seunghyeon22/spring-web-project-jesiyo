@@ -49,6 +49,14 @@ public class BidService {
             if (tryPrice <= currentHighestPrice) {
                 throw new Exception400Json("입찰금액이 현재 최고 입찰 금액보다 높아야합니다");
             }
+        } else {
+            Optional<Goods> goodsOP = goodsRepository.findById(goodsId);
+            if (goodsOP.isPresent()) {
+                int statingPrice = goodsOP.get().getStartingPrice();
+                if (tryPrice <= statingPrice) {
+                    throw new Exception400Json("입찰금액이 시작 입찰가 보다 높아야합니다");
+                }
+            }
         }
 
         // 유저의 현재 금액을 대조하여 업데이트하는 내용
