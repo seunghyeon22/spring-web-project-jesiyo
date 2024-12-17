@@ -104,24 +104,6 @@ insert into goods_tb(title, category_id, seller_id, content, img_url, starting_p
 values ('남성 스니커즈', '8', '7', '깔끔한 디자인의 남성 스니커즈, 사이즈 270.', '/upload/mens_sneakers.png', 45000, '2024-12-21 11:00:00', '2024-12-28 20:00:00', 3);
 
 
-
--- bid_tb 더미데이터
--- insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (1,2,21000,now());
--- insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (1,3,5500,now());
--- insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (3,3,6000,now());
--- insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (2,4,130000,now());
--- insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (2,1,3000,now());
--- insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (1,1,4000,now());
--- insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (1,1,3000,now());
--- insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (1,1,4000,now());
--- insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (1,1,5000,now());
--- insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (2,2,21000,now());
--- insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (1,2,22000,now());
--- insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (5,2,23000,now());
--- insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (4,2,24000,now());
--- insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (3,1,5000,now());
--- insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (4,1,10000,now());
-
 insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (2,2,21000,now());
 insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (1,2,22000,now());
 insert into bid_tb(buyer_id,goods_id,try_price,created_at) values (5,2,23000,now());
@@ -137,11 +119,6 @@ insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_s
 insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_status, transaction_status, success_price, updated_at) values (3, 4, 3, 1, 1, 0,9200, now());
 insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_status, transaction_status, success_price, updated_at) values (4, 4, 2, 0, 1, 0,45000, now());
 insert into transaction_tb(goods_id, buyer_id, seller_id, buyer_status, seller_status, transaction_status, success_price, updated_at) values (5, 4, 2, 1, 1, 0,7000, now());
-
---report_tb 더미데이터
--- insert into report_tb(reporter_id, reported_id, reason, transaction_id, status) values (3, 2, '아 자바스크립트', 1, 0);
--- insert into report_tb(reporter_id, reported_id, reason, transaction_id, status) values (3, 2, '개화난다', 1, 1);
-
 
 
 --recode_tb 더미데이터
