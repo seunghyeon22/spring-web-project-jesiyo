@@ -6,15 +6,6 @@
     border: 5px solid #f96506;
 }
 
-img {
-    width: 100%;
-    height: 100%;
-    background-image: url('your-image-url.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
 .t1-btn-container {
     display: flex;
     /*margin-top: 20px;*/
@@ -27,8 +18,8 @@ img {
     border-color: #f96506;
 }
 
-.t1-no-border { 
-    border: none !important; 
+.t1-no-border {
+    border: none !important;
 }
 
 .t1-main-container {
@@ -58,3 +49,34 @@ img {
     }
 }
 
+.thermometer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+}
+
+.thermometer {
+    width: 40px;
+    height: 200px;
+    border: 3px solid #ccc;
+    border-radius: 20px;
+    background: linear-gradient(to top, #e0f7fa, white);
+    overflow: hidden;
+    position: relative;
+}
+
+.thermometer-fill {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 0%; /* 초기 값: 0% */
+    background-color: #f96506;
+    transition: height 1s ease; /* 자연스러운 애니메이션 */
+}
+
+.temperature-label {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
