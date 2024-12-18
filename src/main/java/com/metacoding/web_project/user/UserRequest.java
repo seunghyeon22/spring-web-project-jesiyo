@@ -122,4 +122,10 @@ public class UserRequest {
         private Integer hasPrice;
         private Integer inMoney;
     }
+
+    @Data
+    public static class CheckAccountDTO {
+        private String bankCode;
+        private String bankNum;
+    }
 }

@@ -71,11 +71,8 @@
                                         {{/reporting}}
                                         {{^reporting}}
                                             <div>
-                                                {{#buyerStatus}} <!-- buyerStatus = true일때 -->
-                                                    구매 확정됨
-                                                {{/buyerStatus}}
                                                 {{^buyerStatus}} <!-- buyerStatus = false일때 -->
-                                                    구매 확정 대기중
+                                                    구매자가 아직 확정 버튼을 누르지 않았습니다
                                                 {{/buyerStatus}}
                                             </div>
                                             <div>

@@ -143,7 +143,6 @@ public class UserController {
     @PostMapping("/s/user-info/withdrawal")
     public String withdraw(@AuthenticationPrincipal User user, UserRequest.WithdrawDTO withdrawDTO){
         userService.출금하기(user.getId(),withdrawDTO);
-        System.out.println("송금해야할 계좌 : "+withdrawDTO.getOutAccount());
         return "redirect:/s/user-info/";
     }
 
@@ -152,6 +151,17 @@ public class UserController {
     public String charge(@AuthenticationPrincipal User user,UserRequest.ChargeDTO chargeDTO){
         userService.충전하기(user.getId(),chargeDTO);
         return "redirect:/s/user-info/";
+    }
+
+    // 계좌실명조회
+    @PostMapping("/check-account")
+    public ResponseEntity<Map<String, Object>> checkAccount(@RequestBody UserRequest.CheckAccountDTO checkAccountDTO) {
+
+        String bankNum = checkAccountDTO.getBankNum();
+        String bankCode = checkAccountDTO.getBankCode();
+
+        Map<String, Object> response = userService.계좌주찾기(bankCode, bankNum);
+        return ResponseEntity.ok(response);
     }
 
 }

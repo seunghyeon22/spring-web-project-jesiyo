@@ -140,3 +140,50 @@ input.addEventListener('input', function () {
         this.value = this.value.slice(0, 7);
     }
 });
+
+//계좌실명확인
+async function checkAccount(){
+    const bankCode = document.querySelector('#bankCode').value;
+    const bankNum = document.querySelector('#bankNum').value;
+
+    try {
+        const response = await fetch('/check-account', {
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                bankCode: bankCode,
+                bankNum: bankNum
+            })
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            if (data.bankHolderInfo) {
+                alert(`예금주명: ${data.bankHolderInfo}`);
+            } else {
+                alert('예금주 정보를 확인할 수 없습니다.');
+            }
+        } else {
+            throw new Error('서버 오류');
+        }
+    } catch (error) {
+        console.error('오류 발생:', error);
+        alert('오류가 발생했습니다.');
+    }
+}
+
+// 확인한 계좌 사용하기
+function useAccount(){
+    let account = document.querySelector('#bankNum').value;
+    let account1 = document.querySelector('#account');
+
+    account1.value = account;
+    closeModal();
+}
+
+function closeModal() {
+    const modal = bootstrap.Modal.getInstance(document.querySelector('#exampleModal'));
+    if (modal) modal.hide();
+}

@@ -76,6 +76,13 @@
                                                 {{#transactionStatus}}
                                                     구매 취소됨
                                                 {{/transactionStatus}}
+
+                                                {{^transactionStatus}}
+                                                    {{#sellerStatus}}
+                                                        판매자가 최종 거래 확정을 기다리고 있습니다
+                                                    {{/sellerStatus}}
+                                                {{/transactionStatus}}
+
                                             </div>
                                             <div class="btn-group mt-1">
                                                 {{^transactionStatus}}

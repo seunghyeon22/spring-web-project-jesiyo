@@ -118,25 +118,41 @@
                                     <div class="modal-dialog">
                                       <div class="modal-content">
                                         <div class="modal-header">
-                                          <h1 class="modal-title fs-5" id="exampleModalLabel">계좌실명확인</h1>
-                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">계좌실명확인</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
-                                            <div class="modal-body">
-                                                <div class="mb-3">
-                                                    <input type="text" class="form-control" placeholder="성함을 입력해주세요" required>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <input type="text" class="form-control" placeholder="은행을 입력해주세요" required>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <input type="text" class="form-control" placeholder="주민등록번호 7자리를 입력해주세요" id="ssn-input" maxlength="7" required>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <input type="number" name="account" class="form-control" placeholder="계좌번호를 -없이 입력해주세요" required>
-                                                </div>
-
-                                                <button type="submit" class="btn btn-primary">Send message</button>
-                                            </div>
+                                          <div class="modal-body">
+                                              <form>
+                                                  <div class="mb-3">
+                                                      <div class="bankselect">
+                                                          <select class="form-select" id="bankCode" v-model="bankname" aria-label="Default select example">
+                                                              <option value="">은행선택</option>
+                                                              <option value="004">국민은행</option>
+                                                              <option value="020">우리은행</option>
+                                                              <option value="088">신한은행</option>
+                                                              <option value="003">기업은행</option>
+                                                              <option value="023">SC제일은행</option>
+                                                              <option value="011">농협은행</option>
+                                                              <option value="005">외환은행</option>
+                                                              <option value="090">카카오뱅크</option>
+                                                              <option value="032">부산은행</option>
+                                                              <option value="071">우체국</option>
+                                                              <option value="031">대구은행</option>
+                                                              <option value="037">전북은행</option>
+                                                              <option value="035">제주은행</option>
+                                                              <option value="007">수협은행</option>
+                                                              <option value="027">씨티은행</option>
+                                                              <option value="039">경남은행</option>
+                                                          </select>
+                                                      </div>
+                                                  </div>
+                                                  <div class="mb-3">
+                                                      <input type="tel" id="bankNum" name="accountNum" class="form-control" maxlength="14" placeholder="계좌번호를 입력해주세요" required>
+                                                  </div>
+                                                  <button type="button"  id="checkAccountBtn" class="btn btn-primary" onclick="checkAccount()">계좌 실명 확인하기</button>
+                                                  <button type="button"  id="useAccountBtn" class="btn btn-primary" aria-label="Close" onclick="useAccount()">계좌 사용하기</button>
+                                              </form>
+                                          </div>
 
 
                                       </div>

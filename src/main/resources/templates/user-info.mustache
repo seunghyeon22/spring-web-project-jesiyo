@@ -27,14 +27,21 @@
   {{>layout/mypage-menu}}
   <div class="t1-main-container ml-5" style="padding: 40px">
 
-    <div class="container2 p-5 my-5 t1-no-border">
+    <div class="container2 ps-3 my-3 t1-no-border">
       <h1>내 정보</h1>
     </div>
 
     <div class="container2 p-5 my-5" style="border-radius: 20px">
-      <div>
-        <img src="/image/신용점수.png" class="rounded" alt="Cinque Terre">
-      </div>
+
+        <div class="thermometer-container">
+            <div class="thermometer">
+                <div class="thermometer-fill"></div>
+            </div>
+            <div class="temperature-label">{{model.score}}%</div>
+            <input type="hidden" id="percentage" value="{{model.score}}">
+        </div>
+
+
       <div style="align-content: center; margin-left: 30px;">
         <h2 style="margin-top: 10px;"> {{model.username}} 회원님의 신용 점수는 {{model.score}}점입니다. </h2>
       </div>
@@ -74,7 +81,7 @@
 
                   </div>
                   <div class="modal-footer">
-                    <a href="https://link.kakaopay.com/_/w4ItVkO"><img src="/image/kakao.png" id="kakao"></a>
+                    <a href="https://link.kakaopay.com/_/w4ItVkO" style="margin-right: 25px"><img src="/image/kakao.png" id="kakao"></a>
                     <button type="submit" class="btn btn-primary">충전하기</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                   </div>
