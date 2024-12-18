@@ -18,18 +18,20 @@
 - 조세은 [![조세은](https://img.shields.io/badge/GitHub-조세은-red)](https://github.com/SeeunJoe)
 - 김인범 [![김인범](https://img.shields.io/badge/GitHub-김인범-green)](https://github.com/kiminbeam)
 - 이나겸 [![이나겸](https://img.shields.io/badge/GitHub-이나겸-yellow)](https://github.com/NakyeomLee)
+<br>
 
 ### 프로젝트 기간
 - 2024년 12월 2일 ~ 2024년 12월 18일 (16일간)
+<br>
 
 ### 사이트 설명
 상세 검색 및 필터링, 각종 편의 서비스 <br>
 더 안전한 거래 환경을 제공
-<br>
+<br><br>
 
 ## 시연 영상
 (영상은 10메가 넘어가면 그냥 못올리고 유튜브나 영상 사이트에 업로드하고 그 링크를 가져와야함)
-<br>
+<br><br>
 
 ## 구현 기능
 ### 유저 관련 기능
@@ -85,7 +87,7 @@ implementation 'net.minidev:json-smart:2.4.1'
 
 ## 화면 구성
 화면 다 완성되면 캡쳐해서 추가
-<br>
+<br><br>
 
 ## ERD
 <div align="center">
