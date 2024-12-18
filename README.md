@@ -25,4 +25,79 @@
 ### 사이트 설명
 상세 검색 및 필터링, 각종 편의 서비스 <br>
 더 안전한 거래 환경을 제공
-<br><br><br>
+<br>
+
+## 시연 영상
+(영상은 10메가 넘어가면 그냥 못올리고 유튜브나 영상 사이트에 업로드하고 그 링크를 가져와야함)
+<br>
+
+## 구현 기능
+### 유저 관련 기능
+- 로그인
+### 경매 입찰 / 낙찰 관련 기능
+- 입찰
+### 신고 기능
+- 판매자 / 구매자 신고
+### 관리자 
+- 신고 관리
+<br>
+
+## 기술 스택
+### Backend
+![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
+<img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
+![Gradle](https://img.shields.io/badge/Gradle-02303A.svg?style=for-the-badge&logo=Gradle&logoColor=white)
+
+### Frontend
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![Bootstrap](https://img.shields.io/badge/bootstrap-%238511FA.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
+
+### IDE
+![IntelliJ IDEA](https://img.shields.io/badge/IntelliJIDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white)
+
+### 협업도구
+![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
+![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
+![Notion](https://img.shields.io/badge/Notion-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white)
+![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white)
+
+### 데이터베이스
+<img src="https://img.shields.io/badge/H2DB-31A8FF?style=for-the-badge&logo=H2DB&logoColor=white">
+
+### Dependencies
+```
+implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+implementation 'org.springframework.boot:spring-boot-starter-mustache'
+implementation 'org.springframework.boot:spring-boot-starter-security'
+implementation 'org.springframework.boot:spring-boot-starter-validation'
+implementation 'org.springframework.boot:spring-boot-starter-web'
+compileOnly 'org.projectlombok:lombok'
+developmentOnly 'org.springframework.boot:spring-boot-devtools'
+runtimeOnly 'com.h2database:h2'
+annotationProcessor 'org.projectlombok:lombok'
+testImplementation 'org.springframework.boot:spring-boot-starter-test'
+testImplementation 'org.springframework.security:spring-security-test'
+testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+implementation group: 'com.google.code.gson', name: 'gson', version: '2.11.0'
+implementation 'net.minidev:json-smart:2.4.1'
+```
+<br>
+
+## 화면 구성
+화면 다 완성되면 캡쳐해서 추가
+<br>
+
+## ERD
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/656f46cb-c897-4376-9022-ac4ab7292d2f" width="800">
+</div>
+<br>
+
+## 보완할 점
+<br>
+
+## 트러블슈팅
+<br>
+
+## 느낀점
+
