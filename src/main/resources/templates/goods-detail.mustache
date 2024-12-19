@@ -39,7 +39,7 @@
         <div class="d-flex justify-content-start" style="margin-top: 20px;">
             <div class="p__name"><h3>{{goods.category}}</h3></div>
 
-            <div style="margin-top: 10px; margin-left: 10px;">{{goods.endAtFront}}</div> <!--시간 변경될 수 있도록 바꿔야하나?-->
+            <div id="message" style="margin-top: 10px; margin-left: 10px;">{{goods.endAtFront}}</div> <!--시간 변경될 수 있도록 바꿔야하나?-->
         </div>
 
         <div class="d-flex justify-content-start" style="margin-top: 15px;">
@@ -259,8 +259,11 @@
             const bidButtonContainer = document.querySelector("#bidModalContainer");
             if (bidButtonContainer) {
                 const bidButton = bidButtonContainer.querySelector("button"); // 버튼 선택
+                const timeMessage = document.querySelector("#message");
                 if (bidButton) {
                     bidButton.style.display = "none"; // 버튼 숨기기
+                    timeMessage.innerHTML = "";
+                    timeMessage.innerHTML = "경매가 종료되었습니다";
                 }
             }
 

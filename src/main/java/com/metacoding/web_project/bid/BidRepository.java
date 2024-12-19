@@ -208,4 +208,9 @@ public class BidRepository {
         return (Bid) q.getSingleResult();
     }
 
+    public Bid findByIdBidDESC(Integer goodsId) {
+        String query = "select b from Bid b join fetch b.goods join fetch b.buyer where b.goods.id=" + goodsId + " order by b.id desc limit 1";
+        Query q = em.createQuery(query);
+        return (Bid) q.getSingleResult();
+    }
 }

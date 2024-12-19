@@ -23,7 +23,7 @@ values ('klc', '$2a$10$vUQrTY7IN0lGJdlv/E.6n.I09krJTYX3tQsRiSZ4S6PDCQws9Kq5m', '
 
 insert into useraccount_tb(user_id, score, has_price, account) values (1, 0, 0,'등록계좌없음');
 insert into useraccount_tb(user_id, score, has_price, account) values (2, 0, 15000,'등록계좌없음');
-insert into useraccount_tb(user_id, score, has_price, account) values (3, 0, 15000,'등록계좌없음');
+insert into useraccount_tb(user_id, score, has_price, account) values (3, 0, 300000,'등록계좌없음');
 insert into useraccount_tb(user_id, score, has_price, account) values (4, 0, 15000,'등록계좌없음');
 insert into useraccount_tb(user_id, score, has_price, account) values (5, 0, 15000,'등록계좌없음');
 
@@ -52,7 +52,7 @@ insert into goods_tb(title, category_id, seller_id, content, img_url, starting_p
 values ('강아지 산책줄 나눔합니다.', '4', '4', '강아지 산책줄 나눔 중입니다.', '/upload/dog_line.png.', 1000, '2024-12-10 12:20:00','2024-12-13 16:15:00', 1);
 
 insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status)
-values ('아이패드 9세대 판매합니다.', '1', '2', '거의 새 제품 같은 아이패드 9세대입니다. 액정 보호필름 부착, 케이스 포함.', '/upload/ipad9.png', 250000, '2024-12-12 10:00:00', '2024-12-20 18:00:00', 0);
+values ('아이패드 9세대 판매합니다.', '1', '2', '거의 새 제품 같은 아이패드 9세대입니다. 액정 보호필름 부착, 케이스 포함.', '/upload/ipad9.png', 250000, '2024-12-12 10:00:00', '2024-12-18 19:21:00', 0);
 
 insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status)
 values ('삼성 스마트 TV 55인치 중고', '2', '2', '화질 좋고 잘 작동하는 삼성 스마트 TV 55인치입니다.', '/upload/tv_samsung.png', 150000, '2024-12-01 15:00:00', '2024-12-08 20:00:00', 1);
@@ -79,7 +79,7 @@ insert into goods_tb(title, category_id, seller_id, content, img_url, starting_p
 values ('다이슨 무선 청소기 V10', '2', '10', '다이슨 무선 청소기 V10, 필터 교체 완료.', '/upload/dyson_v10.png', 200000, '2024-12-12 11:00:00', '2024-12-19 19:30:00', 0);
 
 insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status)
-values ('원목 의자 2개 세트', '3', '2', '원목 의자 2개 세트로 판매. 약간의 생활 기스.', '/upload/wood_chairs.png', 30000, '2024-12-13 14:00:00', '2024-12-18 20:00:00', 0);
+values ('원목 의자 2개 세트', '3', '2', '원목 의자 2개 세트로 판매. 약간의 생활 기스.', '/upload/wood_chairs.png', 30000, '2024-12-13 14:00:00', '2024-12-18 19:21:00', 0);
 
 insert into goods_tb(title, category_id, seller_id, content, img_url, starting_price, created_at, end_at, status)
 values ('아기 침대, 매트리스 포함', '5', '3', '아기 침대와 매트리스 포함, 안전 가드 포함.', '/upload/baby_bed.png', 120000, '2024-12-14 08:00:00', '2024-12-20 22:00:00', 0);
@@ -170,5 +170,4 @@ insert into recode_tb(buyer_id, goods_id, try_price, success_status, created_at)
 insert into recode_tb(buyer_id, goods_id, try_price, success_status, created_at) values (10, 6, 100000, 1, now());
 
 insert into recode_tb(buyer_id, goods_id, try_price, success_status, created_at) values (10, 3, 160000, 0, now());
-insert into recode_tb(buyer_id, goods_id, try_price, success_status, created_at) values (10, 4, 60000, 0, now());
 insert into recode_tb(buyer_id, goods_id, try_price, success_status, created_at) values (10, 5, 90000, 0, now());

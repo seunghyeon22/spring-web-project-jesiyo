@@ -39,7 +39,7 @@ public class RecodeService {
             if (bid.getBuyer().getId().equals(buyerId)) {
                 recodeDto.setSuccessStatus(1); // 경매 성공 유저
             } else {
-                recodeDto.setSuccessStatus(2); // 경매 실패 유저
+                recodeDto.setSuccessStatus(0); // 경매 실패 유저
             }
 
             recodeRepository.save(recodeDto.toEntity(bid));

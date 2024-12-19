@@ -23,15 +23,15 @@ public class TransactionRequest {
         private Integer buyerStatus;
         private Integer transactionStatus;
 
-        public Transaction toEntity(User buyer,User seller) {
+        public Transaction toEntity(Goods goods, User buyer, User seller, Integer tryPrice) {
 
             return Transaction.builder()
-                    .goods(Goods.builder().id(goodsId).build())
+                    .goods(goods)
                     .seller(seller)
-                    .successPrice(successPrice)
+                    .successPrice(tryPrice)
                     .buyer(buyer)
-                    .sellerStatus(1)
-                    .buyerStatus(1)
+                    .sellerStatus(0)
+                    .buyerStatus(0)
                     .transactionStatus(0)
                     .build();
 
