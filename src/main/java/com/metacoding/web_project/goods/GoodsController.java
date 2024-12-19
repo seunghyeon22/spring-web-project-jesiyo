@@ -24,7 +24,6 @@ public class GoodsController {
     private final GoodsService goodsService;
     private final CategoryService categoryService;
 
-
     private final HttpSession session;
 
     // 제품 상세페이지 불러오기
