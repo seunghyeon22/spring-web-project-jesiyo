@@ -2,7 +2,6 @@
   <img src="https://github.com/seunghyeon22/spring-web-project-jesiyo/blob/master/images/mainlogo.jpg">
   WEB프로젝트 (제시요)
 </h1>
----
 
 ## 프로젝트 소개
 
