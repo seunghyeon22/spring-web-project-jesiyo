@@ -32,6 +32,17 @@
 <img src = "https://github.com/seunghyeon22/spring-web-project-jesiyo/blob/master/images/Screenshot_43.png">
 <img src = "https://github.com/seunghyeon22/spring-web-project-jesiyo/blob/master/images/Screenshot_44.png">
 <br>
+## ToDo
+- 구현된 기능
+   - 내가 구현한 기능 
+      *   [ ] [중고 경매 사이트 - 제시요(메인화면 카테고리 리스트)](https://inblog.ai/songsh/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%EC%A4%91%EA%B3%A0-%EA%B2%BD%EB%A7%A4-%EC%82%AC%EC%9D%B4%ED%8A%B8-%EC%A0%9C%EC%8B%9C%EC%9A%94%EB%A9%94%EC%9D%B8%ED%99%94%EB%A9%B4-%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC-%EB%A6%AC%EC%8A%A4%ED%8A%B8-38582?traffic_type=internal)
+      *   [ ] 상품 추가
+      *   [ ] 매출 확인
+      *   [x] 기본 버거 커스텀
+      *   [x] 칼로리를 이용한 자동 버거 커스텀
+      *   [x] 장바구니
+      *   [ ] 주문목록     
+<br>
 
 ## 기술 스택
 ### Backend
