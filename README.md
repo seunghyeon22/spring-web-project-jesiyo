@@ -100,7 +100,8 @@ implementation 'net.minidev:json-smart:2.4.1'
 <br>
 
 ## 트러블슈팅
-
+<img src="https://github.com/seunghyeon22/spring-web-project-jesiyo/blob/master/images/Category.png">
+<img src ="https://github.com/seunghyeon22/spring-web-project-jesiyo/blob/master/images/Screenshot_45.png">
 ### 메인화면 - 카테고리 캐러샐 출력 
 - DB에 등록 되어 있는 카테고리 목록을 화면에 4개씩 배치하여 버튼을  좌, 우 버튼을 클릭하여 다음 혹은 이전 카테고리들을 나열
 - 생각한 방법
