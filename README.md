@@ -100,8 +100,6 @@ implementation 'net.minidev:json-smart:2.4.1'
 <br>
 
 ## 트러블슈팅
-<img src="https://github.com/seunghyeon22/spring-web-project-jesiyo/blob/master/images/Category.png">
-<img src ="https://github.com/seunghyeon22/spring-web-project-jesiyo/blob/master/images/Screenshot_45.png">
 ### 메인화면 - 카테고리 캐러샐 출력 
 - DB에 등록 되어 있는 카테고리 목록을 화면에 4개씩 배치하여 버튼을  좌, 우 버튼을 클릭하여 다음 혹은 이전 카테고리들을 나열
 - 생각한 방법
@@ -116,6 +114,10 @@ implementation 'net.minidev:json-smart:2.4.1'
 ### 해결
 - 하지만 마지막에 i+1이 4로 나눈 나머지값이 0이 안될 경우가 있음
 - if 조건을 줘서 str2에 값이 남아있으면 추가로 넣는다.
+
+<img src="https://github.com/seunghyeon22/spring-web-project-jesiyo/blob/master/images/Category.png">
+<img src ="https://github.com/seunghyeon22/spring-web-project-jesiyo/blob/master/images/Screenshot_45.png">
+ 
 <br>
 
 ## 느낀점
