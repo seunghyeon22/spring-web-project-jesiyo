@@ -74,8 +74,8 @@ implementation 'net.minidev:json-smart:2.4.1'
 ```
 <br>
 
-## 화면 구성
-화면 다 완성되면 캡쳐해서 추가
+## 화면 설계
+[화면 설계 블로그](https://inblog.ai/songsh/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%EC%A4%91%EA%B3%A0-%EA%B2%BD%EB%A7%A4-%EC%82%AC%EC%9D%B4%ED%8A%B8-%EC%A0%9C%EC%8B%9C%EC%9A%942-38105?traffic_type=internal)
 <br><br>
 
 ## ERD
