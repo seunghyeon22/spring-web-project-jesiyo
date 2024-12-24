@@ -34,14 +34,8 @@
 <br><br>
 
 ## 구현 기능
-### 유저 관련 기능
-- 로그인
-### 경매 입찰 / 낙찰 관련 기능
-- 입찰
-### 신고 기능
-- 판매자 / 구매자 신고
-### 관리자 
-- 신고 관리
+<img src = "https://github.com/seunghyeon22/spring-web-project-jesiyo/blob/master/images/Screenshot_43.png">
+<img src = "https://github.com/seunghyeon22/spring-web-project-jesiyo/blob/master/images/Screenshot_44.png">
 <br>
 
 ## 기술 스택
