@@ -1,7 +1,7 @@
 <h1 align="center">
+  <img src="https://github.com/seunghyeon22/spring-web-project-jesiyo/blob/master/images/mainlogo.jpg">
   WEB프로젝트 (제시요)
 </h1>
-<p align="center">중고 거래 경매 사이트</p>
 ---
 
 ## 프로젝트 소개
